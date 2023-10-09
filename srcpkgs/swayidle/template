@@ -3,9 +3,11 @@ pkgname=swayidle
 version=1.8.0
 revision=1
 build_style=meson
-configure_args="-Dlogind-provider=elogind -Dwerror=false"
+build_options="elogind"
+build_options_default="elogind"
+configure_args="$(vopt_feature elogind logind) $(vopt_if elogind -Dlogind-provider=elogind) -Dwerror=false"
 hostmakedepends="pkg-config wayland-devel scdoc"
-makedepends="wayland-devel wayland-protocols elogind-devel"
+makedepends="wayland-devel wayland-protocols $(vopt_if elogind elogind-devel)"
 short_desc="Idle management daemon for Wayland"
 maintainer="Derriick <derriick.ensiie@yahoo.com>"
 license="MIT"
