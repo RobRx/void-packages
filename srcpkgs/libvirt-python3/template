@@ -1,7 +1,7 @@
 # Template file for 'libvirt-python3'
 pkgname=libvirt-python3
-version=9.6.0
-revision=2
+version=9.10.0
+revision=1
 build_style=python3-module
 hostmakedepends="pkg-config python3-devel python3-setuptools libvirt-devel
  libapparmor-devel"
@@ -13,7 +13,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://pypi.org/project/libvirt-python/"
 distfiles="https://libvirt.org/sources/python/libvirt-python-${version}.tar.gz"
-checksum=53422d8e3110139655c3d9c2ff2602b238f8a39b7bf61a92a620119b45550a99
+checksum=60b4a32200093d1287de544cdd310f01a1066dbff4cee62d45fa504141aa7577
 
 do_check() {
 	PYTHONPATH="$(cd build/lib.* && pwd)" pytest

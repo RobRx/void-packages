@@ -1,19 +1,19 @@
 # Template file for 'python3-tornado'
 pkgname=python3-tornado
-version=6.3.2
-revision=2
+version=6.4
+revision=1
 build_style=python3-pep517
 hostmakedepends="python3-setuptools python3-wheel"
 makedepends="python3-devel"
 depends="python3 ca-certificates"
 checkdepends="python3-curl python3-pycares python3-Twisted"
 short_desc="Python3 web framework and asynchronous networking library"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Gonzalo Tornaría <tornaria@cmat.edu.uy>"
 license="Apache-2.0"
 homepage="http://www.tornadoweb.org/"
 changelog="https://www.tornadoweb.org/en/stable/releases.html"
 distfiles="${PYPI_SITE}/t/tornado/tornado-${version}.tar.gz"
-checksum=4b927c4f19b71e627b13f3db2324e4ae660527143f9e1f2e2fb404f3a187e2ba
+checksum=72291fa6e6bc84e626589f1c29d90a5a6d593ef5ae68052ee2ef000dfd273dee
 
 do_check() {
 	# There is one instance of test_bind_source_ip (the one for

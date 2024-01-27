@@ -1,6 +1,6 @@
 # Template file for 'eza'
 pkgname=eza
-version=0.14.0
+version=0.17.3
 revision=1
 build_style=cargo
 hostmakedepends="pandoc pkg-config"
@@ -8,10 +8,10 @@ makedepends="libgit2-devel"
 short_desc="Modern, maintained replacement for ls"
 maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
 license="MIT"
-homepage="https://github.com/eza-community/eza"
+homepage="https://eza.rocks"
 changelog="https://raw.githubusercontent.com/eza-community/eza/main/CHANGELOG.md"
 distfiles="https://github.com/eza-community/eza/archive/refs/tags/v${version}.tar.gz"
-checksum=00932e1c81e761490e45d16902356d8e6ae7efe4accc0a41e18c342424167f47
+checksum=8facf4f39fed32b3562b70b2771a8ef3309efd68fd04685446a6df631f133cc9
 
 post_patch() {
 	cargo update --package git2@0.18.1 --precise 0.17.2

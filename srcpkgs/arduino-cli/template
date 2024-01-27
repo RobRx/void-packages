@@ -1,7 +1,7 @@
 # Template file for 'arduino-cli'
 pkgname=arduino-cli
-version=0.33.0
-revision=2
+version=0.35.1
+revision=1
 build_style=go
 build_helper="qemu"
 go_import_path=github.com/arduino/arduino-cli
@@ -10,8 +10,8 @@ short_desc="Arduino command line interface"
 maintainer="Henry Naguski <henry@nilsu.org>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/arduino/arduino-cli"
-distfiles="https://github.com/arduino/arduino-cli/archive/${version}.tar.gz"
-checksum=5ee6a8b2e77573efb3f742f8007d9866c2d177c098794be7f03acc4a6128e616
+distfiles="https://github.com/arduino/arduino-cli/archive/v${version}.tar.gz"
+checksum=f2685e52d0f4aff2e3d7328f8e75b3e06decea6f0611aa196f0d7659dfe72341
 
 case "$XBPS_TARGET_MACHINE" in
 	# the downloaded toolchains use glibc, this allows them to work on musl

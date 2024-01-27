@@ -1,7 +1,7 @@
 # Template file for 'umbrello'
 pkgname=umbrello
-version=23.08.0
-revision=2
+version=23.08.4
+revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules gettext kcoreaddons kconfig kdoctools qt5-host-tools qt5-qmake"
 makedepends="kdelibs4support-devel ktexteditor-devel qt5-webkit-devel"
@@ -11,7 +11,7 @@ license="GPL-2.0-or-later, LGPL-2.0-or-later, GFDL-1.2-or-later"
 homepage="https://apps.kde.org/umbrello/"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#umbrello"
 distfiles="${KDE_SITE}/release-service/${version}/src/umbrello-${version}.tar.xz"
-checksum=cbb9717ca99576646b63252f725e194f9291d8a3b2f9acbcdcc58e1729f84a2e
+checksum=13e81319f4196f05598866a13b89e03d4b560bd7308967795777f9451d37ba6e
 python_version=3
 
 pre_configure() {

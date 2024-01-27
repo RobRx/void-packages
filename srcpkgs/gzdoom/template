@@ -1,11 +1,11 @@
 # Template file for 'gzdoom'
 pkgname=gzdoom
-version=4.11.0
-revision=1
-archs="~i686* ~arm*"
+version=4.11.3
+revision=2
+archs="x86_64* aarch64*"
 build_style=cmake
 configure_args="-DINSTALL_PK3_PATH=share/gzdoom -DDYN_GTK=OFF -DDYN_OPENAL=OFF"
-hostmakedepends="pkg-config tar xz"
+hostmakedepends="pkg-config"
 makedepends="SDL2-devel gtk+3-devel libgomp-devel ZMusic-devel libopenal-devel libvpx-devel libwebp-devel"
 short_desc="Advanced Doom source port with OpenGL support"
 maintainer="Érico Nogueira <ericonr@disroot.org>"
@@ -14,8 +14,8 @@ homepage="https://www.zdoom.org"
 # WARNING: watch out for new submodules
 distfiles="https://github.com/ZDoom/gzdoom/archive/g${version}.tar.gz
  https://github.com/ZDoom/gzdoom/releases/download/g${version}/gzdoom_${version}_amd64.deb"
-checksum="44a0aee6fa6b9cc2f5956bb98252708720b03ddf264821c487ce6af07cb204d7
- 23cec6b75612e106aa32dbf1e44dcddb5cce73d7476ab58da1af9429bcafeed4"
+checksum="5943dba50da20ff94f1fcc415132672d42a15917c571b1c2b7ceefe14935f5d5
+ 4c544d243dc15fc22000a3b6eabd83fd70f87ea63205a14ff04254c092f74642"
 skip_extraction="${pkgname}_${version}_amd64.deb"
 nocross=yes
 
@@ -27,8 +27,15 @@ if [ "$XBPS_TARGET_LIBC" = musl ]; then
 fi
 
 post_extract() {
-	bsdtar xOf ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${pkgname}_${version}_amd64.deb data.tar.xz |
-	tar --strip-components=4 -xJf - ./usr/share/{pixmaps/gzdoom.png,applications/gzdoom.desktop}
+	vsrcextract --strip-components=4 \
+		${pkgname}_${version}_amd64.deb \
+		./usr/share/{pixmaps/gzdoom.png,applications/gzdoom.desktop}
+	: >tools/updaterevision/UpdateRevision.cmake
+	sed "
+		s/@Tag@/${version}/;
+		s/@Hash@/v${version}/;
+		s/@Timestamp@/<unknown>/;
+	" tools/updaterevision/gitinfo.h.in >src/gitinfo.h
 }
 
 post_install() {

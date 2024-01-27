@@ -1,6 +1,6 @@
 # Template file for 'sq'
 pkgname=sq
-version=0.42.1
+version=0.46.1
 revision=1
 build_style=go
 go_import_path="github.com/neilotoole/sq"
@@ -14,8 +14,8 @@ homepage="https://sq.io"
 changelog="https://raw.githubusercontent.com/neilotoole/sq/master/CHANGELOG.md"
 distfiles="https://github.com/neilotoole/sq/archive/refs/tags/v${version}.tar.gz
  https://github.com/neilotoole/sq/releases/download/v${version}/sq-${version}-amd64-amd64.tar.gz"
-checksum="e050b32155f66a8b7413893e08cd1d8e3bd704f16e624896bdcd11267657b1eb
- 7d518570e4e82f5c17ea0dc93b23a5ee6fd866a7f7b9cf456f90f3e43aa97a52"
+checksum="ce376e021e3753b8b6a9733c4374b28117cf619ccf837d50b7753d6dc1abac71
+ de45b463ec2612b2a68c10d693e7cb28783cd3f30c3c3796a17b27d612891f02"
 conflicts="squirrel sequoia-sq"
 
 post_extract() {

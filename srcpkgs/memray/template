@@ -1,12 +1,13 @@
 # Template file for 'memray'
 pkgname=memray
-version=1.9.1
-revision=2
+version=1.11.0
+revision=1
 build_style=python3-pep517
+make_check_args="-v -k not((TestTUILooks)or(test_tui))"
 make_check_target="tests/unit"
-hostmakedepends="python3-setuptools python3-wheel python3-Cython"
+hostmakedepends="python3-pkgconfig python3-setuptools python3-wheel python3-Cython"
 makedepends="python3-devel libunwind-devel liblz4-devel"
-depends="python3-Jinja2 python3-rich"
+depends="python3-Jinja2 python3-rich python3-textual"
 checkdepends="${depends} python3-pytest"
 short_desc="Reports memory allocations in python code & compiled extensions"
 maintainer="icp <pangolin@vivaldi.net>"
@@ -14,7 +15,7 @@ license="Apache-2.0"
 homepage="https://bloomberg.github.io/memray/"
 changelog="https://bloomberg.github.io/memray/changelog.html"
 distfiles="https://github.com/bloomberg/memray/archive/refs/tags/v${version}.tar.gz"
-checksum=c135417558ee0efc1eeb5684c2a7b52fc9598ac0fdcf5d7dadc4486f4a028e49
+checksum=529487147b295fa28f8a71d33d3f120cc0f66bdf5b8ab058736fb4661d545b9a
 make_check_pre="env PYTHONPATH=src"
 
 pre_build() {

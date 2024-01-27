@@ -1,7 +1,7 @@
 # Template file for 'xdg-desktop-portal'
 pkgname=xdg-desktop-portal
-version=1.18.0
-revision=2
+version=1.18.2
+revision=1
 build_style=meson
 configure_args="-Dgeoclue=enabled -Dlibportal=enabled
  -Dsystemd=disabled"
@@ -15,7 +15,7 @@ license="LGPL-2.1-or-later"
 homepage="https://github.com/flatpak/xdg-desktop-portal"
 changelog="https://github.com/flatpak/xdg-desktop-portal/raw/main/NEWS"
 distfiles="https://github.com/flatpak/xdg-desktop-portal/archive/refs/tags/${version}.tar.gz"
-checksum=4c8a017fb3c894ec46c03d08e6b6c3d31259707bdb3c7ee8aedb3a0cc0b4d707
+checksum=2f89db75ea5448fb604bb4ba8cd9dc522b1e4928f0a1b8a4f978a10a45d4ee7e
 
 if [ "$XBPS_BUILD_ENVIRONMENT" = "void-packages-ci" ]; then
 	export TEST_IN_CI="true"

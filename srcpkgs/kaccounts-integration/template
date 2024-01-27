@@ -1,6 +1,6 @@
 # Template file for 'kaccounts-integration'
 pkgname=kaccounts-integration
-version=23.08.0
+version=23.08.4
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules pkg-config qt5-host-tools qt5-qmake
@@ -13,7 +13,7 @@ license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/network/kaccounts-integration"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kaccounts-integration"
 distfiles="${KDE_SITE}/release-service/${version}/src/kaccounts-integration-${version}.tar.xz"
-checksum=6f9cddca5dd029c2e97e2ddd3e286865c50fb14210f1225393f27ed3a4bcc9af
+checksum=7bec166405cca850921e12ae86a32e1c6c35411c3baeb5d7edc7c3350d71c952
 
 kaccounts-integration-devel_package() {
 	short_desc+=" - development"

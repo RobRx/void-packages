@@ -1,15 +1,15 @@
 # Template file for 'slack-desktop'
 pkgname=slack-desktop
-version=4.34.120
+version=4.36.134
 revision=1
 archs="x86_64"
 depends="xdg-utils"
 short_desc="Messaging app for teams"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="dataCobra <datacorba@thinkbot.de>"
 license="custom:Proprietary"
 homepage="https://slack.com/"
 distfiles="https://downloads.slack-edge.com/releases/linux/${version}/prod/x64/${pkgname}-${version}-amd64.deb"
-checksum=fe2c78539f31cf8e58ae2250af428d00637f0d59af987113f31d7f0f8db48d72
+checksum=648d38b70e3b079dadcb64a56e46ac386a66ef02118ff75456ef85d4f363c378
 restricted=yes
 repository="nonfree"
 nopie=yes

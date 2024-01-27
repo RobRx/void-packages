@@ -1,6 +1,6 @@
 # Template file for 'kpeople'
 pkgname=kpeople
-version=5.110.0
+version=5.113.0
 revision=1
 build_style=cmake
 hostmakedepends="kcoreaddons extra-cmake-modules gettext
@@ -12,7 +12,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kpeople"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=f700e48269fc5dfb5f56e84556f5484d5b0b0f589d45a769831800cea463b981
+checksum=f6a8b8fc046a6b6d30eedd067bd0f35bf447289eb8d54888639efb183024e421
 
 do_check() {
 	cd build
