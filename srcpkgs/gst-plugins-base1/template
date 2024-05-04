@@ -6,15 +6,13 @@ build_style=meson
 build_helper="gir"
 configure_args="-Dtremor=disabled -Dexamples=disabled -Ddoc=disabled
  $(vopt_feature cdparanoia cdparanoia) $(vopt_feature gir introspection)
- $(vopt_feature x11 x11) $(vopt_feature x11 xshm) $(vopt_feature x11 xvideo)
- $(vopt_feature x11 xi) $(vopt_feature libvisual libvisual) $(vopt_feature theora theora) 
- $(vopt_feature vorbis vorbis)"
+ $(vopt_feature x11 x11) $(vopt_feature libvisual libvisual) $(vopt_feature theora theora)"
 hostmakedepends="gettext pkg-config glib-devel orc $(vopt_if wayland wayland-devel)"
 makedepends="gstreamer1-devel glib-devel libxml2-devel pango-devel
- cairo-devel liboil-devel alsa-lib-devel $(vopt_if x11 'libXv-devel libXext-devel')
+ cairo-devel liboil-devel alsa-lib-devel $(vopt_if x11 'libXv-devel libXext-devel libSM-devel')
  $(vopt_if libvisual libvisual-devel) libgudev-devel $(vopt_if theora libtheora-devel)
- $(vopt_if vorbis libvorbis-devel) libSM-devel orc-devel $(vopt_if cdparanoia libcdparanoia-devel)
- opus-devel MesaLib-devel graphene-devel $(vopt_if wayland 'wayland-devel wayland-protocols')"
+ libvorbis-devel orc-devel $(vopt_if cdparanoia libcdparanoia-devel) opus-devel MesaLib-devel
+ graphene-devel $(vopt_if wayland 'wayland-devel wayland-protocols')"
 depends="orc>=0.4.18 gstreamer1>=${version}"
 checkdepends="mesa-dri"
 short_desc="GStreamer Base Plug-ins (v1.x)"
@@ -25,11 +23,10 @@ changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${version}.tar.xz"
 checksum=cf52b535a0ce7ec974756891818f34f06317c2e136abb24149e18c23ecc229b5
 
-build_options="wayland x11 gir cdparanoia libvisual theora vorbis"
+build_options="wayland x11 gir cdparanoia libvisual theora"
 build_options_default="wayland x11 gir"
 desc_option_libvisual="Enable support for libvisual audio visualization plugin"
 desc_option_theora="Enable support for the Theora codec"
-desc_option_vorbis="Enable support for the Vorbis codec"
 
 case "$XBPS_TARGET_MACHINE" in
 	mips*)	# XXX: work around assembler "Error: branch out of range"
