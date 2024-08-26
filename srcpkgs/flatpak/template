@@ -12,11 +12,12 @@ configure_args="
  -Dselinux_module=disabled
  -Dgdm_env_file=true
  -Dsystem_fusermount=/usr/bin/fusermount3
- $(vopt_feature gir)"
+ $(vopt_feature gir)
+ $(vopt_feature system_helper system_helper)"
 hostmakedepends="bubblewrap gettext glib-devel libxslt pkg-config bison
- python3-parsing xmlto docbook-xml docbook-xsl xdg-dbus-proxy polkit-devel"
+ python3-parsing xmlto docbook-xml docbook-xsl xdg-dbus-proxy $(vopt_if system_helper polkit-devel)"
 makedepends="AppStream-devel libarchive-devel gpgme-devel json-glib-devel
- libcap-devel libostree-devel libseccomp-devel polkit-devel dconf-devel
+ libcap-devel libostree-devel libseccomp-devel $(vopt_if system_helper polkit-devel) dconf-devel
  fuse3-devel libcurl-devel libxml2-devel gdk-pixbuf-devel"
 depends="bubblewrap gnupg>=2 xdg-dbus-proxy"
 checkdepends="attr-progs bubblewrap dbus gnupg socat which xdg-dbus-proxy"
@@ -28,8 +29,9 @@ changelog="https://github.com/flatpak/flatpak/raw/main/NEWS"
 distfiles="https://github.com/flatpak/flatpak/releases/download/${version}/flatpak-${version}.tar.xz"
 checksum=6aa67ca29b4f4da74654888446710b16c9fcfe640c324a51c5025087eecbf42f
 
-build_options="gir"
-build_options_default="gir"
+build_options="gir system_helper"
+build_options_default="gir system_helper"
+desc_option_system_helper="Enable system helper"
 
 system_accounts="_flatpak"
 
