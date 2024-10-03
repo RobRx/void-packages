@@ -1,18 +1,18 @@
 # Template file for 'uv'
 pkgname=uv
-version=0.2.34
+version=0.4.17
 revision=1
 build_style=python3-pep517
 build_helper="rust qemu"
 hostmakedepends="maturin cargo cmake pkg-config"
-makedepends="rust-std libzstd-devel"
+makedepends="rust-std libzstd-devel bzip2-devel"
 short_desc="Extremely fast Python package installer and resolver"
 maintainer="classabbyamp <void@placeviolette.net>"
-license="Apache-2.0, MIT"
+license="Apache-2.0 OR MIT"
 homepage="https://github.com/astral-sh/uv"
 changelog="https://github.com/astral-sh/uv/raw/main/CHANGELOG.md"
 distfiles="https://github.com/astral-sh/uv/releases/download/${version}/source.tar.gz"
-checksum=2c8167c6b14738d2d94cc864cbcc5a2f4b45d9136f8cbed348dba937a03927fc
+checksum=68ad7bf18029bcc9f0c8556e5fb96814fa30d8f67b3ccbc5db19e38b487c9326
 # many tests require old python versions
 make_check=no
 
