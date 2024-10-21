@@ -1,6 +1,6 @@
 # Template file for 'wine'
 pkgname=wine
-version=9.16
+version=9.20
 revision=1
 _pkgver=${version/r/-r}
 create_wrksrc=yes
@@ -13,8 +13,8 @@ license="LGPL-2.1-or-later"
 homepage="http://www.winehq.org/"
 distfiles="https://dl.winehq.org/wine/source/${version%.*}.x/wine-${_pkgver}.tar.xz
  https://github.com/wine-staging/wine-staging/archive/v${_pkgver}.tar.gz"
-checksum="89042ae8c80b2333f8a7d18877fc4179c07d6357ab7f28ccbda6d06f3c330c50
- fdff5f26fb2b872ab702d540c86248f09c971c8e7b80ba3899d4e5c19a12f7c3"
+checksum="95f2b45b1458125be7d9fccc94ca5f8cce0a5e4ae11d0d193cfb7dddb35e7a86
+ e88fe8e23f7160489538636a2d795772415004d48cdcc85d29dd9e59b2fe575d"
 
 # NOTE: wine depends on specific versions of wine-mono and wine-gecko,
 # check for updates to these packages when updating wine
@@ -73,6 +73,7 @@ if [ "$XBPS_TARGET_WORDSIZE" != 32 ]; then
 else
 	_wineserver_suffix="32"
 	CFLAGS=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
+	CPPFLAGS=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
 fi
 
 if [ "$XBPS_LIBC" = "glibc" ]; then

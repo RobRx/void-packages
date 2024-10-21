@@ -1,6 +1,6 @@
 # Template file for 'qlog'
 pkgname=qlog
-version=0.37.2
+version=0.39.0
 revision=1
 build_style=qmake
 build_helper=qmake6
@@ -14,8 +14,8 @@ homepage="https://github.com/foldynl/QLog"
 changelog="https://raw.githubusercontent.com/foldynl/QLog/master/Changelog"
 distfiles="https://github.com/foldynl/QLog/archive/refs/tags/v${version}.tar.gz
  https://github.com/foldynl/QLog-Flags/archive/refs/tags/v${version}.tar.gz>flags-${version}.tar.gz"
-checksum="da3e123ffcdaf9c9fce90113e2e0ba2019748a6bb28157b3475c2f26795acf04
- c6d2ffd33bc3b1436f067b3cbf389c0979c0601c2dd066da2681480f957d021d"
+checksum="5a97b84da68f095875cf942b61a819446ca09a667e4818bfefa42d927687c9a4
+ c636e6b8c340bfbec53610e9fd7f97d093a316cf305a4e88db0999aa3310e42d"
 skip_extraction="flags-${version}.tar.gz"
 
 if [ "$XBPS_WORDSIZE$XBPS_WORDSIZE" != "64$XBPS_TARGET_WORDSIZE" ]; then

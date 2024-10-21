@@ -1,6 +1,6 @@
 # Template file for 'zeek'
 pkgname=zeek
-version=7.0.0
+version=7.0.3
 revision=1
 archs="x86_64* i686* aarch64* armv7* ppc64*"
 build_style=cmake
@@ -15,7 +15,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="BSD-3-Clause"
 homepage="https://www.zeek.org"
 distfiles="https://download.zeek.org/zeek-${version}.tar.gz"
-checksum=186393329b7f53f8087730eb97449e0e868b0dbad5deaea3864d7a7c7d30f8fb
+checksum=029e389f5405d8831657202a7be542be756a8c5811bfaab7376c1c6b10e1d9e3
 make_check=no # checks are broken
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
