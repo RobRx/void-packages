@@ -1,6 +1,6 @@
 # Template file for 'sbcl'
 pkgname=sbcl
-version=2.4.7
+version=2.4.10
 revision=1
 # make sure the sbcl option in maxima is enabled for the same archs
 archs="i686 x86_64* armv7l aarch64 ppc64le*"
@@ -16,7 +16,7 @@ license="custom:BSD+public_domain"
 homepage="http://www.sbcl.org/"
 changelog="http://www.sbcl.org/news.html"
 distfiles="${SOURCEFORGE_SITE}/${pkgname}/${pkgname}-${version}-source.tar.bz2"
-checksum=68544d2503635acd015d534ccc9b2ae9f68996d429b5a9063fd22ff0925011d2
+checksum=ceeb396b69d2913eee04841c2af6beca5c342ce1464c3fe3e453f2de10c5e2f8
 nocross=yes
 nopie=yes
 
@@ -24,7 +24,7 @@ _bootstrap_lisp="bash ../sbcl-*-linux/run-sbcl.sh --no-sysinit --no-userinit --d
 case "$XBPS_TARGET_MACHINE" in
 x86_64)
 	distfiles+=" ${SOURCEFORGE_SITE}/${pkgname}/${pkgname}-${version}-x86-64-linux-binary.tar.bz2"
-	checksum+=" 1f900cf99f2617f613fe0a6d3490d3e00aa5e9740c88a8c88022a0ac766b0457"
+	checksum+=" 99cc019120172bb4317f3c79cfc3afffe51e314091e07e8c0ba1d94759767777"
 	;;
 arm*)
 	distfiles+=" ${SOURCEFORGE_SITE}/${pkgname}/${pkgname}-1.2.14-armhf-linux-binary.tar.bz2"

@@ -1,6 +1,6 @@
 # Template file for 'kf6-modemmanager-qt'
 pkgname=kf6-modemmanager-qt
-version=6.3.0
+version=6.7.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
@@ -12,7 +12,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/modemmanager-qt"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=9cf3029746a8b8b3740bc4de93f138664325c7f4fe8017d92e342e7bc43ec7cf
+checksum=fc45dcd8ada243baf7900099062f312b677bf694f88f36746d534afe907bf8f3
 
 do_check() {
 	cd build

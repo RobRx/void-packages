@@ -1,8 +1,8 @@
 # Template file for 'dbeaver'
 pkgname=dbeaver
-version=24.1.4
+version=24.2.3
 revision=1
-_common_commit=f883d97922b19a3481113c0971067f07c116aa6d
+_common_commit=605757efc02bf2d55f00d1b64f1b7f00f2819eb4
 # the build downloads binaries linked to glibc
 archs="x86_64 aarch64"
 build_wrksrc="dbeaver"
@@ -15,8 +15,8 @@ homepage="https://dbeaver.io"
 changelog="https://dbeaver.io/news/"
 distfiles="https://github.com/dbeaver/dbeaver/archive/${version}.tar.gz
  https://github.com/dbeaver/dbeaver-common/archive/${_common_commit}.tar.gz"
-checksum="047d837bf49b3a71f5a5c61dc92c0f5afd56659198376d3aafe3ddad0bd3895c
- e0632d771d7a81712b52e4464f51f13a7a52efaa14fcce7781ea9c15bcfebfb5"
+checksum="367d3e8e712ffb4868026f543e8386d395dc5f33250ef12286669b7a95be983d
+ 6f45062fb5c7e9489ee5d801c1821af0eb54bbc6ad26eed03f91ed88db8ab681"
 nopie=true
 
 post_extract() {

@@ -1,6 +1,6 @@
 # Template file for 'rust-analyzer'
 pkgname=rust-analyzer
-version=2024.08.05
+version=2024.10.28
 revision=1
 _ver=${version//./-}
 build_style=cargo
@@ -10,7 +10,7 @@ maintainer="icp <pangolin@vivaldi.net>"
 license="Apache-2.0, MIT"
 homepage="https://rust-analyzer.github.io/"
 distfiles="https://github.com/rust-lang/rust-analyzer/archive/refs/tags/${_ver}.tar.gz"
-checksum=cf42237fc0e747710cf3801e54b9fdd5ae50daee928fa12236df0912e45c4839
+checksum=237c808e104c0ba3db9eec1830d4920593c4bea5ee0c0cfd729f4dffa42fd575
 # tests require Rust source code
 make_check=no
 

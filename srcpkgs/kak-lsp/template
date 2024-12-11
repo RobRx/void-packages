@@ -1,17 +1,18 @@
 # Template file for 'kak-lsp'
 pkgname=kak-lsp
-version=17.0.1
+version=18.0.2
 revision=1
 build_style=cargo
 short_desc="Language Server Protocol client for Kakoune"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Daniel Lewan <daniel@teddydd.me>"
 license="Unlicense"
 homepage="https://github.com/kakoune-lsp/kakoune-lsp"
 changelog="https://raw.githubusercontent.com/kakoune-lsp/kakoune-lsp/master/CHANGELOG.md"
 distfiles="https://github.com/kakoune-lsp/kakoune-lsp/archive/v${version}.tar.gz"
-checksum=c32172a7d13621d7f7fd8b32b819865fd58a38c0c431d3cedd6046fb6de42f44
+checksum=ad33b20437cd7bc89d7992b9449a02c946528e7f91d15d76dba27c7ad2ae7d36
 
 post_install() {
 	vlicense UNLICENSE
-	vsconf kak-lsp.toml
+	vsconf rc/servers.kak
+	vsconf rc/lsp.kak
 }

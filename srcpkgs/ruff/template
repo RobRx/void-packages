@@ -1,18 +1,18 @@
 # Template file for 'ruff'
 pkgname=ruff
-version=0.5.7
+version=0.7.0
 revision=1
 build_style=python3-pep517
 build_helper="rust qemu"
-hostmakedepends="maturin cargo"
-makedepends="rust-std"
+hostmakedepends="maturin cargo pkg-config"
+makedepends="rust-std libzstd-devel"
 short_desc="Fast Python linter and code formatter"
 maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://docs.astral.sh/ruff/"
 changelog="https://raw.githubusercontent.com/astral-sh/ruff/main/CHANGELOG.md"
 distfiles="https://github.com/astral-sh/ruff/archive/refs/tags/${version}.tar.gz"
-checksum=7ac2fd49222dc31aac0f97a40ea5d1d74dee9a1228ff5d62d603359713d8e0d1
+checksum=1bb27c8b7da3d2d2a676c677692f9a527d5fa5697a52c0515f9662f735449293
 
 post_install() {
 	vlicense LICENSE
