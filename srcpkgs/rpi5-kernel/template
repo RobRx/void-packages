@@ -1,37 +1,42 @@
-# Template file for 'linux6.6'
-pkgname=linux6.6
-version=6.6.69
+# Template file for 'rpi5-kernel'
+#
+# We track the latest Raspberry Pi LTS kernel as that is what is used in the
+# official Raspberry Pi OS distribution. This is currently 6.6:
+#
+# https://forums.raspberrypi.com/viewtopic.php?t=361116
+#
+# Commit hash is picked from latest tag [1], if appropriate, or from latest
+# "Merge remote-tracking branch 'stable/linux-6.x.y' into rpi-6.x.y" commit.
+#
+# [1] https://github.com/raspberrypi/linux/tags
+#
+# Upstream documentation: https://www.raspberrypi.com/documentation/computers/linux_kernel.html
+#
+# XXX: KEEP IN SYNC WITH rpi-kernel
+pkgname=rpi5-kernel
+version=6.6.67
 revision=1
-short_desc="Linux kernel and modules (${version%.*} series)"
-maintainer="Duncaen <duncaen@voidlinux.org>"
+_githash=730a6e5cb8cd195e8dd2bb1406af277621831583
+archs="aarch64*"
+hostmakedepends="perl kmod uboot-mkimage openssl-devel bc bison flex xz pahole
+ python3 elfutils-devel cpio tar zstd"
+makedepends="ncurses-devel"
+short_desc="Linux kernel for Raspberry Pi 5 (${version%.*} series)"
+maintainer="classabbyamp <void@placeviolette.net>"
 license="GPL-2.0-only"
-homepage="https://www.kernel.org"
-distfiles="${KERNEL_SITE}/kernel/v${version%%.*}.x/linux-${version%.*}.tar.xz"
-
-if [ "${version##*.}" != 0 ]; then
-	distfiles+=" ${KERNEL_SITE}/kernel/v${version%%.*}.x/patch-${version}.xz"
-	skip_extraction="patch-${version}.xz"
-fi
-
-checksum="d926a06c63dd8ac7df3f86ee1ffc2ce2a3b81a2d168484e76b5b389aba8e56d0
- 3867a54c57623c457f6c8a7426605d9440f8df1f928e2fb82e6dd84b25253fc5"
+homepage="http://www.kernel.org"
+distfiles="https://github.com/raspberrypi/linux/archive/${_githash}.tar.gz"
+checksum=df7e50191f8f4bbaabebf33902f7b776b446757e9617258b71fc5af7374934b4
 python_version=3
-
-# XXX Restrict archs until a proper <arch>-dotconfig is available in FILESDIR.
-archs="x86_64* i686* aarch64*"
-
-nodebug=yes  # -dbg package is generated below manually
-nostrip=yes
-noverifyrdeps=yes
-noshlibprovides=yes
-preserve=yes
-
-hostmakedepends="tar xz bc elfutils-devel flex gmp-devel kmod libmpc-devel
- pkg-config openssl-devel perl uboot-mkimage cpio pahole python3 zstd"
 
 _kernver="${version}_${revision}"
 triggers="kernel-hooks"
 kernel_hooks_version="${_kernver}"
+
+nodebug=yes # generated manually
+nostrip=yes
+noverifyrdeps=yes
+noshlibprovides=yes
 
 # These files could be modified when an external module is built.
 mutable_files="
@@ -55,81 +60,49 @@ if [ "$CROSS_BUILD" ]; then
 	_cross="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
 fi
 
-pre_patch() {
-	if [ ! -f $XBPS_SRCDISTDIR/$pkgname-$version/patch-${version}.xz ]; then
-		return
-	fi
-	xzcat $XBPS_SRCDISTDIR/$pkgname-$version/patch-${version}.xz |
-		patch -sNp1 -F0
-}
-
-post_patch() {
-	# avoid the strip wrapper, its used to copy the objects to a new location
-	# and required to avoid absolute relocations.
-	vsed -e "s|\$(STRIP) \(--strip-debug -o \$@ \$<;\)|/usr/bin/${STRIP} \1|" -i drivers/firmware/efi/libstub/Makefile
-}
+provides="rpi-kernel-${version}_${revision}"
+replaces="rpi-kernel>=0"
 
 do_configure() {
+	local cfg overlay tgt="oldconfig"
+
 	# If there's a file called <arch>-dotconfig, use it to
-	# configure the kernel; otherwise use arch defaults and all stuff
-	# as modules (allmodconfig).
-	local arch subarch
-
-	case "$XBPS_TARGET_MACHINE" in
-		i686*) arch=i386;;
-		x86_64*) arch=x86_64;;
-		arm*) arch=arm;;
-		aarch64*) arch=arm64;;
-		ppc64le*) arch=powerpc; subarch=ppc64le;;
-		ppc64*) arch=powerpc; subarch=ppc64;;
-		ppc*) arch=powerpc; subarch=ppc;;
-		mips*) arch=mips;;
-		riscv64*) arch=riscv;;
-	esac
-
-	if [ -f ${FILESDIR}/${subarch:-$arch}-dotconfig-custom ]; then
+	# configure the kernel; otherwise use board defaults.
+	if [ -f "${FILESDIR}/arm64-dotconfig-custom" ]; then
 		msg_normal "Detected a custom .config file for your arch, using it.\n"
-		cp -f ${FILESDIR}/${subarch:-$arch}-dotconfig-custom .config
-		make ${makejobs} ARCH=$arch ${_cross} oldconfig
-	elif [ -f ${FILESDIR}/${subarch:-$arch}-dotconfig ]; then
+		cfg="${FILESDIR}/arm64-dotconfig-custom"
+	elif [ -f "${FILESDIR}/arm64-dotconfig" ]; then
 		msg_normal "Detected a .config file for your arch, using it.\n"
-		cp -f ${FILESDIR}/${subarch:-$arch}-dotconfig .config
-		make ${makejobs} ARCH=$arch ${_cross} oldconfig
+		cfg="${FILESDIR}/arm64-dotconfig"
+	else
+		msg_normal "Using default configuration for your arch.\n"
+		cfg=arch/arm64/configs/bcm2712_defconfig
+		tgt=olddefconfig
 	fi
+
+	# apply custom settings for the pi5 kernel (mostly just page size)
+	if [ -f "${FILESDIR}/rpi5-config-overlay-custom" ]; then
+		overlay="${FILESDIR}/rpi5-config-overlay-custom"
+	elif [ -f "${FILESDIR}/rpi5-config-overlay" ]; then
+		overlay="${FILESDIR}/rpi5-config-overlay"
+	fi
+
+	cp -f "$cfg" .config
+	scripts/kconfig/merge_config.sh -m .config "$overlay"
+	make ${makejobs} ARCH=arm64 ${_cross} ${tgt}
 
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
 	sed -i -e "s|^\(CONFIG_LOCALVERSION=\).*|\1\"_${revision}\"|" .config
 }
 
 do_build() {
-	local arch _args
-
-	case "$XBPS_TARGET_MACHINE" in
-		i686*) _args="bzImage modules"; arch=i386;;
-		x86_64*) _args="bzImage modules"; arch=x86_64;;
-		arm*) _args="zImage modules dtbs"; arch=arm;;
-		aarch64*) _args="Image modules dtbs"; arch=arm64;;
-		ppc*) _args="zImage modules"; arch=powerpc;;
-		mips*) _args="uImage modules dtbs"; arch=mips;;
-		riscv64*) _args="Image modules dtbs"; arch=riscv;;
-	esac
 	export LDFLAGS=
-	make ARCH=$arch ${_cross} ${makejobs} prepare
-	make ARCH=$arch ${_cross} ${makejobs} ${_args}
+	make ARCH=arm64 ${_cross} ${makejobs} prepare
+	make ARCH=arm64 ${_cross} ${makejobs} Image.gz modules dtbs
 }
 
 do_install() {
-	local arch subarch _args hdrdest
-
-	case "$XBPS_TARGET_MACHINE" in
-		i686*) arch=x86; subarch=i386;;
-		x86_64*) arch=x86; subarch=x86_64;;
-		arm*) arch=arm;;
-		aarch64*) arch=arm64;;
-		ppc*) arch=powerpc;;
-		mips*) arch=mips;;
-		riscv*) arch=riscv;;
-	esac
+	local arch=arm64 hdrdest
 
 	# Run depmod after compressing modules - makes depmod.sh a noop
 	sed -i '2iexit 0' scripts/depmod.sh
@@ -137,40 +110,26 @@ do_install() {
 	ln -s usr/lib/ ${DESTDIR}
 
 	# Install kernel, firmware and modules
-	make ${makejobs} ARCH=${subarch:-$arch} INSTALL_MOD_PATH=${DESTDIR} ${_cross} modules_install
+	make ${makejobs} ARCH=arm64 INSTALL_MOD_PATH=${DESTDIR} ${_cross} modules_install
 
 	hdrdest=${DESTDIR}/usr/src/kernel-headers-${_kernver}
 
 	vinstall .config 644 boot config-${_kernver}
 	vinstall System.map 644 boot System.map-${_kernver}
 
-	case "$arch" in
-		x86)
-			vinstall arch/x86/boot/bzImage 644 boot vmlinuz-${_kernver}
-			;;
-		arm)
-			vinstall arch/arm/boot/zImage 644 boot
-			make ${makejobs} ARCH=${subarch:-$arch} INSTALL_DTBS_PATH=${DESTDIR}/boot/dtbs/dtbs-${_kernver} ${_cross} dtbs_install
-			;;
-		arm64)
-			vinstall arch/arm64/boot/Image 644 boot vmlinux-${_kernver}
-			make ${makejobs} ARCH=${subarch:-$arch} INSTALL_DTBS_PATH=${DESTDIR}/boot/dtbs/dtbs-${_kernver} ${_cross} dtbs_install
-			;;
-		powerpc)
-			# zImage on powerpc is useless as it won't load initramfs
-			# raw vmlinux is huge, and this is nostrip, so do it manually
-			vinstall vmlinux 644 boot vmlinux-${_kernver}
-			/usr/bin/$STRIP ${DESTDIR}/boot/vmlinux-${_kernver}
-			;;
-		mips)
-			vinstall arch/mips/boot/uImage.bin 644 boot uImage-${_kernver}
-			make ${makejobs} ARCH=${subarch:-$arch} INSTALL_DTBS_PATH=${DESTDIR}/boot/dtbs/dtbs-${_kernver} ${_cross} dtbs_install
-			;;
-		riscv)
-			vinstall arch/riscv/boot/Image 644 boot vmlinux-${_kernver}
-			make ${makejobs} ARCH=${subarch:-$arch} INSTALL_DTBS_PATH=${DESTDIR}/boot/dtbs/dtbs-${_kernver} ${_cross} dtbs_install
-			;;
+	case "$XBPS_TARGET_MACHINE" in
+		armv6*) vinstall arch/arm64/boot/zImage 644 boot kernel.img ;;
+		armv6*) vinstall arch/arm64/boot/zImage 644 boot kernel7.img ;;
+		aarch64*) vinstall arch/arm64/boot/Image.gz 644 boot kernel8.img ;;
 	esac
+
+	# Install device tree blobs
+	make ${makejobs} ARCH=arm64 INSTALL_DTBS_PATH="${DESTDIR}/boot" dtbs_install
+
+	# move dtbs that ended up in /boot/broadcom
+	if [ -d "${DESTDIR}/boot/broadcom" ]; then
+		mv "${DESTDIR}"/boot/broadcom/*dtb "${DESTDIR}/boot"
+	fi
 
 	# Switch to /usr.
 	vmkdir usr
@@ -189,7 +148,7 @@ do_install() {
 		mkdir -p ${hdrdest}/$(dirname $file)
 		install -Dm644 $file ${hdrdest}/${file}
 	done
-	for file in $(find arch/${subarch:-$arch} scripts -name module.lds -o -name Kbuild.platforms -o -name Platform); do
+	for file in $(find arch/arm64 scripts -name module.lds -o -name Kbuild.platforms -o -name Platform); do
 		mkdir -p ${hdrdest}/$(dirname $file)
 		install -Dm644 $file ${hdrdest}/${file}
 	done
@@ -205,8 +164,8 @@ do_install() {
 	done
 
 	cd ${wrksrc}
-	mkdir -p ${hdrdest}/arch/${arch}
-	cp -a arch/${arch}/include ${hdrdest}/arch/${arch}
+	mkdir -p ${hdrdest}/arch/arm64
+	cp -a arch/arm64/include ${hdrdest}/arch/arm64
 
 	# needed for mv-debug
 	cp scripts/sign-file "${XBPS_WRAPPERDIR}"
@@ -215,7 +174,7 @@ do_install() {
 	# if generated files from the scripts/ directory need to be included,
 	# they need to be copied to ${hdrdest} before this step
 	if [ "$CROSS_BUILD" ]; then
-		make ${makejobs} ARCH=${subarch:-$arch} ${_cross} _mrproper_scripts
+		make ${makejobs} ARCH=arm64 ${_cross} _mrproper_scripts
 		# remove host specific objects as well
 		find scripts -name '*.o' -delete
 	fi
@@ -227,28 +186,19 @@ do_install() {
 	cp -a security/selinux/include ${hdrdest}/security/selinux
 	mkdir -p ${hdrdest}/tools/include
 	cp -a tools/include/tools ${hdrdest}/tools/include
-	if [ -d "arch/${arch}/tools" ]; then
-		cp -a "arch/${arch}/tools" "${hdrdest}/arch/${arch}"
+	if [ -d "arch/arm64/tools" ]; then
+		cp -a "arch/arm64/tools" "${hdrdest}/arch/arm64"
 	fi
 	cp -a kernel/time/timeconst.bc "${hdrdest}/kernel/time"
 	cp -a kernel/bounds.c "${hdrdest}/kernel"
 	mkdir -p "${hdrdest}/arch/x86/entry/syscalls"
 	cp -a arch/x86/entry/syscalls/syscall_32.tbl "${hdrdest}/arch/x86/entry/syscalls"
 
-	mkdir -p ${hdrdest}/arch/${arch}/kernel
-	cp arch/${arch}/Makefile ${hdrdest}/arch/${arch}
-	if [ "$subarch" = "i386" ]; then
-		mkdir -p ${hdrdest}/arch/x86
-		cp arch/x86/Makefile_32.cpu ${hdrdest}/arch/x86
-	fi
-	if [ "$arch" = "x86" ]; then
-		mkdir -p ${hdrdest}/arch/x86/kernel
-		cp arch/x86/kernel/asm-offsets.s ${hdrdest}/arch/x86/kernel
-	elif [ "$arch" = "arm64" ]; then
-		mkdir -p ${hdrdest}/arch/arm64/kernel
-		cp arch/arm64/kernel/asm-offsets.s ${hdrdest}/arch/arm64/kernel
-		cp -a arch/arm64/kernel/vdso ${hdrdest}/arch/arm64/kernel/
-	fi
+	mkdir -p ${hdrdest}/arch/arm64/kernel
+	cp arch/arm64/Makefile ${hdrdest}/arch/arm64
+	mkdir -p ${hdrdest}/arch/arm64/kernel
+	cp arch/arm64/kernel/asm-offsets.s ${hdrdest}/arch/arm64/kernel
+	cp -a arch/arm64/kernel/vdso ${hdrdest}/arch/arm64/kernel/
 
 	# add headers for lirc package
 	# pci
@@ -300,14 +250,6 @@ do_install() {
 	mkdir -p ${hdrdest}/mm
 	cp fs/xfs/libxfs/xfs_sb.h ${hdrdest}/fs/xfs/libxfs/xfs_sb.h
 
-	# Add objtool binary, needed to build external modules with dkms
-	case "$XBPS_TARGET_MACHINE" in
-		x86_64*)
-			mkdir -p ${hdrdest}/tools/objtool
-			cp tools/objtool/objtool ${hdrdest}/tools/objtool
-			;;
-	esac
-
 	# Extract debugging symbols and compress modules
 	msg_normal "$pkgver: extracting debug info and compressing modules, please wait...\n"
 	install -Dm644 vmlinux ${DESTDIR}/usr/lib/debug/boot/vmlinux-${_kernver}
@@ -323,24 +265,28 @@ do_install() {
 	rm -f ${DESTDIR}/lib
 }
 
-linux6.6-headers_package() {
-	preserve=yes
+rpi5-kernel-headers_package() {
 	nostrip=yes
+	noverifyrdeps=yes
 	noshlibprovides=yes
 	short_desc+=" - source headers for 3rd party modules"
+	provides="rpi-kernel-headers-${version}_${revision}"
+	replaces="rpi-kernel-headers>=0"
 	pkg_install() {
 		vmove usr/src
-		vmove usr/lib/modules/${_kernver}/build
+		vmove "usr/lib/modules/${_kernver}/build"
 	}
 }
 
-linux6.6-dbg_package() {
+rpi5-kernel-dbg_package() {
 	preserve=yes
 	nostrip=yes
 	noverifyrdeps=yes
 	noshlibprovides=yes
 	repository=debug
 	short_desc+=" - debugging symbols"
+	provides="rpi-kernel-dbg-${version}_${revision}"
+	replaces="rpi-kernel-dbg>=0"
 	pkg_install() {
 		vmove usr/lib/debug
 		vmove "boot/System.map-${_kernver}"
