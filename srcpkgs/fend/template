@@ -1,20 +1,23 @@
 # Template file for 'fend'
 pkgname=fend
-version=1.4.2
+version=1.5.5
 revision=1
 build_style=cargo
 make_install_args="--path cli"
+hostmakedepends="pkg-config"
+makedepends="openssl-devel"
 short_desc="Arbitrary-precision unit-aware calculator"
-maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
-license="GPL-3.0-or-later"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
+license="MIT"
 homepage="https://printfn.github.io/fend/"
 changelog="https://raw.githubusercontent.com/printfn/fend/main/CHANGELOG.md"
 distfiles="https://github.com/printfn/fend/archive/refs/tags/v${version}.tar.gz
- https://github.com/printfn/fend/releases/download/v${version}/fend.1"
-checksum="79fd768cb1e28cd691c7da7fc84eeb0b41f43f5bfca92fff4137c7596cea4bff
- 6bef4e39e6cb9c9c4337cb15bc7e8c28e222271962118d6a093d6a25c90d2d80"
-skip_extraction="fend.1"
+ https://github.com/printfn/fend/releases/download/v${version}/fend.1>fend_man_${version}"
+checksum="330ca6ca5fcb4410fe75caeab0d77b0b112a355ec2a5d5848dffb0a7a7a2e7a7
+ 65be3b5b9c49fd13bab854eb1ffa9e14ae533d2623bcccedba48e935ecbe0584"
+skip_extraction="fend_man_${version}"
 
 post_install() {
-	vman ${XBPS_SRCDISTDIR}/${pkgname}-${version}/fend.1
+	vlicense LICENSE.md
+	vman ${XBPS_SRCDISTDIR}/${pkgname}-${version}/fend_man_${version} fend.1
 }

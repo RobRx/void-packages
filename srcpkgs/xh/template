@@ -1,6 +1,6 @@
 # Template file for 'xh'
 pkgname=xh
-version=0.20.1
+version=0.23.1
 revision=1
 build_style=cargo
 configure_args="--no-default-features --features online-tests,native-tls"
@@ -12,7 +12,7 @@ license="MIT"
 homepage="https://github.com/ducaale/xh"
 changelog="https://raw.githubusercontent.com/ducaale/xh/master/CHANGELOG.md"
 distfiles="https://github.com/ducaale/xh/archive/refs/tags/v${version}.tar.gz"
-checksum=3d4f5ac1c7ead00891c85a569df452d583d3c10df61f6ceb3fb58b5fef2ffdbc
+checksum=3f7dc6a3c8809f57a32c9aae7a192b54e87702a65d426784c1775676eea2e67f
 
 post_install() {
 	ln -sf xh "${DESTDIR}/usr/bin/xhs"

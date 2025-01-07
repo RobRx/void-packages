@@ -1,6 +1,6 @@
 # Template file for 'moar'
 pkgname=moar
-version=1.19.0
+version=1.30.0
 revision=1
 build_style=go
 go_import_path=github.com/walles/moar
@@ -11,12 +11,8 @@ license="BSD-2-Clause"
 homepage="https://github.com/walles/moar"
 changelog="https://github.com/walles/moar/releases"
 distfiles="https://github.com/walles/moar/archive/refs/tags/v${version}.tar.gz"
-checksum=bcbbb061789765a9c28ada1298a5e96039cf176107f657e6d92994d05db6c22c
+checksum=a26954fca06c95604a94b6f208f62eff247e50c8d239262322a13d0959074de1
 conflicts="MoarVM"
-
-do_check() {
-	go test ./...
-}
 
 post_install() {
 	vman moar.1

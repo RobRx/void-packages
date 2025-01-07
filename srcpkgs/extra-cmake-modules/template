@@ -1,24 +1,26 @@
 # Template file for 'extra-cmake-modules'
 pkgname=extra-cmake-modules
-version=5.113.0
+version=6.9.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_HTML_DOCS=ON"
-hostmakedepends="python3-Sphinx qt5-tools"
+configure_args="-DBUILD_HTML_DOCS=ON -DBUILD_TESTING=ON"
+hostmakedepends="python3-Sphinx qt6-base qt6-tools qt6-plugin-sqlite
+ qt5-qmake qt5-host-tools"
+makedepends="qt5-devel"
 depends="cmake"
-checkdepends="qt5-declarative-devel"
+checkdepends="qt5-declarative-devel qt6-base-devel"
 short_desc="Extra modules and scripts for CMake"
 maintainer="John <me@johnnynator.dev>"
 license="BSD-3-Clause"
 homepage="https://invent.kde.org/frameworks/extra-cmake-modules"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=265e5440eebeca07351a469e617a4bf35748927bd907b00ace9c018392bb3bc4
+checksum=cec06b25e166edb71a1a973641c4f5fc3c8712dde3fb3e639db586515cc1642e
 python_version=3
 
 do_check() {
 	cd build
-	# expects to be in frameworks/extra-cmake-modules instead of extra-cmake-modules
-	ctest -E 'KDEFetchTranslations'
+	# expects to be in frameworks/extra-cmake-modules
+	ctest ${makejobs} -E 'KDEFetchTranslations'
 }
 
 post_install() {

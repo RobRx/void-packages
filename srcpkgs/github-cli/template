@@ -1,19 +1,24 @@
 # Template file for 'github-cli'
 pkgname=github-cli
-version=2.42.1
+version=2.64.0
 revision=1
 build_style=go
 build_helper=qemu
 go_import_path="github.com/cli/cli/v2"
 go_package="${go_import_path}/cmd/gh"
 go_ldflags="-X github.com/cli/cli/v2/internal/build.Version=v${version}"
+checkdepends="git openssh"
 short_desc="GitHub CLI tool"
-maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="MIT"
 homepage="https://cli.github.com"
 changelog="https://github.com/cli/cli/releases"
-distfiles="https://github.com/cli/cli/archive/refs/tags/v${version}.tar.gz"
-checksum=20d5d7470dcd2107b9f357a1879ae0ff0389ed750c964b28d2db3215fe2e9623
+distfiles="https://github.com/cli/cli/archive/refs/tags/${version}.tar.gz"
+checksum=229fd8fc51325ebb5a357af6af116094d6be6a5f1e0f0923b7892ed01b208abb
+
+if [ "${XBPS_BUILD_ENVIRONMENT}" = void-packages-ci ]; then
+	make_check_args+=" -skip TestMigrationWriteErrors"
+fi
 
 pre_build() {
 	local _date

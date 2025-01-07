@@ -1,6 +1,6 @@
 # Template file for 'difftastic'
 pkgname=difftastic
-version=0.54.0
+version=0.62.0
 revision=1
 build_style=cargo
 short_desc="Structural diff tool that understands syntax"
@@ -8,8 +8,8 @@ maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://difftastic.wilfred.me.uk"
 changelog="https://raw.githubusercontent.com/Wilfred/difftastic/master/CHANGELOG.md"
-distfiles="https://static.crates.io/crates/difftastic/difftastic-${version}.crate"
-checksum=f0ffde604735c4aa3347cf26c1f3eb65c2ac24ab1ad188f21d8aed89e2df974e
+distfiles="https://github.com/Wilfred/difftastic/archive/refs/tags/${version}.tar.gz"
+checksum=ef69a23c6e3b9697d84ea5be158e8cb6d7482f49fc91cf4f9c7416bd48301260
 
 if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
 	XBPS_CROSS_RUSTFLAGS+=" -latomic"
@@ -19,5 +19,6 @@ if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
 fi
 
 post_install() {
+	vman difft.1
 	vlicense LICENSE
 }

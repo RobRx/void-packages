@@ -1,6 +1,6 @@
 # Template file for 'kross'
 pkgname=kross
-version=5.113.0
+version=5.116.0
 revision=1
 build_style=cmake
 configure_args="
@@ -13,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kross"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/portingAids/${pkgname}-${version}.tar.xz"
-checksum=1a319208eb2ebfdcdb890bb17bff90b13c5780c59c9999569693288340650db3
+checksum=96c985837152efdd216a93790703823877fdea43a1b9d3a5197a9b94c264be4f
 
 kross-devel_package() {
 	short_desc+=" - development"

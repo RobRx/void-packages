@@ -1,6 +1,6 @@
 # Template file for 'subfinder'
 pkgname=subfinder
-version=2.6.4
+version=2.6.7
 revision=1
 build_wrksrc=v2
 build_style=go
@@ -12,7 +12,8 @@ license="MIT"
 homepage="https://github.com/projectdiscovery/subfinder"
 changelog="https://github.com/projectdiscovery/subfinder/releases"
 distfiles="https://github.com/projectdiscovery/subfinder/archive/refs/tags/v${version}.tar.gz"
-checksum=8e491c31ba1bba8d9e5dfd0c6f8ebf4ffb078db97b2be42a4ba39841fddecaf9
+checksum=3ce0d4ddcca869d459a2571a2c1b437456007109e5d6ebfc4d3fdcea6a6edca7
+make_check=no # network tests get blocked by cloudflare
 
 post_install() {
 	vlicense ../LICENSE.md

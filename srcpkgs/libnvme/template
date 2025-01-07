@@ -1,18 +1,19 @@
 # Template file for 'libnvme'
 pkgname=libnvme
-version=1.6
+version=1.10
 revision=2
 build_style=meson
 configure_args="-Ddocs=man"
-hostmakedepends="pkg-config swig"
+hostmakedepends="pkg-config swig tar xz"
 makedepends="json-c-devel openssl-devel python3-devel"
 checkdepends="perl"
 short_desc="C Library for NVM Express on Linux"
-maintainer="Subhaditya Nath <sn03.general@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://github.com/linux-nvme/libnvme"
+changelog="https://github.com/linux-nvme/libnvme/releases"
 distfiles="https://github.com/linux-nvme/libnvme/archive/v${version}.tar.gz"
-checksum=0dd8ba8b655abe78c09833edb66632aa6bee82aebf117dd252ded968deaaeec7
+checksum=add9efa968e8341459fcaa2d96f2594a6f871e1fb3f57c02ce1c8ba5424f3960
 
 libnvme-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} json-c-devel openssl-devel"

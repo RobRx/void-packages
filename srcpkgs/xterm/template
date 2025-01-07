@@ -1,7 +1,7 @@
 # Template file for 'xterm'
 pkgname=xterm
-version=382
-revision=1
+version=396
+revision=2
 build_style=gnu-configure
 configure_args="--enable-wide-chars --enable-88-color --enable-broken-osc
  --enable-256-color --enable-luit --enable-paste64 --enable-ansi-color
@@ -15,12 +15,12 @@ hostmakedepends="pkg-config"
 makedepends="libXaw-devel libXft-devel libutempter-devel libxkbfile-devel
  ncurses-devel"
 short_desc="X Terminal Emulator"
-maintainer="Frank Steinborn <steinex@nognu.de>"
+maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT, X11"
 homepage="https://invisible-island.net/xterm/"
 changelog="https://invisible-island.net/xterm/xterm.log.html"
 distfiles="https://invisible-mirror.net/archives/xterm/xterm-${version}.tgz"
-checksum=0cd0bcf3d0aa746a840ea3f1366ea29a74263694d535b5c777f27eb65d7fceed
+checksum=43f94b6d0eecb4219a99f46352e746f2ab5558e40d922d411acff96cc778a6a5
 
 CFLAGS="-D_DEFAULT_SOURCE -D_XOPEN_SOURCE=700"
 

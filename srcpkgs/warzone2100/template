@@ -1,7 +1,7 @@
 # Template file for 'warzone2100'
 pkgname=warzone2100
-version=4.4.2
-revision=2
+version=4.5.5
+revision=1
 build_style=cmake
 configure_args="-DWZ_ENABLE_WARNINGS_AS_ERRORS=OFF -DWZ_DISTRIBUTOR=void"
 hostmakedepends="zip unzip asciidoc gettext pkg-config shaderc"
@@ -13,8 +13,9 @@ short_desc="3D realtime strategy game on a future Earth"
 maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="GPL-2.0-or-later"
 homepage="http://wz2100.net"
+changelog="https://raw.githubusercontent.com/Warzone2100/warzone2100/master/ChangeLog"
 distfiles="https://github.com/Warzone2100/${pkgname}/releases/download/${version}/${pkgname}_src.tar.xz"
-checksum=3b962ac6aa75bca62bf2ebc067549db08fe4a1c3b38342910a2ac2aaabcbacde
+checksum=07f61bae721687edeb62da4877e85030a03a053a593d645194fc65778e0480ff
 nocross="fails to detect SDL2 when cross-compiling"
 
 post_extract() {

@@ -3,20 +3,20 @@
 # THIS PKG MUST BE SYNCHRONIZED WITH "srcpkgs/firefox-i18n".
 #
 pkgname=firefox
-version=122.0
-revision=1
+version=133.0.3
+revision=2
 build_helper="rust"
 short_desc="Mozilla Firefox web browser"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="MPL-2.0, GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://www.mozilla.org/firefox/"
 distfiles="${MOZILLA_SITE}/firefox/releases/${version/beta/b}/source/firefox-${version/beta/b}.source.tar.xz"
-checksum=b84815a90e147965e4c0b50599c85b1022ab0fce42105e5ef45c630dcca5dec3
+checksum=f134a5420200bb03ab460f9d2867507c0edb222ce73faf4064cdbea02a0aca1b
 
 lib32disabled=yes
-
-hostmakedepends="autoconf213 unzip zip pkg-config perl python3.11 yasm rust
- cargo llvm clang lld nodejs cbindgen nasm which tar"
+_llvmver=19
+hostmakedepends="autoconf213 unzip zip pkg-config perl python3 yasm rust
+ cargo llvm${_llvmver} clang${_llvmver} lld${_llvmver} nodejs cbindgen nasm which tar"
 makedepends="nss-devel libjpeg-turbo-devel gtk+3-devel icu-devel
  pixman-devel libevent-devel libnotify-devel libvpx-devel libwebp-devel
  libXrender-devel libXcomposite-devel libSM-devel libXt-devel rust-std
@@ -63,8 +63,6 @@ post_patch() {
 }
 
 do_build() {
-	ln -sf "/usr/bin/python3.11" "${XBPS_WRAPPERDIR}/python3"
-
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
@@ -79,11 +77,9 @@ do_build() {
 			#!/bin/sh
 			exec clang \
 				--target="${XBPS_CROSS_TRIPLET}" \
-				--gcc-toolchain=/usr \
 				--sysroot="${XBPS_CROSS_BASE}" \
-				-nostdinc \
+				--gcc-toolchain=/usr \
 				-isystem "${XBPS_CROSS_BASE}/usr/include" \
-				-isystem "/usr/lib/clang/${clang_version}/include" \
 				"\$@"
 			!
 
@@ -91,15 +87,12 @@ do_build() {
 			#!/bin/sh
 			exec clang++ \
 				--target="${XBPS_CROSS_TRIPLET}" \
-				--gcc-toolchain=/usr \
 				--sysroot="${XBPS_CROSS_BASE}" \
-				-nostdinc++ \
+				--gcc-toolchain=/usr \
 				-isystem "${XBPS_CROSS_BASE}/usr/include/c++/${gcc_version%.*}" \
 				-isystem "${XBPS_CROSS_BASE}/usr/include/c++/${gcc_version%.*}/${XBPS_CROSS_TRIPLET}" \
 				-isystem "${XBPS_CROSS_BASE}/usr/include/c++/${gcc_version%.*}/backward" \
-				-nostdinc \
 				-isystem "${XBPS_CROSS_BASE}/usr/include" \
-				-isystem "/usr/lib/clang/${clang_version}/include" \
 				"\$@"
 			!
 
@@ -241,8 +234,8 @@ do_install() {
 	export MOZBUILD_STATE_PATH="${wrksrc}/mozbuild"
 	DESTDIR="$DESTDIR" ./mach install
 
-	vinstall ${FILESDIR}/vendor.js 644 usr/lib/firefox/browser/defaults/preferences
-	vinstall taskcluster/docker/firefox-snap/firefox.desktop 644 usr/share/applications
+	vinstall "${FILESDIR}/vendor.js" 644 usr/lib/firefox/browser/defaults/preferences
+	vinstall "${FILESDIR}/firefox.desktop" 644 usr/share/applications
 
 	for i in 16x16 22x22 24x24 32x32 48x48 128x128 256x256; do
 		vinstall ${wrksrc}/browser/branding/official/default${i%x*}.png 644 \

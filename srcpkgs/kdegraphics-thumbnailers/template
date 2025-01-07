@@ -1,17 +1,20 @@
 # Template file for 'kdegraphics-thumbnailers'
 pkgname=kdegraphics-thumbnailers
-version=23.08.4
+version=24.12.0
 revision=1
 build_style=cmake
-hostmakedepends="extra-cmake-modules kcoreaddons kconfig-devel pkg-config gettext"
-makedepends="qt5-devel kio-devel libkexiv25-devel libqmobipocket-devel"
+configure_args="-DQT_MAJOR_VERSION=6 -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
+hostmakedepends="extra-cmake-modules kf6-kcoreaddons kf6-kconfig qt6-base
+ pkg-config gettext"
+makedepends="kf6-kio-devel libkexiv2-devel libqmobipocket6-devel kf6-kconfig-devel
+ libkdcraw-qt6-devel"
 depends="ghostscript"
-short_desc="KDE Plasma 5 Thumbnailers for various graphics file formats"
+short_desc="KDE Plasma 6 Thumbnailers for various graphics file formats"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/graphics/kdegraphics-thumbnailers"
 distfiles="${KDE_SITE}/release-service/${version}/src/kdegraphics-thumbnailers-${version}.tar.xz"
-checksum=86ef3f3585a085b50f59fc4a02f997c1a3b2519e73ed9881730842e2201f1045
+checksum=d4dd2a4617db0874bc7de7b15e4fd50f7aadaa5249fb46f888ab151a8480b1cb
 
 kdegraphics-mobipocket_package() {
 	short_desc+=" (transitional dummy package)"

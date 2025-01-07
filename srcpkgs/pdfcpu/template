@@ -1,6 +1,6 @@
 # Template file for 'pdfcpu'
 pkgname=pdfcpu
-version=0.6.0
+version=0.9.1
 revision=1
 build_style=go
 go_import_path="github.com/pdfcpu/pdfcpu"
@@ -11,4 +11,4 @@ license="Apache-2.0"
 homepage="http://pdfcpu.io/"
 changelog="https://github.com/pdfcpu/pdfcpu/releases"
 distfiles="https://github.com/pdfcpu/pdfcpu/archive/v${version}.tar.gz"
-checksum=dc51a082c40d00533c326194bc1a9d85166920ec065656d08980b521e9b9f43b
+checksum=79572e599deddfaa72109f3e029b74b8cd6070657355e8cc9d8c7fb91da73c71

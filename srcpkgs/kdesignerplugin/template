@@ -1,6 +1,6 @@
 # Template file for 'kdesignerplugin'
 pkgname=kdesignerplugin
-version=5.113.0
+version=5.116.0
 revision=1
 build_style=cmake
 hostmakedepends="kcoreaddons extra-cmake-modules"
@@ -12,7 +12,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-only"
 homepage="https://invent.kde.org/frameworks/kdesignerplugin"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/portingAids/${pkgname}-${version}.tar.xz"
-checksum=31d166318214bec4399dab7dd19fe87b3f533b964f4cef4a53c9857a33c21c16
+checksum=e3cf4f848ae51d0489b977ccdb20dc3131d89a076783f336cda4e39e85ba735e
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" qt5-host-tools qt5-qmake qt5-tools kgendesignerplugin kdoctools"

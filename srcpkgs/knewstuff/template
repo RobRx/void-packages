@@ -1,6 +1,6 @@
 # Template file for 'knewstuff'
 pkgname=knewstuff
-version=5.113.0
+version=5.116.0
 revision=1
 build_style=cmake
 hostmakedepends="kcoreaddons extra-cmake-modules gettext
@@ -13,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/knewstuff"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=a1703451f17087663d59732fb5692739a978f9bbf2232813ab95a7eb7b3e413a
+checksum=82303927f60c7a3dbdc049e468f760f003a4358129af9ce6fadecf469320c70a
 
 knewstuff-devel_package() {
 	short_desc+=" - development"

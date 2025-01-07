@@ -2,9 +2,8 @@
 # Permission to redistribute is granted.
 # see: srcpkgs/vivaldi/files/redistribution-permission.eml
 pkgname=vivaldi
-version=6.5.3206.55
+version=7.0.3495.26+1
 revision=1
-_release=1
 archs="x86_64 aarch64 armv7l"
 depends="desktop-file-utils hicolor-icon-theme xz libnotify xdg-utils"
 short_desc="Advanced browser made with the power user in mind"
@@ -16,16 +15,16 @@ nostrip=yes
 skiprdeps="/opt/vivaldi/libqt5_shim.so /opt/vivaldi/libqt6_shim.so"
 case "$XBPS_TARGET_MACHINE" in
 x86_64)
-	distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-${_release}_amd64.deb"
-	checksum=12592eb9a65f2bc17a095039c5b2acce46ea75c3c008547ec5dd294719ddebe5
+	distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version//+/-}_amd64.deb"
+	checksum=df8b0a2f4f6c2c60b34c01b1b15fbeaa4f9905ab66597aab676cecbeb91194db
 	;;
 aarch64)
-	distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-${_release}_arm64.deb"
-	checksum=96bfbdfb0d6f459486ff674fe4ade670a2c24228dc90f76433f2360e08cee308
+	distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version//+/-}_arm64.deb"
+	checksum=b0e21dcfeecddd6e783ca87525ece8dadb2e192587a4b2840d7a4e73f2a7bf5a
 	;;
 armv7l)
-	distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-${_release}_armhf.deb"
-	checksum=df22c62cda6dda1dc17e59d2c7125ffebf3af1d1ed790f1fe8845d38ce68eccd
+	distfiles="https://downloads.vivaldi.com/stable/vivaldi-stable_${version//+/-}_armhf.deb"
+	checksum=02a32a291c8a103bfa9d110a99f25a42746811ed6dd21f7231a6491071fdcae4
 	;;
 *)
 	broken="No distfiles available for this target"
@@ -34,6 +33,10 @@ esac
 
 post_extract() {
 	rm -r etc opt/vivaldi/cron
+}
+
+post_patch() {
+	rm opt/vivaldi/vivaldi.orig
 }
 
 do_install() {

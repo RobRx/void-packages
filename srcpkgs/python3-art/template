@@ -1,6 +1,6 @@
 # Template file for 'python3-art'
 pkgname=python3-art
-version=6.1
+version=6.4
 revision=2
 build_style=python3-module
 hostmakedepends="python3-setuptools"
@@ -11,7 +11,7 @@ license="MIT"
 homepage="https://www.ascii-art.site/"
 changelog="https://raw.githubusercontent.com/sepandhaghighi/art/master/CHANGELOG.md"
 distfiles="${PYPI_SITE}/a/art/art-${version}.tar.gz"
-checksum=6ab3031e3b7710039e73497b0e750cadfe04d4c1279ce3a123500dbafb9e1b64
+checksum=417fea674bff8cea7ed058291ad1b81a6032dfce5152f28e629fa4a798a2c14c
 make_check=no # no tests available
 
 post_install() {

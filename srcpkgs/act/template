@@ -1,12 +1,12 @@
 # Template file for 'act'
 pkgname=act
 version=0.2.51
-revision=1
+revision=2
 build_style=go
 go_import_path="github.com/nektos/act"
 go_ldflags="-X main.version=${version}"
 short_desc="Run your GitHub Actions locally"
-maintainer="0x5c <dev@0x5c.io>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT, Apache-2.0"
 homepage="https://github.com/nektos/act"
 distfiles="https://github.com/nektos/act/archive/refs/tags/v${version}.tar.gz"

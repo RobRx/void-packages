@@ -1,6 +1,6 @@
 # Template file for 'sslscan'
 pkgname=sslscan
-version=2.1.2
+version=2.1.5
 revision=1
 build_style=gnu-makefile
 makedepends="openssl-devel"
@@ -10,6 +10,6 @@ license="GPL-3.0-or-later"
 homepage="https://github.com/rbsec/sslscan"
 changelog="https://github.com/rbsec/sslscan/raw/master/Changelog"
 distfiles="https://github.com/rbsec/sslscan/archive/refs/tags/${version}.tar.gz"
-checksum=c218d21fdf0b57dfc7c7b110ff32d9c7e77eb8c631b670a2c0fc92a80ded294d
+checksum=b36616b1d59f3276af6ff9495ab8178ec6812393582fb3c094c56cc873efe956
 # No test suite
 make_check=no

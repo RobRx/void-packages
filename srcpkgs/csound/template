@@ -1,7 +1,7 @@
 # Template file for 'csound'
 pkgname=csound
 version=6.18.1
-revision=3
+revision=4
 build_style=cmake
 configure_args="
  -DLUA_MODULE_INSTALL_DIR=${XBPS_CROSS_BASE}/usr/lib/lua/5.1
@@ -19,8 +19,7 @@ homepage="https://csound.com/"
 distfiles="https://github.com/csound/csound/archive/${version}.tar.gz"
 checksum=b84be8237fa9258ef60fdddf36fae27b20c11665811bf5ed12540da9a9a4414e
 
-CFLAGS="-fcommon"
-CXXFLAGS="-Wno-error -fcommon"
+CXXFLAGS="-Wno-error"
 
 case $XBPS_TARGET_MACHINE in
 	*-musl) makedepends+=" libexecinfo-devel";;

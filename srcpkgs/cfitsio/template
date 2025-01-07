@@ -1,6 +1,6 @@
 # Template file for 'cfitsio'
 pkgname=cfitsio
-version=4.3.1
+version=4.5.0
 revision=1
 build_style=gnu-configure
 configure_args="--enable-reentrant"
@@ -10,10 +10,14 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="custom:NASA license"
 homepage="https://heasarc.gsfc.nasa.gov/fitsio/"
 distfiles="http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/${pkgname}-${version}.tar.gz"
-checksum=47a7c8ee05687be1e1d8eeeb94fb88f060fbf3cd8a4df52ccb88d5eb0f5062be
+checksum=e4854fc3365c1462e493aa586bfaa2f3d0bb8c20b75a524955db64c27427ce09
+
+if [ -z "$CROSS_BUILD" ]; then
+	makedepends+=" gcc-fortran"
+fi
 
 post_install() {
-	vlicense License.txt
+	vlicense licenses/License.txt
 }
 
 cfitsio-devel_package() {

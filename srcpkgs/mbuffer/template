@@ -1,6 +1,6 @@
 # Template file for 'mbuffer'
 pkgname=mbuffer
-version=20230301
+version=20241007
 revision=1
 build_style=gnu-configure
 hostmakedepends="which"
@@ -11,5 +11,5 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://www.maier-komor.de/mbuffer.html"
 distfiles="https://www.maier-komor.de/software/mbuffer/mbuffer-${version}.tgz"
-checksum=53f76209dec00fab283dc0bc5322b0e6346b09da2edbb6435a2d4a8f48252d01
+checksum=9d7363010b4ef45b1646f6b5f5027b49bb6a209c502fb84e281c7bd771d56bed
 conf_files="/etc/mbuffer.rc"

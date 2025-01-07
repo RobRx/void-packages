@@ -1,27 +1,25 @@
 # Template file for 'carapace'
 pkgname=carapace
-version=0.29.1
+version=1.0.7
 revision=1
 build_style=go
-go_import_path=github.com/rsteube/carapace-bin
+go_import_path=github.com/carapace-sh/carapace-bin
 go_package="${go_import_path}/cmd/carapace"
 go_build_tags="release"
 go_ldflags="-X main.version=${version}"
+make_check_target="./cmd/carapace/..."
 short_desc="Multi-shell multi-command argument completer"
 maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://carapace.sh/"
-changelog="https://rsteube.github.io/carapace-bin/release_notes.html"
-distfiles="https://github.com/rsteube/carapace-bin/archive/refs/tags/v${version}.tar.gz"
-checksum=1197b0ef630533488cf5cd986e522e3dc8a3d410f6197371ae8614a14b355fbf
+changelog="https://carapace-sh.github.io/carapace-bin/release_notes.html"
+distfiles="https://github.com/carapace-sh/carapace-bin/archive/refs/tags/v${version}.tar.gz"
+checksum=bfcd950178023909b0854bc6bded5b57d1c00123943e9dbcdfddf2a632c71ff4
 
 pre_build() {
 	CGO_ENABLED=0 GOARCH= go generate ./cmd/...
 }
 
-do_check() {
-	go test ./cmd/carapace/...
-}
 
 post_install() {
 	vlicense LICENSE

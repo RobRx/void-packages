@@ -1,6 +1,6 @@
 # Template file for 'libime'
 pkgname=libime
-version=1.1.4
+version=1.1.9
 revision=1
 build_style=cmake
 build_helper=qemu
@@ -10,20 +10,21 @@ short_desc="Library to support generic input method implementation"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="LGPL-2.1-or-later"
 homepage="https://fcitx-im.org/wiki/Fcitx"
-_lm_sc=lm_sc.arpa-20230712.tar.xz
-_dict=dict-20230412.tar.xz
-distfiles="https://download.fcitx-im.org/fcitx5/libime/libime-${version}.tar.xz
+_lm_sc=lm_sc.arpa-20241001.tar.zst
+_dict=dict-20241001.tar.zst
+_table=table-20240108.tar.zst
+distfiles="https://download.fcitx-im.org/fcitx5/libime/libime-${version}.tar.zst
  https://download.fcitx-im.org/data/${_lm_sc}
  https://download.fcitx-im.org/data/${_dict}
- https://download.fcitx-im.org/data/table.tar.gz"
-checksum="86f4be486b3c43db714e8f138ec93bba250dbb2533b3a8cd20bf491a574a10fe
- badd62c16c6373787a0fda8f09cd452d12f60d5868856f651ceecf1a07baba32
- f05fccaff9687900aac3d9ad5a81b20888b573201403fbcd9bbc7907d9e97507
- 6196053c724125e3ae3d8bd6b2f9172d0c83b65b0d410d3cde63b7a8d6ab87b7"
+ https://download.fcitx-im.org/data/$_table"
+checksum="d9e3ee99cc4ccc3b32b1c40ba691a89d8d72f81d6852522c4a3885bc4f40ac92
+ 54934e73966eb38ea4fe8eae9c61dfe486af37da1cb5316a06b19c7d289e3063
+ d3313b88a68620a23bc8d5f9564cf1b678848dc7af541c4f5f02198e5a3686bf
+ 3e9d87b04a393f131723472c8eaa860dd23c378a3d4f6a9005513b2a95b3614b"
 skip_extraction="
  ${_lm_sc}
  ${_dict}
- table.tar.gz"
+ ${_table}"
 CXXFLAGS="-D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
 
 post_extract() {

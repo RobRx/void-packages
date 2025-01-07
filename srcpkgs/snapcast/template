@@ -1,7 +1,8 @@
 # Template file for 'snapcast'
 pkgname=snapcast
-version=0.27.0
-revision=3
+version=0.29.0
+revision=1
+_snapweb_version=0.8.0
 build_style=cmake
 configure_args="-DCMAKE_INSTALL_SYSCONFDIR=/etc -DBUILD_WITH_TREMOR=OFF
  -DBUILD_WITH_AVAHI=$(vopt_if avahi ON OFF)
@@ -15,11 +16,18 @@ maintainer="amak <amak.git@outlook.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/badaix/snapcast"
 changelog="https://raw.githubusercontent.com/badaix/snapcast/master/changelog.md"
-distfiles="https://github.com/badaix/snapcast/archive/v${version}.tar.gz"
-checksum=c662c6eafbaa42a4797a4ed6ba4a7602332abf99f6ba6ea88ff8ae59978a86ba
+distfiles="https://github.com/badaix/snapcast/archive/v${version}.tar.gz
+ https://github.com/badaix/snapweb/releases/download/v${_snapweb_version}/snapweb.zip>snapweb-${_snapweb_version}.zip"
+checksum="ecfb2c96a4920adc4121b1180b37bb86566c359914c14831c0abea4e65d23f92
+ 71078f94d87e44881c7bf6491456d528420a69ae09f1ae115dd6c48c03c2a65c"
+skip_extraction="snapweb-${_snapweb_version}.zip"
 
 build_options="avahi pulseaudio"
 build_options_default="avahi pulseaudio"
+
+post_extract() {
+	vsrcextract -C server/etc/snapweb --strip-components=0 snapweb-${_snapweb_version}.zip
+}
 
 post_install() {
 	vdoc README.md

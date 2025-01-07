@@ -1,7 +1,7 @@
 # Template file for 'boost'
 pkgname=boost
 version=1.83.0
-revision=4
+revision=7
 build_style=meta
 hostmakedepends="which bzip2-devel icu-devel python3-devel pkg-config"
 makedepends="zlib-devel bzip2-devel icu-devel python3-devel liblzma-devel libzstd-devel"
@@ -65,6 +65,12 @@ esac
 
 if [ -z "$CROSS_BUILD" ]; then
 	subpackages+=" libboost_stacktrace_addr2line"
+
+	case "$XBPS_TARGET_MACHINE" in
+		i686*|x86_64*|ppc64le)
+			makedepends+=" libquadmath-devel"
+			;;
+	esac
 fi
 
 if [ "$XBPS_TARGET_LIBC" = musl ]; then
@@ -73,18 +79,13 @@ if [ "$XBPS_TARGET_LIBC" = musl ]; then
 fi
 
 case "$XBPS_TARGET_MACHINE" in
-	i686*|x86_64*|ppc64le)
-		makedepends+=" libquadmath-devel"
-		;;
-esac
-
-case "$XBPS_TARGET_MACHINE" in
 	i686*)    _arch=x86;      _abi=sysv  ;;
 	x86_64*)  _arch=x86;      _abi=sysv  ;;
 	arm*)     _arch=arm;      _abi=aapcs ;;
 	aarch64*) _arch=arm;      _abi=aapcs ;;
 	mips*)    _arch=mips32r2; _abi=o32   ;;
 	ppc*)     _arch=power;    _abi=sysv  ;;
+	riscv64*) _arch=riscv;    _abi=sysv  ;;
 esac
 
 case "$XBPS_TARGET_MACHINE" in
@@ -215,7 +216,9 @@ boost-build_package() {
 }
 boost-devel_package() {
 	noverifyrdeps=yes
-	depends="boost ${subpackages/boost-devel}"
+	_depends="${subpackages/boost-devel}"
+	_depends="${_depends/libboost_mpi-python3}"
+	depends="${_depends/boost-python3}"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
