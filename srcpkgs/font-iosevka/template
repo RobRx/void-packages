@@ -1,6 +1,6 @@
 # Template file for 'font-iosevka'
 pkgname=font-iosevka
-version=31.6.1
+version=32.2.1
 revision=1
 depends="font-util"
 short_desc="Slender monospace sans-serif and slab-serif typeface"
@@ -10,8 +10,8 @@ homepage="https://typeof.net/Iosevka/"
 changelog="https://raw.githubusercontent.com/be5invis/Iosevka/master/CHANGELOG.md"
 distfiles="https://github.com/be5invis/Iosevka/releases/download/v${version}/SuperTTC-Iosevka-${version}.zip
  https://github.com/be5invis/Iosevka/releases/download/v${version}/SuperTTC-IosevkaSlab-${version}.zip"
-checksum="6ba820a01f0dd5fe282f3132cb5474042a5a75cb21a876c0c4d96996bd8118ad
- 36ff34e8fd2240f3bac047c84794d0076eb4d00afe4dd5664536662fdcbca8ea"
+checksum="0456fca7cdba4497131c41db8896e6dd418521593e736c3411ae918cfb439283
+ 8d06ad8bcca54a7a63e15c9197c859cd2f57438b0c3c44c28d6f643ca1f16483"
 
 font_dirs="/usr/share/fonts/TTF"
 

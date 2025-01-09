@@ -1,6 +1,6 @@
 # Template file for 'syncthing'
 pkgname=syncthing
-version=1.28.0
+version=1.29.0
 revision=1
 build_style=go
 go_import_path="github.com/syncthing/syncthing"
@@ -16,7 +16,7 @@ license="MPL-2.0"
 homepage="https://syncthing.net/"
 changelog="https://github.com/syncthing/syncthing/releases"
 distfiles="https://github.com/syncthing/syncthing/archive/v${version}.tar.gz"
-checksum=ae0b96744a61d30e5fe7a6054d984c2a488c389e0e9baad8a868a71871ed1444
+checksum=2d2ead8ada92e48c9b45a62e1c85b781214579d125bf04c8a95859760c7db71b
 
 pre_build() {
 	GOARCH= go generate \
