@@ -1,7 +1,7 @@
 # Template file for 'python3-cypari2'
 pkgname=python3-cypari2
-version=2.1.4
-revision=1
+version=2.2.0
+revision=3
 build_style=python3-pep517
 hostmakedepends="python3-setuptools python3-wheel python3-Cython
  python3-cysignals pari perl"
@@ -14,7 +14,7 @@ license="GPL-2.0-or-later"
 homepage="https://github.com/sagemath/cypari2"
 changelog="https://github.com/sagemath/cypari2/releases"
 distfiles="https://github.com/sagemath/cypari2/archive/refs/tags/${version}.tar.gz"
-checksum=95daf1a74275a35730bbca75144776c1bb0594dd90af82ebf7bf96bb1a52c3d8
+checksum=08804f8e73859447cd1882d0cdc6d1e62dd813c3f291e8cba4313916e162f7cd
 
 do_check() {
 	# Please do not disable this custom check;

@@ -1,6 +1,6 @@
 # Template file for 'python3-pipenv'
 pkgname=python3-pipenv
-version=2023.9.8
+version=2024.4.0
 revision=2
 build_style=python3-pep517
 hostmakedepends="python3-wheel"
@@ -11,7 +11,7 @@ license="MIT"
 homepage="https://github.com/pypa/pipenv"
 changelog="https://github.com/pypa/pipenv/blob/main/CHANGELOG.md"
 distfiles="${PYPI_SITE}/p/pipenv/pipenv-${version}.tar.gz"
-checksum=cfcda864aeb748e6e496b97f20a273477f1e8cc0a3dbb634c133acc5883582ea
+checksum=87b82407a9e2de3cf32a742c131708d7460d5985076c6a9b3c11d774d2929fb1
 conflicts="python-pipenv>=0"
 make_check=no # tests are not contained in release tarball
 

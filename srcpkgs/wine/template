@@ -1,6 +1,6 @@
 # Template file for 'wine'
 pkgname=wine
-version=8.18
+version=9.22
 revision=1
 _pkgver=${version/r/-r}
 create_wrksrc=yes
@@ -13,17 +13,22 @@ license="LGPL-2.1-or-later"
 homepage="http://www.winehq.org/"
 distfiles="https://dl.winehq.org/wine/source/${version%.*}.x/wine-${_pkgver}.tar.xz
  https://github.com/wine-staging/wine-staging/archive/v${_pkgver}.tar.gz"
-checksum="30faef14acf70fd5f739d2fece3432839f1f7dd2d3624bcc3662c3b1b83260db
- 79cac572a9942962a865584e1b514bcff997ea5c2550b087898a8669cb6254c9"
+checksum="e150d29742aa54f768ef3e976ed861aaa4f9f48542e409bea902d0f49b359683
+ 3836e62600650de749c728075d648f80731a85b441daf632eeb4227f1b57a8b4"
 
 # NOTE: wine depends on specific versions of wine-mono and wine-gecko,
 # check for updates to these packages when updating wine
 
-build_options="mingw staging xshm"
+build_options="mingw staging xshm wow64"
 build_options_default="mingw xshm"
 desc_option_mingw="Use the MinGW cross compiler to build WinPE DLLs"
 desc_option_staging="Apply the wine-staging patchset"
 desc_option_xshm="Enable support for the X Shared Memory Extension"
+
+
+if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+	build_options_default+=" wow64"
+fi
 
 lib32mode=full
 archs="i686* x86_64*"
@@ -48,15 +53,16 @@ makedepends="gettext-devel ncurses-devel glu-devel libSM-devel
  alsa-lib-devel libgphoto2-devel glib-devel
  freetype-devel pulseaudio-devel giflib-devel
  v4l-utils-devel fontconfig-devel gnutls-devel dbus-devel sane-devel
- libpcap-devel cups-devel ocl-icd-devel vulkan-loader gst-plugins-base1-devel
+ libpcap-devel cups-devel ocl-icd-devel vulkan-loader-devel gst-plugins-base1-devel
  SDL2-devel"
 depends="libXi libXinerama libXcomposite libXcursor libOSMesa
  desktop-file-utils hicolor-icon-theme liberation-fonts-ttf
- gnutls SDL2 wine-common>=${version}_${revision} libwine>=${version}_${revision}"
+ gnutls SDL2 wine-common>=${version}_${revision}"
 lib32depends="libXi-32bit>=0 libXinerama-32bit>=0 libXcomposite-32bit>=0
  libXcursor-32bit>=0 libOSMesa-32bit>=0 desktop-file-utils>=0 hicolor-icon-theme>=0
  liberation-fonts-ttf>=0 gnutls-32bit>=0 SDL2-32bit>=0
- wine-common>=${version}_${revision} libwine-32bit>=${version}_${revision}"
+ wine-common>=${version}_${revision}"
+replaces="libwine>=0"
 # This testsuite might hang indefinitely
 make_check=extended
 
@@ -67,10 +73,16 @@ if [ "$XBPS_TARGET_WORDSIZE" != 32 ]; then
 else
 	_wineserver_suffix="32"
 	CFLAGS=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
+	CPPFLAGS=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
 fi
 
 if [ "$XBPS_LIBC" = "glibc" ]; then
 	hostmakedepends+=" prelink"
+fi
+
+if [ "${build_option_wow64}" ]; then
+	configure_args+=" --enable-archs=i386,x86_64"
+	makedepends+=" cross-i686-w64-mingw32"
 fi
 
 _wine_libexec="/usr/libexec/wine"
@@ -82,6 +94,7 @@ fi
 
 post_patch() {
 	if [ "${build_option_staging}" ]; then
+		export PATH="/usr/libexec/chroot-git:${PATH}"
 		"../wine-staging-${_pkgver}/staging/patchinstall.py" --all
 	fi
 }
@@ -125,17 +138,7 @@ post_install() {
 	done
 }
 
-libwine_package() {
-	lib32mode=full
-	short_desc+=" - Runtime library"
-	replaces="libwine-unstable>=0"
-	pkg_install() {
-		vmove usr/lib/wine
-	}
-}
-
 wine-devel_package() {
-	depends="libwine-${version}_${revision}"
 	short_desc+=" - development files"
 	replaces="wine-unstable-devel>=0"
 	pkg_install() {
@@ -145,7 +148,6 @@ wine-devel_package() {
 
 wine-common_package() {
 	short_desc+=" - common files"
-	binfmts="/usr/bin/wine --magic MZ"
 	pkg_install() {
 		vmove usr/share
 		vmove etc/fonts
@@ -153,6 +155,12 @@ wine-common_package() {
 		do
 			vmove usr/bin/${file}
 		done
+		vmkdir usr/share/binfmts
+		cat <<- EOF >> "${PKGDESTDIR}"/usr/share/binfmts/wine
+		package wine
+		interpreter /usr/bin/wine
+		magic MZ
+		EOF
 	}
 }
 

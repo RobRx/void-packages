@@ -1,18 +1,23 @@
 # Template file for 'ruff'
 pkgname=ruff
-version=0.1.0
-revision=1
-build_style=cargo
-configure_args="--bin ruff"
-make_install_args="--path crates/ruff_cli"
-short_desc="Extremely fast Python linter, written in Rust"
+version=0.7.2
+revision=2
+build_style=python3-pep517
+build_helper="rust qemu"
+hostmakedepends="maturin cargo pkg-config"
+makedepends="rust-std libzstd-devel"
+short_desc="Fast Python linter and code formatter"
 maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://docs.astral.sh/ruff/"
 changelog="https://raw.githubusercontent.com/astral-sh/ruff/main/CHANGELOG.md"
-distfiles="https://github.com/astral-sh/ruff/archive/refs/tags/v${version}.tar.gz"
-checksum=b6f1467505acc99dcec7d67ff9dbcd00c63a39f338e09705a90a90205c8553d4
+distfiles="https://github.com/astral-sh/ruff/archive/refs/tags/${version}.tar.gz"
+checksum=e678307f10bd316f4bc8f0ca7419646e04be25b387f1ff84ea4470d482e240ba
 
 post_install() {
 	vlicense LICENSE
+	for shell in bash fish zsh; do
+		vtargetrun "$DESTDIR"/usr/bin/ruff generate-shell-completion $shell > ruff.$shell
+		vcompletion ruff.$shell $shell
+	done
 }

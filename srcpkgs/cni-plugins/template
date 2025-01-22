@@ -1,15 +1,16 @@
 # Template file for 'cni-plugins'
 pkgname=cni-plugins
-version=1.2.0
-revision=3
+version=1.5.1
+revision=2
 build_style=go
 go_import_path="github.com/containernetworking/plugins"
 short_desc="Container Network Interface (plugins)"
 maintainer="Cameron Nemo <cam@nohom.org>"
 license="Apache-2.0"
 homepage="https://github.com/containernetworking/plugins"
-distfiles="https://github.com/containernetworking/plugins/archive/v${version}.tar.gz"
-checksum=f3496ddda9c7770a0b695b67ae7ee80a4ee331ac2745af4830054b81627f79b7
+changelog="https://github.com/containernetworking/plugins/releases"
+distfiles="https://github.com/containernetworking/plugins/archive/refs/tags/v${version}.tar.gz"
+checksum=a2eff5f064f809ee41f8f49ef8aed1f0a4093c0c772f2ce2caaee4e6f395050a
 
 do_build() {
 	./build_linux.sh \

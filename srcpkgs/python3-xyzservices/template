@@ -1,6 +1,6 @@
 # Template file for 'python3-xyzservices'
 pkgname=python3-xyzservices
-version=2023.10.0
+version=2025.1.0
 revision=1
 build_style=python3-module
 # Provider tests require unpackaged 'mercantile'
@@ -14,7 +14,7 @@ license="BSD-3-Clause"
 homepage="https://xyzservices.readthedocs.io/"
 changelog="https://raw.githubusercontent.com/geopandas/xyzservices/main/CHANGELOG.md"
 distfiles="${PYPI_SITE}/x/xyzservices/xyzservices-${version}.tar.gz"
-checksum=eee203e91955782fd8bfc2f05846830c289139dc0ab4eaf733bfa8f0be71861f
+checksum=5cdbb0907c20be1be066c6e2dc69c645842d1113a4e83e642065604a21f254ba
 
 post_install() {
 	vlicense LICENSE

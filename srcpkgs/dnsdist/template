@@ -1,6 +1,6 @@
 # Template file for 'dnsdist'
 pkgname=dnsdist
-version=1.8.1
+version=1.9.7
 revision=1
 build_style=gnu-configure
 configure_args="--with-pic --with-gnu-ld --with-libsodium --with-re2
@@ -11,20 +11,19 @@ configure_args="--with-pic --with-gnu-ld --with-libsodium --with-re2
 conf_files="/etc/dnsdist/dnsdist.conf"
 hostmakedepends="autoconf automake pkgconf"
 makedepends="libsodium-devel boost-devel re2-devel net-snmp-devel libcap-devel
- lua54-devel openssl-devel lmdb-devel fstrm-devel libedit-devel h2o-devel
- nghttp2-devel"
+ lua54-devel openssl-devel lmdb-devel fstrm-devel libedit-devel nghttp2-devel"
 short_desc="Dynamic DNS loadbalancer"
 maintainer="JailBird <jailbird@fdf.net>"
 license="GPL-2.0-only"
 homepage="https://dnsdist.org/"
 changelog="https://dnsdist.org/changelog.html"
 distfiles="https://downloads.powerdns.com/releases/${pkgname}-${version}.tar.bz2"
-checksum=05f356fcce29c4ece03c2d8df046adff3aaab0b036d6801c1a311c6d5bb3c07f
+checksum=285111c2b7dff6bc8a2407106a51c365cc5bf5e6287fe459a29b396c74620332
 
 system_accounts="_dnsdist"
 
-if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
-	# This can be removed once MUSL is updated to 1.2.x
+# (y2k38) This can be removed once musl is updated to 1.2.x
+if [ "$XBPS_TARGET_LIBC" = "musl" ] && [ "$XBPS_TARGET_WORDSIZE" = "32" ]; then
 	broken="no y2038 support"
 fi
 

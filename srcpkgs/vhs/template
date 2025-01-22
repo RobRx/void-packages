@@ -1,19 +1,19 @@
 # Template file for 'vhs'
 pkgname=vhs
-version=0.6.0
-revision=2
+version=0.9.0
+revision=1
 build_style=go
 build_helper=qemu
 go_import_path="github.com/charmbracelet/vhs"
 go_ldflags="-X main.Version=v${version}"
-depends="ffmpeg ttyd"
+depends="ffmpeg6 ttyd"
 short_desc="Your CLI home video recorder"
-maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="MIT"
 homepage="https://github.com/charmbracelet/vhs"
 changelog="https://github.com/charmbracelet/vhs/releases"
 distfiles="https://github.com/charmbracelet/vhs/archive/refs/tags/v${version}.tar.gz"
-checksum=bf41f264730f18b5146c2269d82b5b69757470799a2cce6099e420b5f3ec7fa3
+checksum=e8538a9019ddfa633ef7e0a6eb417b87fed0555d51b67dc59cb53493e179e20b
 
 post_install() {
 	vdoc "${FILESDIR}/README.voidlinux"

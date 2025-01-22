@@ -1,7 +1,7 @@
 # Template file for 'emptty'
 pkgname=emptty
-version=0.10.0
-revision=2
+version=0.13.0
+revision=1
 build_style=go
 go_import_path=github.com/tvrzna/emptty
 makedepends="pam-devel libX11-devel"
@@ -10,7 +10,7 @@ maintainer="tvrzna <emporeor@gmail.com>"
 license="MIT"
 homepage="https://github.com/tvrzna/emptty"
 distfiles="https://github.com/tvrzna/emptty/archive/v${version}.tar.gz"
-checksum=d75c6b582067f8c96d292370d6ec8ae3da6410999d3d34a29cd4e3295577cc1d
+checksum=3bed150f359fa46664ff28bff9d15306b899e147e60d486eb3a415afd7e2f3ba
 conf_files="/etc/emptty/conf /etc/pam.d/emptty"
 
 post_install() {

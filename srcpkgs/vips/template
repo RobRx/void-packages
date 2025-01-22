@@ -1,6 +1,6 @@
 # Template file for 'vips'
 pkgname=vips
-version=8.14.4
+version=8.15.4
 revision=1
 build_style=meson
 build_helper=gir
@@ -15,22 +15,22 @@ build_helper=gir
 # allow void users to make that choice themselves without using this
 # template to build from source.
 configure_args="-Dmodules=disabled -Ddoxygen=true
- $(vopt_bool gir introspection) $(vopt_bool gtk_doc)"
+ $(vopt_feature gir introspection) $(vopt_bool gtk_doc)"
 hostmakedepends="pkg-config gettext glib-devel doxygen graphviz
  $(vopt_if gtk_doc gtk-doc)"
 makedepends="$(vopt_if hdf5 hdf5-devel) $(vopt_if hdf5 matio-devel)
  cfitsio-devel expat-devel fftw-devel fontconfig-devel giflib-devel
  glib-devel lcms2-devel libexif-devel libgsf-devel libheif-devel
  libimagequant-devel libjpeg-turbo-devel libopenexr-devel libpng-devel
- librsvg-devel libwebp-devel orc-devel pango-devel poppler-glib-devel
+ librsvg-devel libwebp-devel pango-devel poppler-glib-devel
  tiff-devel"
 short_desc="Fast image processing with low memory needs"
-maintainer="Isaac Freund <mail@isaacfreund.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://www.libvips.org/"
 changelog="https://raw.githubusercontent.com/libvips/libvips/master/ChangeLog"
 distfiles="https://github.com/libvips/libvips/archive/refs/tags/v${version}.tar.gz"
-checksum=0638150ee5066814aa22ca89e0285f2310a539be3c39a631edeb38135a3f1f15
+checksum=16afc1bf2218a98c1dc35ec4d94ef61d66c293eeb2b399fd40282dfb2211ea95
 python_version=3
 
 build_options="gir gtk_doc hdf5"

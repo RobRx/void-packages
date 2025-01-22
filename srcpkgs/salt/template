@@ -1,6 +1,6 @@
 # Template file for 'salt'
 pkgname=salt
-version=3006.3
+version=3006.8
 revision=2
 build_style=python3-module
 hostmakedepends="python3-setuptools"
@@ -14,7 +14,7 @@ license="Apache-2.0"
 homepage="http://saltstack.org/"
 changelog="https://docs.saltstack.com/en/latest/topics/releases/${version}.html"
 distfiles="${PYPI_SITE}/s/salt/salt-${version}.tar.gz"
-checksum=7e53fbcc44c49f8d6e67cb19cada063800ca29ed7f15af972527531aa856e42b
+checksum=31629905c8d784bdb9786b6a3f77f9a87330bc56d7b68bebc9a19472d9efd866
 conf_files="
  /etc/salt/cloud.providers.d/digitalocean.conf
  /etc/salt/cloud.providers.d/vsphere.conf

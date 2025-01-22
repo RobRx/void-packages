@@ -1,8 +1,8 @@
 # Template file for 'm17n-db'
 pkgname=m17n-db
-version=1.8.0
-revision=2
-_glibc_version=2.32
+version=1.8.9
+revision=1
+_glibc_version=2.39
 build_style=gnu-configure
 create_wrksrc=yes
 build_wrksrc=m17n-db-$version
@@ -12,7 +12,7 @@ short_desc="Multilingual text processing library (database)"
 maintainer="newbluemoon <blaumolch@mailbox.org>"
 license="LGPL-2.1-or-later"
 homepage="http://www.nongnu.org/m17n/"
-distfiles="${NONGNU_SITE}/${pkgname/-db/}/${pkgname}-${version}.tar.gz
+distfiles="${NONGNU_SITE}/m17n/m17n-db-${version}.tar.gz
  ${GNU_SITE}/glibc/glibc-${_glibc_version}.tar.xz"
-checksum="657f23835b6655e7a63a362bac66260454ee356da4855eadb9366911d33fdc6d
- 1627ea54f5a1a8467032563393e0901077626dc66f37f10ee6363bb722222836"
+checksum="481254a380aa9c66d7f4ec3aa372a7e1d2fe47fc39df6e76044bd44017c424a4
+ f77bd47cf8170c57365ae7bf86696c118adb3b120d3259c64c502d3dc1e2d926"

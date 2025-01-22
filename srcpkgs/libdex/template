@@ -1,6 +1,6 @@
 # Template file for 'libdex'
 pkgname=libdex
-version=0.2.0
+version=0.8.1
 revision=1
 build_style=meson
 build_helper=gir
@@ -18,7 +18,7 @@ license="LGPL-2.1-or-later"
 homepage="https://gitlab.gnome.org/GNOME/libdex"
 changelog="https://gitlab.gnome.org/GNOME/libdex/-/raw/main/NEWS"
 distfiles="${GNOME_SITE}/libdex/${version%.*}/libdex-${version}.tar.xz"
-checksum=a0f7566260971a1e4aeb53a07d95c806091257b8789d6fad9931dba872c5070d
+checksum=955475ad3e43aabd6f6f70435264b5ee77bd265bd95545211fee026b08d378a0
 
 # Package build options
 build_options="gir vala gtk_doc"

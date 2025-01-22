@@ -1,7 +1,7 @@
 # Template file for 'python3-SQLAlchemy2'
 pkgname=python3-SQLAlchemy2
-version=2.0.16
-revision=2
+version=2.0.36
+revision=1
 build_style=python3-pep517
 make_install_target="dist/SQLAlchemy-${version}-*-*-*.whl"
 hostmakedepends="python3-setuptools python3-Cython python3-wheel"
@@ -13,8 +13,8 @@ maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://www.sqlalchemy.org"
 changelog="https://docs.sqlalchemy.org/en/20/changelog/"
-distfiles="${PYPI_SITE}/S/SQLAlchemy/SQLAlchemy-${version}.tar.gz"
-checksum=1e2caba78e7d1f5003e88817b7a1754d4e58f4a8f956dc423bf8e304c568ab09
+distfiles="${PYPI_SITE}/s/sqlaLchemy/sqlalchemy-${version}.tar.gz"
+checksum=7f2767680b6d2398aea7082e45a774b2b0767b5c8d8ffb9c8b683088ea9b29c5
 
 conflicts="python3-SQLAlchemy"
 

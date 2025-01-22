@@ -1,6 +1,6 @@
 # Template file for 'orc'
 pkgname=orc
-version=0.4.33
+version=0.4.40
 revision=1
 build_style=meson
 build_helper="gir"
@@ -11,8 +11,9 @@ short_desc="Oild Runtime Compiler"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="https://cgit.freedesktop.org/gstreamer/orc"
+changelog="https://gitlab.freedesktop.org/gstreamer/orc/-/raw/main/RELEASE"
 distfiles="http://gstreamer.freedesktop.org/src/orc/orc-${version}.tar.xz"
-checksum=844e6d7db8086f793f57618d3d4b68d29d99b16034e71430df3c21cfd3c3542a
+checksum=3fc2bee78dfb7c41fd9605061fc69138db7df007eae2f669a1f56e8bacef74ab
 
 build_options="gtk_doc"
 
@@ -25,14 +26,12 @@ post_install() {
 }
 
 orc-devel_package() {
-	depends="orc>=${version}_${revision}"
+	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
-		vmove "usr/lib/*.a"
 		vmove "usr/lib/*.so"
-		vmove usr/share/aclocal
 		if [ "$build_option_gtk_doc" ]; then
 			vmove usr/share/gtk-doc
 		fi

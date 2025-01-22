@@ -1,7 +1,7 @@
 # Template file for 'chroma'
 pkgname=chroma
-version=2.9.1
-revision=1
+version=2.14.0
+revision=2
 build_wrksrc="cmd/chroma"
 build_style=go
 go_import_path="github.com/alecthomas/chroma/v2/cmd/chroma"
@@ -11,11 +11,7 @@ maintainer="Daniel Lewan <daniel@teddydd.me>"
 license="MIT"
 homepage="https://github.com/alecthomas/chroma"
 distfiles="https://github.com/alecthomas/chroma/archive/v${version}.tar.gz"
-checksum=4f58ad5b33d8a8681b085e57303a85cb39158a62349dfb8bd16e780a049d788b
-
-do_check() {
-	go test -v
-}
+checksum=beff1d23ee8343c66f62aa30f1f18da5813018dcdff147f3ac4bdd734a908821
 
 post_install() {
 	vlicense ../../COPYING

@@ -1,6 +1,6 @@
 # Template file for 'mcelog'
 pkgname=mcelog
-version=195
+version=202
 revision=1
 archs="i686* x86_64*"
 hostmakedepends="python3"
@@ -9,8 +9,8 @@ short_desc="Decode kernel machine check log on x86 machines"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-only"
 homepage="http://www.mcelog.org/"
-distfiles="https://github.com/andikleen/${pkgname}/archive/v${version}.tar.gz"
-checksum=c3590f91231c2cc538d4f8289092887b9243e0a90f80beb37741f542a79c996b
+distfiles="https://github.com/andikleen/mcelog/archive/v${version}.tar.gz"
+checksum=3d7efb1fbcb2d4db399d0d27a20cadb9e8f5f9311dba2f9e0f20ea3835cd8529
 
 do_build() {
 	make CC=$CC CFLAGS="$CFLAGS $LDFLAGS" ${makejobs}

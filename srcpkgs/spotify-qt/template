@@ -1,7 +1,7 @@
 # Template file for 'spotify-qt'
 pkgname=spotify-qt
-version=3.10
-revision=1
+version=3.12
+revision=2
 build_style=cmake
 hostmakedepends="pkg-config qt5-devel"
 makedepends="qt5-devel qt5-svg-devel"
@@ -11,4 +11,4 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/kraxarn/spotify-qt"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=66191fc75f8571f40be16582caded2e6e3181434cbab5e85d3e9613c97ecb44f
+checksum=5782ff9cd854aa92b4ba49837d3ed4b5ada0427fd440e16866e9727abcd9df62

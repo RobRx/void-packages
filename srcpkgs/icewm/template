@@ -1,6 +1,6 @@
 # Template file for 'icewm'
 pkgname=icewm
-version=3.4.2
+version=3.6.0
 revision=1
 build_style=cmake
 make_cmd=make
@@ -18,7 +18,7 @@ license="GPL-2.0-or-later"
 homepage="https://ice-wm.org/"
 changelog="https://raw.githubusercontent.com/ice-wm/icewm/master/NEWS"
 distfiles="https://github.com/ice-wm/icewm/archive/${version}.tar.gz"
-checksum=e77e101e3b3f8354956be7d6e8d5831d296e41b689636328e7e7105335b5da3a
+checksum=0fa15f252983d21b1bc434142c787b16bdfc347a83c3057586d0e0091f26617b
 # broken tests
 make_check=no
 

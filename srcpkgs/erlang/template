@@ -1,18 +1,18 @@
 # Template file for 'erlang'
 pkgname=erlang
-version=26.1.2
+version=26.2.5
 revision=1
 build_style=gnu-configure
 make_install_target="install install-docs"
 hostmakedepends="autoconf libxslt perl tar"
 makedepends="openssl-devel ncurses-devel unixodbc-devel zlib-devel"
 short_desc="Concurrent functional programming language developed by Ericsson"
-maintainer="Leah Neukirchen <leah@vuxu.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="Apache-2.0"
 homepage="http://www.erlang.org/"
 changelog="https://github.com/erlang/otp/releases"
 distfiles="https://github.com/erlang/otp/archive/OTP-${version}.tar.gz"
-checksum=56042d53b30863d4e720ebf463d777f0502f8c986957fc3a9e63dae870bbafe0
+checksum=d34b409cb5968ae47dd5a0c4f85b925d5601898d90788bbb08d514964a3a141d
 subpackages="erlang-doc"
 
 if [ -z "$CROSS_BUILD" ]; then

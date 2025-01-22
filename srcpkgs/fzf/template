@@ -1,6 +1,6 @@
 # Template file for 'fzf'
 pkgname=fzf
-version=0.43.0
+version=0.58.0
 revision=1
 build_style=go
 go_import_path="github.com/junegunn/fzf"
@@ -11,13 +11,14 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://github.com/junegunn/fzf"
 changelog="https://raw.githubusercontent.com/junegunn/fzf/master/CHANGELOG.md"
-distfiles="https://github.com/junegunn/fzf/archive/refs/tags/${version}.tar.gz"
-checksum=2cd3fd1f0bcba6bdeddbbbccfb72b1a8bdcbb8283d86600819993cc5e62b0080
+distfiles="https://github.com/junegunn/fzf/archive/refs/tags/v${version}.tar.gz"
+checksum=c49e5b13c7f3ee28ebc41ce720e48054287f11186212b2152434497a590f1a63
 
 post_install() {
 	cd ${wrksrc}
 	vbin bin/fzf-tmux
 	vman man/man1/fzf.1
+	vman man/man1/fzf-tmux.1
 	vlicense LICENSE
 
 	sed -i -e 's#source ~/\.fzf\.bash; ##' shell/key-bindings.bash

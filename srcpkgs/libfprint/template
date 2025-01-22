@@ -1,6 +1,6 @@
 # Template file for 'libfprint'
 pkgname=libfprint
-version=1.94.5
+version=1.94.8
 revision=1
 build_style=meson
 build_helper="gir qemu"
@@ -15,7 +15,7 @@ license="LGPL-2.1-or-later"
 homepage="http://www.freedesktop.org/wiki/Software/fprint/"
 changelog="https://gitlab.freedesktop.org/libfprint/libfprint/raw/master/NEWS"
 distfiles="https://gitlab.freedesktop.org/libfprint/libfprint/-/archive/v$version/libfprint-v$version.tar.bz2"
-checksum=707309cc58012c4c22a318fdb0c6b43b2c96c8e70349ca5edb1feabb65afb63a
+checksum=50c54514b40b4252cc02460a369af44a6542fbdf772dda5c9c7a699022d29a5d
 
 libfprint-devel_package() {
 	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
