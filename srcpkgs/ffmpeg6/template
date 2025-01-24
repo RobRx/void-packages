@@ -6,13 +6,13 @@ revision=2
 hostmakedepends="pkg-config perl"
 makedepends="zlib-devel bzip2-devel freetype-devel $(vopt_if alsa alsa-lib-devel)
  $(vopt_if x11 'libxcb-devel libXfixes-devel libXext-devel libXvMC-devel') lame-devel
- x264-devel xvidcore-devel $(vopt_if jack jack-devel) SDL2-devel libcdio-paranoia-devel gnutls-devel
- harfbuzz-devel libass-devel opus-devel ocl-icd-devel libbs2b-devel libvidstab-devel vmaf-devel 
- $(vopt_if pulseaudio pulseaudio-devel) $(vopt_if vaapi libva-devel) $(vopt_if vdpau libvdpau-devel)
- $(vopt_if x265 x265-devel) v4l-utils-devel libvpx-devel libaom-devel $(vopt_if sndio sndio-devel)
- libdav1d-devel zimg-devel fontconfig-devel libglvnd-devel $(vopt_if webp libwebp-devel)
- $(vopt_if drm libdrm-devel) libsvt-av1-devel srt-devel $(vopt_if vulkan 'vulkan-loader Vulkan-Headers')
- $(vopt_if nvcodec nv-codec-headers)"
+ x264-devel $(vopt_if jack jack-devel) SDL2-devel libcdio-paranoia-devel gnutls-devel
+ harfbuzz-devel libass-devel libbluray-devel opus-devel ocl-icd-devel libbs2b-devel
+ libvidstab-devel vmaf-devel libplacebo-devel $(vopt_if pulseaudio pulseaudio-devel)
+ $(vopt_if vaapi libva-devel) $(vopt_if vdpau libvdpau-devel) $(vopt_if x265 x265-devel)
+ v4l-utils-devel libvpx-devel libaom-devel $(vopt_if sndio sndio-devel) libdav1d-devel
+ zimg-devel fontconfig-devel libglvnd-devel $(vopt_if webp libwebp-devel) $(vopt_if drm libdrm-devel)
+ $(vopt_if vulkan 'vulkan-loader Vulkan-Headers') $(vopt_if nvcodec nv-codec-headers)"
 depends="ffplay6>=${version}_${revision}"
 short_desc="Decoding, encoding and streaming software"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -90,6 +90,7 @@ do_configure() {
 		--enable-gpl \
 		--enable-libaom \
 		--enable-libass \
+		--enable-libbluray \
 		--enable-libbs2b \
 		--enable-libcdio \
 		--enable-libdav1d \
@@ -100,9 +101,8 @@ do_configure() {
 		$(vopt_enable jack libjack) \
 		--enable-libmp3lame \
 		--enable-libopus \
+		--enable-libplacebo \
 		$(vopt_enable pulseaudio libpulse) \
-		--enable-libsrt \
-		--enable-libsvtav1 \
 		--enable-libv4l2 \
 		--enable-libvidstab \
 		--enable-libvmaf \
@@ -114,7 +114,6 @@ do_configure() {
 		$(vopt_enable x11 libxcb-shm) \
 		$(vopt_enable x11 libxcb-xfixes) \
 		$(vopt_enable x11 libxcb-shape) \
-		--enable-libxvid \
 		--enable-libzimg \
 		--enable-opencl \
 		--enable-opengl \
@@ -128,6 +127,7 @@ do_configure() {
 		$(vopt_enable nvcodec nvdec) \
 		$(vopt_enable vulkan) \
 		$(vopt_enable x11 xlib) \
+		--enable-lto \
 		${_args}
 }
 
