@@ -6,8 +6,8 @@ pkgname=eudev
 version=3.2.14
 revision=2
 build_style=gnu-configure
-configure_args="--enable-hwdb --enable-manpages"
-hostmakedepends="pkg-config gperf"
+configure_args="--enable-hwdb --enable-manpages --enable-smack"
+hostmakedepends="pkg-config gperf automake libtool"
 makedepends="libblkid-devel libkmod-devel"
 checkdepends="xz tar perl"
 short_desc="Fork of systemd-udev (enhanced userland device daemon)"
@@ -23,6 +23,10 @@ if [ "$XBPS_ALLOW_CHROOT_BREAKOUT" ]; then
 	# requires unshare(2) which is not available in chroot
 	make_check=no
 fi
+
+pre_configure() {
+	autoreconf -f -i -s
+}
 
 post_install() {
 	mv "${DESTDIR}/etc/udev/hwdb.d" "${DESTDIR}/usr/lib/udev"

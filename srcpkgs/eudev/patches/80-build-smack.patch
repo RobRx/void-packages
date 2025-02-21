@@ -1,0 +1,36 @@
+--- a/configure.ac	2025-02-21 19:04:43.720911523 +0100
++++ b/configure.ac	2025-02-21 19:03:27.996646508 +0100
+@@ -227,6 +227,19 @@
+ AC_CHECK_FUNCS([mallinfo2])
+ 
+ # ------------------------------------------------------------------------------
++have_smack=no
++AC_ARG_ENABLE(smack, AS_HELP_STRING([--disable-smack], [Disable optional Smack support]))
++if test "x$enable_smack" != "xno"; then
++    AC_CHECK_HEADER([sys/xattr.h],
++        [AC_DEFINE(HAVE_SMACK, 1, [Define if Smack is available])
++         have_smack=yes],
++        [have_smack=no])
++    if test "x$have_smack" = "xno"; then
++        AC_MSG_ERROR([*** Smack support requires sys/xattr.h, but it was not found])
++    fi
++fi
++
++# ------------------------------------------------------------------------------
+ 
+ AC_CHECK_DECL([unshare],
+ 	[AC_DEFINE(HAVE_UNSHARE, 1, [Define if unshare is declared])],
+
+--- a/src/shared/smack-util.c	2025-02-21 19:07:58.315592339 +0100
++++ b/src/shared/smack-util.c	2025-02-21 19:08:32.636712425 +0100
+@@ -19,9 +19,7 @@
+   along with systemd; If not, see <http://www.gnu.org/licenses/>.
+ ***/
+ 
+-#ifdef HAVE_XATTR
+-#include <attr/xattr.h>
+-#endif
++#include <sys/xattr.h>
+ 
+ #include "util.h"
+ #include "process-util.h"
