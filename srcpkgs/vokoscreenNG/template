@@ -1,6 +1,6 @@
 # Template file for 'vokoscreenNG'
 pkgname=vokoscreenNG
-version=4.4.0
+version=4.4.4
 revision=1
 build_style=qmake
 build_wrksrc="src"
@@ -13,8 +13,9 @@ short_desc="Easy to use screencast creator"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="http://linuxecke.volkoh.de/vokoscreen/vokoscreen.html"
+changelog="https://linuxecke.volkoh.de/vokoscreen/vokoscreen-changes.html"
 distfiles="https://github.com/vkohaupt/vokoscreenNG/archive/${version}.tar.gz"
-checksum=0fcf37a0ef6236bcf4349e25966d9c5f92c969eeb229bb31a17960ebc408c69e
+checksum=dc7bec85c2bb8c5d33de2d59d405e7d1dfe84d9213efc461c86975210cb52a45
 
 post_install() {
 	vbin vokoscreenNG
