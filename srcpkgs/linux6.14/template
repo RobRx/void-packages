@@ -1,20 +1,24 @@
-# Template file for 'linux6.13'
-pkgname=linux6.13
-version=6.13.8
+# Template file for 'linux6.14'
+pkgname=linux6.14
+version=6.14.0
 revision=1
 short_desc="Linux kernel and modules (${version%.*} series)"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="https://www.kernel.org"
-distfiles="${KERNEL_SITE}/kernel/v${version%%.*}.x/linux-${version%.*}.tar.xz"
 
-if [ "${version##*.}" != 0 ]; then
-	distfiles+=" ${KERNEL_SITE}/kernel/v${version%%.*}.x/patch-${version}.xz"
-	skip_extraction="patch-${version}.xz"
-fi
+case "${version##*.}" in
+rc*) distfiles="https://git.kernel.org/torvalds/t/linux-${version%.*}-${version##*.}.tar.gz" ;;
+*)
+	distfiles="${KERNEL_SITE}/kernel/v${version%%.*}.x/linux-${version%.*}.tar.xz"
+	if [ "${version##*.}" != 0 ]; then
+		distfiles+=" ${KERNEL_SITE}/kernel/v${version%%.*}.x/patch-${version}.xz"
+		skip_extraction="patch-${version}.xz"
+	fi
+esac
 
-checksum="e79dcc6eb86695c6babfb07c2861912b635d5075c6cd1cd0567d1ea155f80d6e
- a4ee918570fcc3372d7fdbc9a0eab45e03dd61a9414ada2d780c79f082488c91"
+checksum=a294b683e7b161bb0517bb32ec7ed1d2ea7603dfbabad135170ed12d00c47670
+
 python_version=3
 
 # XXX Restrict archs until a proper <arch>-dotconfig is available in FILESDIR.
@@ -29,7 +33,7 @@ preserve=yes
 hostmakedepends="tar xz bc elfutils-devel flex gmp-devel kmod libmpc-devel
  pkg-config openssl-devel perl uboot-mkimage cpio pahole python3 zstd"
 
-_kernver="${version}_${revision}"
+_kernver="${version/rc/0-rc}_${revision}"
 triggers="kernel-hooks"
 kernel_hooks_version="${_kernver}"
 
@@ -55,7 +59,10 @@ if [ "$CROSS_BUILD" ]; then
 	_cross="CROSS_COMPILE=${XBPS_CROSS_TRIPLET}-"
 fi
 
-pre_patch() {
+post_extract() {
+	# doing this in post_extract instead of *_patch, so that ./xbps-src extract
+	# will have the actual kernel release source code and additional patches
+	# can be applied with ./xbps-src patch in the next step.
 	if [ ! -f $XBPS_SRCDISTDIR/$pkgname-$version/patch-${version}.xz ]; then
 		return
 	fi
@@ -137,7 +144,7 @@ do_install() {
 	# Run depmod after compressing modules - makes depmod.sh a noop
 	sed -i '2iexit 0' scripts/depmod.sh
 	vmkdir usr/lib
-	ln -s usr/lib/ ${DESTDIR}
+	ln -sf usr/lib/ ${DESTDIR}
 
 	# Install kernel, firmware and modules
 	make ${makejobs} ARCH=${subarch:-$arch} INSTALL_MOD_PATH=${DESTDIR} ${_cross} modules_install
@@ -326,7 +333,7 @@ do_install() {
 	rm -f ${DESTDIR}/lib
 }
 
-linux6.13-headers_package() {
+linux6.14-headers_package() {
 	preserve=yes
 	nostrip=yes
 	noshlibprovides=yes
@@ -337,7 +344,7 @@ linux6.13-headers_package() {
 	}
 }
 
-linux6.13-dbg_package() {
+linux6.14-dbg_package() {
 	preserve=yes
 	nostrip=yes
 	noverifyrdeps=yes
