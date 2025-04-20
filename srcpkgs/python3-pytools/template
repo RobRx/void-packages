@@ -1,6 +1,6 @@
 # Template file for 'python3-pytools'
 pkgname=python3-pytools
-version=2024.1.21
+version=2025.1.2
 revision=1
 build_style=python3-pep517
 # Ignored checks require unpackaged siphash24 package
@@ -19,7 +19,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="X11"
 homepage="https://pypi.org/project/pytools"
 distfiles="${PYPI_SITE}/p/pytools/pytools-${version}.tar.gz"
-checksum=a1989bb91b9d43aa16c812f3ceb1ee50846de54c50034d0dc1a20ab2753da98c
+checksum=c00db94fdd9a9639899732cbf91bcb291786751cc90380b07d738182ca50f2b1
 
 post_install() {
 	vlicense LICENSE
