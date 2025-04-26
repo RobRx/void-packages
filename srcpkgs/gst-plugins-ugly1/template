@@ -1,20 +1,18 @@
 # Template file for 'gst-plugins-ugly1'
 pkgname=gst-plugins-ugly1
-version=1.24.11
+version=1.26.1
 revision=1
 build_style=meson
 configure_args=" -Dsidplay=disabled -Dgpl=enabled -Dx264=enabled
- -Da52dec=enabled -Dmpeg2dec=enabled -Dcdio=enabled"
-# XXX add required pkgs for the sid plugin.
+ -Da52dec=enabled -Dmpeg2dec=enabled -Dcdio=enabled -Ddvdread=enabled"
 hostmakedepends="pkg-config intltool python3"
-makedepends="glib-devel libxml2-devel gst-plugins-base1-devel
- libcdio-devel libdvdread-devel libmad-devel x264-devel mpg123-devel
- orc-devel liba52-devel libmpeg2-devel lame-devel"
-depends="orc>=0.4.18 gst-plugins-base1>=${version}"
+makedepends="glib-devel gst-plugins-base1-devel libcdio-devel
+ libdvdread-devel x264-devel orc-devel liba52-devel libmpeg2-devel"
+# depends="orc>=0.4.18 gst-plugins-base1>=${version}"
 short_desc="GStreamer plugins from the ugly set (1.x)"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later, GPL-2.0-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-${version}.tar.xz"
-checksum=3a1f58a33aee8d13522865bcb564007a6837ef5711d7dfff8ce4260921013f8a
+checksum=34d9bcec8e88b008839d8de33fb043ae75eb04e466df74066fd66ee487a8ec4f

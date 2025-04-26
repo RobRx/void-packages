@@ -1,6 +1,6 @@
 # Template file for 'gst-plugins-good1'
 pkgname=gst-plugins-good1
-version=1.26.0
+version=1.26.1
 revision=1
 build_style=meson
 configure_args="-Ddv=disabled -Ddv1394=disabled -Dshout2=disabled -Dqt5=enabled
@@ -18,7 +18,7 @@ license="LGPL-2.1-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${version}.tar.xz"
-checksum=9e18f139ef69ad0867c2dfbb8fe1d1736d76df11aac83f60e8d3adb1e2eaf03b
+checksum=fcdcb2f77620a599557b2843d1c6c55c2b660f5fc28222b542847d11d9ca982f
 
 build_options="gtk3 x11 wayland pulseaudio jack"
 build_options_default="gtk3 x11 wayland pulseaudio"
