@@ -1,6 +1,6 @@
 # Template file for 'lxqt-runner'
 pkgname=lxqt-runner
-version=2.1.1
+version=2.2.0
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config lxqt-build-tools qt6-base qt6-tools perl"
@@ -11,4 +11,4 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="https://lxqt-project.org"
 distfiles="https://github.com/lxqt/lxqt-runner/archive/${version}.tar.gz"
-checksum=1f12e826d1e1b926524ca3b0a71954dc720c972e149f303b2dd74dfa526fd14c
+checksum=e8400c32c43667ad0854259d71139c5298f109f866ddc7583433fe964ffa5c50
