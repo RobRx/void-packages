@@ -3,6 +3,7 @@ pkgname=nnn
 version=5.1
 revision=1
 build_style=gnu-makefile
+make_build_args="O_EMOJI=1 O_NOX11=1"
 make_install_target="install install-desktop"
 hostmakedepends="pkg-config"
 makedepends="ncurses-devel readline-devel"
