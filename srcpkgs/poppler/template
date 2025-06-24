@@ -3,7 +3,7 @@
 # THIS PKG MUST BE SYNCHRONIZED WITH "srcpkgs/poppler-qt5".
 pkgname=poppler
 version=25.02.0
-revision=1
+revision=2
 _testVersion=91ee031c882634c36f2f0f2f14eb6646dd542fb9
 create_wrksrc=yes
 build_style=cmake
@@ -104,6 +104,6 @@ poppler-glib_package() {
 
 poppler-utils_package() {
 	short_desc+=" - utilities (transitional package)"
-	build_style=meta
+	metapackage=yes
 	depends="poppler>=${version}_${revision}"
 }

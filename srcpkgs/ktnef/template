@@ -1,6 +1,6 @@
 # Template file for 'ktnef'
 pkgname=ktnef
-version=24.12.3
+version=25.04.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -15,7 +15,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/ktnef-${version}.tar.xz"
-checksum=c2d2f1b64e1667be32e7e5d051d98f4f41ef67c10777782bf9e4a41b5745702d
+checksum=4edd18335f85416fec4c793d359802f935de838a7b60fd6f4d9cfe7ee6acca3e
 
 ktnef-devel_package() {
 	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"

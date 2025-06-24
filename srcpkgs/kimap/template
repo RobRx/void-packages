@@ -1,6 +1,6 @@
 # Template file for 'kimap'
 pkgname=kimap
-version=24.12.3
+version=25.04.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -16,7 +16,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/kimap-${version}.tar.xz"
-checksum=751a0eda85aa7e084d97e7f83eada02c90fcd4c23f3e99523b9fb1a4bade6f3f
+checksum=7d2aa360a9c31ba61ba40c9460214a2ef6bfea35e5651729f855a202892667be
 
 do_check() {
 	: # XXX: QFATAL : FakeServerTest::testLoadScenario() Unable to start the server

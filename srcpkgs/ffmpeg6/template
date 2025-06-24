@@ -2,7 +2,7 @@
 # audacity also needs to be bumped when a new ffmpeg version bumps libavformat's soname!
 pkgname=ffmpeg6
 version=6.1.2
-revision=5
+revision=8
 hostmakedepends="pkg-config perl"
 makedepends="zlib-devel bzip2-devel freetype-devel $(vopt_if alsa alsa-lib-devel)
  $(vopt_if x11 'libxcb-devel libXfixes-devel libXext-devel libXvMC-devel') lame-devel
@@ -12,7 +12,8 @@ makedepends="zlib-devel bzip2-devel freetype-devel $(vopt_if alsa alsa-lib-devel
  $(vopt_if vaapi libva-devel) $(vopt_if vdpau libvdpau-devel) $(vopt_if x265 x265-devel)
  v4l-utils-devel libvpx-devel libaom-devel $(vopt_if sndio sndio-devel) libdav1d-devel
  zimg-devel fontconfig-devel libglvnd-devel $(vopt_if webp libwebp-devel) $(vopt_if drm libdrm-devel)
- $(vopt_if vulkan 'vulkan-loader Vulkan-Headers') $(vopt_if nvcodec nv-codec-headers)"
+ $(vopt_if vulkan 'vulkan-loader Vulkan-Headers') $(vopt_if libvpl libvpl-devel)
+ $(vopt_if nvcodec nv-codec-headers)"
 depends="ffplay6>=${version}_${revision}"
 short_desc="Decoding, encoding and streaming software"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -22,7 +23,7 @@ changelog="https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/Changelog"
 distfiles="https://www.ffmpeg.org/releases/ffmpeg-${version}.tar.xz"
 checksum=3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38
 
-build_options="alsa x265 vaapi vdpau nvcodec sndio pulseaudio jack webp vulkan drm x11"
+build_options="alsa x265 vaapi vdpau nvcodec libvpl sndio pulseaudio jack webp vulkan drm x11"
 build_options_default="alsa x265 pulseaudio vulkan drm x11"
 desc_option_webp="Enable support for WebP"
 
@@ -33,7 +34,7 @@ case "$XBPS_TARGET_MACHINE" in
 		;;
 	x86_64*)
 		hostmakedepends+=" nasm"
-		build_options_default+=" vaapi vdpau nvcodec onevpl"
+		build_options_default+=" vaapi vdpau nvcodec libvpl"
 		;;
 	ppc64*) build_options_default+=" vaapi vdpau";;
 	mips*) CFLAGS="-mnan=legacy";;
@@ -113,6 +114,7 @@ do_configure() {
 		$(vopt_enable x11 libxcb-shm) \
 		$(vopt_enable x11 libxcb-xfixes) \
 		$(vopt_enable x11 libxcb-shape) \
+		$(vopt_enable libvpl libvpl) \
 		--enable-libzimg \
 		--enable-opencl \
 		--enable-opengl \
@@ -155,7 +157,7 @@ libavdevice6_package() {
 
 libavresample6_package() {
 	short_desc="Package deprecated, removal needed"
-	build_style=meta
+	metapackage=yes
 }
 
 libavformat6_package() {

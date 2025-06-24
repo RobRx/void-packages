@@ -1,6 +1,6 @@
 # Template file for 'dragon-player'
 pkgname=dragon-player
-version=24.12.3
+version=25.04.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -15,4 +15,4 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/multimedia/org.kde.dragonplayer"
 distfiles="${KDE_SITE}/release-service/${version}/src/dragon-${version}.tar.xz"
-checksum=f86568f82d9dc85da5900f48327260636ed73fa5ff80c890665d21a8c9c14b84
+checksum=15a14eeb295989bf1fff35e55897a817f7fda7064f0bc31c331e88b6d41ffd82

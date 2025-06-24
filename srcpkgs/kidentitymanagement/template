@@ -1,6 +1,6 @@
 # Template file for 'kidentitymanagement'
 pkgname=kidentitymanagement
-version=24.12.3
+version=25.04.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -17,7 +17,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/pim/kidentitymanagement"
 distfiles="${KDE_SITE}/release-service/${version}/src/kidentitymanagement-${version}.tar.xz"
-checksum=501bcb321b1f41bba14d14084c3a2708f4a84666ad62eab299d7730bd181407f
+checksum=89f700fab7bccfa804a7f8b3f3418f048ef3c3aa97b36e102beba9e1226e045d
 
 kidentitymanagement-devel_package() {
 	short_desc+=" - development files"

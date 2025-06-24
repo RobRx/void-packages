@@ -1,7 +1,7 @@
 # Template file for 'vim'
 pkgname=vim
 version=9.1.1215
-revision=1
+revision=2
 create_wrksrc=required
 hostmakedepends="gettext glib-devel pkg-config"
 makedepends="acl-devel ncurses-devel
@@ -210,7 +210,7 @@ vim-huge_package() {
 vim-huge-python3_package() {
 	depends="vim-huge"
 	short_desc+=" - transitional package"
-	build_style=meta
+	metapackage=yes
 }
 xxd_package() {
 	short_desc="Make a hexdump or do the reverse"

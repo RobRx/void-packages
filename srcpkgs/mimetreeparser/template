@@ -1,6 +1,6 @@
 # Template file for 'mimetreeparser'
 pkgname=mimetreeparser
-version=24.12.3
+version=25.04.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -17,7 +17,7 @@ maintainer="Luciogi <githubvoidlinux.supremacy429@passinbox.com>"
 license="GPL-3.0-or-later"
 homepage="https://invent.kde.org/pim/mimetreeparser"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=116a70ed271be58628343f9cacab76bff56f3c0248cf236f9717c6e0640591f0
+checksum=9cdb04278f03c73c07ac0b840d44491460e3ab431133323d26a4c1ef084b6e37
 
 mimetreeparser-devel_package() {
 	depends="${makepends} ${sourcepkg}>=${version}_${revision}"
