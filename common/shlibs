@@ -2256,13 +2256,6 @@ libpgf.so.6 libpgf-6.14.12_1
 libqhull_r.so.8.0 libqhull-2020.2_1
 libqhull.so.8.0 libqhull-2020.2_1
 libKF5NetworkManagerQt.so.6 networkmanager-qt5-5.26.0_1
-libfcitx-core.so.0 libfcitx-4.2.8_1
-libfcitx-gclient.so.1 libfcitx-4.2.9.5_1
-libfcitx-utils.so.0 libfcitx-4.2.8_1
-libfcitx-config.so.4 libfcitx-4.2.8_1
-libFcitxQt5DBusAddons.so.1 libfcitx-qt5-1.2.1_1
-libFcitxQt5WidgetsAddons.so.1 libfcitx-qt5-1.2.1_1
-libfcitx-qt5.so.0 libfcitx-qt5-0.1.3_1
 libFcitx5Utils.so.2 libfcitx5-5.0.5_1
 libFcitx5Core.so.7 libfcitx5-5.0.5_1
 libFcitx5Config.so.6 libfcitx5-5.0.5_1
@@ -4537,7 +4530,7 @@ libopenrazer.so.0 libopenrazer-0.2.0_1
 libstaroffice-0.0.so.0 libstaroffice-0.0.7_1
 libbox2d.so.2 box2d-2.4.1_1
 libhwy.so.1 highway-1.2.0_1
-libscenefx-0.3.so scenefx-0.3_1
+libscenefx-0.4.so scenefx-0.4.1_1
 libnng.so.1 nng-1.5.2_1
 libsentry.so sentry-native-0.7.7_1
 libjose.so.0 libjose-14_1
