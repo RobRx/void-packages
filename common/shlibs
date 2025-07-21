@@ -459,7 +459,7 @@ libKScreenLocker.so.6 kscreenlocker-6.0.0_1
 libparted.so.2 libparted-3.1_1
 libparted-fs-resize.so.0 libparted-3.1_1
 libntfs-3g.so.89 ntfs-3g-2021.8.22_1
-libruby.so.3.3 ruby-3.3.2_1
+libruby.so.3.4 ruby-3.4.5_1
 libada.so.3 ada-3.1.0_1
 librw.so.0 rankwidth-0.9_1
 libKSysGuardFormatter.so.2 libksysguard-6.0.0_1
@@ -4566,4 +4566,5 @@ libngtcp2_crypto_ossl.so.0 ngtcp2-1.13.0_1
 libprom.so prometheus-client-c-0.1.3_1
 libqlementine.so.1 qlementine-1.2.2_1
 libkwin.so.6 kwin-6.3.3.1_1
+libkwin-x11.so.6 kwin-x11-6.4.3_1
 libdatovka.so.8 libdatovka-0.7.0_1
