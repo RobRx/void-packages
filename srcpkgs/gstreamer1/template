@@ -1,6 +1,6 @@
 # Template file for 'gstreamer1'
 pkgname=gstreamer1
-version=1.26.3
+version=1.26.4
 revision=1
 build_style=meson
 build_helper="gir"
@@ -16,7 +16,7 @@ license="LGPL-2.0-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${version}.tar.xz"
-checksum=dc661603221293dccc740862425eb54fbbed60fb29d08c801d440a6a3ff82680
+checksum=fe440e41804fabe036e06493b98680e2a8ce76d49879e3cdd6890d72e0614d75
 
 do_check() {
 	ninja -C build test || msg_warn "Fails on musl"
