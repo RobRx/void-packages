@@ -1,6 +1,6 @@
 # Template file for 'gst-plugins-bad1'
 pkgname=gst-plugins-bad1
-version=1.26.4
+version=1.26.5
 revision=1
 build_helper="gir"
 build_style=meson
@@ -28,7 +28,7 @@ license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${version}.tar.xz"
-checksum=33dba95ed3933b742e4eac22063cdb81e14d54dc4cdd354a0000517273012661
+checksum=9890f262f3b2a9564dcb629e9eb697d77b93d1f71897eda1a8170b7dcfe73294
 
 build_options="gir wayland"
 build_options_default="gir wayland"
