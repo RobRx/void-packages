@@ -1,11 +1,11 @@
 # Template file for 'labwc'
 pkgname=labwc
-version=0.8.1
+version=0.9.1
 revision=1
 build_style=meson
-hostmakedepends="pkg-config scdoc wayland-devel"
+hostmakedepends="gettext pkg-config scdoc wayland-devel"
 makedepends="cairo-devel glib-devel libpng-devel librsvg-devel libsfdo-devel libxml2-devel
- pango-devel wlroots0.18-devel"
+ pango-devel wlroots0.19-devel xorg-server-xwayland"
 depends="xorg-server-xwayland"
 short_desc="Wayland window-stacking compositor"
 maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
@@ -13,4 +13,4 @@ license="GPL-2.0-or-later"
 homepage="https://labwc.github.io/"
 changelog="https://raw.githubusercontent.com/labwc/labwc/master/NEWS.md"
 distfiles="https://github.com/labwc/labwc/archive/refs/tags/${version}.tar.gz"
-checksum=8e510655cf0c84875c541f4afeb636e707d365210993ad22d64d8bc3108a3433
+checksum=bf7a245d5fc5665329b3f5c9cb589eb33e658b8eb638cf4f4c9ad68f4b5979f0

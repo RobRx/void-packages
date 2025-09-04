@@ -1,15 +1,14 @@
 # Template file for 'dust'
 pkgname=dust
-version=1.1.1
+version=1.2.3
 revision=1
 build_style=cargo
-make_check_args="-- --skip test_permission" # CI failure
 short_desc="More intuitive version of du"
-maintainer="Neel <neel@chot.ai>"
+maintainer="icp <pangolin@vivaldi.net>"
 license="Apache-2.0"
 homepage="https://github.com/bootandy/dust"
 distfiles="https://github.com/bootandy/dust/archive/refs/tags/v${version}.tar.gz"
-checksum=98cae3e4b32514e51fcc1ed07fdbe6929d4b80942925348cc6e57b308d9c4cb0
+checksum=424b26adfbafeac31da269ecb3f189eca09803e60fad90b3ff692cf52e0aeeee
 
 post_install() {
 	vcompletion completions/dust.bash bash

@@ -1,7 +1,7 @@
 # Template file for 'perl-CGI'
 pkgname=perl-CGI
-version=4.66
-revision=2
+version=4.70
+revision=1
 build_style=perl-module
 hostmakedepends="perl"
 makedepends="perl"
@@ -12,4 +12,4 @@ maintainer="newbluemoon <blaumolch@mailbox.org>"
 license="Artistic-1.0-Perl, GPL-1.0-or-later"
 homepage="https://metacpan.org/release/CGI"
 distfiles="${CPAN_SITE}/CGI/CGI-${version}.tar.gz"
-checksum=4697437688a193e3f02556e1d223015590c1f2800b40becf83dc12d5cc5ed8e1
+checksum=538ad19c40402e3bbbe00e6d374c3ce2966feb391096dac883ac5104c2083bc9

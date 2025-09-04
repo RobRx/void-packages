@@ -1,7 +1,7 @@
 # Template file for 'mame'
 pkgname=mame
-version=0265
-revision=1
+version=0277
+revision=3
 hostmakedepends="pkg-config python3 qt6-base"
 makedepends="qt6-base-devel SDL2_ttf-devel asio libutf8proc-devel libgomp-devel
  rapidjson glm pugixml-devel portmidi-devel portaudio-devel"
@@ -11,9 +11,12 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mamedev.org"
 distfiles="https://github.com/mamedev/mame/archive/mame${version}.tar.gz"
-checksum=3de68db66efb783eb5c5d7ccad1f4a4f5eadc6c7a29c1a9c2097e532c3e0b8b1
+checksum=60055b19fc96306927257c5ffc265ecebcbe5c944cf98113d4d78f6304556c67
 nodebug=yes
 replaces="sdlmame>=0 sdlmess>=0"
+
+CFLAGS="-D_LARGEFILE64_SOURCE"
+CXXFLAGS="-D_LARGEFILE64_SOURCE"
 
 post_patch() {
 	vsed -i scripts/toolchain.lua -i 3rdparty/genie/src/host/scripts.c -e 's/-m32//' -e 's/-m64//'

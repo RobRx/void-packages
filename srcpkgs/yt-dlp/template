@@ -1,6 +1,6 @@
 # Template file for 'yt-dlp'
 pkgname=yt-dlp
-version=2024.11.04
+version=2025.08.22
 revision=1
 build_style=python3-pep517
 make_check_args="-k not((download)or(test_socks))"
@@ -13,4 +13,26 @@ license="Unlicense"
 homepage="https://github.com/yt-dlp/yt-dlp"
 changelog="https://raw.githubusercontent.com/yt-dlp/yt-dlp/master/Changelog.md"
 distfiles="https://github.com/yt-dlp/yt-dlp/releases/download/${version}/yt-dlp.tar.gz>yt-dlp-$version.tar.gz"
-checksum=0ae3767c48d90d7fd6c5cb5a3d9fcb954441d984abf20c077d5f5bc0789b9aa4
+checksum=a1387bf383a0a29a4ab09c27733f11e6f03db84eae35375d9f4f6dcb420668f7
+
+post_install() {
+	cat <<- "EOF" > youtube-dl
+	#!/bin/sh
+	exec yt-dlp --compat-options youtube-dl "$@"
+	EOF
+	vbin youtube-dl
+}
+
+youtube-dl_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" (transitional compatibility package)"
+	pkg_install() {
+		vmove usr/bin/youtube-dl
+	}
+}
+
+python3-youtube-dl_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	short_desc+=" (transitional dummy package)"
+	metapackage=yes
+}

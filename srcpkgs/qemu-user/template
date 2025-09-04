@@ -1,21 +1,22 @@
 # Template file for 'qemu-user'
 # This package should be updated together with qemu
 pkgname=qemu-user
-version=9.1.1
+version=10.0.3
 revision=1
-build_style=meta
+build_style=configure
+metapackage=yes
 configure_args="--prefix=/usr --sysconfdir=/etc --libexecdir=/usr/libexec
  --enable-linux-user --disable-system --static
  -Dkvm=disabled -Dpng=disabled -Dvirtfs=disabled -Dfdt=disabled -Dseccomp=disabled
  -Dtools=disabled"
-hostmakedepends="meson flex glib-devel pkg-config perl"
+hostmakedepends="meson flex glib-devel pkg-config perl python3-pycotap"
 makedepends="dtc-devel glib-devel pixman-devel libuuid-devel"
 short_desc="QEMU user-mode emulators"
 maintainer="classabbyamp <void@placeviolette.net>"
 license="GPL-2.0-only, LGPL-2.1-only"
 homepage="https://www.qemu.org"
 distfiles="https://wiki.qemu.org/download/qemu-${version}.tar.bz2"
-checksum=6acc1a1da4fbc45cd999dfb0c19aca5bc3aaa8c2cecf11e08aabe5ea2bb25fde
+checksum=62de90fc9cfb2450b9baa1377c8b1da2f404a7ccb49781631fe0352fd6169b6b
 subpackages="qemu-user-static"
 
 if [ "$CROSS_BUILD" ]; then
@@ -23,41 +24,47 @@ if [ "$CROSS_BUILD" ]; then
 fi
 
 _archs=(
- aarch64
- aarch64_be
- alpha
  arm
  armeb
- cris
  hexagon
- hppa
  i386
- loongarch64
  m68k
  microblaze
  microblazeel
  mips
- mips64
- mips64el
  mipsel
- mipsn32
- mipsn32el
  or1k
  ppc
- ppc64
- ppc64le
  riscv32
- riscv64
- s390x
  sh4
  sh4eb
  sparc
- sparc32plus
- sparc64
- x86_64
  xtensa
  xtensaeb
 )
+
+_archs64=(
+ aarch64
+ aarch64_be
+ alpha
+ hppa
+ loongarch64
+ mips64
+ mips64el
+ mipsn32
+ mipsn32el
+ ppc64
+ ppc64le
+ riscv64
+ s390x
+ sparc32plus
+ sparc64
+ x86_64
+)
+
+if [ "$XBPS_TARGET_WORDSIZE" -eq 64 ]; then
+	_archs+=("${_archs64[@]}")
+fi
 
 for _arch in "${_archs[@]}"; do
 	# bug in xbps: it hates package names ending in _N
@@ -66,22 +73,36 @@ for _arch in "${_archs[@]}"; do
 	subpackages+=" ${_pkgname}"
 	depends+=" ${_pkgname}>=${version}"
 
+	case "$_arch" in
+	i386)
+		_extra_binfmts="i486"
+		;;
+	esac
+
 	eval "${_pkgname}_package() {
-		_user_tmpl '$_arch'
+		_user_tmpl '$_arch' '$_extra_binfmts'
 	}"
 done
 
-. /void-packages/common/build-style/configure.sh 2>/dev/null
+export PYTHONUNBUFFERED=1
 
 _user_tmpl() {
 	_arch="$1"
-	_binfmt="$2"
+	_extra_binfmts="$2"
 	short_desc="QEMU ${_arch} user-mode emulator"
 	pkg_install() {
 		vmove "usr/bin/qemu-$_arch"
 		vmove "usr/bin/qemu-$_arch-static"
 		vmove "usr/share/binfmts/qemu-$_arch" || :
+		for bf in $_extra_binfmts; do
+			vmove "usr/share/binfmts/qemu-$bf" || :
+		done
 	}
+}
+
+post_extract() {
+	# remove vendored wheels, these should come from (host)makedepends
+	rm -r python/wheels
 }
 
 post_install() {
@@ -95,10 +116,15 @@ post_install() {
 	HOST_ARCH="${XBPS_TARGET_MACHINE%-musl}" scripts/qemu-binfmt-conf.sh --debian \
 		--exportdir "${DESTDIR}"/usr/share/binfmts --qemu-path /usr/bin \
 		--preserve-argv0 yes --persistent yes --credential yes
+	if [ "$XBPS_TARGET_WORDSIZE" -eq 32 ]; then
+		for a in "${_archs64[@]}"; do
+			rm -f "${DESTDIR}/usr/share/binfmts/qemu-${a}"
+		done
+	fi
 }
 
 qemu-user-static_package() {
-	build_style=meta
+	metapackage=yes
 	short_desc+=" (transitional dummy package)"
 	depends="${sourcepkg}>=${version}_${revision}"
 }

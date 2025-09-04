@@ -1,7 +1,7 @@
 # Template file for 'print-manager'
 pkgname=print-manager
 reverts="23.08.5_1 22.12.1_1 22.04.1_1 21.12.3_1 21.12.2_1 21.08.0_1 20.12.2_1"
-version=6.2.0
+version=6.4.4
 revision=1
 build_style=cmake
 configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -13,8 +13,8 @@ makedepends="plasma-framework-devel kf6-kcmutils-devel cups-devel
  qt6-declarative-devel
  kf6-kirigami-devel libplasma-devel kf6-kconfig-devel kf6-kpackage-devel"
 short_desc="Printing management for KDE Plasma"
-maintainer="Giuseppe Fierro <gspe+void@offlink.xyz>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/plasma/print-manager"
 distfiles="${KDE_SITE}/plasma/${version}/print-manager-${version}.tar.xz"
-checksum=8c8270f20cccce94b13a95830d27a7230353e5d8f8f5249f67b78c836132f8cd
+checksum=23daaa8a939bdb89047576f9e24461a3d16efd8a4556e4d1f0ece576dc2ef79f

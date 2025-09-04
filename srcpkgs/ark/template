@@ -1,6 +1,6 @@
 # Template file for 'ark'
 pkgname=ark
-version=24.08.1
+version=25.08.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -14,7 +14,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/utilities/org.kde.ark"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=09a98a344e6debf939ff2c3973d67c7794c15f22faff7b8bbafba3d1e3aa5d8d
+checksum=391fae7a08757dd5cc2b0081251c513859345e49d30ce7f10c3da5f4ce4ba3a0
 
 do_check() {
 	cd build

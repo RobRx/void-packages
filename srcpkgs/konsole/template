@@ -1,6 +1,6 @@
 # Template file for 'konsole'
 pkgname=konsole
-version=24.08.1
+version=25.08.0
 revision=1
 build_style=cmake
 configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -15,7 +15,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.0-or-later, GFDL-1.2-or-later"
 homepage="https://kde.org/applications/en/system/org.kde.konsole"
 distfiles="${KDE_SITE}/release-service/${version}/src/konsole-${version}.tar.xz"
-checksum=65219e4f6afa09eaf26fd3e91379d07d93960d2f5ce412568400e8b71b0dd708
+checksum=c880bd2c829437a142abaf4f97ebc384c9f2c19f31cc23918c49100727927450
 replaces="konsole5>=0"
 
 do_check() {
@@ -24,7 +24,7 @@ do_check() {
 }
 
 konsole5_package() {
-	build_style=meta
+	metapackage=yes
 	short_desc+=" (transitional dummy package)"
 	depends="konsole>=${version}_${revision}"
 }

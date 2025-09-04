@@ -1,13 +1,14 @@
 # Template file for 'mpv'
 pkgname=mpv
-version=0.39.0
-revision=1
+version=0.40.0
+revision=3
 build_style=meson
 configure_args="-Dcdda=enabled -Ddvbin=enabled -Ddvdnav=enabled
  -Dlibmpv=true -Dcplugins=enabled
  $(vopt_feature alsa alsa)
  $(vopt_feature caca caca)
  $(vopt_feature jack jack)
+ $(vopt_feature javascript javascript)
  $(vopt_feature lcms lcms2)
  $(vopt_feature lua lua)
  $(vopt_feature openal openal)
@@ -22,10 +23,10 @@ configure_args="-Dcdda=enabled -Ddvbin=enabled -Ddvdnav=enabled
  $(vopt_feature sndio sndio)"
 hostmakedepends="pkg-config python3-docutils $(vopt_if wayland wayland-devel)"
 makedepends="MesaLib-devel ffmpeg6-devel harfbuzz-devel libXv-devel libass-devel
- libbluray-devel libcdio-paranoia-devel libdvdnav-devel libuuid-devel
- libva-devel rubberband-devel uchardet-devel libplacebo-devel libarchive-devel
+ libbluray-devel libcdio-paranoia-devel libdvdnav-devel libuuid-devel libva-devel
+ rubberband-devel uchardet-devel libplacebo-devel libarchive-devel libdisplay-info-devel
  $(vopt_if alsa alsa-lib-devel) $(vopt_if caca libcaca-devel)
- $(vopt_if jack jack-devel) $(vopt_if lcms lcms2-devel)
+ $(vopt_if jack jack-devel) $(vopt_if javascript mujs-devel) $(vopt_if lcms lcms2-devel)
  $(vopt_if lua lua52-devel) $(vopt_if openal libopenal-devel)
  $(vopt_if pulseaudio pulseaudio-devel) $(vopt_if pipewire pipewire-devel)
  $(vopt_if sdl2 SDL2-devel) $(vopt_if vapoursynth vapoursynth-devel)
@@ -40,12 +41,12 @@ license="GPL-2.0-or-later"
 homepage="https://mpv.io"
 changelog="https://github.com/mpv-player/mpv/releases"
 distfiles="https://github.com/mpv-player/mpv/archive/v${version}.tar.gz"
-checksum=2ca92437affb62c2b559b4419ea4785c70d023590500e8a52e95ea3ab4554683
+checksum=10a0f4654f62140a6dd4d380dcf0bbdbdcf6e697556863dc499c296182f081a3
 python_version=3
 
-build_options="alsa caca jack lcms lua openal pulseaudio pipewire sdl2
+build_options="alsa caca jack javascript lcms lua openal pulseaudio pipewire sdl2
  sndio vapoursynth vdpau vulkan wayland x11"
-build_options_default="alsa jack lcms lua pulseaudio pipewire vdpau vulkan
+build_options_default="alsa jack javascript lcms lua pulseaudio pipewire vdpau vulkan
  sndio wayland x11"
 desc_option_caca="Enable support for libcaca video output"
 desc_option_lcms="Enable support for LittleCMS 2 engine"

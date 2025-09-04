@@ -1,7 +1,7 @@
 # Template file for 'libcap-ng'
 pkgname=libcap-ng
 version=0.8.5
-revision=1
+revision=2
 build_style=gnu-configure
 configure_args="--without-python --without-python3"
 short_desc="Alternate POSIX capabilities library"
@@ -47,7 +47,7 @@ libcap-ng-python3_package() {
 	}
 }
 libcap-ng-python_package() {
-	build_style=meta
+	metapackage=yes
 	short_desc+=" - transitional dummy pkg"
 	depends="libcap-ng-python3-${version}_${revision}"
 }

@@ -1,7 +1,7 @@
 # Template file for 'Quaternion'
 pkgname=Quaternion
-version=0.0.96.1
-revision=2
+version=0.0.97.1
+revision=1
 build_style=cmake
 hostmakedepends="qt6-base qt6-declarative-host-tools qt6-tools"
 makedepends="qt6-declarative-devel libQuotient-devel qt6-multimedia-devel
@@ -13,6 +13,6 @@ maintainer="Julio Galvan <juliogalvan@protonmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/quotient-im/Quaternion"
 distfiles="https://github.com/quotient-im/Quaternion/archive/${version}.tar.gz"
-checksum=ad5c536dfee5d85abf7bd2dbd3379188f5b30c6ecf7ed3566a9f59a299b6c365
+checksum=1d19374124a3a266390f0d1519b970ece4c2efb6921b31de747852a57f34c1ca
 
 CXXFLAGS="-Wno-deprecated-declarations"

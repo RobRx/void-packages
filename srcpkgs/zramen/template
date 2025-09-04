@@ -1,6 +1,6 @@
 # Template file for 'zramen'
 pkgname=zramen
-version=0.7.0
+version=1.0.0
 revision=1
 depends="virtual?awk bash coreutils grep kmod util-linux"
 short_desc="Manage zram swap space"
@@ -8,7 +8,7 @@ maintainer="Andy Weidenbaum <atweiden@tutanota.de>"
 license="Unlicense"
 homepage="https://github.com/atweiden/zramen"
 distfiles="https://github.com/atweiden/zramen/releases/download/${version}/zramen-${version}.tar.gz"
-checksum=a6d2b0b3dd7ec027a1b25ec4e21d214da4d7b3c6aaf4ca4db5111662500e4334
+checksum=f93a7aa13cb94905fc62e5bf2967b5ea070b855aa89e6edff4177e4d57b8b486
 conf_files="/etc/sv/zramen/conf"
 
 do_install() {

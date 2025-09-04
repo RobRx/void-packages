@@ -1,15 +1,15 @@
 # Template file for 'pmbootstrap'
 pkgname=pmbootstrap
-version=2.3.1
+version=3.5.2
 revision=1
 build_style=python3-pep517
 hostmakedepends="python3-wheel"
-depends="git openssl python3"
+depends="git openssl python3 kpartx util-linux procps-ng tar"
+checkdepends="python3-pytest ${depends}"
 short_desc="Package build and device flashing tool for postmarketOS"
-maintainer="Jami Kettunen <jami.kettunen@protonmail.com>"
+maintainer="Jason Elswick <jason@jasondavid.us>"
 license="GPL-3.0-or-later"
 homepage="https://postmarketos.org"
-changelog="https://gitlab.com/postmarketOS/pmbootstrap/-/tags"
-distfiles="https://gitlab.com/postmarketOS/pmbootstrap/-/archive/${version}/pmbootstrap-${version}.tar.gz"
-checksum=aba09c0a27918dac4b07641339ccf86e6ec0d14d4602056dac44ec49af12c894
-make_check=no # tests require chroot
+changelog="https://gitlab.postmarketos.org/postmarketOS/pmbootstrap/-/tags"
+distfiles="https://gitlab.postmarketos.org/postmarketOS/pmbootstrap/-/archive/${version}/pmbootstrap-${version}.tar.gz"
+checksum=d646424a74bafb56551201f68349b30623272b15e0076684787961afa00d06d0

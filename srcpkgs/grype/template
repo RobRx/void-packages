@@ -1,6 +1,6 @@
 # Template file for 'grype'
 pkgname=grype
-version=0.80.0
+version=0.91.0
 revision=1
 build_style=go
 build_helper=qemu
@@ -13,7 +13,8 @@ license="Apache-2.0"
 homepage="https://github.com/anchore/grype"
 changelog="https://github.com/anchore/grype/releases"
 distfiles="https://github.com/anchore/grype/archive/refs/tags/v${version}.tar.gz"
-checksum=554b7e5fbc8c79e88475a77c47d1f4466d51880d922423cbffac132dd029fadd
+checksum=fe8213049a873c03929bbcdfdc77a9389f4232ab1b63d13589b3d74296c06125
+make_check=no # tests require a running docker daemon
 
 post_install() {
 	grype="${DESTDIR}/usr/bin/grype"

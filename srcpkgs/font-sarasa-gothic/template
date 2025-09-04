@@ -1,6 +1,6 @@
 # Template file for 'font-sarasa-gothic'
 pkgname=font-sarasa-gothic
-version=1.0.23
+version=1.0.32
 revision=1
 depends="font-util"
 short_desc="CJK programming font based on Iosevka and Source Han Sans"
@@ -8,12 +8,10 @@ maintainer="B. Wilson <x@wilsonb.com>"
 license="OFL-1.1"
 homepage="https://github.com/be5invis/Sarasa-Gothic"
 distfiles="https://github.com/be5invis/Sarasa-Gothic/releases/download/v${version}/Sarasa-TTC-${version}.7z"
-checksum=9a5772c7ca7206703726a0dcb547a76dd444793f5e9105cc371357e4d8e9e466
-font_dirs="/usr/share/fonts/TTF"
+checksum=8258ee586f0e2a55ce03f006e0d4a3c473fb621bf026179facdb4a022af057b9
+font_dirs="/usr/share/fonts/TTC/sarasa-gothic"
 
 do_install() {
-	local file
-	for file in *.ttc; do
-		vinstall $file 0644 usr/share/fonts/TTF
-	done
+	vmkdir usr/share/fonts/TTC/sarasa-gothic
+	vcopy "*.ttc" usr/share/fonts/TTC/sarasa-gothic
 }

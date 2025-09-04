@@ -1,6 +1,6 @@
 # Template file for 'kf6-kdav'
 pkgname=kf6-kdav
-version=6.7.0
+version=6.17.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
@@ -11,7 +11,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kdav"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=6629f2af0042eb1e0dc0c08b5180ac7b48dae6b5999e1dd0b678aed8b874c1d7
+checksum=8d8a3b03c5c53f58a2660b589b89731d182ba3bc622c76e07bfe6cbf50a693c7
 replaces="kdav>=0"
 
 kf6-kdav-devel_package() {

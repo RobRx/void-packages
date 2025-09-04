@@ -1,0 +1,19 @@
+# Template file for 'oniux'
+pkgname=oniux
+version=0.6.0
+revision=1
+archs="x86_64* i686* aarch64* arm*" # ring
+build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="libzstd-devel sqlite-devel openssl-devel"
+short_desc="Isolate an arbitrary application over the Tor network"
+maintainer="Duncaen <duncaen@voidlinux.org>"
+license="MIT OR Apache-2.0"
+homepage="https://gitlab.torproject.org/tpo/core/oniux"
+changelog="https://gitlab.torproject.org/tpo/core/oniux/-/tags"
+distfiles="https://gitlab.torproject.org/tpo/core/oniux/-/archive/v${version}/oniux-v${version}.tar.gz"
+checksum=05146dfcda5bc152c2c9417392fc810cff64cb3842a1af9317a258f2e335d7e2
+
+post_install() {
+	vlicense LICENSE-MIT
+}

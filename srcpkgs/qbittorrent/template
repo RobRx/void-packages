@@ -1,7 +1,7 @@
 # Template file for 'qbittorrent'
 pkgname=qbittorrent
-version=5.0.1
-revision=1
+version=5.1.2
+revision=2
 build_style=cmake
 configure_args="-DSYSTEMD=OFF -DGUI=ON -DWEBUI=OFF"
 hostmakedepends="pkg-config qt6-tools qt6-declarative-host-tools"
@@ -13,7 +13,7 @@ license="GPL-2.0-or-later"
 homepage="https://www.qbittorrent.org/"
 changelog="https://www.qbittorrent.org/news.php"
 distfiles="${SOURCEFORGE_SITE}/qbittorrent/qbittorrent-${version}.tar.xz"
-checksum=03435c292091cc953ff078da8fd224b9e45074842ea72caa82a4ead72b402e69
+checksum=d5806092c71959a5dbdf55c645ea45ed48a70369ab6c226039b83f1ade6979f2
 CXXFLAGS=-std=gnu++17
 
 post_configure() { # qbittorrent-nox

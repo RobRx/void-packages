@@ -1,6 +1,6 @@
 # Template file for 'nano'
 pkgname=nano
-version=8.2
+version=8.5
 revision=1
 build_style=gnu-configure
 configure_args="--enable-utf8"
@@ -12,7 +12,7 @@ license="GPL-3.0-or-later"
 homepage="https://www.nano-editor.org/"
 changelog="https://git.savannah.gnu.org/cgit/nano.git/plain/NEWS"
 distfiles="https://www.nano-editor.org/dist/v${version%%.*}/nano-${version}.tar.xz"
-checksum=d5ad07dd862facae03051c54c6535e54c7ed7407318783fcad1ad2d7076fffeb
+checksum=000b011d339c141af9646d43288f54325ff5c6e8d39d6e482b787bbc6654c26a
 
 post_install() {
 	vsconf doc/sample.nanorc

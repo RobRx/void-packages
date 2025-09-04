@@ -1,6 +1,6 @@
 # Template file for 'ipset'
 pkgname=ipset
-version=7.22
+version=7.24
 revision=1
 build_style=gnu-configure
 configure_args="--with-kmod=no PKG_CONFIG=pkg-config"
@@ -12,7 +12,7 @@ license="GPL-2.0-only"
 homepage="https://ipset.netfilter.org/"
 changelog="https://ipset.netfilter.org/changelog.html"
 distfiles="https://ipset.netfilter.org/ipset-${version}.tar.bz2"
-checksum=f6ac5a47c3ef9f4c67fcbdf55e791cbfe38eb0a4aa1baacd12646a140abacdd9
+checksum=fbe3424dff222c1cb5e5c34d38b64524b2217ce80226c14fdcbb13b29ea36112
 
 libipset_package() {
 	short_desc+=" - library files"

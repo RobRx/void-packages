@@ -1,6 +1,6 @@
 # Template file for 'ksanecore6'
 pkgname=ksanecore6
-version=24.08.1
+version=25.08.0
 revision=1
 build_style=cmake
 configure_args="-DQT_MAJOR_VERSION=6 -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -13,7 +13,7 @@ license="LGPL-2.1-or-later"
 homepage="https://kde.org/applications/graphics"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#ksanecore"
 distfiles="${KDE_SITE}/release-service/${version}/src/ksanecore-${version}.tar.xz"
-checksum=a9eee4f76e429a7cdb868c90155ad9b1ac013405d8569ecfa5715c212bcdfd4a
+checksum=92424bdaa2859ebe53722ea663d4a679484361dca0ab1489236a976efff2f1a9
 
 ksanecore6-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
