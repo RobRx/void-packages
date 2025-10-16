@@ -1,6 +1,6 @@
 # Template file for 'discord'
 pkgname=discord
-version=0.0.104
+version=0.0.112
 revision=1
 archs="x86_64"
 depends="alsa-lib dbus-glib gtk+3 libnotify nss libXtst libcxx libatomic
@@ -10,7 +10,7 @@ maintainer="Ryan Conwell <ryanconwell@protonmail.com>"
 license="custom:Proprietary"
 homepage="https://discord.com"
 distfiles="https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz"
-checksum=e30f02f581d1353824501cea916d48cb02ad447bed9648a18e8dffb210203da7
+checksum=c8b0398f2cd4a217db17b818e28a7f214a4faa8b611a7dceba9b5e21e94b4fc2
 repository=nonfree
 restricted=yes
 nopie=yes
