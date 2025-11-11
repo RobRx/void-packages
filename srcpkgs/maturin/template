@@ -1,18 +1,18 @@
 # Template file for 'maturin'
 pkgname=maturin
-version=1.8.1
+version=1.9.6
 revision=1
 build_style=python3-pep517
 build_helper="qemu rust"
-hostmakedepends="python3-setuptools-rust python3-tomli python3-wheel cargo"
-makedepends="openssl-devel"
+hostmakedepends="python3-setuptools-rust python3-tomli python3-wheel cargo pkg-config"
+makedepends="openssl-devel libzstd-devel"
 depends="python3-tomli"
 short_desc="Build and publish crates as python packages"
 maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="Apache-2.0, MIT"
 homepage="https://github.com/PyO3/maturin"
 distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=8ddaf1655509ae079406635654cbc0c73d622e7c2a537f2465a83e8021dd0cc4
+checksum=c8aef8af6cd3d5b3331191b21191ec92d7b4ee0633e0799351a01af1c5ea2a6c
 # Tests use unstable features and fail to build
 make_check=no
 

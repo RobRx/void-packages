@@ -1,7 +1,7 @@
 # Template file for 'python3-Cython'
 pkgname=python3-Cython
-version=3.0.11
-revision=3
+version=3.1.4
+revision=1
 build_style=python3-module
 hostmakedepends="python3-setuptools"
 makedepends="python3-devel"
@@ -12,7 +12,7 @@ license="Apache-2.0"
 homepage="https://cython.org/"
 changelog="https://raw.githubusercontent.com/cython/cython/master/CHANGES.rst"
 distfiles="${PYPI_SITE}/c/cython/cython-${version}.tar.gz"
-checksum=7146dd2af8682b4ca61331851e6aebce9fe5158e75300343f80c07ca80b1faff
+checksum=9aefefe831331e2d66ab31799814eae4d0f8a2d246cbaaaa14d1be29ef777683
 # Tests are flaky
 make_check=no
 conflicts="python3-Cython0.29>=0"

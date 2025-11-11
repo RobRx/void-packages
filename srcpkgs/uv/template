@@ -1,30 +1,45 @@
 # Template file for 'uv'
 pkgname=uv
-version=0.5.8
+version=0.9.7
 revision=1
 build_style=python3-pep517
 build_helper="rust qemu"
 hostmakedepends="maturin cargo cmake pkg-config"
 makedepends="rust-std libzstd-devel bzip2-devel"
+depends="uv-build>=${version}_${revision}"
 short_desc="Extremely fast Python package installer and resolver"
 maintainer="classabbyamp <void@placeviolette.net>"
 license="Apache-2.0 OR MIT"
 homepage="https://github.com/astral-sh/uv"
 changelog="https://github.com/astral-sh/uv/raw/main/CHANGELOG.md"
 distfiles="https://github.com/astral-sh/uv/releases/download/${version}/source.tar.gz>uv-${version}.tar.gz"
-checksum=15678d63f626373ae308af25cc5da826def64d384d6fa938c940aba059debb5c
+checksum=36d7097de93b4cf732d3854447d61c9c17978b16ad8881dc2c02b9e1487f7294
 
 case "$XBPS_TARGET_MACHINE" in
 	i686*)
-		# if parallel, rustc-LLVM ERROR: out of memory Allocation failed
-		disable_parallel_build=yes
+		# rustc-LLVM ERROR: out of memory
+		export CARGO_PROFILE_RELEASE_LTO=false
 		;;
 esac
 
+post_build() {
+	make_build_target="crates/uv-build" do_build
+}
+
 post_install() {
+	make_install_target="target/wheels/uv_build-*.whl" do_install
 	vlicense LICENSE-MIT
 	for sh in bash fish zsh; do
 		vtargetrun "$DESTDIR"/usr/bin/uv --generate-shell-completion "$sh" > "uv.$sh"
 		vcompletion "uv.$sh" "$sh"
 	done
+}
+
+uv-build_package() {
+	short_desc+=" - PEP517 build backend"
+	pkg_install() {
+		vmove usr/bin/uv-build
+		vmove "${py3_sitelib}"/uv_build*
+		vlicense LICENSE-MIT
+	}
 }

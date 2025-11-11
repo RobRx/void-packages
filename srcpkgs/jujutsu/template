@@ -1,26 +1,27 @@
 # Template file for 'jujutsu'
 pkgname=jujutsu
-version=0.25.0
+version=0.35.0
 revision=1
 build_style=cargo
 build_helper=qemu
 hostmakedepends="pkg-config"
-makedepends="libgit2-1.8-devel openssl-devel libzstd-devel"
 depends="openssh"
-checkdepends="openssh"
+checkdepends="openssh git"
 short_desc="Git-compatible VCS that is both simple and powerful"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Apache-2.0"
 homepage="https://github.com/martinvonz/jj"
 changelog="https://github.com/martinvonz/jj/blob/main/CHANGELOG.md"
 distfiles="https://github.com/martinvonz/jj/archive/refs/tags/v${version}.tar.gz"
-checksum=3a99528539e414a3373f24eb46a0f153d4e52f7035bb06df47bd317a19912ea3
+checksum=cbaca700490de894018566e84c0de462afcf2d2aa8333c70f94dea823c5661f2
 conflicts="jj>=0"
 
 do_install() {
 	for f in target/*/release/jj; do
 		vbin $f
 	done
+
+	vtargetrun ${DESTDIR}/usr/bin/jj util install-man-pages ${DESTDIR}/usr/share/man
 
 	for _shell in bash fish zsh; do
 		COMPLETE=${_shell} vtargetrun ${DESTDIR}/usr/bin/jj > jj.${_shell}

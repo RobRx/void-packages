@@ -1,10 +1,10 @@
 # Template file for 'kf6-ktextwidgets'
 pkgname=kf6-ktextwidgets
-version=6.9.0
+version=6.19.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
- gettext"
+ gettext kf6-kconfig"
 makedepends="kf6-kcompletion-devel kf6-kconfig-devel kf6-kconfigwidgets-devel
  qt6-speech-devel qt6-multimedia-devel qt6-speech-plugin-flite
  qt6-speech-plugin-mock qt6-speech-plugin-speechd kf6-sonnet-devel"
@@ -13,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/ktextwidgets"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=da966c6e01cfb3125ec31a4d2149372a19d1481441869ece9fcef3b70bb3514d
+checksum=d9fa49ee95cf03321d2b2d89bd6952734323b75a2d983b97702d14bce4809f16
 
 kf6-ktextwidgets-devel_package() {
 	depends="$makedepends ${sourcepkg}>=${version}_${revision}"

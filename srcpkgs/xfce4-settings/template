@@ -1,6 +1,6 @@
 # Template file for 'xfce4-settings'
 pkgname=xfce4-settings
-version=4.20.0
+version=4.20.2
 revision=1
 build_style=gnu-configure
 build_helper=gir
@@ -15,6 +15,6 @@ short_desc="Xfce settings manager"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="GPL-2.0-only"
 homepage="https://xfce.org/"
-changelog="https://raw.githubusercontent.com/xfce-mirror/xfce4-settings/xfce-4.16/NEWS"
+changelog="https://raw.githubusercontent.com/xfce-mirror/xfce4-settings/xfce-${version%.*}/NEWS"
 distfiles="https://archive.xfce.org/src/xfce/${pkgname}/${version%.*}/${pkgname}-${version}.tar.bz2"
-checksum=23548da3429a296501fbfdbc98a861ee241b9fdd47e8d5de1781f57c6bbce5a9
+checksum=6e11776e640798a1ac4168d53877f105bb3e8cf93b443c160841e3acdab63939

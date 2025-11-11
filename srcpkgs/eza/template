@@ -1,10 +1,10 @@
 # Template file for 'eza'
 pkgname=eza
-version=0.20.15
+version=0.23.4
 revision=1
 build_style=cargo
 hostmakedepends="pkg-config"
-makedepends="libgit2-1.8-devel"
+makedepends="libgit2-1.9-devel"
 short_desc="Modern replacement for ls"
 maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="EUPL-1.2"
@@ -12,8 +12,8 @@ homepage="https://eza.rocks"
 changelog="https://raw.githubusercontent.com/eza-community/eza/main/CHANGELOG.md"
 distfiles="https://github.com/eza-community/eza/archive/refs/tags/v${version}.tar.gz
  https://github.com/eza-community/eza/releases/download/v${version}/man-${version}.tar.gz"
-checksum="cbb50e61b35b06ccf487ee6cc88d3b624931093546194dd5a2bbd509ed1786d6
- 6f52b6ba44dd99c2f4d08708bd5b2c1c8d65c18d37354f4a06599025776dd1f2"
+checksum="9fbcad518b8a2095206ac385329ca62d216bf9fdc652dde2d082fcb37c309635
+ afcf804979ba03df7545e8b02d41576ab5e15bd090dfc51a052f41df3a65b264"
 
 skip_extraction="man-${version}.tar.gz"
 
@@ -26,8 +26,8 @@ post_install() {
 	vcompletion completions/fish/eza.fish fish
 	vcompletion completions/zsh/_eza zsh
 
-	for manpage in manpages/*; do
-		vman ${manpage}
+	for _manpage in manpages/*; do
+		vman ${_manpage}
 	done
 
 	vlicense LICENSE.txt

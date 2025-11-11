@@ -1,18 +1,19 @@
 # Template file for 'ov'
 pkgname=ov
-version=0.37.0
+version=0.45.1
 revision=1
 build_style=go
 build_helper=qemu
 go_import_path=github.com/noborus/ov
-go_ldflags="-X main.Version=${version} -X main.Revision=none"
+go_ldflags="-X main.Version=${version} -X 'main.Revision=Void Linux'"
+make_check_args="-skip TestCommand_Exec|TestExecCommand" # requires /dev/ptmx
 short_desc="Feature-rich terminal-based text viewer"
 maintainer="Bnyro <bnyro@tutanota.com>"
 license="MIT"
 homepage="https://noborus.github.io/ov/"
 changelog="https://github.com/noborus/ov/releases"
 distfiles="https://github.com/noborus/ov/archive/refs/tags/v${version}.tar.gz"
-checksum=8d141f641f34749ce4bf48abc4beb9defe2cf8a02539ee045d05aa616930e1b9
+checksum=dc1fef378297f3bc57f4fcd2a502f389bdcaf4266601a1a3eb790e74f98542a5
 
 post_install() {
 	local ov="${DESTDIR}/usr/bin/ov"

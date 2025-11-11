@@ -1,17 +1,17 @@
 # Template file for 'gnome-system-monitor'
 pkgname=gnome-system-monitor
-version=46.0
+version=48.1
 revision=1
 build_style=meson
 configure_args="-Dsystemd=false"
 hostmakedepends="pkg-config gettext itstool glib-devel polkit
  gtk4-update-icon-cache"
-makedepends="gtkmm4-devel librsvg-devel libgtop-devel libadwaita-devel"
+makedepends="gtkmm4-devel librsvg-devel libgtop-devel libadwaita-devel catch2"
 short_desc="Process viewer and system resource monitor for GNOME"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://wiki.gnome.org/Apps/SystemMonitor"
 #changelog="https://gitlab.gnome.org/GNOME/gnome-system-monitor/-/raw/master/NEWS"
-changelog="https://gitlab.gnome.org/GNOME/gnome-system-monitor/-/raw/gnome-46/NEWS"
+changelog="https://gitlab.gnome.org/GNOME/gnome-system-monitor/-/raw/48.1/NEWS"
 distfiles="${GNOME_SITE}/${pkgname}/${version:0:2}/${pkgname}-${version}.tar.xz"
-checksum=5376248158c686c308255472e8c2a9e4c17255642c149fc7198c6d034e547599
+checksum=133c3a6e286366e659fd2d80582409a7bd5edae456e63c4f69ccf66ed6fc6638

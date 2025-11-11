@@ -1,6 +1,6 @@
 # Template file for 'linux-firmware'
 pkgname=linux-firmware
-version=20241210
+version=20250917
 revision=1
 hostmakedepends="rdfind which $(vopt_if compressed zstd)"
 depends="linux-firmware-amd>=${version}_${revision} linux-firmware-network>=${version}_${revision}"
@@ -9,8 +9,8 @@ maintainer="classabbyamp <void@placeviolette.net>"
 license="custom:see /usr/share/licenses/linux-firmware"
 homepage="https://www.kernel.org/"
 changelog="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log/"
-distfiles="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-${version}.tar.gz"
-checksum=c7b83ae05d9943ab7f09e18e3c673ea8a55402f96e3b059a7d05b88c81670b78
+distfiles="https://gitlab.com/kernel-firmware/linux-firmware/-/archive/${version}/linux-firmware-${version}.tar.gz"
+checksum=5fd67b94e19b768e706608a6c8af5e4e95770245045a58a27157aa9a07df1e92
 python_version=3
 nostrip=yes
 
@@ -63,8 +63,10 @@ linux-firmware-intel_package() {
 	short_desc+=" - Intel GPU microcode"
 	nostrip=yes
 	pkg_install() {
-		vmove usr/lib/firmware/i915
-		vmove usr/share/licenses/linux-firmware/LICENSE.i915
+		for d in i915 xe; do
+			vmove "usr/lib/firmware/$d"
+			vmove "usr/share/licenses/linux-firmware/LICENSE.$d"
+		done
 	}
 }
 

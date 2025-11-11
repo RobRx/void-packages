@@ -1,6 +1,6 @@
 # Template file for 'python3-b2sdk'
 pkgname=python3-b2sdk
-version=2.7.0
+version=2.10.1
 revision=1
 build_style=python3-pep517
 hostmakedepends="python3 python3-build python3-packaging python3-pdm-backend python3-setuptools python3-setuptools_scm python3-wheel"
@@ -12,7 +12,7 @@ maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="MIT"
 homepage="https://pypi.org/project/b2sdk"
 distfiles="${PYPI_SITE}/b/b2sdk/b2sdk-${version}.tar.gz"
-checksum=efd9a5c59dcddfe626a7860caa7f420ec4b1c50b0ad30972ccebf17392795cf9
+checksum=92c860a4a2e64d4a30d255d5a8d6d9049ff6d2bc64ff5751c0e05b1a2921fd1f
 replaces="python-b2sdk>=0"
 # Tests require an application key
 make_check=no
@@ -22,7 +22,7 @@ post_install() {
 }
 
 python-b2sdk_package() {
-	build_style=meta
+	metapackage=yes
 	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - transitional package"
 }
