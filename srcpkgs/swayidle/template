@@ -1,6 +1,6 @@
 # Template file for 'swayidle'
 pkgname=swayidle
-version=1.8.0
+version=1.9.0
 revision=1
 build_style=meson
 build_options="elogind"
@@ -12,8 +12,8 @@ short_desc="Idle management daemon for Wayland"
 maintainer="Derriick <derriick.ensiie@yahoo.com>"
 license="MIT"
 homepage="https://swaywm.org"
-distfiles="https://github.com/swaywm/swayidle/archive/${version}.tar.gz"
-checksum=0fba74c520a2bd64acd00bc3bce7bc8c7b84a2609c0f66329d72dfb33cca03d7
+distfiles="https://github.com/swaywm/swayidle/releases/download/v${version}/swayidle-${version}.tar.gz"
+checksum=6c1b769038b60250c88e47380cbb021cfa57a65f872bf4d6c340b5e3057096ac
 
 post_install() {
 	vlicense LICENSE
