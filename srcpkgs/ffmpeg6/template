@@ -1,8 +1,8 @@
 # Template file for 'ffmpeg6'
 # audacity also needs to be bumped when a new ffmpeg version bumps libavformat's soname!
 pkgname=ffmpeg6
-version=6.1.3
-revision=4
+version=6.1.4
+revision=1
 hostmakedepends="pkg-config perl"
 makedepends="zlib-devel bzip2-devel freetype-devel $(vopt_if alsa alsa-lib-devel)
  $(vopt_if x11 'libxcb-devel libXfixes-devel libXext-devel libXvMC-devel') lame-devel
@@ -21,7 +21,7 @@ license="GPL-3.0-or-later"
 homepage="https://www.ffmpeg.org"
 changelog="https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/Changelog"
 distfiles="https://www.ffmpeg.org/releases/ffmpeg-${version}.tar.xz"
-checksum=bc5f1e4a4d283a6492354684ee1124129c52293bcfc6a9169193539fbece3487
+checksum=a231e3d5742c44b1cdaebfb98ad7b6200d12763e0b6db9e1e2c5891f2c083a18
 
 build_options="alsa x265 vaapi vdpau nvcodec libvpl sndio pulseaudio jack webp vulkan drm x11"
 build_options_default="alsa x265 pulseaudio vulkan drm x11"
