@@ -1,7 +1,7 @@
 # Template file for 'mpv'
 pkgname=mpv
-version=0.40.0
-revision=3
+version=0.41.0
+revision=1
 build_style=meson
 configure_args="-Dcdda=enabled -Ddvbin=enabled -Ddvdnav=enabled
  -Dlibmpv=true -Dcplugins=enabled
@@ -13,7 +13,8 @@ configure_args="-Dcdda=enabled -Ddvbin=enabled -Ddvdnav=enabled
  $(vopt_feature lua lua)
  $(vopt_feature openal openal)
  $(vopt_feature pulseaudio pulse)
- $(vopt_feature sdl2 sdl2)
+ $(vopt_feature sdl2 sdl2-audio)
+ $(vopt_feature sdl2 sdl2-video)
  $(vopt_feature vapoursynth vapoursynth)
  $(vopt_feature vdpau vdpau)
  $(vopt_feature vulkan vulkan)
@@ -41,7 +42,7 @@ license="GPL-2.0-or-later"
 homepage="https://mpv.io"
 changelog="https://github.com/mpv-player/mpv/releases"
 distfiles="https://github.com/mpv-player/mpv/archive/v${version}.tar.gz"
-checksum=10a0f4654f62140a6dd4d380dcf0bbdbdcf6e697556863dc499c296182f081a3
+checksum=ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209
 python_version=3
 
 build_options="alsa caca jack javascript lcms lua openal pulseaudio pipewire sdl2
@@ -51,7 +52,6 @@ build_options_default="alsa jack javascript lcms lua pulseaudio pipewire vdpau v
 desc_option_caca="Enable support for libcaca video output"
 desc_option_lcms="Enable support for LittleCMS 2 engine"
 desc_option_openal="Enable support for OpenAL audio output"
-vopt_conflict sdl2 wayland
 
 post_install() {
 	vbin TOOLS/umpv
