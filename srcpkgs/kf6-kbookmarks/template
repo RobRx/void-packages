@@ -1,19 +1,21 @@
 # Template file for 'kf6-kbookmarks'
 pkgname=kf6-kbookmarks
-version=6.12.0
+version=6.20.0
 revision=1
 build_style=cmake
-hostmakedepends="extra-cmake-modules qt6-tools qt6-base"
-makedepends="kf6-kconfig-devel kf6-kconfigwidgets-devel"
+hostmakedepends="extra-cmake-modules qt6-tools qt6-base kf6-kconfig"
+makedepends="kf6-kconfig-devel qt6-base-devel kf6-kcoreaddons-devel
+ kf6-kwidgetsaddons-devel"
 short_desc="KDE Bookmarks management library"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kbookmarks"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=1b6edc20a7a797fe2a190d5a78a3b6d0f46d1e7b1b2c81646de3176bf74f8e3a
+checksum=3967d390155e7183dd5de0087aa4bb12264958331ac18a1f8c405a5edbdc1a14
 
 kf6-kbookmarks-devel_package() {
-	depends="$makedepends ${sourcepkg}>=${version}_${revision}"
+	depends="${sourcepkg}>=${version}_${revision}
+	 kf6-kwidgetsaddons-devel qt6-base-devel"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include

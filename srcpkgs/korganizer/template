@@ -1,6 +1,6 @@
 # Template file for 'korganizer'
 pkgname=korganizer
-version=25.04.0
+version=25.08.3
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -16,7 +16,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/office/org.kde.korganizer"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=f5a3e9a3d86a4d6593d3dee589bb30274e8634f106e4f81e1f61955d1b818e63
+checksum=62a1a0d1585b92d8652ff194fcc96bb2883bcc018ecbd4f5eaef6e90f6b0b975
 
 if [ "$XBPS_WORDSIZE$XBPS_WORDSIZE" != "64$XBPS_TARGET_WORDSIZE" ]; then
 	broken="Qt6 WebEngine"

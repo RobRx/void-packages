@@ -1,13 +1,14 @@
 # Template file for 'kdenlive'
 pkgname=kdenlive
-version=25.04.0
+version=25.08.3
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
- -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins -DFETCH_OTIO=OFF"
+ -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins -DFETCH_OTIO=OFF
+ -DKDE_INSTALL_QMLDIR=lib/qt6/qml"
 hostmakedepends="
  extra-cmake-modules kf6-kconfig kf6-kcoreaddons kf6-kdoctools pkg-config python3
- kf6-kpackage qt6-base qt6-tools gettext"
+ kf6-kpackage qt6-base qt6-tools gettext qt6-declarative-host-tools"
 makedepends="
  kf6-purpose-devel kf6-karchive-devel kf6-kbookmarks-devel kf6-kcodecs-devel
  kf6-kcolorscheme-devel kf6-kcompletion-devel kf6-kconfig-devel
@@ -26,7 +27,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://kdenlive.org"
 distfiles="${KDE_SITE}/release-service/${version}/src/kdenlive-${version}.tar.xz"
-checksum=3f07e23e5e58441acd02b89d969b33940994d9d1a8a8006b15e61eb575abd519
+checksum=81ba4e911147d5dbd33bcf464b2f0ae9f57b8824dbfc7fab21f3c11bb6433783
 
 case "$XBPS_TARGET_MACHINE" in
 	ppc64*) depends+=" opencv";;

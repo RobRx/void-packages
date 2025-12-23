@@ -1,7 +1,7 @@
 # Template file for 'cpp-utilities'
 pkgname=cpp-utilities
-version=5.28.1
-revision=2
+version=5.32.0
+revision=1
 build_style=cmake
 configure_args="-DBUILD_SHARED_LIBS:BOOL=ON"
 hostmakedepends="pkg-config"
@@ -10,7 +10,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="GPL-2.0-only"
 homepage="https://github.com/Martchus/cpp-utilities"
 distfiles="https://github.com/Martchus/cpp-utilities/archive/v${version}.tar.gz"
-checksum=b5c0dab7ea0ca6bf016ae156877a9c1f238172b09765f499a5b6e174ffe6fc6a
+checksum=2e146abdf85e207b91f2dee93a1636c0d4dabfaf268887f0c0aa80dc22eeee62
 
 cpp-utilities-devel_package() {
 	short_desc+=" - development files"

@@ -1,11 +1,11 @@
 # Template file for 'onefetch'
 pkgname=onefetch
-version=2.23.1
+version=2.25.0
 revision=1
 build_style=cargo
 build_helper=qemu
 make_check_args="-- --skip info::tests::test_style_subtitle"
-hostmakedepends="pkg-config"
+hostmakedepends="pkg-config cmake"
 makedepends="zlib-devel libzstd-devel"
 checkdepends="git"
 short_desc="Git repository summary on your terminal"
@@ -14,15 +14,14 @@ license="MIT"
 homepage="https://onefetch.dev"
 changelog="https://github.com/o2sh/onefetch/raw/main/CHANGELOG.md"
 distfiles="https://github.com/o2sh/onefetch/archive/refs/tags/${version}.tar.gz"
-checksum=72e87f6a62682ad88aa07b02815ee1e2863fe45e04df3bba49026bf3edd10537
+checksum=c9ade471eff5f57e5a6506a08293d8e7ebc54c27e99e33c965313a7108562f35
 
 if [ "$XBPS_TARGET_ENDIAN" = "be" ]; then
 	broken="exr crate unimplemented for BE"
 fi
 
 pre_build() {
-	vsed -i Cargo.toml -e "s/zlib-ng/zlib-stock/"
-	cargo update --package flate2@1.0
+	cargo update --package flate2@1.1.1
 }
 
 post_install() {

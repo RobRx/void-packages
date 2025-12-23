@@ -1,11 +1,12 @@
 # Template file for 'bcc'
 pkgname=bcc
-version=0.34.0
-revision=1
+version=0.35.0
+revision=2
 _llvmver=19
 build_style=cmake
 configure_args="-DREVISION=${version} -DENABLE_LLVM_SHARED=1
- -DCMAKE_PREFIX_PATH=${XBPS_CROSS_BASE}/usr/lib/llvm/${_llvmver}"
+ -DLLVM_DIR=${XBPS_CROSS_BASE}/usr/lib/llvm/${_llvmver}/lib/cmake/llvm
+ -DClang_DIR=${XBPS_CROSS_BASE}/usr/lib/llvm/${_llvmver}/lib/cmake/clang"
 hostmakedepends="flex python3-setuptools python3-packaging-bootstrap"
 makedepends="clang${_llvmver} clang-tools-extra${_llvmver} elfutils-devel flex
  lld${_llvmver}-devel llvm${_llvmver}-devel ncurses-devel python3-devel zlib-devel"
@@ -14,7 +15,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Apache-2.0"
 homepage="https://github.com/iovisor/bcc"
 distfiles="https://github.com/iovisor/bcc/releases/download/v${version}/bcc-src-with-submodule.tar.gz>bcc-${version}.tar.gz"
-checksum=47e0ba484338adbd01f4142f97afe8d19800c34c79bb6432cbd41e31d8a172e9
+checksum=a77c8dda4d0c0d93b5cad7b9c8539a7a180005b49ecfb0fbc3d902b5adb03ca2
 python_version="3"
 
 post_extract() {

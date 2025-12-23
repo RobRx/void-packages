@@ -1,6 +1,6 @@
 # Template file for 'plasma-vault'
 pkgname=plasma-vault
-version=6.3.3
+version=6.5.2
 revision=1
 build_style=cmake
 configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -11,8 +11,8 @@ makedepends="libplasma-devel libksysguard-devel kf6-kdbusaddons-devel
  kf6-kio-devel kf6-kservice-devel plasma-activities-devel
  kf6-kitemmodels-devel kf6-networkmanager-qt-devel"
 short_desc="Plasma applet and services for creating encrypted vaults"
-maintainer="Giuseppe Fierro <gspe@ae-design.ws>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later, LGPL-2.0-or-later, LGPL-2.1-or-later"
-homepage="https://github.com/KDE/plasma-vault"
+homepage="https://invent.kde.org/plasma/plasma-vault"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=fd5f7d79bcf4d14ea3923b548ee8d17c3ed560f3a1feae79bebbd6eb8c786011
+checksum=c055f858687eb6f6226d38cf8455bdf55106e9efa6bdb3d7b03b90a9ffa6ce69

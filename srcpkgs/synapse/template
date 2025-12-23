@@ -1,7 +1,7 @@
 # Template file for 'synapse'
 pkgname=synapse
-version=1.121.1
-revision=1
+version=1.139.2
+revision=2
 build_style=python3-pep517
 build_helper=rust
 make_check_target=tests
@@ -26,7 +26,7 @@ license="AGPL-3.0-or-later"
 homepage="https://element-hq.github.io/synapse"
 changelog="https://raw.githubusercontent.com/element-hq/synapse/develop/CHANGES.md"
 distfiles="https://github.com/element-hq/synapse/archive/refs/tags/v${version}.tar.gz"
-checksum=58beeacb5b61f87d791b808a3d1e0db3f4df55a731e652ac4ad86bd4145558da
+checksum=e2912f8fe1b8edc26305e92b458e99be301ea2dd16128cdb80036420b1239932
 
 system_accounts="synapse"
 synapse_homedir="/var/lib/synapse"
@@ -55,5 +55,5 @@ post_install() {
 	vsconf docs/sample_config.yaml homeserver.yaml
 	vsconf docs/sample_log_config.yaml log.yaml
 
-	vlicense LICENSE
+	vlicense LICENSE-AGPL-3.0
 }

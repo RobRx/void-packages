@@ -1,7 +1,6 @@
 # Template file for 'linux-firmware'
 pkgname=linux-firmware
-reverts="20250509_1"
-version=20250311
+version=20251111
 revision=1
 hostmakedepends="rdfind which $(vopt_if compressed zstd)"
 depends="linux-firmware-amd>=${version}_${revision} linux-firmware-network>=${version}_${revision}"
@@ -11,7 +10,7 @@ license="custom:see /usr/share/licenses/linux-firmware"
 homepage="https://www.kernel.org/"
 changelog="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log/"
 distfiles="https://gitlab.com/kernel-firmware/linux-firmware/-/archive/${version}/linux-firmware-${version}.tar.gz"
-checksum=2a67a3fc91aea41679b8628909b0e47085e089163374f961a1ff94cd35a49ff7
+checksum=24011445db0f001a0c4067c5837bb983ea4474866545513ef17350e1ce7abeac
 python_version=3
 nostrip=yes
 
@@ -35,7 +34,6 @@ do_install() {
 linux-firmware-amd_package() {
 	short_desc+=" - AMD CPU/GPU microcode"
 	nostrip=yes
-	reverts="20250509_1"
 	pkg_install() {
 		vmove usr/lib/firmware/amd*
 		vmove usr/lib/firmware/radeon
@@ -50,7 +48,6 @@ linux-firmware-amd_package() {
 linux-firmware-broadcom_package() {
 	short_desc+=" - Broadcom network blobs"
 	nostrip=yes
-	reverts="20250509_1"
 	pkg_install() {
 		vmove usr/lib/firmware/brcm
 		vmove usr/share/licenses/linux-firmware/LICENCE.broadcom_bcm43xx
@@ -65,17 +62,17 @@ linux-firmware-broadcom_package() {
 linux-firmware-intel_package() {
 	short_desc+=" - Intel GPU microcode"
 	nostrip=yes
-	reverts="20250509_1"
 	pkg_install() {
-		vmove usr/lib/firmware/i915
-		vmove usr/share/licenses/linux-firmware/LICENSE.i915
+		for d in i915 xe; do
+			vmove "usr/lib/firmware/$d"
+			vmove "usr/share/licenses/linux-firmware/LICENSE.$d"
+		done
 	}
 }
 
 linux-firmware-nvidia_package() {
 	short_desc+=" NVIDIA GPU microcode"
 	nostrip=yes
-	reverts="20250509_1"
 	pkg_install() {
 		vmove usr/lib/firmware/nvidia
 		vmove usr/share/licenses/linux-firmware/LICENCE.nvidia*
@@ -91,7 +88,6 @@ linux-firmware-network_package() {
 			;;
 	esac
 	nostrip=yes
-	reverts="20250509_1"
 	pkg_install() {
 		_pats=(
 			# Airoha Ethernet PHY
@@ -182,7 +178,6 @@ linux-firmware-network_package() {
 linux-firmware-qualcomm_package() {
 	short_desc+=" - Qualcomm SoC blobs"
 	nostrip=yes
-	reverts="20250509_1"
 	pkg_install() {
 		vmove usr/lib/firmware/qcom
 	}

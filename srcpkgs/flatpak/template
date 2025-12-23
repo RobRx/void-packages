@@ -35,10 +35,6 @@ desc_option_system_helper="Enable system helper"
 
 system_accounts="_flatpak"
 
-if [ "$XBPS_TARGET_MACHINE" = "aarch64-musl"  ]; then
-	broken="cross compiler syscall numbers are currently wrong"
-fi
-
 if [ -z "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -Dtests=false"
 fi

@@ -1,0 +1,22 @@
+# Template file for 'kompose'
+pkgname=kompose
+version=1.37.0
+revision=1
+build_style=go
+build_helper=qemu
+go_import_path="github.com/kubernetes/kompose"
+checkdepends="git"
+short_desc="Tool to convert Docker Compose to Kubernetes"
+maintainer="Filip Rojek <filip@filiprojek.cz>"
+license="Apache-2.0"
+homepage="https://kompose.io/"
+changelog="https://github.com/kubernetes/kompose/releases"
+distfiles="https://github.com/kubernetes/kompose/archive/v${version}.tar.gz"
+checksum=92cddf4a1d86e3ec18506e13706bfd0adfa9cb5dcecf362f60bf2affabcee1c0
+
+post_install() {
+	for shell in bash zsh fish; do
+		vtargetrun ${DESTDIR}/usr/bin/kompose completion $shell > kompose.${shell}
+		vcompletion kompose.${shell} ${shell}
+	done
+}

@@ -1,7 +1,7 @@
 # Template file for 'python3-jsonschema-path'
 pkgname=python3-jsonschema-path
 version=0.3.4
-revision=1
+revision=2
 build_style=python3-pep517
 hostmakedepends="python3-poetry-core"
 depends="python3-pathable python3-referencing python3-yaml python3-requests"
@@ -17,5 +17,5 @@ checksum=71b7e165c7ee86c346593e2ac21b5beafc9bbaac337ef053df028e8827469950
 python3-jsonschema-spec_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - transitional dummy package"
-	build_style=meta
+	metapackage=yes
 }
