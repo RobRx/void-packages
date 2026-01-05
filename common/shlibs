@@ -1019,7 +1019,6 @@ libcryptui.so.0 libcryptui-3.4.0_1
 libkeyutils.so.1 libkeyutils-1.5.5_1
 libiptcdata.so.0 libiptcdata-1.0.4_1
 libutempter.so.0 libutempter-1.1.5_1
-libxatracker.so.2 libxatracker-10.0.0_2
 libtumbler-1.so.0 tumbler-4.9.2_1
 libwebrtc-audio-coding-1.so.3 webrtc-audio-processing-1.3_1
 libwebrtc-audio-processing-1.so.3 webrtc-audio-processing-1.3_1
@@ -4688,6 +4687,7 @@ libwcs.so.8 wcslib-8.4_1
 libstellarsolver6.so.2 stellarsolver-2.7_1
 libXISF.so.0 libxisf-0.2.9_1
 libfwupd.so.3 fwupd-2.0.16_1
+libgpac.so.12 libgpac-2.4.0_1
 libcmark-gfm.so.0 cmark-gfm-0.29.0.gfm.13_1
 libcmark-gfm-extensions.so.0 cmark-gfm-0.29.0.gfm.13_1
 libpisp.so.1 libpisp-1.3.0_1
