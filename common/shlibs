@@ -3160,6 +3160,7 @@ libsysprof-6.so.6 libsysprof-45.1_1
 libvala-0.56.so.0 libvala-0.56.0_1
 libvaladoc-0.56.so.0 libvaladoc-0.56.0_1
 libvalaccodegen.so libvala-0.44.0_1
+libvali.so.1 vali-0.1.1_1
 libphodav-3.0.so.0 phodav-3.0_1
 libgfshare.so.2 libgfshare-2.0.0_1
 libtacacs.so.1 tacacs-4.0.4.28_1
@@ -4565,3 +4566,4 @@ libMpvQt.so.2 mpvqt-1.1.1_1
 libtomlplusplus.so.3 tomlplusplus-3.4.0_1
 libglycin-2.so.0 glycin-2.0.7_1
 libglycin-gtk4-2.so.0 glycin-gtk4-2.0.7_1
+libresvg.so.0.46 libresvg0-0.46.0_1
