@@ -1,7 +1,7 @@
 # Template file for 'dnsmasq'
 pkgname=dnsmasq
-version=2.90
-revision=2
+version=2.92
+revision=1
 conf_files="/etc/dnsmasq.conf"
 hostmakedepends="pkg-config"
 makedepends="dbus-devel libcap-devel libidn2-devel $(vopt_if dnssec nettle-devel)"
@@ -11,7 +11,7 @@ license="GPL-2.0-or-later"
 homepage="https://www.thekelleys.org.uk/dnsmasq/doc.html"
 changelog="https://www.thekelleys.org.uk/dnsmasq/CHANGELOG"
 distfiles="https://www.thekelleys.org.uk/dnsmasq/dnsmasq-${version}.tar.gz"
-checksum=8f6666b542403b5ee7ccce66ea73a4a51cf19dd49392aaccd37231a2c51b303b
+checksum=fd908e79ff37f73234afcb6d3363f78353e768703d92abd8e3220ade6819b1e1
 system_accounts="dnsmasq"
 dnsmasq_homedir="/var/chroot"
 

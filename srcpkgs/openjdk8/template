@@ -1,7 +1,7 @@
 # Template file for 'openjdk8'
 pkgname=openjdk8
-version=8u332b05
-revision=3
+version=8u452b09
+revision=1
 _jdk_update="${version#*u}"
 _jdk_update="${_jdk_update%b*}"
 _jdk_build="${version#*b}"
@@ -126,10 +126,8 @@ do_configure() {
 			;;
 	esac
 
-	if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
-		CFLAGS+=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
-		CXXFLAGS+=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
-	fi
+	CFLAGS+=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
+	CXXFLAGS+=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
 
 	./configure ${configure_args} --with-extra-cflags="$CFLAGS" \
 	 --with-extra-cxxflags="$CXXFLAGS" --with-extra-ldflags="$LDFLAGS"
@@ -193,7 +191,7 @@ openjdk8-doc_package() {
 	noshlibprovides=yes
 	short_desc+=" - documentation"
 	if [ -z "$build_option_docs" ]; then
-		build_style=meta
+		metapackage=yes
 	fi
 	pkg_install() {
 		if [ "$build_option_docs" ]; then
@@ -206,5 +204,5 @@ openjdk8-doc_package() {
 oracle-jre_package() {
 	depends="openjdk8-jre>=${version}_${revision}"
 	short_desc="Java Runtime Environment (transitional dummy package)"
-	build_style=meta
+	metapackage=yes
 }

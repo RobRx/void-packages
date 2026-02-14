@@ -1,6 +1,6 @@
 # Template file for 'wine'
 pkgname=wine
-version=10.8
+version=11.2
 revision=1
 _pkgver=${version/r/-r}
 create_wrksrc=yes
@@ -11,10 +11,14 @@ short_desc="Run Microsoft Windows applications"
 maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="http://www.winehq.org/"
+# For non-zero subversions
 distfiles="https://dl.winehq.org/wine/source/${version%.*}.x/wine-${_pkgver}.tar.xz
  https://github.com/wine-staging/wine-staging/archive/v${_pkgver}.tar.gz"
-checksum="f2ffdb5650991d4cf6ce858c10da58da1cee06a9b7bbb6b5a307a02e47408b4e
- 9e5a55e7306a31fe26b7518a55f583f46947abdcd5311ae136dc2e50ad73c279"
+# For zero subversions
+#distfiles="https://dl.winehq.org/wine/source/${version%.*}.0/wine-${_pkgver}.tar.xz
+# https://github.com/wine-staging/wine-staging/archive/v${_pkgver}.tar.gz"
+checksum="1756227bdb3feb41750afa97b44ac50a22890a88704a1f0fa14d88c4f921e183
+ c23113d0fd50c52f07d42eb3ef8bdcc80143e9d5204f445a0569307d67afcbdc"
 
 # NOTE: wine depends on specific versions of wine-mono and wine-gecko,
 # check for updates to these packages when updating wine
@@ -27,11 +31,6 @@ desc_option_xshm="Enable support for the X Shared Memory Extension"
 desc_option_wow64="Run 32-bit Windows apps on a purely 64-bit Unix installation"
 
 
-if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
-	build_options_default+=" wow64"
-fi
-
-lib32mode=full
 archs="i686* x86_64*"
 
 patch_args="-Np1 --directory=${build_wrksrc}"
@@ -47,7 +46,7 @@ fi
 hostmakedepends="pkg-config flex gettext
  $(vopt_if mingw "cross-${XBPS_TARGET_MACHINE%-musl}-w64-mingw32")
  $(vopt_if staging 'autoconf')"
-makedepends="gettext-devel ncurses-devel glu-devel libSM-devel
+makedepends="gettext-devel glu-devel libSM-devel
  libXext-devel libX11-devel libXpm-devel libXinerama-devel
  libXcomposite-devel libXmu-devel libXxf86vm-devel
  libXcursor-devel libXrandr-devel libXdamage-devel libXi-devel
@@ -56,11 +55,11 @@ makedepends="gettext-devel ncurses-devel glu-devel libSM-devel
  v4l-utils-devel fontconfig-devel gnutls-devel dbus-devel sane-devel
  libpcap-devel cups-devel ocl-icd-devel vulkan-loader-devel gst-plugins-base1-devel
  SDL2-devel"
-depends="libXi libXinerama libXcomposite libXcursor libOSMesa
+depends="libXi libXinerama libXcomposite libXcursor
  desktop-file-utils hicolor-icon-theme liberation-fonts-ttf
  gnutls SDL2 wine-common>=${version}_${revision}"
 lib32depends="libXi-32bit>=0 libXinerama-32bit>=0 libXcomposite-32bit>=0
- libXcursor-32bit>=0 libOSMesa-32bit>=0 desktop-file-utils>=0 hicolor-icon-theme>=0
+ libXcursor-32bit>=0 desktop-file-utils>=0 hicolor-icon-theme>=0
  liberation-fonts-ttf>=0 gnutls-32bit>=0 SDL2-32bit>=0
  wine-common>=${version}_${revision}"
 replaces="libwine>=0"
@@ -69,16 +68,11 @@ make_check=extended
 
 if [ "$XBPS_TARGET_WORDSIZE" != 32 ]; then
 	configure_args+=" --enable-win64 --libdir=/usr/lib"
-	_wine_suffix="64"
+	build_options_default+=" wow64"
+	replaces="wine-32bit>=0"
 else
-	_wine_suffix="32"
 	CFLAGS=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
 	CPPFLAGS=" -D_LARGE_FILE_SOURCE=1 -D_FILE_OFFSET_BITS=64"
-fi
-_wineserver_suffix=${_wine_suffix}
-
-if [ "$XBPS_LIBC" = "glibc" ]; then
-	hostmakedepends+=" prelink"
 fi
 
 if [ "${build_option_wow64}" ]; then
@@ -86,10 +80,10 @@ if [ "${build_option_wow64}" ]; then
 	makedepends+=" cross-i686-w64-mingw32"
 fi
 
-nopie_files="/usr/bin/wine${_wine_suffix}"
+nopie_files="/usr/bin/wine"
 
 if [ "${_nopie}" = yes ]; then
-	nopie_files+=" /usr/bin/wineserver${_wineserver_suffix}"
+	nopie_files+=" /usr/bin/wineserver"
 fi
 
 post_patch() {
@@ -117,11 +111,6 @@ post_install() {
 	install -d ${DESTDIR}/etc/fonts/conf.{avail,d}
 	install -m644 ${FILESDIR}/30-win32-aliases.conf ${DESTDIR}/etc/fonts/conf.avail
 	ln -s ../conf.avail/30-win32-aliases.conf ${DESTDIR}/etc/fonts/conf.d/30-win32-aliases.conf
-
-	mv ${DESTDIR}/usr/bin/wine ${DESTDIR}/usr/bin/wine${_wine_suffix}
-	mv ${DESTDIR}/usr/bin/wineserver ${DESTDIR}/usr/bin/wineserver${_wineserver_suffix}
-	vbin ${FILESDIR}/wine
-	vbin ${FILESDIR}/wineserver
 
 	# install man page for wine executable
 	for f in tools/wine/wine*.man; do

@@ -3,8 +3,8 @@
 _desc="NVIDIA drivers for linux"
 
 pkgname=nvidia
-version=570.153.02
-revision=2
+version=580.126.09
+revision=1
 maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="custom:NVIDIA Proprietary"
 homepage="https://www.nvidia.com/en-us/drivers/unix/"
@@ -19,7 +19,7 @@ conflicts="xserver-abi-video>25_1 nvidia470>=0 nvidia390>=0"
 
 _pkg="NVIDIA-Linux-x86_64-${version}"
 distfiles="http://uk.download.nvidia.com/XFree86/Linux-x86_64/${version}/${_pkg}.run"
-checksum=148886e4f69576fa8fa67140e6e5dd6e51f90b2ec74a65f1a7a7334dfa5de1b6
+checksum=4cac53e48f8adff661d47c8788ed24059a248c9fd8098ceafd088a498986ec26
 # subpackages need to be processed in this specific order
 subpackages="nvidia-gtklibs nvidia-dkms nvidia-firmware nvidia-opencl nvidia-libs nvidia-libs-32bit"
 depends="nvidia-libs-${version}_${revision}
@@ -132,11 +132,11 @@ do_install() {
 		${DESTDIR}/usr/lib/nvidia/xorg/libglxserver_nvidia.so.1
 
 	# Wayland/GBM
-	vinstall libnvidia-egl-wayland.so.1.1.19 755 usr/lib
-	ln -sf libnvidia-egl-wayland.so.1.1.19 \
+	vinstall libnvidia-egl-wayland.so.1.1.20 755 usr/lib
+	ln -sf libnvidia-egl-wayland.so.1.1.20 \
 		${DESTDIR}/usr/lib/libnvidia-egl-wayland.so.1
-	vinstall libnvidia-egl-gbm.so.1.1.2 755 usr/lib
-	ln -sf libnvidia-egl-gbm.so.1.1.2 \
+	vinstall libnvidia-egl-gbm.so.1.1.3 755 usr/lib
+	ln -sf libnvidia-egl-gbm.so.1.1.3 \
 		${DESTDIR}/usr/lib/libnvidia-egl-gbm.so.1
 
 	vmkdir usr/share/glvnd/egl_vendor.d
@@ -269,7 +269,11 @@ do_install() {
 
 	# Blacklist nouveau
 	vmkdir usr/lib/modprobe.d
-	echo "blacklist nouveau" > ${DESTDIR}/usr/lib/modprobe.d/nvidia.conf
+	cat <<- END > ${DESTDIR}/usr/lib/modprobe.d/nvidia.conf
+		blacklist nouveau
+		blacklist nova_core
+		blacklist nova_drm
+	END
 	chmod 644 ${DESTDIR}/usr/lib/modprobe.d/nvidia.conf
 
 	# License and documentation

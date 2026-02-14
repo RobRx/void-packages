@@ -1,7 +1,7 @@
 # Template file for 'luanti'
 pkgname=luanti
-version=5.12.0
-revision=2
+version=5.15.1
+revision=1
 build_style=cmake
 configure_args="-DBUILD_SERVER=TRUE"
 hostmakedepends="pkg-config gettext"
@@ -14,8 +14,8 @@ maintainer="Piotr Danecki <i3riced@mailfence.com>"
 license="LGPL-2.1-or-later"
 homepage="https://www.luanti.org/"
 changelog="https://dev.luanti.org/changelog/"
-distfiles="https://github.com/minetest/minetest/archive/${version}.tar.gz"
-checksum=876867ac874492f20968f2c2eb4e403231e8e9f29e0e06efa512200bd5152355
+distfiles="https://github.com/luanti-org/luanti/archive/refs/tags/${version}.tar.gz"
+checksum=fe0b10df866f57c0047d84a4c6f6cd848650f52d9b0cab563fbbedc81632d616
 
 minetest_package() {
 	depends="${sourcepkg}>=${version}_${revision}"

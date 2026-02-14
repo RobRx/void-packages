@@ -1,7 +1,7 @@
 # Template file for 'android-studio'
 pkgname=android-studio
-version=2024.3.1.15
-revision=1
+version=2025.2.2.8
+revision=2
 archs="x86_64"
 hostmakedepends="tar"
 depends="libbsd"
@@ -11,7 +11,7 @@ license="Apache-2.0"
 homepage="https://developer.android.com/studio/"
 changelog="https://developer.android.com/studio/releases/"
 distfiles="https://dl.google.com/dl/android/studio/ide-zips/${version}/android-studio-${version}-linux.tar.gz"
-checksum=428e47fdfa89dbc1e280df22412208a9abc35fd86762e2036e925f0a065fc621
+checksum=c6cf40050f5ff3f82dc5ca226647ffc44b664ce8faadbe13cbec3bd3ff82e12b
 repository=nonfree
 restricted=yes
 python_version=3
@@ -79,7 +79,7 @@ do_install() {
 	vcopy build.txt opt/${pkgname}/ # read as IDE version information
 	vcopy product-info.json opt/${pkgname}/
 	vmkdir usr/bin
-	ln -s /opt/android-studio/bin/studio.sh ${DESTDIR}/usr/bin/android-studio
+	ln -s /opt/android-studio/bin/studio ${DESTDIR}/usr/bin/android-studio
 
 	vinstall entry.desktop 644 usr/share/applications android-studio.desktop
 	chmod -R ugo+rX ${DESTDIR}/opt

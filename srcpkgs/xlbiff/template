@@ -1,6 +1,6 @@
 # Template file for 'xlbiff'
 pkgname=xlbiff
-version=4.6.6
+version=4.6.8
 revision=1
 build_style=gnu-configure
 configure_args="--with-xmhformdir=/etc/nmh"
@@ -11,7 +11,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://www.edsantiago.com/xlbiff/"
 distfiles="https://github.com/edsantiago/xlbiff/archive/${version}.tar.gz"
-checksum=51fb3bf2abfa0764227e90700772123d8b56b54774d7488bdcfab58dca2dece3
+checksum=9c64fd36237fc87534f1dd5dd860d0b166ef8a0b308044a2ef6c22aec6528fdc
 
 pre_configure() {
 	autoreconf -fi

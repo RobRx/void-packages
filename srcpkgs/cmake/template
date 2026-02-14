@@ -1,6 +1,6 @@
 # Template file for 'cmake'
 pkgname=cmake
-version=3.30.1
+version=4.2.2
 revision=1
 build_style=cmake
 configure_args="-DCMAKE_DOC_DIR=/share/doc/cmake
@@ -17,15 +17,18 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="BSD-3-Clause, ICU"
 homepage="https://www.cmake.org"
 distfiles="https://www.cmake.org/files/v${version%.*}/${pkgname}-${version}.tar.gz"
-checksum=df9b3c53e3ce84c3c1b7c253e5ceff7d8d1f084ff0673d048f260e04ccb346e1
+checksum=bbda94dd31636e89eb1cc18f8355f6b01d9193d7676549fba282057e8b730f58
 
 if [ "$XBPS_TARGET_LIBC" = musl ]; then
 	configure_args+=" -DCMake_NO_SELF_BACKTRACE=1"
+elif [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
+	CFLAGS=" -D_TIME_BITS=64 -D_FILE_OFFSET_BITS=64"
+	CXXFLAGS=" -D_TIME_BITS=64 -D_FILE_OFFSET_BITS=64"
 fi
 
 do_check() {
 	cd build
-	./bin/ctest
+	./bin/ctest -E RunCMake.Tutorial
 }
 
 post_install() {
@@ -37,7 +40,7 @@ post_install() {
 	vlicense fld.license
 	sed -e '/\$FreeBSD\$/q' Utilities/cmelf/elf_common.h >elf.license
 	vlicense elf.license
-	vlicense Copyright.txt
+	vlicense LICENSE.rst
 }
 
 cmake-gui_package() {

@@ -1,6 +1,6 @@
 # Template file for 'fx'
 pkgname=fx
-version=36.0.2
+version=39.2.0
 revision=1
 build_style=go
 go_import_path=github.com/antonmedv/fx
@@ -10,7 +10,7 @@ license="MIT"
 homepage="https://fx.wtf"
 changelog="https://github.com/antonmedv/fx/releases"
 distfiles="https://github.com/antonmedv/fx/archive/refs/tags/${version}.tar.gz"
-checksum=371578c7393f4ac0a404d1b481c6bd61caae7da4ba11fe7df7b05fe5e4c3c9da
+checksum=cdb98177f956615c961bc615fab0b30e73167295152d4f2d4cb70b16cdf47d6e
 
 post_install() {
 	vlicense LICENSE

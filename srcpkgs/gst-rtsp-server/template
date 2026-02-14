@@ -1,7 +1,7 @@
 # Template file for 'gst-rtsp-server'
 pkgname=gst-rtsp-server
-version=1.24.11
-revision=2
+version=1.26.5
+revision=1
 build_style=meson
 build_helper=gir
 configure_args="-Dintrospection=enabled"
@@ -14,7 +14,7 @@ license="LGPL-2.1-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-rtsp-server/gst-rtsp-server-${version}.tar.xz"
-checksum=d147ff75bc445235fe0a4a4714c26d6b7bf9a485a1ae3a722bd530ab28f98bd3
+checksum=328dff2457419683f2a4f06ca119cfd22beb632cee1ad6830591213325353c44
 
 gst-rtsp-server-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} gst-plugins-base1-devel"

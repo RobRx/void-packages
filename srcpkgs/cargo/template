@@ -1,10 +1,10 @@
 # Template file for 'cargo'
 pkgname=cargo
-version=1.86.0
+version=1.93.0
 revision=1
-_cargo_revision=0.87.0
+_cargo_revision=0.94.0
 build_helper=rust
-hostmakedepends="cargo-bootstrap rust python3 curl pkg-config zlib-devel"
+hostmakedepends="cargo-bootstrap rust pkg-config"
 makedepends="rust libcurl-devel openssl-devel"
 depends="rust"
 short_desc="Rust package manager"
@@ -12,7 +12,7 @@ maintainer="Enno Boland <gottox@voidlinux.org>"
 license="Apache-2.0 OR MIT"
 homepage="https://crates.io/"
 distfiles="https://github.com/rust-lang/cargo/archive/refs/tags/${_cargo_revision}.tar.gz"
-checksum=e37e329434ba84e55b87468372dd597de5e275f6b40acf24574e606c2ac5851b
+checksum=d60d883fed2916d8d0dd723fb98bdc81410c17660b9a020470b5af91f87026fa
 replaces="cargo-tree>=0"
 
 build_options="static bindist"
@@ -38,6 +38,7 @@ do_build() {
 		# rust-openssl can not be linked static if pkg-config is used
 		export OPENSSL_NO_PKG_CONFIG
 		export OPENSSL_DIR="${XBPS_CROSS_BASE}/usr"
+		unset LIBGIT2_NO_VENDOR
 	fi
 
 	if [ -n "$_build_static" ]; then

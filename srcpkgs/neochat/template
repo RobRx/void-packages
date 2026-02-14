@@ -1,6 +1,6 @@
 # Template file for 'neochat'
 pkgname=neochat
-version=25.04.1
+version=25.12.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -13,7 +13,10 @@ makedepends="kquickimageeditor-devel libQuotient-devel qtkeychain-qt6-devel
  kf6-kstatusnotifieritem-devel kf6-qqc2-desktop-style-devel kf6-sonnet-devel
  kf6-kitemmodels-devel kf6-kconfigwidgets-devel kf6-kio-devel
  kirigami-addons-devel qcoro-qt6-devel olm-devel qt6-plugin-sqlite
- kf6-purpose-devel kf6-syntax-highlighting-devel
+ kf6-purpose-devel kf6-syntax-highlighting-devel kunifiedpush-devel
+ qt6-speech-devel qt6-speech-plugin-mock qt6-speech-plugin-flite
+ qt6-speech-plugin-speechd kf6-kcrash-devel kf6-kdbusaddons-devel
+ qt6-svg-devel kf6-kiconthemes-devel
  $(vopt_if webview qt6-webview-devel)"
 depends="kquickimageeditor kf6-kquickcharts qt6-location"
 short_desc="Client for matrix from KDE"
@@ -21,7 +24,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-only, GPL-3.0-or-later, GPL-2.0-or-later, BSD-2-Clause"
 homepage="https://apps.kde.org/en/neochat"
 distfiles="${KDE_SITE}/release-service/${version}/src/neochat-${version}.tar.xz"
-checksum=e66d8290ee1a51f817a10cf083a1823289e9eceb9bcd0a0747f0b057424957ea
+checksum=e97c89c39628eb77977135b42f774353c0c05f74759fd3b7eed17f042c4fb626
 
 build_options="webview"
 desc_option_webview="Use Qt6 WebView"
