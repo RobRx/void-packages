@@ -1,6 +1,6 @@
 # Template file for 'datovka'
 pkgname=datovka
-version=4.26.0
+version=4.28.0
 revision=1
 build_style=qmake
 hostmakedepends="pkg-config qt5-qmake qt5-host-tools"
@@ -12,7 +12,7 @@ maintainer="Emil Miler <em@0x45.cz>"
 license="GPL-3.0-or-later"
 homepage="https://www.datovka.cz/"
 distfiles="https://datovka.nic.cz/${version}/${pkgname}-${version}.tar.xz"
-checksum=fa11e553d9432b7886324d8171147972ca853e6f8f871253a12ff1fec0ab3076
+checksum=05dc0c541fc4d67da4bf41cda16d7b8307f25a15ed003c1a09b7d467283f6300
 
 post_extract() {
 	# XXX: from https://gitlab.alpinelinux.org/alpine/aports/-/blob/master/community/datovka/APKBUILD

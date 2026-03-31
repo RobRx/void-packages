@@ -1,6 +1,6 @@
 # Template file for 'feh'
 pkgname=feh
-version=3.11.1
+version=3.11.3
 revision=1
 build_style=gnu-makefile
 make_use_env=yes
@@ -10,12 +10,12 @@ makedepends="giblib-devel libXinerama-devel libXt-devel libcurl-devel
  libexif-devel libjpeg-turbo-devel"
 depends="libjpeg-turbo-tools"
 short_desc="Fast and light imlib2-based image viewer"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Filip Rojek <filip@filiprojek.cz>"
 license="MIT-feh"
 homepage="https://feh.finalrewind.org"
 changelog="https://raw.githubusercontent.com/derf/feh/master/ChangeLog"
 distfiles="${homepage}/feh-${version}.tar.bz2"
-checksum=43d8e6742ec273ef3084bde82c5ead5a074348d9bfce28f1b0f8504623ca9b74
+checksum=f2cca3592a433922c0db7a9365fd63e5402c121d932a9327e279c71be6501063
 
 pre_build() {
 	vsed -i 's|doc/feh/examples|examples/feh|' config.mk

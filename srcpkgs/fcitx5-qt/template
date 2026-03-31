@@ -1,7 +1,7 @@
 # Template file for 'fcitx5-qt'
 pkgname=fcitx5-qt
-version=5.1.10
-revision=1
+version=5.1.12
+revision=2
 build_style=cmake
 configure_args="-DENABLE_QT4=OFF -DENABLE_QT5=ON
  -DCMAKE_INSTALL_QT6PLUGINDIR=/usr/lib/qt6/plugins
@@ -9,13 +9,13 @@ configure_args="-DENABLE_QT4=OFF -DENABLE_QT5=ON
 hostmakedepends="cldr-emoji-annotation pkg-config gettext doxygen
  extra-cmake-modules qt5-qmake qt5-host-tools qt6-base"
 makedepends="libfcitx5-devel fmt-devel qt5-devel libxkbcommon-devel
- qt6-base-private-devel qt6-wayland-private-devel"
+ qt6-base-private-devel"
 short_desc="Flexible Context-aware Input Tool with eXtension v5 - Qt"
 maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="LGPL-2.1-or-later, BSD-3-Clause"
 homepage="https://fcitx-im.org/wiki/Fcitx"
 distfiles="https://download.fcitx-im.org/fcitx5/fcitx5-qt/fcitx5-qt-${version}.tar.zst"
-checksum=ae021852cc8b259a7007314f8a10b484a79ce7d8f99f18109591c9a6ad78076c
+checksum=07995517133860a44c27fa716b04de08a921ae9e95907caac05f237b317a13a3
 lib32disabled=yes
 replaces="libfcitx-qt-common>=0 libfcitx-qt5-devel>=0"
 

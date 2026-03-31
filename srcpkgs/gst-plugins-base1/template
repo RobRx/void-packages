@@ -1,6 +1,6 @@
 # Template file for 'gst-plugins-base1'
 pkgname=gst-plugins-base1
-version=1.26.7
+version=1.28.1
 revision=1
 build_style=meson
 build_helper="gir"
@@ -13,14 +13,15 @@ makedepends="gstreamer1-devel glib-devel pango-devel cairo-devel alsa-lib-devel
  $(vopt_if x11 'libXv-devel libXext-devel libSM-devel') libgudev-devel orc-devel
  $(vopt_if cdparanoia libcdparanoia-devel) opus-devel MesaLib-devel graphene-devel
  $(vopt_if wayland 'wayland-devel wayland-protocols')"
-checkdepends="mesa-dri"
+depends="orc>=0.4.18 gstreamer1>=${version}"
+checkdepends="mesa-dri dejavu-fonts-ttf"
 short_desc="GStreamer Base Plug-ins (v1.x)"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later, LGPL-2.0-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${version}.tar.xz"
-checksum=969e3cbf05dfab92cf37e94840fbe398517d7ba3275331d1c216a2e30a7208d0
+checksum=1446a4c2a92ff5d78d88e85a599f0038441d53333236f0c72d72f21a9c132497
 
 build_options="wayland x11 gir cdparanoia"
 build_options_default="wayland x11 gir"
