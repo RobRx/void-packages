@@ -1,6 +1,6 @@
 # Template file for 'kf6-kuserfeedback'
 pkgname=kf6-kuserfeedback
-version=6.20.0
+version=6.24.0
 revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml
@@ -14,7 +14,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kuserfeedback"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=638cd4e92137284de18620945441447391173a4f6785baa9e6b83855bba808b4
+checksum=3004be541acf03b6e2203b5eafede7f9d9a8fe41d77cdd2aee35e03f13929a30
 
 do_check() {
 	cd build

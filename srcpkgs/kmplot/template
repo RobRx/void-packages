@@ -1,6 +1,6 @@
 # Template file for 'kmplot'
 pkgname=kmplot
-version=25.08.3
+version=25.12.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DBUILD_WITH_QT6=ON
@@ -16,4 +16,4 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later, GFDL-1.2-or-later"
 homepage="https://apps.kde.org/kmplot"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=242368eda56a332f529952af0b6258c3aec6a59b90350cdf6fefcea0da67b883
+checksum=5128daefe8215bc285d7632efb94eecde763b604545c5a079315235ba3e5ea3f

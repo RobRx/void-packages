@@ -1,6 +1,6 @@
 # Template file for 'kf6-bluez-qt'
 pkgname=kf6-bluez-qt
-version=6.20.0
+version=6.24.0
 revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml"
@@ -13,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/bluez-qt"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=696b9855313b4eaa3af0a7baeeeddb69182e5583754d1a29602fa2499712ee37
+checksum=907cf77ca2bf0417dad49ac3ebfe51300102029b93520dce5cfa5c35e25e5ab3
 
 do_check() {
 	cd build

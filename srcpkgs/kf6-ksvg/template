@@ -1,6 +1,6 @@
 # Template file for 'kf6-ksvg'
 pkgname=kf6-ksvg
-version=6.20.0
+version=6.24.0
 revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml
@@ -15,7 +15,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/ksvg"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=7ff41cf18af9d1aa4862a52e9151e0a1968099f71da07da8454d880d676956a8
+checksum=c4d61f6bb4c61452e83de0427f444cdec296d87333f6c7676fb7dae09480f4d2
 
 kf6-ksvg-devel_package() {
 	depends="$makedepends ${sourcepkg}>=${version}_${revision}"

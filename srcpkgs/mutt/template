@@ -1,6 +1,6 @@
 # Template file for 'mutt'
 pkgname=mutt
-version=2.2.15
+version=2.3.0
 revision=1
 build_style=gnu-configure
 configure_args="--enable-pop --enable-imap --enable-smtp --enable-hcache
@@ -19,7 +19,7 @@ license="GPL-2.0-or-later"
 homepage="http://www.mutt.org"
 changelog="http://mutt.org/relnotes/${version%.*}"
 distfiles="http://ftp.mutt.org/pub/mutt/${pkgname}-${version}.tar.gz"
-checksum=a51686104e4203f4c2a3b176527be3b95d08e808e94fd2dcadb7c30566bf894d
+checksum=5d5ebc40843f7156d5ede30e50016798ac7336467f7ad347e716510516cc2130
 
 post_install() {
 	# provided by mime-types

@@ -1,6 +1,6 @@
 # Template file for 'libkexiv2'
 pkgname=libkexiv2
-version=25.08.3
+version=25.12.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF -DQT_MAJOR_VERSION=6"
@@ -11,7 +11,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/graphics/libkexiv2"
 distfiles="${KDE_SITE}/release-service/${version}/src/libkexiv2-${version}.tar.xz"
-checksum=0806898554b62a6f834d33bb481923d82bde91b1692ba7b146fec94b9a503d03
+checksum=b8d914d03ca96b4e2d3a1707af424980a7f0685b109220b25efb76ed7e7778b6
 
 libkexiv2-devel_package() {
 	short_desc+=" - development files"

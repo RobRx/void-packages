@@ -1,6 +1,6 @@
 # Template file for 'plasma-firewall'
 pkgname=plasma-firewall
-version=6.5.2
+version=6.6.2
 revision=1
 build_style=cmake
 configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake
@@ -14,4 +14,4 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-only, GPL-3.0-only"
 homepage="https://invent.kde.org/network/plasma-firewall"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=da13244defa7b4ab6efb59072109a8d3327a7ec851d15e47a3bc1aba155a41df
+checksum=9ff3d187879b03f39ba2d59d89029843279fab9b8ee3bea33c9f86e4a2544cb9

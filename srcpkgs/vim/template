@@ -1,6 +1,6 @@
 # Template file for 'vim'
 pkgname=vim
-version=9.1.1918
+version=9.2.0
 revision=1
 create_wrksrc=required
 hostmakedepends="gettext glib-devel pkg-config
@@ -16,7 +16,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Vim"
 homepage="https://www.vim.org"
 distfiles="https://github.com/vim/vim/archive/refs/tags/v${version}.tar.gz"
-checksum=184d2ec64af07cd198cef43a363a653f002878aa47e42042fad9f05877f9f70b
+checksum=9c60fc4488d78bbca9069e74e9cfafd006bdfcece5bb0971eac6268531f1b51f
 python_version=3
 
 build_options="x11 gtk3 huge"
