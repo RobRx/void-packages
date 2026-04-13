@@ -1,6 +1,6 @@
 # Template file for 'libpng'
 pkgname=libpng
-version=1.6.55
+version=1.6.57
 revision=1
 build_style=gnu-configure
 makedepends="zlib-devel"
@@ -10,7 +10,7 @@ license="Libpng"
 homepage="http://www.libpng.org/pub/png/libpng.html"
 changelog="https://github.com/pnggroup/libpng/blob/master/CHANGES"
 distfiles="${SOURCEFORGE_SITE}/libpng/libpng-${version}.tar.xz"
-checksum=d925722864837ad5ae2a82070d4b2e0603dc72af44bd457c3962298258b8e82d
+checksum=d10c20d7171569804cae8dfc13ba6dcd0662c41ed39d43d4d429314aafb10a80
 
 case "$XBPS_TARGET_MACHINE" in
 	arm*) configure_args="--enable-arm-neon=no";;
