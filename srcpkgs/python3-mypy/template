@@ -1,6 +1,6 @@
 # Template file for 'python3-mypy'
 pkgname=python3-mypy
-version=1.20.0
+version=1.20.2
 revision=1
 build_style=python3-module
 # fails in ci
@@ -20,7 +20,7 @@ license="MIT"
 homepage="https://www.mypy-lang.org"
 changelog="https://mypy-lang.blogspot.com"
 distfiles="${PYPI_SITE}/m/mypy/mypy-${version}.tar.gz"
-checksum=eb96c84efcc33f0b5e0e04beacf00129dd963b67226b01c00b9dfc8affb464c3
+checksum=e8222c26daaafd9e8626dec58ae36029f82585890589576f769a650dd20fd665
 
 post_install() {
 	make -C docs man
