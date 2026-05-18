@@ -1,6 +1,6 @@
 # Template file for 'gst-plugins-good1'
 pkgname=gst-plugins-good1
-version=1.28.2
+version=1.28.3
 revision=1
 build_style=meson
 build_helper="qmake qmake6"
@@ -23,7 +23,7 @@ license="LGPL-2.1-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${version}.tar.xz"
-checksum=1ace2d8ec74f632d82eab5006753a27fe0c2402db4ca94d63271e494b62f50bf
+checksum=47f78f500cbd900f758f9ba74288fda0e2ca5a7855096025641e121ffec40a5d
 
 build_options="gtk3 x11 wayland pulseaudio jack"
 build_options_default="gtk3 x11 wayland pulseaudio"
