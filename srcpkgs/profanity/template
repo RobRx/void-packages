@@ -1,6 +1,6 @@
 # Template file for 'profanity'
 pkgname=profanity
-version=0.17.0
+version=0.18.2
 revision=1
 build_style=meson
 configure_args="-Dnotifications=enabled -Dotr=enabled -Dpgp=enabled
@@ -19,7 +19,7 @@ license="GPL-3.0-or-later"
 homepage="https://profanity-im.github.io/"
 changelog="https://raw.githubusercontent.com/profanity-im/profanity/master/CHANGELOG"
 distfiles="https://github.com/profanity-im/profanity/archive/refs/tags/${version}.tar.gz"
-checksum=1b3282e1ce22178570616b2309019c40c4c97f0b30562bd4b455f60534a4e170
+checksum=d5431065b4d966a745284e64337ec7e11a3fd20179de00b0f98b9cf6004e2ab5
 
 case "$XBPS_TARGET_MACHINE" in
 	arm*)
