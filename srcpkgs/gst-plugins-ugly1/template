@@ -1,6 +1,6 @@
 # Template file for 'gst-plugins-ugly1'
 pkgname=gst-plugins-ugly1
-version=1.28.4
+version=1.28.5
 revision=1
 build_style=meson
 configure_args=" -Dsidplay=disabled -Dgpl=enabled -Dx264=enabled
@@ -15,4 +15,4 @@ license="LGPL-2.1-or-later, GPL-2.0-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-${version}.tar.xz"
-checksum=5486cd145c5af43259fd37caca59d048e2a67ddb07082ea8f50ef0f02a85f8a5
+checksum=0ef4cf9c3c9a5e776a6ca8d190a31863391b681980252143b822b29aa831e120
