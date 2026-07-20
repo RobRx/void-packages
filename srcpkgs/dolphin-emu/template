@@ -28,7 +28,7 @@ makedepends="SDL3-devel SFML-devel alsa-lib-devel ffmpeg6-devel glew-devel
  minizip-ng-devel zlib-ng-devel"
 depends="desktop-file-utils"
 short_desc="Gamecube / Wii / Triforce emulator"
-maintainer="Henry Naguski <henry@nilsu.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://dolphin-emu.org"
 distfiles="https://github.com/dolphin-emu/dolphin/archive/${version}.tar.gz
