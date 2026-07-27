@@ -1,0 +1,17 @@
+# Template file for 'llama-cpp'
+pkgname=llama-cpp
+version=10154
+revision=1
+build_style=cmake
+configure_args="-DLLAMA_OPENSSL=ON -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_APP=OFF -DLLAMA_BUILD_UI=OFF $(vopt_if vulkan -DGGML_VULKAN=1) "
+hostmakedepends="pkg-config git"
+makedepends="libgomp-devel openssl-devel $(vopt_if vulkan 'Vulkan-Headers vulkan-loader-devel SPIRV-Headers shaderc')"
+short_desc="LLM inference in C/C++"
+maintainer="RobRx <fzvoyxzlqhbi@posteo.de>"
+license="MIT"
+homepage="https://llama.app"
+distfiles="https://github.com/ggml-org/llama.cpp/archive/refs/tags/b${version}.tar.gz"
+checksum=498806f815e66787a5339db35dbc50479a2904c6b859a4f84facc53b93f84240
+
+build_options="vulkan"
+build_options_default="vulkan"
