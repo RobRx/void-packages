@@ -3,7 +3,8 @@ pkgname=zed
 version=1.12.1
 revision=1
 build_style=cargo
-configure_args=""
+configure_args="--jobs 4"
+make_build_args="--package zed --package cli"
 hostmakedepends="clang cmake pkg-config"
 makedepends="gettext-devel jq elfutils-devel alsa-lib-devel fontconfig-devel
  glib-devel libva-devel libX11-devel libxcb-devel libxkbcommon-devel libzstd-devel openssl-devel
@@ -15,3 +16,18 @@ license="GPL-3.0-or-later Apache-2.0"
 homepage="https://zed.dev"
 distfiles="https://github.com/zed-industries/zed/archive/v${version}/${pkgname}-${version}.tar.gz"
 checksum=a11463ff8b79bef358ef6f3d7d57b21accefc5730311b7802c20731eb75e25da
+
+do_install() {
+	vbin "target/${RUST_TARGET}/release/cli" zed
+	vinstall "target/${RUST_TARGET}/release/zed" 0755 /usr/libexec zed-editor
+
+	export APP_NAME="Zed"
+	export APP_ICON="zed"
+	export DO_STARTUP_NOTIFY="true"
+	export APP_CLI="zed"
+	export APP_ID="dev.zed.Zed"
+	export APP_ARGS="%U"
+	envsubst < "crates/zed/resources/zed.desktop.in" > dev.zed.Zed.desktop
+	vinstall dev.zed.Zed.desktop 644 /usr/share/applications
+	vinstall "crates/zed/resources/app-icon.png" 0644 /usr/share/icons/hicolor/512x512/apps zed.png
+}
