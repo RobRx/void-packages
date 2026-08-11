@@ -1,0 +1,13 @@
+# Template file for 'glide-player'
+pkgname=glide-player
+version=0.6.7
+revision=1
+build_style=meson
+hostmakedepends="cargo pkg-config"
+makedepends="gtk4-devel libadwaita-devel gst-plugins-base1-devel gst-plugins-bad1-devel"
+short_desc="Linux/macOS media player based on GStreamer and GTK"
+maintainer="RobRx <fzvoyxzlqhbi@posteo.de>"
+license="MIT"
+homepage="https://philn.github.io/glide/"
+distfiles="https://github.com/philn/glide/releases/download/${version}/glide-${version}.tar.xz"
+checksum=58596a508b40618a6cde683cc7697259142272ce08d18b3b0f85c9dc8a588754
