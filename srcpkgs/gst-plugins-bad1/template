@@ -1,6 +1,6 @@
 # Template file for 'gst-plugins-bad1'
 pkgname=gst-plugins-bad1
-version=1.28.5
+version=1.28.6
 revision=1
 build_helper="gir"
 build_style=meson
@@ -9,14 +9,14 @@ configure_args="-Dpackage-origin=https://voidlinux.org -Ddoc=disabled
  -Dtinyalsa=disabled -Dwasapi=disabled -Ddc1394=disabled
  -Diqa=disabled -Dlibde265=disabled -Dmpeg2enc=disabled
  -Dmplex=disabled -Dmusepack=disabled -Dopenexr=disabled
- -Dopenh264=disabled -Dopenmpt=disabled -Dopenni2=disabled -Dsctp=disabled
+ -Dopenmpt=disabled -Dopenni2=disabled -Dsctp=disabled
  -Dsrt=disabled -Dteletext=disabled -Dvoaacenc=disabled -Dvoamrwbenc=disabled
  -Dwildmidi=disabled -Dwpe=disabled -Ddirectfb=disabled
  $(vopt_feature gir introspection) -Dneon=disabled"
 hostmakedepends="gettext pkg-config python3 glib-devel orc
  $(vopt_if wayland wayland-devel)"
 makedepends="alsa-lib-devel openssl-devel gst-plugins-base1-devel orc-devel
- libexif-devel libmpcdec-devel librsvg-devel libcurl-devel libass-devel
+ libexif-devel libmpcdec-devel librsvg-devel libcurl-devel libass-devel openh264-devel
  opus-devel libwebp-devel $(vopt_if wayland wayland-devel) x265-devel
  libnice-devel libbluetooth-devel libgudev-devel libusb-devel
  libaom-devel libbs2b-devel fdk-aac-devel lilv-devel lv2 libopenjpeg2-devel
@@ -28,7 +28,7 @@ license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://gstreamer.freedesktop.org"
 changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
 distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${version}.tar.xz"
-checksum=d8af55faef2958c1a8663751475ee46f5164877cf4d8c5913ea906ef180aeb71
+checksum=6636f2c2289ceda52c4aba971338c81e2b5780d3381bd3673c1c116ec87587c3
 
 build_options="gir wayland"
 build_options_default="gir wayland"
