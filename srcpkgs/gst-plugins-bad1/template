@@ -19,7 +19,7 @@ makedepends="alsa-lib-devel openssl-devel gst-plugins-base1-devel orc-devel
  libexif-devel libmpcdec-devel librsvg-devel libcurl-devel libass-devel openh264-devel
  opus-devel libwebp-devel $(vopt_if wayland wayland-devel) x265-devel
  libnice-devel libbluetooth-devel libgudev-devel libusb-devel
- libaom-devel libbs2b-devel fdk-aac-devel lilv-devel lv2 libopenjpeg2-devel
+ libaom-devel fdk-aac-devel lilv-devel lv2 libopenjpeg2-devel
  vulkan-loader-devel webrtc-audio-processing-devel libva-devel"
 depends="gst-plugins-base1>=${version}"
 short_desc="GStreamer plugins from the bad set (v1.x)"
