@@ -1,8 +1,10 @@
 # Template file for 'zvm'
 pkgname=zvm
-version=0.8.16
+version=0.8.29
 revision=1
 build_style=go
+build_helper="qemu"
+make_check_args="-skip TestNoAutoUpgrades_default"
 go_import_path="github.com/tristanisham/zvm"
 go_build_tags="noAutoUpgrades"
 short_desc="Zig version manager"
@@ -11,8 +13,13 @@ license="MIT"
 homepage="https://www.zvm.app"
 changelog="https://github.com/tristanisham/zvm/releases"
 distfiles="https://github.com/tristanisham/zvm/archive/refs/tags/v${version}.tar.gz"
-checksum=c3635f9e19c531c158e6248cd387ded7f47cccb84430deb0f1b4691ff1f5ef4c
+checksum=d41875911b44bf0faf01322b6ec46958d73a80e49a8d50db4380c1f064ddc6cd
 
 post_install() {
 	vlicense LICENSE
+
+	for _shell in bash fish zsh; do
+		vtargetrun ${DESTDIR}/usr/bin/zvm completion ${_shell} > zvm.${_shell}
+		vcompletion zvm.${_shell} ${_shell}
+	done
 }

@@ -1,14 +1,15 @@
 # Template file for 'media-downloader'
 pkgname=media-downloader
-version=5.5.0
+version=5.6.5
 revision=1
 build_style=cmake
 hostmakedepends="qt6-base qt6-tools"
 makedepends="qt6-base-devel"
+depends="qt6-plugin-tls-openssl"
 short_desc="Qt/C++ frontend to youtube-dl"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/mhogomchungu/media-downloader"
 changelog="https://github.com/mhogomchungu/media-downloader/raw/main/changelog"
 distfiles="https://github.com/mhogomchungu/media-downloader/archive/refs/tags/${version}.tar.gz"
-checksum=c2c675080c327a7bd98439cd1937c3e509d1ca33b3f5738011f1c58b1b1b70f1
+checksum=953f7b4711318f69371a1560f274e2a26d3ca2ae490f3825e4c66686744683be
