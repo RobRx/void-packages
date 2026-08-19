@@ -1,9 +1,9 @@
 # Template file for 'nnn'
 pkgname=nnn
-version=5.2
+version=5.3
 revision=1
 build_style=gnu-makefile
-make_build_args="O_EMOJI=1 O_NOX11=1"
+make_build_args="O_EMOJI=1 O_NORL=0 O_NOX11=1"
 make_install_target="install install-desktop"
 hostmakedepends="pkg-config"
 makedepends="ncurses-devel readline-devel"
@@ -13,7 +13,7 @@ license="BSD-2-Clause"
 homepage="https://github.com/jarun/nnn"
 changelog="https://raw.githubusercontent.com/jarun/nnn/master/CHANGELOG"
 distfiles="https://github.com/jarun/nnn/archive/v${version}.tar.gz"
-checksum=f166eda5093ac8dcf8cbbc6224123a32c53cf37b82c5c1cb48e2e23352754030
+checksum=79ee69f3ced7c0778d207df76b4d4d680636975ccda002eeb19d0917fcba3d36
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
 	makedepends+=" musl-fts-devel"
