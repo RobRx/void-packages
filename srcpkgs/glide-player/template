@@ -1,6 +1,6 @@
 # Template file for 'glide-player'
 pkgname=glide-player
-version=0.6.7
+version=0.6.9
 revision=1
 build_style=meson
 hostmakedepends="cargo pkg-config"
@@ -10,4 +10,4 @@ maintainer="RobRx <fzvoyxzlqhbi@posteo.de>"
 license="MIT"
 homepage="https://philn.github.io/glide/"
 distfiles="https://github.com/philn/glide/releases/download/${version}/glide-${version}.tar.xz"
-checksum=58596a508b40618a6cde683cc7697259142272ce08d18b3b0f85c9dc8a588754
+checksum=fd5a590ea96deab39bfd4aee364fe6fbadeb920d27a7040c817fcf563b184d98
