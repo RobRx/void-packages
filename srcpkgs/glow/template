@@ -1,16 +1,16 @@
 # Template file for 'glow'
 pkgname=glow
-version=2.0.0
+version=3.0.0
 revision=1
 build_style=go
-go_import_path=github.com/charmbracelet/glow/v2
+go_import_path=charm.land/glow/v3
 go_ldflags="-X main.Version=${version}"
 short_desc="Render markdown on the CLI, with pizzazz"
 maintainer="klardotsh <josh@klar.sh>"
 license="MIT"
 homepage="https://github.com/charmbracelet/glow"
 distfiles="https://github.com/charmbracelet/glow/archive/refs/tags/v${version}.tar.gz"
-checksum=55872e36c006e7e715b86283baf14add1f85b0a0304e867dd0d80e8d7afe49a8
+checksum=18df6f3c09157021366b8c702b5badba405d37dbb42f132353eb50c1b0d3f464
 
 post_install() {
 	for shell in bash fish zsh; do

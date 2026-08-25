@@ -1,21 +1,24 @@
 # Template file for 'plasma-thunderbolt'
+# group=kde-plasma
 pkgname=plasma-thunderbolt
-version=6.2.5
+version=6.7.4
 revision=1
 build_style=cmake
-configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules gettext qt6-tools qt6-base
  kf6-kconfig kf6-kcmutils"
-makedepends="kf6-kcmutils-devel kf6-kconfig-devel"
+makedepends="kf6-kcmutils-devel kf6-kconfig-devel kf6-kdbusaddons-devel
+ qt6-declarative-devel kf6-kcoreaddons-devel kf6-ki18n-devel kf6-knotifications-devel"
 depends="bolt"
 short_desc="Plasma integration for controlling Thunderbolt devices"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-3.0-or-later"
 homepage="https://invent.kde.org/plasma/plasma-thunderbolt"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=e6c38c7fe844eba6b2d38a06cf3e9f2c51e989893965e1683917c46d94eb24da
+checksum=cc40625fc51d1d1576e02e7411f2426fef61f78ff6e7bc14db3f2818032a5309
+make_check=no # Requires running dbus and bolt services
 
-do_check() {
-	: # Requires running dbus and bolt services
-}
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"

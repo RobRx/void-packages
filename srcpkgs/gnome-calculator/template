@@ -1,19 +1,24 @@
 # Template file for 'gnome-calculator'
 pkgname=gnome-calculator
-version=47.1
+version=50.0
 revision=1
 build_style=meson
 build_helper="gir"
-hostmakedepends="cmake gettext glib-devel itstool pkg-config vala
- gtk-update-icon-cache"
-makedepends="gsettings-desktop-schemas-devel gtksourceview5-devel libgee-devel
- libmpc-devel libsoup3-devel gtk4-devel libadwaita-devel"
-depends="desktop-file-utils gsettings-desktop-schemas hicolor-icon-theme"
+hostmakedepends="gettext glib-devel gtk4-update-icon-cache itstool
+ pkg-config vala blueprint-compiler
+ $(vopt_if gir 'gobject-introspection')"
+makedepends="gsettings-desktop-schemas-devel gtksourceview5-devel libadwaita-devel
+ libgee-devel libmpc-devel libsoup3-devel gtk4-devel"
 short_desc="GNOME calculator"
-maintainer="Enno Boland <gottox@voidlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://wiki.gnome.org/Apps/Calculator"
-changelog="https://gitlab.gnome.org/GNOME/gnome-calculator/-/raw/gnome-47/NEWS"
-#changelog="https://gitlab.gnome.org/GNOME/gnome-calculator/-/raw/master/NEWS"
+changelog="https://gitlab.gnome.org/GNOME/gnome-calculator/-/raw/gnome-50/NEWS"
 distfiles="${GNOME_SITE}/gnome-calculator/${version%%.*}/gnome-calculator-${version}.tar.xz"
-checksum=be9f922799b7e7e65c97348b9b7e647ffe33c831bb3a51d39e2c168d2adc40e0
+checksum=8053d6891565e882874b65c1db51c5bf310005eb788b8bac3546390743350a90
+
+pre_build() {
+	if [ "$CROSS_BUILD" ]; then
+		export GI_TYPELIB_PATH="${XBPS_CROSS_BASE}/usr/lib/girepository-1.0"
+	fi
+}

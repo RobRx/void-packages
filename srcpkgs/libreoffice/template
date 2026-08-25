@@ -1,9 +1,10 @@
 # Template file for 'libreoffice'
 pkgname=libreoffice
-version=25.2.0.3
+version=26.2.5.2
 revision=1
-build_style=meta
 build_helper="gir"
+build_style=configure # hack, avoid sourcing common/.../gnu-configure-args.sh
+metapackage=yes
 make_build_target="build"
 # Use order in configure.ac
 _xdeps="zlib-devel libjpeg-turbo-devel clucene-devel expat-devel xmlsec1-devel
@@ -12,7 +13,8 @@ _xdeps="zlib-devel libjpeg-turbo-devel clucene-devel expat-devel xmlsec1-devel
  libmspub-devel libmwaw-devel libetonyek-devel libfreehand-devel
  libe-book-devel libabw-devel libpagemaker-devel libqxp-devel libzmf-devel
  libstaroffice-devel lcms2-devel libcppunit-devel freetype-devel libxslt-devel
- libgcrypt-devel libxml2-devel python3-devel libcurl-devel boost-devel
+ libgcrypt-devel libxml2-devel python3-devel libcurl-devel boost-devel-minimal
+ libeot-devel libmd4c-devel sqlite-devel libzstd-devel liblzma-devel
  mdds frozen glm unixodbc-devel libldap-devel sane-devel icu-devel liborcus-devel
  graphite-devel harfbuzz-devel libargon2-devel redland-devel hunspell-devel
  zxcvbn-c-devel zxing-cpp-devel box2d-devel hyphen-devel mythes-devel
@@ -20,9 +22,9 @@ _xdeps="zlib-devel libjpeg-turbo-devel clucene-devel expat-devel xmlsec1-devel
  libepoxy-devel cairo-devel liblangtag-devel libpng-devel tiff-devel
  libwebp-devel fontconfig-devel libcmis-devel
  gobject-introspection libgirepository-devel libglib-devel"
-hostmakedepends="automake flex gperf hyphen icu libtool openldap which gettext xz
- tar perl-Archive-Zip pkg-config sane unzip zip python3-setuptools
- fontforge python3-lxml qt6-base gnupg glib-devel
+hostmakedepends="automake flex gperf hyphen icu libtool openldap which gettext
+ tar xz perl-Archive-Zip pkg-config sane unzip zip python3-setuptools
+ fontforge python3-lxml qt6-base gnupg glib-devel afdko
  $(vopt_if java 'openjdk17 apache-ant beanshell rhino hsqldb1.8.0')"
 makedepends="$_xdeps openssl-devel libXrender-devel libbluetooth-devel
  gpgmepp-devel libXinerama-devel libXt-devel libX11-devel libICE-devel
@@ -57,11 +59,15 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://www.libreoffice.org/"
 
+_basever=${version%.beta*}
+_basever=${_basever%.*}
 # Source, dictionary, help and translations
-_baseurl="https://download.documentfoundation.org/libreoffice/src/${version%.*}"
+_baseurl="https://download.documentfoundation.org/libreoffice/src/${_basever}"
+# _baseurl="https://downloadarchive.documentfoundation.org/libreoffice/old/${version}/src/"
 # Please don't remove this mirror, it's faster for me
-# _baseurl="https://download.nus.edu.sg/mirror/tdf/libreoffice/src/${version%.*}"
-# _baseurl="https://mirrors.nju.edu.cn/tdf/libreoffice/src/${version%.*}"
+# _baseurl="https://download.nus.edu.sg/mirror/tdf/libreoffice/src/${_basever}"
+# _baseurl="https://mirrors.nju.edu.cn/tdf/libreoffice/src/${_basever}"
+# _baseurl="https://mirrors.tuna.tsinghua.edu.cn/libreoffice/src/${_basever}"
 _addurl="https://dev-www.libreoffice.org/src"
 _exturl="https://dev-www.libreoffice.org/extern"
 
@@ -70,86 +76,66 @@ _exturl="https://dev-www.libreoffice.org/extern"
 distfiles="
  ${_baseurl}/${pkgname}-${version}.tar.xz
  ${_baseurl}/${pkgname}-help-${version}.tar.xz
- ${_baseurl}/${pkgname}-translations-${version}.tar.xz
- ${_addurl}/a7983f859eafb2677d7ff386a023bc40-xsltml_2.1.2.zip
- ${_addurl}/ace6ab49184e329db254e454a010f56d-libxml-1.1.7.zip
- ${_addurl}/language-subtag-registry-2022-08-08.tar.bz2
- ${_addurl}/d8bd5eed178db6e2b18eeed243f85aa8-flute-1.1.6.zip
- ${_addurl}/ba2930200c9f019c2d93a8c88c651a0f-flow-engine-0.9.4.zip
- ${_addurl}/pdfium-6764.tar.bz2
- ${_exturl}/8249374c274932a21846fa7629c2aa9b-officeotron-0.7.4-master.jar
- ${_exturl}/odfvalidator-0.9.0-RC2-SNAPSHOT-jar-with-dependencies-2726ab578664434a545f8379a01a9faffac0ae73.jar
- ${_addurl}/dtoa-20180411.tgz
- ${_addurl}/35c94d2df8893241173de1d16b6034c0-swingExSrc.zip
- ${_addurl}/b7cae45ad2c23551fd6ccb8ae2c1f59e-numbertext_0.9.5.oxt
- ${_addurl}/eeb2c7ddf0d302fba4bfc6e97eac9624-libbase-1.1.6.zip
- ${_addurl}/3bdf40c0d199af31923e900d082ca2dd-libfonts-1.1.6.zip
- ${_addurl}/3404ab6b1792ae5f16bbd603bd1e1d03-libformula-1.1.7.zip
- ${_addurl}/db60e4fde8dd6d6807523deb71ee34dc-liblayout-0.2.10.zip
- ${_addurl}/97b2d4dba862397f446b217e2b623e71-libloader-1.1.6.zip
- ${_addurl}/8ce2fcd72becf06c41f7201d15373ed9-librepository-1.1.6.zip
- ${_addurl}/f94d9870737518e3b597f9265f4e9803-libserializer-1.1.6.zip
- ${_addurl}/39bb3fcea1514f1369fcfc87542390fd-sacjava-1.3.zip
- ${_addurl}/skia-m130-3c64459d5df2fa9794b277f0959ed8a92552bf4c.tar.xz
- ${_addurl}/frozen-1.2.0.tar.gz
- ${_addurl}/dragonbox-1.1.3.tar.gz
- ${_addurl}/Java-WebSocket-1.6.0.tar.gz
- ${_addurl}/zxcvbn-c-2.5.tar.gz
-"
-checksum="982448d736f8bb858b40d1fcb82b9915bdb88e7c98a5cabb741810fc93d525b4
- 5f7f02a8ef5728454fc699eaa9e436fb689c3a9e8302163de0c4a6a6d2aed3dd
- 2ef584b5859cab6abbf3f753fb36711d498c8a94937759c9c0eb2f4ed9acaceb
- 75823776fb51a9c526af904f1503a7afaaab900fba83eda64f8a41073724c870
- 7d2797fe9f79a77009721e3f14fa4a1dec17a6d706bdc93f85f1f01d124fab66
- e2d9224e0e50fc8ad12a3cf47396bbcadf45b2515839d4770432653a88972c00
- 1b5b24f7bc543c0362b667692f78db8bab4ed6dafc6172f104d0bd3757d8a133
- 233f66e8d25c5dd971716d4200203a612a407649686ef3b52075d04b4c9df0dd
- 59d5df3b38312b069d96a8de9d4f8d7f44a29835c9dc82bd792ea02be86c4e49
- f2443f27561af52324eee03a1892d9f569adc8db9e7bca55614898bc2a13a770
- d55495ab3a86544650587de2a72180ddf8bfc6376d14ddfa923992dbc86a06e0
- 0082d0684f7db6f62361b76c4b7faba19e0c7ce5cb8e36c4b65fea8281e711b4
- 64585ac36a81291a58269ec5347e7e3e2e8596dbacb9221015c208191333c6e1
- 1568ed1d2feb8210bb5de61d69574a165cded536cfa17c6953c9064076469de2
- 75c80359c9ce343c20aab8a36a45cb3b9ee7c61cf92c13ae45399d854423a9ba
- e0531091787c0f16c83965fdcbc49162c059d7f0c64669e7f119699321549743
- 5826d1551bf599b85742545f6e01a0079b93c1b2c8434bf409eddb3a29e4726b
- e1fb87f3f7b980d33414473279615c4644027e013012d156efa538bc2b031772
- 3d853b19b1d94a6efa69e7af90f7f2b09ecf302913bee3da796c15ecfebcfac8
- abe2c57ac12ba45d83563b02e240fa95d973376de2f720aab8fe11f2e621c095
- 05640a1f6805b2b2d7e2cb9c50db9a5cb084e3c52ab1a71ce015239b4a1d4343
- 085f2112c51fa8c1783fac12fbd452650596415121348393bb51f0f7e85a9045
- 53f55303821158b6de9e6b90f1cc3a548611a7e430c1a0883ff159a8db89677d
- ed8339c017d7c5fe019ac2c642477f435278f0dc643c1d69d3f3b1e95915e823
- 09d63b05e9c594ec423778ab59b7a5aa1d76fdd71d25c7048b0258c4ec9c3384
- f3ce29efde338707241d47ab4784b19a1e3658bfa0564b5bc5f80c27e5118728
- 77d6c6ecb35952a8d8ce7f736b7a2bf466275c48210e309b73782d6b7e84dffd"
-skip_extraction="
- a7983f859eafb2677d7ff386a023bc40-xsltml_2.1.2.zip
- ace6ab49184e329db254e454a010f56d-libxml-1.1.7.zip
- language-subtag-registry-2022-08-08.tar.bz2
- d8bd5eed178db6e2b18eeed243f85aa8-flute-1.1.6.zip
- ba2930200c9f019c2d93a8c88c651a0f-flow-engine-0.9.4.zip
- pdfium-6764.tar.bz2
- 8249374c274932a21846fa7629c2aa9b-officeotron-0.7.4-master.jar
- odfvalidator-0.9.0-RC2-SNAPSHOT-jar-with-dependencies-2726ab578664434a545f8379a01a9faffac0ae73.jar
- dtoa-20180411.tgz
- 35c94d2df8893241173de1d16b6034c0-swingExSrc.zip
- b7cae45ad2c23551fd6ccb8ae2c1f59e-numbertext_0.9.5.oxt
- eeb2c7ddf0d302fba4bfc6e97eac9624-libbase-1.1.6.zip
- 3bdf40c0d199af31923e900d082ca2dd-libfonts-1.1.6.zip
- 3404ab6b1792ae5f16bbd603bd1e1d03-libformula-1.1.7.zip
- db60e4fde8dd6d6807523deb71ee34dc-liblayout-0.2.10.zip
- 97b2d4dba862397f446b217e2b623e71-libloader-1.1.6.zip
- 8ce2fcd72becf06c41f7201d15373ed9-librepository-1.1.6.zip
- f94d9870737518e3b597f9265f4e9803-libserializer-1.1.6.zip
- 39bb3fcea1514f1369fcfc87542390fd-sacjava-1.3.zip
- skia-m130-3c64459d5df2fa9794b277f0959ed8a92552bf4c.tar.xz
- frozen-1.2.0.tar.gz
- dragonbox-1.1.3.tar.gz
- Java-WebSocket-1.6.0.tar.gz
- zxcvbn-c-2.5.tar.gz
-"
+ ${_baseurl}/${pkgname}-translations-${version}.tar.xz"
+checksum="8ec785ee1fd1a1d9b9d8eba1c8ff7556695ca8f02e1f7a26bef8cd540f669fea
+ 73fbe02eb53408e11121da9a170bc4a9c2250b5baaa8851c65b3f70e88841703
+ 44f1dbdefe0dab21293297cacb8af8d6a7bece4ce95ded7f25c24837bd067fb7"
 replaces="libreoffice-firebird<6.2.4.2_1"
+
+_distfile_add() {
+	local url="$_addurl"
+	if [ "$1" = -e ]; then
+		url="$_exturl"
+		shift
+	fi
+	distfiles+=" ${url}/${1}"
+	checksum+=" ${2}"
+	skip_extraction+=" ${1}"
+}
+_distfile_add a7983f859eafb2677d7ff386a023bc40-xsltml_2.1.2.zip \
+	75823776fb51a9c526af904f1503a7afaaab900fba83eda64f8a41073724c870
+_distfile_add language-subtag-registry-2026-06-14.tar.bz2 \
+	e74af13fd11fbcb24a5910d0f50e45d8505d86267bde2bb2d1d45aed966bc3bb
+_distfile_add pdfium-7471.tar.bz2 \
+	7144b0fa78fd408997e7b84ffd3c257db602e392a1bb1584828d80e60b6b27c5
+_distfile_add -e officeotron-0.8.5.jar \
+	0c2a4227394ac78147387f1c1ff1063e87f2151ffc91f1eb97bb17c2650fa708
+_distfile_add skia-m142-f4ed99d2443962782cf5f8b4dd27179f131e7cbe.tar.xz \
+	45ae58e84fa2d1e261bfc980e1c5b7bbfaf83887e3813795bd343d3786f4d0bc
+_distfile_add -e odfvalidator-0.9.0-RC2-SNAPSHOT-jar-with-dependencies-2726ab578664434a545f8379a01a9faffac0ae73.jar \
+	d55495ab3a86544650587de2a72180ddf8bfc6376d14ddfa923992dbc86a06e0
+_distfile_add ba2930200c9f019c2d93a8c88c651a0f-flow-engine-0.9.4.zip \
+	233f66e8d25c5dd971716d4200203a612a407649686ef3b52075d04b4c9df0dd
+_distfile_add d8bd5eed178db6e2b18eeed243f85aa8-flute-1.1.6.zip \
+	1b5b24f7bc543c0362b667692f78db8bab4ed6dafc6172f104d0bd3757d8a133
+_distfile_add eeb2c7ddf0d302fba4bfc6e97eac9624-libbase-1.1.6.zip \
+	75c80359c9ce343c20aab8a36a45cb3b9ee7c61cf92c13ae45399d854423a9ba
+_distfile_add 3bdf40c0d199af31923e900d082ca2dd-libfonts-1.1.6.zip \
+	e0531091787c0f16c83965fdcbc49162c059d7f0c64669e7f119699321549743
+_distfile_add 3404ab6b1792ae5f16bbd603bd1e1d03-libformula-1.1.7.zip \
+	5826d1551bf599b85742545f6e01a0079b93c1b2c8434bf409eddb3a29e4726b
+_distfile_add db60e4fde8dd6d6807523deb71ee34dc-liblayout-0.2.10.zip \
+	e1fb87f3f7b980d33414473279615c4644027e013012d156efa538bc2b031772
+_distfile_add 97b2d4dba862397f446b217e2b623e71-libloader-1.1.6.zip \
+	3d853b19b1d94a6efa69e7af90f7f2b09ecf302913bee3da796c15ecfebcfac8
+_distfile_add 8ce2fcd72becf06c41f7201d15373ed9-librepository-1.1.6.zip \
+	abe2c57ac12ba45d83563b02e240fa95d973376de2f720aab8fe11f2e621c095
+_distfile_add f94d9870737518e3b597f9265f4e9803-libserializer-1.1.6.zip \
+	05640a1f6805b2b2d7e2cb9c50db9a5cb084e3c52ab1a71ce015239b4a1d4343
+_distfile_add ace6ab49184e329db254e454a010f56d-libxml-1.1.7.zip \
+	7d2797fe9f79a77009721e3f14fa4a1dec17a6d706bdc93f85f1f01d124fab66
+_distfile_add 39bb3fcea1514f1369fcfc87542390fd-sacjava-1.3.zip \
+	085f2112c51fa8c1783fac12fbd452650596415121348393bb51f0f7e85a9045
+_distfile_add frozen-1.2.0.tar.gz \
+	ed8339c017d7c5fe019ac2c642477f435278f0dc643c1d69d3f3b1e95915e823
+_distfile_add dragonbox-1.1.3.tar.gz \
+	09d63b05e9c594ec423778ab59b7a5aa1d76fdd71d25c7048b0258c4ec9c3384
+_distfile_add Java-WebSocket-1.6.0.tar.gz \
+	f3ce29efde338707241d47ab4784b19a1e3658bfa0564b5bc5f80c27e5118728
+_distfile_add fast_float-8.2.2.tar.gz \
+	e64b5fff88e04959154adbd5fb83331d91f2e04ac06454671cdfcbdff172b158
+_distfile_add -e verapdf-cli-1.29.0.jar \
+	bdeef807f7e883fe3ff4e0a4712dc216064ca670d5c857fbc94408266719f0f4
 
 build_options="java firebird"
 desc_option_java="Enable Java support"
@@ -162,6 +148,7 @@ case "$XBPS_TARGET_MACHINE" in
 		CXXFLAGS+=" -DDISABLE_CVE_TESTS=1"
 		;;
 	x86_64*|ppc64*) build_options_default="java" ;;
+	# aarch64*) build_options_default="java" ;;
 	armv[56]*) broken="untested" ;;
 esac
 
@@ -197,20 +184,20 @@ unset _languages
 _add_lang() {
 	local pkglang tmp
 	local deps=
-	local pkg=$1
+	local lang=$1
 	local name=$2
-	pkglang=$pkg
+	pkglang="${lang//-/_}"
 	shift 2
 	while case "$1" in
-		-h*)	tmp=${1#-h}; deps="$deps hunspell-${tmp:-$pkg}" ;;
-		-H*)	tmp=${1#-H}; deps="$deps hyphen-${tmp:-$pkg}" ;;
-		-m*)	tmp=${1#-m}; deps="$deps mythes-${tmp:-$pkg}" ;;
+		-h*)	tmp=${1#-h}; deps="$deps hunspell-${tmp:-$pkglang}" ;;
+		-H*)	tmp=${1#-H}; deps="$deps hyphen-${tmp:-$pkglang}" ;;
+		-m*)	tmp=${1#-m}; deps="$deps mythes-${tmp:-$pkglang}" ;;
 		-l*)	pkglang=${1#-l} ;;
 		-vh=*)	deps="$deps virtual?hunspell-${1#-vh=}" ;;
 		*)	false ;;
 	esac; do shift; done
 	_languages="$_languages ${pkglang//_/-}"
-	eval "libreoffice-i18n-${pkg}_package() {
+	eval "libreoffice-i18n-${lang}_package() {
 		short_desc+=\" - ${name} language pack\"
 		depends='$deps'
 		pkg_install() {
@@ -219,24 +206,24 @@ _add_lang() {
 	}"
 }
 
-# _add_lang ab		"Abkhazian"
+_add_lang ab		"Abkhazian"
 _add_lang af		"Afrikaans" -h -H
 _add_lang am		"Amharic"
 # _add_lang an		"Aragonese"
 _add_lang ar		"Arabic" -h -m
-_add_lang as		"Assamese"
+_add_lang as		"Assamese" -h -H
 _add_lang ast		"Asturian"
 # _add_lang az		"Azerbaijani"
 _add_lang be		"Belarusian" -h -H
 _add_lang bg		"Bulgarian" -h -H -m
 _add_lang bn		"Bengali" -h
-_add_lang bn-IN		"Bengali (India)" -lbn_IN -hbn
+_add_lang bn-IN		"Bengali (India)" -hbn
 _add_lang bo		"Tibetan" -h
 _add_lang br		"Breton" -h
 _add_lang brx		"Bodo"
 _add_lang bs		"Bosnian" -h
 _add_lang ca		"Catalan" -hca_ES -H -m
-_add_lang ca-valencia	"Catalan (Valencian)" -lca_valencia -hca_ES -Hca -mca
+_add_lang ca-valencia	"Catalan (Valencian)" -hca_ES -Hca -mca
 _add_lang ckb		"Central Kurdish" -h
 _add_lang cs		"Czech" -h -H -m
 _add_lang cy		"Welsh (Cymraeg)"
@@ -246,15 +233,15 @@ _add_lang dgo		"Dogri proper"
 _add_lang dsb		"Lower Sorbian"
 _add_lang dz		"Dzongkha"
 _add_lang el		"Greek" -hel_GR -H
-_add_lang en-GB		"English (UK)" -len_GB -hen -vh=en_GB -Hen -men
-_add_lang en-US		"English (US)" -len_US -hen -Hen -men
-_add_lang en-ZA		"English (South Africa)" -len_ZA -hen -vh=en_GB -Hen -men
+_add_lang en-GB		"English (UK)" -hen -vh=en_GB -Hen -men
+_add_lang en-US		"English (US)" -hen -Hen -men
+_add_lang en-ZA		"English (South Africa)" -hen -vh=en_GB -Hen -men
 _add_lang eo		"Esperanto" -h -H -m
 _add_lang es		"Spanish" -h -H -m
 _add_lang et		"Estonian" -h -H
 _add_lang eu		"Basque"
 _add_lang fa		"Persian (Farsi)" -h
-_add_lang fi		"Finnish"
+_add_lang 'fi'		"Finnish"
 _add_lang fr		"French" -hfr_FR -H -m
 _add_lang fur		"Friulian"
 _add_lang fy		"Frisian"
@@ -268,6 +255,7 @@ _add_lang hi		"Hindi" -h
 _add_lang hr		"Croatian" -h -H
 _add_lang hsb		"Upper Sorbian"
 _add_lang hu		"Hungarian" -h -H -m
+_add_lang hy		"Armenian"
 _add_lang id		"Indonesian" -h -H -m
 _add_lang is		"Icelandic" -h -H -m
 _add_lang it		"Italian" -hit_IT -Hit_IT -mit_IT
@@ -278,8 +266,8 @@ _add_lang kab		"Kabyle"
 _add_lang kk		"Kazakh"
 # _add_lang kl		"Aklanon"
 _add_lang km		"Khmer"
-_add_lang kmr-Latn	"Kurmanji Kurdish (Latin)" -lkmr_Latn -hkmr
-_add_lang kn		"Kannada"
+_add_lang kmr-Latn	"Kurmanji - Northern Kurdish (Latin)" -hkmr
+_add_lang kn		"Kannada" -h -H
 _add_lang ko		"Korean" -h
 _add_lang kok		"Konkani"
 _add_lang ks		"Kashmiri"
@@ -293,7 +281,7 @@ _add_lang mk		"Macedonian"
 _add_lang ml		"Malayalam"
 _add_lang mn		"Mongolian" -h -H
 _add_lang mni		"Meithei (Manipuri)"
-_add_lang mr		"Marathi"
+_add_lang mr		"Marathi" -h -H -m
 _add_lang my		"Burmese"
 _add_lang nb		"Norwegian (Bokmal)" -hno -Hno -mno
 _add_lang ne		"Nepali" -h -m
@@ -303,17 +291,18 @@ _add_lang nr		"Ndebele (South)"
 _add_lang nso		"Northern Sotho"
 _add_lang oc		"Occitan" -h
 _add_lang om		"Oromo"
-_add_lang or		"Oriya"
-_add_lang pa-IN		"Punjabi (India)" -lpa_IN
+_add_lang or		"Oriya" -h -H
+_add_lang pa-IN		"Punjabi (India)" -hpa -Hpa
 _add_lang pl		"Polish" -h -H -m
 _add_lang pt		"Portuguese" -hpt_PT -Hpt_PT -mpt_PT
-_add_lang pt-BR		"Portuguese (Brazil)" -lpt_BR -hpt_BR -Hpt_BR -mpt_BR
+_add_lang pt-BR		"Portuguese (Brazil)" -h -H -m
 _add_lang ro		"Romanian" -hro_RO -H -m
 _add_lang ru		"Russian" -hru_RU -H -m
 _add_lang rw		"Kinyarwanda"
-_add_lang sa-IN		"Sanskrit (India)" -lsa_IN
+_add_lang sa-IN		"Sanskrit (India)" -hsa -Hsa
 # _add_lang sah		"Yakut"
 _add_lang sat		"Santali"
+_add_lang sat-Olck	"Santali (Ol Chiki)"
 _add_lang sd		"Sindhi"
 _add_lang si		"Sinhala" -h
 _add_lang sid		"Sidamo"
@@ -321,17 +310,18 @@ _add_lang sk		"Slovak" -h -H -m
 _add_lang sl		"Slovenian" -h -H -m
 _add_lang sq		"Albanian" -h -H
 _add_lang sr		"Serbian" -h -H
-_add_lang sr-Latn	"Serbian (Latin)" -lsr_Latn -hsr -Hsr
+_add_lang sr-Latn	"Serbian (Latin)" -hsr -Hsr
 _add_lang ss		"Swati"
 _add_lang st		"Southern Sotho"
 _add_lang sv		"Swedish" -h -H -m
-_add_lang sw-TZ		"Swahili (Tanzania)" -lsw_TZ
+_add_lang sw-TZ		"Swahili (Tanzania)"
 _add_lang szl		"Silesian"
-_add_lang ta		"Tamil"
+_add_lang ta		"Tamil" -h
 _add_lang te		"Telugu" -h -H
 _add_lang tg		"Tajik"
-_add_lang th		"Thai" -h -H
+_add_lang th		"Thai" -h -H -m
 # _add_lang ti		"Tigrinya/Tigrigna"
+_add_lang tl		"Tagalog"
 _add_lang tn		"Tswana"
 _add_lang tr		"Turkish" -h
 _add_lang ts		"Tsonga"
@@ -344,8 +334,8 @@ _add_lang ve		"Venda"
 _add_lang vec		"Venetian"
 _add_lang vi		"Vietnamese" -h
 _add_lang xh		"Xhosa"
-_add_lang zh-CN		"Simplified Chinese (People's Republic of China)" -lzh_CN
-_add_lang zh-TW		"Traditional Chinese (Taiwan)" -lzh_TW
+_add_lang zh-CN		"Simplified Chinese (People's Republic of China)"
+_add_lang zh-TW		"Traditional Chinese (Taiwan)"
 _add_lang zu		"Zulu" -H
 
 post_extract() {
@@ -353,13 +343,16 @@ post_extract() {
 	local srcdistdir=${XBPS_SRCDISTDIR}/${pkgname}-${version} pkg
 	mkdir -p ${wrksrc}/external/tarballs
 	for pkg in ${skip_extraction} libreoffice-{help,translations}-${version}.tar.xz ; do
-		if [ "${pkg%.dll}" != "${pkg}" ]; then
+		case "$pkg" in
+		*.dll)
 			# The dll needs to be copied instead of symlinked
 			cp -v ${srcdistdir}/${pkg} ${wrksrc}/external/tarballs/
-		else
+			;;
+		*)
 			# ... the other files can be symlinked
 			ln -svf ${srcdistdir}/${pkg} ${wrksrc}/external/tarballs/
-		fi
+			;;
+		esac
 	done
 	for f in ${FILESDIR}/*.patch; do
 		fname=${f##*/}
@@ -376,13 +369,6 @@ post_patch() {
 		-e "s|.1.gz|.1|g"
 	chmod +x bin/unpack-sources
 
-	case "$XBPS_TARGET_MACHINE" in
-		i686*)	# Don't run broken tests
-			vsed -i "/CppunitTest_sw_ooxmlexport9/d" sw/Module_sw.mk
-			vsed -i "/CPPUNIT_TEST(testTdf111798);/d" sd/qa/unit/export-tests-ooxml2.cxx
-			;;
-	esac
-
 	if [ "$XBPS_BUILD_ENVIRONMENT" = void-packages-ci ]; then
 		vsed -i "s/bootstrap: check-if-root compilerplugins/bootstrap: compilerplugins/" Makefile.in
 	fi
@@ -390,7 +376,7 @@ post_patch() {
 
 do_configure() {
 	local opts
-	local bopts=
+	local bopts=--with-lang=en-US
 
 	# the build system tries to call curl or wget, we can catch any invocations here and add them to distfiles
 	ln -sf /bin/false ${XBPS_WRAPPERDIR}/curl
@@ -437,7 +423,6 @@ do_configure() {
 	case "$XBPS_TARGET_MACHINE" in
 	x86_64)	# opts+=" --enable-ext-mariadb-connector"
 		# opts+=" --enable-ext-ct2n"
-		opts+=" --enable-ext-numbertext"
 		opts+=" --enable-ext-nlpsolver"
 		# opts+=" --enable-ext-languagetool"
 		;;
@@ -483,8 +468,11 @@ do_configure() {
 	bopts+=" --without-system-dragonbox"
 	opts+=" --without-system-libfixmath"
 	bopts+=" --without-system-libfixmath"
+	opts+=" --without-system-fast-float"
+	bopts+=" --without-system-fast-float"
 	opts+=" --without-myspell-dicts"
 	opts+=" --without-system-java-websocket"
+	bopts+=" --without-system-java-websocket"
 	# finish configuring build
 	opts+=" --with-external-dict-dir=/usr/share/hunspell"
 	opts+=" --with-external-hyph-dir=/usr/share/hyphen"
@@ -563,7 +551,7 @@ libreoffice-calc_package() {
 
 libreoffice-draw_package() {
 	short_desc+=" - Drawing application"
-	depends="sane libreoffice-writer>=${version}_${revision}"
+	depends="sane libreoffice-impress>=${version}_${revision}"
 	pkg_install() {
 		_split draw
 	}
@@ -577,7 +565,7 @@ libreoffice-fonts_package() {
 	 culmus
 	 dejavu-fonts-ttf
 	 font-adobe-source-code-pro
-	 font-adobe-source-sans-pro-v2
+	 source-sans-pro
 	 font-adobe-source-serif-pro
 	 font-alef
 	 font-crosextra-caladea-ttf
@@ -593,7 +581,7 @@ libreoffice-fonts_package() {
 	 noto-fonts-ttf
 	 noto-fonts-ttf-extra
 	"
-	build_style=meta
+	metapackage=yes
 	pkg_install() {
 		vmkdir usr/lib/libreoffice/share
 		mv ${DESTDIR}/all/usr/lib/libreoffice/share/fonts \

@@ -1,6 +1,7 @@
 # Template file for 'kdegraphics-thumbnailers'
+# group=kde-gear
 pkgname=kdegraphics-thumbnailers
-version=24.12.1
+version=26.08.0
 revision=1
 build_style=cmake
 configure_args="-DQT_MAJOR_VERSION=6 -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
@@ -14,10 +15,10 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/graphics/kdegraphics-thumbnailers"
 distfiles="${KDE_SITE}/release-service/${version}/src/kdegraphics-thumbnailers-${version}.tar.xz"
-checksum=ad208c1afee7abea76745fa924ee7579db47db58bcd736c7ed341b4a49ee52d3
+checksum=0f3bddb3663113a70a33fbb5e3d04729d456cc73181fad785abc22527358116e
 
 kdegraphics-mobipocket_package() {
 	short_desc+=" (transitional dummy package)"
 	depends="${sourcepkg}>=${version}_${revision}"
-	build_style=meta
+	metapackage=yes
 }

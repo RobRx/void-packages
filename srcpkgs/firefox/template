@@ -3,31 +3,31 @@
 # THIS PKG MUST BE SYNCHRONIZED WITH "srcpkgs/firefox-i18n".
 #
 pkgname=firefox
-version=135.0.1
-revision=2
+version=154.0
+revision=1
 build_helper="rust"
 short_desc="Mozilla Firefox web browser"
 maintainer="Duncaen <duncaen@voidlinux.org>"
-license="MPL-2.0, GPL-2.0-or-later, LGPL-2.1-or-later"
+license="GPL-3.0-only AND LGPL-2.1-only AND LGPL-3.0-only AND MPL-2.0"
 homepage="https://www.mozilla.org/firefox/"
 changelog="https://www.mozilla.org/en-US/firefox/${version}/releasenotes/"
 distfiles="${MOZILLA_SITE}/firefox/releases/${version/beta/b}/source/firefox-${version/beta/b}.source.tar.xz"
-checksum=74fbdfddce3be390f3f03194a4e398b30d0a69754e1542a59d7f2b38bac37906
+checksum=36cec5b3688a60f78a6d20dcaee15b598f84e03c66f6587056aead6cb498b99a
 
 lib32disabled=yes
-_llvmver=19 # needs to match rust
-hostmakedepends="autoconf213 unzip zip pkg-config perl python3 yasm rust
- cargo llvm${_llvmver} clang${_llvmver} lld${_llvmver} nodejs cbindgen nasm which
- tar xz $(vopt_if pgo 'xvfb-run dbus mesa-dri vulkan-loader pciutils')
- $(vopt_if wasi wasi-sdk)"
+_llvmver=22
+hostmakedepends="unzip zip pkg-config perl python3
+ yasm rust cargo llvm${_llvmver} clang${_llvmver} lld${_llvmver}
+ nodejs cbindgen nasm which tar xz $(vopt_if wasi wasi-sdk)
+ $(vopt_if pgo 'xvfb-run dbus mesa-dri vulkan-loader pciutils')"
 makedepends="nss-devel libjpeg-turbo-devel gtk+3-devel
- pixman-devel libevent-devel libnotify-devel libvpx-devel libwebp-devel
+ pixman-devel libevent-devel libnotify-devel libwebp-devel
  libXrender-devel libXcomposite-devel libSM-devel libXt-devel rust-std
  libXdamage-devel freetype-devel $(vopt_if wasi wasi-sdk)
  $(vopt_if alsa alsa-lib-devel) $(vopt_if dbus dbus-glib-devel)
  $(vopt_if pulseaudio pulseaudio-devel) $(vopt_if xscreensaver libXScrnSaver-devel)
  $(vopt_if sndio sndio-devel) $(vopt_if jack jack-devel)"
-depends="nss>=3.72 nspr>=4.32 desktop-file-utils hicolor-icon-theme pciutils"
+depends="nss>=3.122.1 nspr>=4.32 desktop-file-utils hicolor-icon-theme pciutils"
 conflicts="firefox-esr>=0"
 
 build_options="alsa jack dbus pulseaudio xscreensaver sndio wayland lto pgo clang wasi debug"
@@ -73,24 +73,33 @@ post_extract() {
 
 post_patch() {
 	: # _clear_vendor_checksums num-traits
+	if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+		vsed -e '\;sys/single_threaded.h;d' -i config/system-headers.mozbuild
+	fi
 }
 
 do_build() {
 	export AS="${CC}"
 	export CFLAGS="-O2"
 	export CXXFLAGS="-O2"
-	export HOST_CFLAGS=""
-	export HOST_CXXFLAGS=""
+	# unset HOST_C{,XX}FLAGS since the firefox build system uses them internally and
+	# if they are exported they end up in the cargo environment, where they are not
+	# supposed to be.
+	unset HOST_CFLAGS
+	unset HOST_CXXFLAGS
 	export LDFLAGS="-Wl,-rpath=/usr/lib/firefox"
 	# export LDFLAGS+="-Wl,--threads=${XBPS_MAKEJOBS}"
 
 	if [ "$build_option_clang" ]; then
 		export CC=clang
 		export CXX=clang++
+		export AS=clang
 		export AR=llvm-ar
 		export NM=llvm-nm
 		export HOST_CC=clang
 		export HOST_CXX=clang++
+
+		export ASFLAGS="--target=${XBPS_CROSS_TRIPLET:-${XBPS_TRIPLET}}"
 	fi
 
 	disable_jemalloc() {
@@ -140,6 +149,7 @@ do_build() {
 	ac_add_options --host=${XBPS_TRIPLET}
 	ac_add_options --target=${XBPS_CROSS_TRIPLET:-${XBPS_TRIPLET}}
 	ac_add_options --enable-linker=$(vopt_if clang lld bfd)
+	ac_add_options --disable-bootstrap
 	$(vopt_if lto 'ac_add_options --enable-lto=cross')
 	$(vopt_if clang 'ac_add_options --with-libclang-path=/usr/lib')
 
@@ -149,6 +159,8 @@ do_build() {
 	ac_add_options --enable-hardening
 	ac_add_options --enable-optimize="\${CFLAGS}"
 	ac_add_options --enable-path-remapping=c,rust
+	ac_add_options --enable-packed-relative-relocs
+	ac_add_options --disable-cargo-incremental
 	ac_add_options --disable-tests
 	ac_add_options --disable-crashreporter
 	ac_add_options --disable-updater
@@ -167,7 +179,7 @@ do_build() {
 	ac_add_options --with-system-ffi
 	ac_add_options --with-system-jpeg
 	ac_add_options --with-system-libevent
-	ac_add_options --with-system-libvpx
+	# ac_add_options --with-system-libvpx
 	ac_add_options --with-system-nspr
 	ac_add_options --with-system-nss
 	ac_add_options --with-system-webp
@@ -266,5 +278,6 @@ do_install() {
 	# https://bugzilla.mozilla.org/show_bug.cgi?id=658850
 	ln -sf firefox ${DESTDIR}/usr/lib/firefox/firefox-bin
 
-	vbin ${FILESDIR}/firefox-wayland
+	# backwards compatibility with old firefox-wayland wrapper
+	ln -sf firefox "${DESTDIR}/usr/bin/firefox-wayland"
 }

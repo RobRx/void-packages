@@ -1,6 +1,6 @@
 # Template file for 'fzf'
 pkgname=fzf
-version=0.60.0
+version=0.74.3
 revision=1
 build_style=go
 go_import_path="github.com/junegunn/fzf"
@@ -12,7 +12,7 @@ license="MIT"
 homepage="https://github.com/junegunn/fzf"
 changelog="https://raw.githubusercontent.com/junegunn/fzf/master/CHANGELOG.md"
 distfiles="https://github.com/junegunn/fzf/archive/refs/tags/v${version}.tar.gz"
-checksum=69255fd9301e491b6ac6788bf1caf5d4f70d9209b4b8ab70ceb1caf6a69b5c16
+checksum=5b142217c3068647a7d8faa9c678cffada100b5f11a48609aa79c94ce04b28ef
 
 post_install() {
 	cd ${wrksrc}
@@ -27,6 +27,7 @@ post_install() {
 
 	vinstall shell/completion.bash 644 usr/share/fzf
 	vinstall shell/completion.zsh 644 usr/share/fzf
+	vinstall shell/completion.fish 644 usr/share/fzf
 	vinstall shell/key-bindings.zsh 644 usr/share/fzf
 	vinstall shell/key-bindings.bash 644 usr/share/fzf
 	vinstall shell/key-bindings.fish 644 usr/share/fzf

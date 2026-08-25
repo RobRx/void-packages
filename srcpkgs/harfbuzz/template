@@ -1,6 +1,6 @@
 # Template file for 'harfbuzz'
 pkgname=harfbuzz
-version=10.2.0
+version=14.3.1
 revision=1
 build_style=meson
 build_helper="gir qemu"
@@ -21,13 +21,18 @@ license="MIT"
 homepage="https://harfbuzz.github.io/"
 changelog="https://github.com/harfbuzz/harfbuzz/raw/main/NEWS"
 distfiles="https://github.com/harfbuzz/harfbuzz/releases/download/${version}/harfbuzz-${version}.tar.xz"
-checksum=620e3468faec2ea8685d32c46a58469b850ef63040b3565cde05959825b48227
+checksum=9dae9538aae2ffdf70cec31f2c27bf68e2aaeeae3112688467697d5faf6194f7
 
 if [ "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -Dtests=enabled"
 else
 	configure_args+=" -Dtests=disabled"
 fi
+
+do_install() {
+	# avoid ninja install rebuilding some things
+	meson install -C build --destdir "${DESTDIR}" --no-rebuild
+}
 
 libharfbuzz_package() {
 	short_desc+=" - runtime library"

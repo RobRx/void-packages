@@ -1,10 +1,11 @@
 # Template file for 'kf6-kparts'
+# group=kde-frameworks
 pkgname=kf6-kparts
-version=6.10.0
+version=6.29.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
- gettext"
+ gettext kf6-kconfig"
 makedepends="kf6-kconfig-devel kf6-kcoreaddons-devel kf6-ki18n-devel
  kf6-kio-devel kf6-kxmlgui-devel"
 short_desc="KDE Plugin framework for user interface components"
@@ -12,7 +13,11 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kparts"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=a3c460f635f32e254093da3d46d53fe9a4a7cca5987149047981b477c50a060c
+checksum=379d6b0fa84eb9614f7677e93b43c5ff52481e19ac83a7a158233810a39e75a7
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 kf6-kparts-devel_package() {
 	depends="$makedepends ${sourcepkg}>=${version}_${revision}"

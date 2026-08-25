@@ -1,6 +1,6 @@
 # Template file for 'plasma-wayland-protocols'
 pkgname=plasma-wayland-protocols
-version=1.15.0
+version=1.21.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules wayland-devel"
@@ -10,9 +10,4 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-3.0-or-later"
 homepage="https://invent.kde.org/libraries/plasma-wayland-protocols"
 distfiles="${KDE_SITE}/${pkgname}/${pkgname}-${version}.tar.xz"
-checksum=e5aedfe7c0b2443aa67882b4792d08814570e00dd82f719a35c922a0993f621e
-
-post_install() {
-	vsed -e '/NOT CMAKE_SIZEOF_VOID_P STREQUAL/,+5d' \
-		-i ${DESTDIR}/usr/lib/cmake/PlasmaWaylandProtocols/PlasmaWaylandProtocolsConfigVersion.cmake
-}
+checksum=698a7b28b711270314e396e248ae86087cfeaed01372009063995be6e1dc85ba

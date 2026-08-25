@@ -1,9 +1,10 @@
 # Template file for 'kidentitymanagement'
+# group=kde-gear
 pkgname=kidentitymanagement
-version=24.12.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -17,7 +18,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/pim/kidentitymanagement"
 distfiles="${KDE_SITE}/release-service/${version}/src/kidentitymanagement-${version}.tar.xz"
-checksum=2e8ec6337a5b1c4a94895ac4d336089a7522e57e509aa93f919121df8bbedee3
+checksum=3266abb7587c2bb4a574ffa8d0d89fc2a9fea4792828a0a401b930bd654b4287
 
 kidentitymanagement-devel_package() {
 	short_desc+=" - development files"

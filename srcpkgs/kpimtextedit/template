@@ -1,9 +1,10 @@
 # Template file for 'kpimtextedit'
+# group=kde-gear
 pkgname=kpimtextedit
-version=24.12.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -17,7 +18,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/pim/kpimtextedit"
 distfiles="${KDE_SITE}/release-service/${version}/src/kpimtextedit-${version}.tar.xz"
-checksum=8b0a4e624de14c89cd6a1dccd7611a7f380baf9687b6ba1865ba0b8a50f53477
+checksum=f8c5bdc1b1cd894153384529e0119733eec47ea8d9a33df472d71e3de21ec565
 
 do_check() {
 	cd build

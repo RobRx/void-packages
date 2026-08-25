@@ -1,25 +1,25 @@
 # Template file for 'libjxl'
 pkgname=libjxl
-version=0.10.3
-revision=2
-_testdata_hash=ff8d743aaba05b3014f17e5475e576242fa979fc
+version=0.12.0
+revision=1
+_testdata_hash=73695d303670c90e4d506ea89d9901b081385089
 build_style=cmake
 configure_args="-DJPEGXL_ENABLE_BENCHMARK=OFF -DJPEGXL_ENABLE_EXAMPLES=OFF
  -DJPEGXL_ENABLE_SJPEG=OFF -DJPEGXL_ENABLE_PLUGINS=ON -DJPEGXL_VERSION=${version}
  -DJPEGXL_ENABLE_SKCMS=OFF"
 hostmakedepends="tar pkg-config asciidoc"
 makedepends="brotli-devel highway-devel libpng-devel giflib-devel libjpeg-turbo-devel
- libopenexr-devel libwebp-devel gdk-pixbuf-devel gimp-devel lcms2-devel"
+ libopenexr-devel libwebp-devel gdk-pixbuf-devel lcms2-devel"
 checkdepends="gtest-devel xdg-utils"
 short_desc="JPEG XL image format reference implementation"
-maintainer="Joshua Krämer <joshua@kraemer.link>"
+maintainer="yosh <yosh-git@riseup.net>"
 license="BSD-3-Clause, custom:Patent grant"
 homepage="https://jpeg.org/jpegxl/"
 changelog="https://raw.githubusercontent.com/libjxl/libjxl/main/CHANGELOG.md"
 distfiles="https://github.com/libjxl/libjxl/archive/v${version}.tar.gz
  https://github.com/libjxl/testdata/archive/${_testdata_hash}.tar.gz>testdata-${_testdata_hash}.tar.gz"
-checksum="e0191411cfcd927eebe5392d030fe4283fe27ba1685ab7265104936e0b4283a6
- 9c45a108df32a002a69465df896d33acf77d97c88fb59dffa0dff5628370e96f"
+checksum="03e9be69a30be4011f559da75328b6d7cea8ad921fabfbd551ce10bf45cdc992
+ 380a58890e11513d34f1ed1e686e3c2cee97931cc9faaa80b33fd6c8d2640301"
 skip_extraction="testdata-${_testdata_hash}.tar.gz"
 
 if [ -z "$XBPS_CHECK_PKGS" ]; then
@@ -35,17 +35,13 @@ post_install() {
 	vlicense PATENTS
 }
 
-post_install() {
-	# Remove devel symlink for internal library only used for tools. (headers don't get installed)
-	rm ${DESTDIR}/usr/lib/libjxl_extras_codec.so
-}
-
 libjxl-devel_package() {
 	short_desc+=" - development files"
 	depends="${sourcepkg}>=${version}_${revision} highway-devel brotli-devel"
 	pkg_install() {
 		vmove usr/include
 		vmove "usr/lib/*.so"
+		vmove "usr/lib/*.a"
 		vmove usr/lib/pkgconfig
 	}
 }
@@ -53,7 +49,6 @@ libjxl-devel_package() {
 libjxl-tools_package() {
 	short_desc+=" - tools"
 	pkg_install() {
-		vmove "usr/lib/libjxl_extras_codec*"
 		vmove usr/bin
 		vmove usr/share/man/man1
 	}
@@ -64,7 +59,6 @@ libjxl-plugins_package() {
 	depends="desktop-file-utils"
 	pkg_install() {
 		vmove usr/lib/gdk-pixbuf-2.0
-		vmove usr/lib/gimp
 		vmove usr/share/mime
 		vmove usr/share/thumbnailers
 	}

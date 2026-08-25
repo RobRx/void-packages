@@ -11,13 +11,13 @@ configure_args="--disable-static --disable-packagekit --disable-schemas-compile
  ac_cv_lib_selinux_is_selinux_enabled=no ac_cv_strftime_extensions=yes"
 hostmakedepends="glib-devel gobject-introspection gettext itstool pkg-config
  wayland-devel"
-makedepends="exempi-devel gvfs-devel libXt-devel libexif-devel libnotify-devel
+makedepends="exempi-devel libXt-devel libexif-devel libnotify-devel
  gdk-pixbuf-devel libglib-devel pango-devel gtk+3-devel libxml2-devel
  libexif-devel gtk-layer-shell-devel wayland-devel libX11-devel
  mate-desktop-devel"
 depends="dbus gvfs mate-desktop mate-icon-theme"
 short_desc="MATE shell and file manager"
-maintainer="skmpz <dem.procopiou@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://mate-desktop.org"
 changelog="https://raw.githubusercontent.com/mate-desktop/caja/master/NEWS"

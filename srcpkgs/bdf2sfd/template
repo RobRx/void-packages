@@ -1,6 +1,6 @@
 # Template file for 'bdf2sfd'
 pkgname=bdf2sfd
-version=1.1.8
+version=1.2.0
 revision=1
 build_style=cmake
 short_desc="BDF to SFD converter to vectorize bitmap fonts"
@@ -9,7 +9,7 @@ license="BSD-2-Clause"
 homepage="https://github.com/fcambus/bdf2sfd"
 changelog="https://github.com/fcambus/bdf2sfd/raw/master/ChangeLog"
 distfiles="https://github.com/fcambus/bdf2sfd/archive/${version}.tar.gz"
-checksum=f654cc5de15f7a290bcb6a1d945973f534e99aa19712a4476386e4271a790191
+checksum=43ffe2034d1e064a4583c67bd228668742d3dec59d34d7270c5ffffb7ccc7196
 
 post_install() {
 	vlicense LICENSE

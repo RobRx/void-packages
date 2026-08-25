@@ -1,18 +1,18 @@
 # Template file for 'gum'
 pkgname=gum
-version=0.15.2
+version=2.0.0
 revision=1
 build_style=go
 build_helper=qemu
-go_import_path="github.com/charmbracelet/gum"
+go_import_path="charm.land/gum/v2"
 go_ldflags="-X main.Version=${version}"
 short_desc="Tool for glamorous shell scripts"
-maintainer="zenobit <zenobit@disroot.org>"
+maintainer="zenobit <zen@osowoso.org>"
 license="MIT"
 homepage="https://github.com/charmbracelet/gum"
 changelog="https://github.com/charmbracelet/gum/releases"
 distfiles="https://github.com/charmbracelet/gum/archive/refs/tags/v${version}.tar.gz"
-checksum=c1950ef71284189436712f385adbf1a3d8df20a8735c9add5344601aedb97ac1
+checksum=8a5baa1e1647cdc3f7fdf91939de5372791ab133117416c8e3d944afbf0b3c9c
 
 post_install() {
 	vlicense LICENSE

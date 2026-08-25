@@ -1,7 +1,7 @@
 # Template file for 'aqbanking'
 pkgname=aqbanking
-version=6.5.4
-revision=1
+version=6.9.1
+revision=2
 build_style=gnu-configure
 hostmakedepends="automake libtool pkg-config gwenhywfar gwenhywfar-devel tar"
 makedepends="gwenhywfar-devel xmlsec1-devel gmp-devel"
@@ -10,7 +10,7 @@ maintainer="Enno Boland <gottox@voidlinux.org>"
 license="GPL-2.0-only, GPL-3.0-only"
 homepage="https://www.aquamaniac.de/rdm/"
 distfiles="https://github.com/aqbanking/aqbanking/archive/refs/tags/${version}.tar.gz"
-checksum=66b13d7694c25d09511b77edc14262025a452dfd93359c7257826f0e4c60dc6b
+checksum=673545c01d9e33d982a46e4a9d4a86795a7023b7772f62bb50579963a7675b95
 disable_parallel_build=yes
 
 if [ "$CROSS_BUILD" ]; then

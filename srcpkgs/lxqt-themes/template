@@ -1,6 +1,6 @@
 # Template file for 'lxqt-themes'
 pkgname=lxqt-themes
-version=2.1.0
+version=2.4.0
 revision=1
 build_style=cmake
 hostmakedepends="lxqt-build-tools perl"
@@ -10,5 +10,5 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="https://lxqt-project.org"
 distfiles="https://github.com/lxqt/lxqt-themes/archive/${version}.tar.gz"
-checksum=9b4f6fb3d462bf40fef033885abab4dcf2c797745e914f1466ea0d2d81d97bd4
+checksum=d9a3a1e593f3e4c9148ed2bb2ec5ad520b8d0303de13fff5288aba0b8b33c481
 replaces="lxqt-common>=0"

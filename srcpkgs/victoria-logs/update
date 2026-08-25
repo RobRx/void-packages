@@ -1,1 +1,2 @@
-pattern='/archive/refs/tags/v\K[\d.]+(?=-victorialogs\.tar\.gz")'
+site="https://github.com/victoriametrics/victorialogs/tags"
+pattern='refs/tags/v?\K[\d.]+(?=\.)'

@@ -1,6 +1,6 @@
 # Template file for 'lxqt-globalkeys'
 pkgname=lxqt-globalkeys
-version=2.1.0
+version=2.4.0
 revision=1
 build_style=cmake
 hostmakedepends="lxqt-build-tools qt6-base qt6-tools perl"
@@ -10,7 +10,7 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="LGPL-2.1-or-later"
 homepage="https://lxqt-project.org"
 distfiles="https://github.com/lxqt/lxqt-globalkeys/archive/${version}.tar.gz"
-checksum=ee920d4de64aeea5c885fee4e27c490e7f8b4240fb5627bc9b5660404ef3da64
+checksum=3290c132958ab1e164426fdfe32f11f5a0d1009639b14a2de91572f4029b3003
 replaces="lxqt-common>=0"
 
 lxqt-globalkeys-devel_package() {

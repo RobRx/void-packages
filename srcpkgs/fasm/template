@@ -1,29 +1,21 @@
 # Template file for 'fasm'
 pkgname=fasm
-version=1.73.30
+version=1.73.35
 revision=1
 archs="i686* x86_64*"
 short_desc="Fast assembler for the x86 and x86-64 architectures"
-maintainer="Dmitry Bogatov <KAction@disroot.org>"
+maintainer="Rutpiv <roger_freitas@live.com>"
 license="BSD-2-Clause"
 homepage="https://flatassembler.net"
 distfiles="https://flatassembler.net/fasm-${version}.tgz"
-checksum=75195051a5881dbbbe0f0401161e937f8a36bb42d3470fc4869da14fd2c2f101
+checksum=a34dec7d0bc2dc79faabb68bd8bc2f62b6cfb31d69c01449367ce4cd8098934e
 nostrip=yes
 
-case ${XBPS_TARGET_MACHINE} in
-	i686*)
-		_fasm=./fasm
-		_source='source/Linux/fasm.asm'
-		;;
-	x86_64*)
-		_fasm=./fasm.x64
-		_source='source/Linux/x64/fasm.asm'
-		;;
-esac
-
 do_build() {
-	${_fasm} ${_source} fasm.out
+	case "$XBPS_TARGET_MACHINE" in
+		i686*) ./fasm source/linux/fasm.asm fasm.out ;;
+		x86_64*) ./fasm.x64 source/linux/x64/fasm.asm fasm.out ;;
+	esac
 }
 
 do_install() {

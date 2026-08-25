@@ -1,0 +1,23 @@
+# Template file for 'kew'
+pkgname=kew
+version=4.2.7
+revision=1
+build_style=gnu-makefile
+make_use_env=yes
+hostmakedepends="pkg-config"
+makedepends="faad2-devel libnotify-devel taglib-devel chafa-devel ffmpeg6-devel fftw-devel
+ freeimage-devel libglib-devel libogg-devel libvorbis-devel opus-devel opusfile-devel
+ libcurl-devel"
+short_desc="Command-line music player"
+maintainer="Mihail Ivanchev <contact@ivanchev.net>"
+license="GPL-2.0-only"
+homepage="https://github.com/ravachol/kew"
+changelog="https://github.com/ravachol/kew/releases"
+distfiles="https://github.com/ravachol/kew/archive/refs/tags/v${version}.tar.gz"
+checksum=04e505bc7d9f9d13e65f1121556fffb14769f181961712c65732973982195577
+
+pre_build() {
+	if [ "$XBPS_CROSS_BUILD" ]; then
+		vsed -i Makefile -e 's:-fcf-protection::'
+	fi
+}

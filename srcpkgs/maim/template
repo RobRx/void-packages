@@ -1,14 +1,14 @@
 # Template file for 'maim'
 pkgname=maim
-version=5.7.4
-revision=7
+version=5.8.2
+revision=1
 build_style=cmake
 hostmakedepends="pkg-config"
 makedepends="MesaLib-devel glm icu-devel libXcomposite-devel libXrandr-devel
  libjpeg-turbo-devel libpng-devel slop-devel libwebp-devel"
 short_desc="Desktop screenshot utility"
-maintainer="Felipe Nogueira <contato.fnog@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/naelstrof/maim"
 distfiles="https://github.com/naelstrof/maim/archive/v${version}.tar.gz"
-checksum=075090fd4c3b87663a26d0c2de63b5c822fd96aaeef6ac4fe6ded3abd506be9e
+checksum=2252c95c7eeebdee190c0a8cae3adeb1bb9c70858aef807060669fd02180204c

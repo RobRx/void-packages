@@ -1,6 +1,6 @@
 # Template file for 'linux-firmware'
 pkgname=linux-firmware
-version=20250211
+version=20260810
 revision=1
 hostmakedepends="rdfind which $(vopt_if compressed zstd)"
 depends="linux-firmware-amd>=${version}_${revision} linux-firmware-network>=${version}_${revision}"
@@ -9,12 +9,13 @@ maintainer="classabbyamp <void@placeviolette.net>"
 license="custom:see /usr/share/licenses/linux-firmware"
 homepage="https://www.kernel.org/"
 changelog="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log/"
-distfiles="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-${version}.tar.gz"
-checksum=30f181fa8fb03a49da3b76b82dc525ca094426f92e54c540fe784ff44c91e1d6
+distfiles="https://gitlab.com/kernel-firmware/linux-firmware/-/archive/${version}/linux-firmware-${version}.tar.gz"
+checksum=b78dd0475df5aabafe1e515dc988b17de8c5f5afce16573453275f5f855a2cb2
 python_version=3
 nostrip=yes
 
 build_options="compressed"
+build_options_default="compressed"
 desc_option_compressed="compress firmware with zstd"
 
 do_install() {
@@ -25,7 +26,7 @@ do_install() {
 		make install dedup FIRMWAREDIR=/usr/lib/firmware DESTDIR="$DESTDIR"
 	fi
 
-	for _l in LICEN* WHENCE
+	for _l in LICENSE WHENCE LICENSES/LICEN*
 	do
 		vlicense "$_l"
 	done
@@ -63,8 +64,10 @@ linux-firmware-intel_package() {
 	short_desc+=" - Intel GPU microcode"
 	nostrip=yes
 	pkg_install() {
-		vmove usr/lib/firmware/i915
-		vmove usr/share/licenses/linux-firmware/LICENSE.i915
+		for d in i915 xe; do
+			vmove "usr/lib/firmware/$d"
+			vmove "usr/share/licenses/linux-firmware/LICENSE.$d"
+		done
 	}
 }
 
@@ -100,8 +103,6 @@ linux-firmware-network_package() {
 			atusb
 			# BNX2 Ethernet
 			"bnx2*"
-			# Sun Cassini Ethernet
-			"sun/cassini*"
 			# Chelsio Ethernet
 			"cxgb*"
 			# ST-E WLAN
@@ -125,9 +126,11 @@ linux-firmware-network_package() {
 			# Multi-Tech modem
 			"mts_*.fw*"
 			# Myricom ethernet
-			"myri10ge*" myricom
+			"myri10ge*"
 			# NXP UWB/bluetooth
 			"nxp/sr150_fw.bin*" "nxp/helper_uart*.bin*" "nxp/uartiw*.bin*" "nxp/uartspi*.se*" "nxp/uartuart*"
+			# NXP WLAN
+			"nxp/sd_w*"
 			# Qualcomm WLAN/bluetooth
 			qca "wil6210*"
 			# QLogic HBA
@@ -149,7 +152,7 @@ linux-firmware-network_package() {
 			# TI WLAN/bluetooth
 			ti-connectivity
 			# Tigon ethernet
-			acenic tigon
+			tigon
 			# 3Com ethernet
 			3com
 			# Eagle USB modem

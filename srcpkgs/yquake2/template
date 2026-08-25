@@ -1,11 +1,11 @@
 # Template file for 'yquake2'
 pkgname=yquake2
-version=8.41
+version=8.70
 revision=1
 build_style=cmake
 configure_args="-DSYSTEMWIDE_SUPPORT=ON"
 hostmakedepends="pkg-config"
-makedepends="SDL2-devel libjpeg-turbo-devel libopenal-devel zlib-devel
+makedepends="SDL3-devel libjpeg-turbo-devel libopenal-devel zlib-devel
  libcurl-devel"
 depends="desktop-file-utils hicolor-icon-theme"
 short_desc="Enhanced client for id Software's Quake II (Yamagi Quake II)"
@@ -13,7 +13,7 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="GPL-2.0-or-later"
 homepage="https://www.yamagi.org/quake2/"
 distfiles="https://deponie.yamagi.org/quake2/quake2-${version}.tar.xz"
-checksum=edb37e0634953d16b4e0f3a3152e4ddc097def5f6061629392ad90a1a785309e
+checksum=37e4143e4d362d7b93ba7a8d2c36a945fbcae82aef386512032200233b1750c8
 
 case "$XBPS_TARGET_MACHINE" in
 	armv*) makedepends+=" MesaLib-devel";;

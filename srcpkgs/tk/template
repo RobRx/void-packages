@@ -1,6 +1,6 @@
 # Template file for 'tk'
 pkgname=tk
-version=8.6.14
+version=8.6.18
 revision=1
 build_wrksrc=unix
 build_style=gnu-configure
@@ -14,7 +14,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="TCL"
 homepage="http://www.tcl.tk"
 distfiles="${SOURCEFORGE_SITE}/tcl/tk${version}-src.tar.gz"
-checksum=8ffdb720f47a6ca6107eac2dd877e30b0ef7fac14f3a84ebbd0b3612cee41a94
+checksum=95cd528a80f5e4bdb557af9b14a7197d6860793a3894e25e7c9fad2ed05d4c3c
 
 shlib_provides="libtk8.6.so"
 

@@ -1,7 +1,7 @@
 # Template file for 'rhash'
 pkgname=rhash
-version=1.4.5
-revision=1
+version=1.4.6
+revision=2
 build_style=configure
 configure_args="--enable-openssl --prefix=/usr --sysconfdir=/etc"
 make_install_target="install install-lib-headers"
@@ -12,7 +12,15 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="0BSD"
 homepage="https://github.com/rhash/RHash"
 distfiles="https://github.com/rhash/RHash/archive/v${version}.tar.gz"
-checksum=6db837e7bbaa7c72c5fd43ca5af04b1d370c5ce32367b9f6a1f7b49b2338c09a
+checksum=9f6019cfeeae8ace7067ad22da4e4f857bb2cfa6c2deaa2258f55b2227ec937a
+
+case "$XBPS_TARGET_MACHINE" in
+	i686*)
+		# configure.sh does compile checks for SSE4 instructions that are not available on
+		# i686 targets
+		configure_args+=" --disable-shani"
+		;;
+esac
 
 post_extract() {
 	vsed -i -e 's/__GLIBC__/__linux__/' librhash/byte_order.h

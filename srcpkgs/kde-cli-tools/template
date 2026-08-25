@@ -1,13 +1,17 @@
 # Template file for 'kde-cli-tools'
+# group=kde-plasma
 pkgname=kde-cli-tools
-version=6.2.5
+version=6.7.4
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules qt6-base qt6-tools gettext
- kf6-kconfig kf6-kcmutils"
+ kf6-kwindowsystem kf6-kconfig kf6-kcmutils kf6-kdoctools"
 makedepends="plasma-activities-devel kf6-kcmutils-devel kf6-kdesu-devel
+ qt6-svg-devel kf6-kconfig-devel kf6-kiconthemes-devel kf6-kio-devel
+ kf6-kservice-devel kf6-kwindowsystem-devel kf6-kparts-devel
+ kf6-kcoreaddons-devel kf6-kwidgetsaddons-devel kf6-kdoctools-devel
  plasma-workspace-devel kf6-ki18n-devel qt6-base-private-devel"
 depends="xdg-utils"
 short_desc="KDE CLI tools"
@@ -15,7 +19,11 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later, GPL-2.0-or-later"
 homepage="https://invent.kde.org/plasma/kde-cli-tools"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=1dda57f7495060a086658796519d68d54f5e7da4e12fa6d8d4bf4614ac728002
+checksum=9b93730cbea9eecd2b17c84603c1496d18d08749d2861f87a7552f463d7aecb0
+
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"
 
 post_install() {
 	ln -sf ../libexec/kf6/kdesu ${DESTDIR}/usr/bin

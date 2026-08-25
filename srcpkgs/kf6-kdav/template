@@ -1,17 +1,22 @@
 # Template file for 'kf6-kdav'
+# group=kde-frameworks
 pkgname=kf6-kdav
-version=6.10.0
+version=6.29.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
- gettext"
+ kf6-kconfig gettext"
 makedepends="qt6-base-devel kf6-kio-devel kf6-ki18n-devel"
 short_desc="DAV protocol implementation with KJobs"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kdav"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=2e8eff3e8c35001688807a97e490a6e7851a7a1a1fdf72df5559863b8612903d
+checksum=0a4d5c21bace495004571b626a14ae864362a069caea153d8a149a911524cd08
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 replaces="kdav>=0"
 
 kf6-kdav-devel_package() {

@@ -1,6 +1,6 @@
 # Template file for 'ncurses'
 pkgname=ncurses
-version=6.5
+version=6.6
 revision=1
 bootstrap=yes
 configure_args="--enable-big-core"
@@ -10,7 +10,7 @@ license="MIT"
 homepage="https://invisible-island.net/ncurses/"
 changelog="https://invisible-island.net/ncurses/announce.html"
 distfiles="https://invisible-island.net/archives/ncurses/ncurses-${version}.tar.gz"
-checksum=136d91bc269a9a5785e5f9e980bc76ab57428f604ce3e5a5a90cebc767971cc6
+checksum=355b4cbbed880b0381a04c46617b7656e362585d52e9cf84a67e2009b749ff11
 
 depends="ncurses-base-${version}_${revision}"
 
@@ -107,6 +107,7 @@ post_install() {
 	rm ${DESTDIR}/usr/share/terminfo/f/foot{,-direct,+base}
 	rm ${DESTDIR}/usr/share/terminfo/r/rio{,-direct}
 	rm ${DESTDIR}/usr/share/terminfo/w/wezterm
+	rm ${DESTDIR}/usr/share/terminfo/g/ghostty
 }
 
 ncurses-libs_package() {
@@ -159,6 +160,7 @@ ncurses-term_package() {
 ncurses-libtinfo-libs_package() {
 	depends="ncurses-libs-${version}_${revision}"
 	short_desc+=" - libtinfo.so symlink"
+	shlib_provides="libtinfo.so.6"
 	pkg_install() {
 		vmove "usr/lib/libtinfo*.so.*"
 	}

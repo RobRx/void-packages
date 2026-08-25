@@ -1,6 +1,6 @@
 # Template file for 'dq'
 pkgname=dq
-version=0.0.20250201
+version=0.0.20260601
 revision=1
 build_style=gnu-makefile
 make_use_env=yes
@@ -17,7 +17,7 @@ license="CC0-1.0"
 homepage="https://github.com/janmojzis/dq"
 changelog="https://github.com/janmojzis/dq/releases"
 distfiles="https://github.com/janmojzis/dq/archive/${version##*.}.tar.gz"
-checksum=37b1f63431ac502a47562515d3d23bdc303a142f4dabd83ce5d3065c239e7e8d
+checksum=6ce2294c21c27c34e4eb3dab2c04621671f0edb515092127b7ce9afc50535548
 
 system_accounts="_dqcache"
 

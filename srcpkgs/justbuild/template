@@ -1,7 +1,7 @@
 # Template file for 'justbuild'
 pkgname=justbuild
-version=1.4.3
-revision=1
+version=1.6.6
+revision=3
 create_wrksrc=yes
 hostmakedepends="jo pandoc pkg-config python3 tar unzip wget grpc protobuf"
 makedepends="abseil-cpp-devel c-ares-devel catch2 fmt-devel grpc-devel json-c++
@@ -13,7 +13,7 @@ license="Apache-2.0"
 homepage="https://github.com/just-buildsystem/justbuild/"
 changelog="https://github.com/just-buildsystem/justbuild/blob/master/CHANGELOG.md"
 distfiles="https://github.com/just-buildsystem/justbuild/archive/v${version}.tar.gz"
-checksum=4456e2a734abb57b137c5378be9b63916ee7407d85b05305edead885746c0e90
+checksum=1cde8d0285558fcda5622841faa1908ecfd04d25f464d6e5d0890ebb690506b9
 conflicts="just>=0"
 nocross="not supported by bootstrapping"
 
@@ -69,6 +69,7 @@ do_install() {
 	vbin just-work/out/bin/just
 	vbin just-work/out/src/other_tools/just_mr/just-mr
 	vbin just-work/src/bin/just-import-git.py just-import-git
+	vbin just-work/src/bin/just-lock.py just-lock
 
 	eval vcompletion justbuild-${version}/share/just_complete.bash bash
 

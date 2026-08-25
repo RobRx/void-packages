@@ -1,6 +1,6 @@
 # Template file for 'tzutils'
 pkgname=tzutils
-version=2025a
+version=2026c
 revision=1
 bootstrap=yes
 short_desc="Time zone and daylight-saving time utilities"
@@ -8,7 +8,7 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="Public Domain"
 homepage="https://www.iana.org/time-zones"
 distfiles="https://www.iana.org/time-zones/repository/releases/tzdb-${version}.tar.lz"
-checksum=86882399c58693976e0fd291994d2bd8520036c303f68836197a56fb135c2815
+checksum=427a11b1c5f2ebccad18f11650221c4f0465b4f1bb7f44dd02ff192d2808d944
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends="tzutils"
@@ -32,19 +32,6 @@ do_install() {
 	fi
 	make install DESTDIR="$DESTDIR" ZICDIR=/usr/bin $zic ZFLAGS="-b fat"
 	rm -rf "$DESTDIR"/{etc,usr/lib,usr/share/man/man3}
-	# old structure,
-	# noone should use posix/xxx since it's the same as xxx
-	mkdir "$DESTDIR/usr/share/zoneinfo/posix"
-	for _file in "$DESTDIR/usr/share/zoneinfo/"[A-Z]*; do
-		_file="${_file##*/}"
-		ln -s "../$_file" "$DESTDIR/usr/share/zoneinfo/posix/$_file"
-	done
-	# Because TZ=../zoneinfo-posix/posix/posix" is stupid
-	rm -f "$DESTDIR/usr/share/zoneinfo-posix"
-	ln -s zoneinfo/posix "$DESTDIR/usr/share/zoneinfo-posix"
-	# Backward compatible links
-	# TZ=right/... known to be broken especially on musl, but whatever
-	ln -s ../zoneinfo-leaps "$DESTDIR/usr/share/zoneinfo/right"
 	if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
 		vlicense strftime.license
 	fi
@@ -52,7 +39,7 @@ do_install() {
 
 tzdata_package() {
 	short_desc="Time zone and daylight-saving time data"
-	provides="python3-tzdata-${version}_${revision} py3:tzdata-${version}"
+	provides="python3-tzdata-${version}_${revision} py3:tzdata-${version}_${revision}"
 	pkg_install() {
 		vmove usr/share/man/man5
 		vmove "usr/share/zoneinfo*"

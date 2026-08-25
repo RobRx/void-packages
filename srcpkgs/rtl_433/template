@@ -1,6 +1,6 @@
 # Template file for 'rtl_433'
 pkgname=rtl_433
-version=24.10
+version=25.12
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config libtool"
@@ -11,7 +11,7 @@ license="GPL-2.0-or-later"
 homepage="https://github.com/merbanan/rtl_433"
 changelog="https://raw.githubusercontent.com/merbanan/rtl_433/master/CHANGELOG.md"
 distfiles="${homepage}/archive/${version}.tar.gz"
-checksum=e5ab1597a723bf9e0eaa56be988b23dae3670471c6472510ba07b3b588407dcb
+checksum=d283ec7a41a02d398e8918b20b65df3bf684cf4478371830662004005dadcdd2
 
 post_install() {
 	vmkdir usr/share/examples

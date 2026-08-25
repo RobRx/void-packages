@@ -1,6 +1,7 @@
 # Template file for 'kf6-kquickcharts'
+# group=kde-frameworks
 pkgname=kf6-kquickcharts
-version=6.10.0
+version=6.29.0
 revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml
@@ -13,10 +14,14 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kquickcharts"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=a2036f7b1ee7abb9c278c7822fc18723d661d856da9dbf9f006ceebed731598f
+checksum=a72a2188605ad765b0f3dd5aae2c9c8863fa0b27a0010a0a7756f92cff53d380
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 kf6-kquickcharts-devel_package() {
-	depends="$makedepends ${sourcepkg}>=${version}_${revision}"
+	depends="${sourcepkg}>=${version}_${revision} qt6-base-devel"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/lib/cmake

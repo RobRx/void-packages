@@ -1,15 +1,16 @@
 # Template file for 'profanity'
 pkgname=profanity
-version=0.14.0
-revision=3
-build_style=gnu-configure
-configure_args="--enable-notifications --enable-otr --enable-pgp
- --enable-python-plugins --enable-plugins --with-xscreensaver --enable-omemo
- --enable-c-plugins ac_cv_prog_PYTHON_CONFIG_EXISTS=yes PYTHON_VERSION=3"
+version=0.18.2
+revision=1
+build_style=meson
+configure_args="-Dnotifications=enabled -Dotr=enabled -Dpgp=enabled
+ -Dpython-plugins=enabled -Dc-plugins=enabled -Dxscreensaver=enabled
+ -Domemo=enabled -Domemo-backend=libomemo-c -Domemo-qrcode=enabled
+ -Dicons-and-clipboard=enabled -Dtests=true"
 hostmakedepends="pkg-config python3-devel gtk+3-devel"
 makedepends="libcurl-devel libglib-devel libstrophe-devel readline-devel
  sqlite-devel libnotify-devel libotr-devel libgcrypt-devel gpgme-devel
- python3-devel gtk+3-devel libXScrnSaver-devel libsignal-protocol-c-devel
+ python3-devel gtk+3-devel libXScrnSaver-devel libomemo-c-devel
  libgcrypt-devel qrencode-devel"
 checkdepends="cmocka-devel"
 short_desc="Console based XMPP client"
@@ -17,8 +18,8 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://profanity-im.github.io/"
 changelog="https://raw.githubusercontent.com/profanity-im/profanity/master/CHANGELOG"
-distfiles="https://github.com/boothj5/profanity/releases/download/${version}/profanity-${version}.tar.gz"
-checksum=fd23ffd38a31907974a680a3900c959e14d44e16f1fb7df2bdb7f6c67bd7cf7f
+distfiles="https://github.com/profanity-im/profanity/archive/refs/tags/${version}.tar.gz"
+checksum=d5431065b4d966a745284e64337ec7e11a3fd20179de00b0f98b9cf6004e2ab5
 
 case "$XBPS_TARGET_MACHINE" in
 	arm*)

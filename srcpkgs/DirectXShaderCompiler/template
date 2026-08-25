@@ -1,49 +1,45 @@
 # Template file for 'DirectXShaderCompiler'
 pkgname=DirectXShaderCompiler
-version=1.7.2207
+version=1.9.2607
 revision=1
 archs="x86_64* i686*"
 build_style=cmake
-configure_args="-C ../cmake/caches/PredefinedParams.cmake"
+configure_args="-C ../cmake/caches/PredefinedParams.cmake -DLLVM_INCLUDE_TESTS=OFF -DCLANG_INCLUDE_TESTS=FALSE -DHLSL_INCLUDE_TESTS=FALSE"
 hostmakedepends="python3 git"
-short_desc="DirectX Shader Compiler based on LLVM/Clang. "
-maintainer="Joshua Woodie <joshua.t.woodie@gmail.com>"
-license="LLVM"
+makedepends="libxml2-devel"
+short_desc="DirectX Shader Compiler based on LLVM/Clang"
+maintainer="John <me@johnnynator.dev>"
+license="NCSA"
 homepage="https://github.com/microsoft/DirectXShaderCompiler"
-_SPIRV_Headers_commit=b2a156e1c0434bc8c99aaebba1c7be98be7ac580
-_SPIRV_Tools_commit=b930e734ea198b7aabbbf04ee1562cf6f57962f0
-_re2_commit=3e9622e0cd94ebba6e04d5c50b7af32029e330d8
-_effcee_commit=ddf5e2bb92957dc8a12c5392f8495333d6844133
+_SPIRV_Headers_commit=29981f65241605e08b0ede4cfeb999fe3b723c6a
+_SPIRV_Tools_commit=b707790a898e44038547df54580022fc1cf89c3d
+_DirectX_Headers_commit=980971e835876dc0cde415e8f9bc646e64667bf7
 distfiles="https://github.com/microsoft/DirectXShaderCompiler/archive/refs/tags/v${version}.tar.gz
  https://github.com/KhronosGroup/SPIRV-Headers/archive/${_SPIRV_Headers_commit}.tar.gz
  https://github.com/KhronosGroup/SPIRV-Tools/archive/${_SPIRV_Tools_commit}.tar.gz
- https://github.com/google/re2/archive/${_re2_commit}.tar.gz
- https://github.com/google/effcee/archive/${_effcee_commit}.tar.gz"
-checksum="a52aad3830b4d3e39734455ad7f288ad24e32c006e256d987a0ed44fc54fbd26
- b200990e1c07894906e298368e7e56d5ab9d728d851f9292587ec740c2b4d409
- 9cddc845f99d7daa65940ff9deb6754cd71b67987ec9860bb0ef2af8a8732c84
- 218e0f8d100ba09a089582de7a54ae0ebfa08fd8e43b4c8035ef2faa5e0d284a
- 5809b2f80b67dc231c52da743be37bb46c5ce4a59dde344761f7c4295119750c"
+ https://github.com/microsoft/DirectX-Headers/archive/${_DirectX_Headers_commit}.tar.gz"
+checksum="4ed223c7b4c61effa86aeb550e91f51451f479c5bd8820926fed9af452b3dbd5
+ 232899f1ad4104fb5bc377b94596c7621575eee62ad9a9e8f929b63a7dd8a7ad
+ 05d8af89737bde57571c48dbd36714c9f520a69623e14de72c3be6b600e277d6
+ b5a4b6d8806ff7f29f19879f83d015dbe8740676d4ca0b48647a789cc7773c4e"
 
 skip_extraction="
  ${_SPIRV_Headers_commit}.tar.gz
  ${_SPIRV_Tools_commit}.tar.gz
- ${_re2_commit}.tar.gz
- ${_effcee_commit}.tar.gz
+ ${_DirectX_Headers_commit}.tar.gz
  "
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
 	# Tests on musl would require some patching to be done
 	# Also some fun with Mutexes. so mt is disabled for now
-	configure_args+=" -DCLANG_INCLUDE_TESTS=FALSE -DHLSL_INCLUDE_TESTS=FALSE -DLLVM_ENABLE_THREADS=OFF"
+	configure_args+=" -DLLVM_ENABLE_THREADS=OFF"
 fi
 nocross="fun with cmake and bunlded llvm"
 
 post_extract() {
 	vsrcextract -C external/SPIRV-Headers ${_SPIRV_Headers_commit}.tar.gz
 	vsrcextract -C external/SPIRV-Tools ${_SPIRV_Tools_commit}.tar.gz
-	vsrcextract -C external/re2 ${_re2_commit}.tar.gz
-	vsrcextract -C external/effcee ${_effcee_commit}.tar.gz
+	vsrcextract -C external/DirectX-Headers ${_DirectX_Headers_commit}.tar.gz
 }
 
 do_install() {

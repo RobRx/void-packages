@@ -1,6 +1,6 @@
 # Template file for 's6'
 pkgname=s6
-version=2.11.3.0
+version=2.15.0.0
 revision=1
 build_style=configure
 configure_args="--libdir=/usr/lib --bindir=/usr/bin
@@ -15,7 +15,7 @@ license="ISC"
 homepage="http://skarnet.org/software/s6/"
 changelog="https://skarnet.org/software/s6/upgrade.html"
 distfiles="http://skarnet.org/software/s6/s6-${version}.tar.gz"
-checksum=0ef2de80c40b603d58bf65ec5dd9f0bb1f227d35f311e8948d9e30f81efb5b81
+checksum=27dff73d626285540133e075e75887087f5117fd51de59503ef7d29e96f69e4c
 
 build_options="static"
 desc_option_static="Build static binaries"

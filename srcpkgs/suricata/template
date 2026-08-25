@@ -1,6 +1,6 @@
 # Template file for 'suricata'
 pkgname=suricata
-version=7.0.3
+version=8.0.6
 revision=1
 build_style=gnu-configure
 build_helper=rust
@@ -13,9 +13,9 @@ makedepends="libnet-devel libpcap-devel pcre2-devel libyaml-devel libcap-ng-deve
 short_desc="Suricata is a network IDS, IPS and NSM engine"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
-homepage="https://suricata-ids.org/"
-distfiles="https://www.openinfosecfoundation.org/download/${pkgname}-${version}.tar.gz"
-checksum=ea0742d7a98783f1af4a57661af6068bc2d850ac3eca04b3204d28ce165e35ff
+homepage="https://suricata.io/"
+distfiles="https://www.openinfosecfoundation.org/download/suricata-${version}.tar.gz"
+checksum=b264584edda4a3b2b462050099c7c54f4f35ac0c7164e41084be9b216c090f8c
 
 build_options="lua hiredis"
 build_options_default="hiredis"

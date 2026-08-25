@@ -1,6 +1,6 @@
 # Template file for 'cloc'
 pkgname=cloc
-version=2.04
+version=2.10
 revision=1
 hostmakedepends="perl"
 depends="perl"
@@ -9,7 +9,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/AlDanial/cloc"
 distfiles="https://github.com/AlDanial/cloc/archive/v${version}.tar.gz"
-checksum=3e6f25000d920fdee1a57575c185236286ab5e05fda7b6ab2e36c34f1bb6afbc
+checksum=a8fac35f4cf42728765580ba11afc2568ad205509a22204663f526169548436d
 
 do_build() {
 	make -C Unix man

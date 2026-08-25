@@ -1,6 +1,6 @@
 # Template file for 'imake'
 pkgname=imake
-version=1.0.9
+version=1.0.11
 revision=1
 build_style=gnu-configure
 hostmakedepends="pkg-config perl makedepend xorg-cf-files"
@@ -11,4 +11,4 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="http://xorg.freedesktop.org/"
 distfiles="${XORG_SITE}/util/imake-${version}.tar.xz"
-checksum=72de9d278f74d95d320ec7b0d745296f582264799eab908260dbea0ce8e08f83
+checksum=55955527eaebe94633e4083d4fe5f2160a65fe4c6dafdee48b89fea5f1ca8a78

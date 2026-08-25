@@ -1,6 +1,6 @@
 # Template file for 'lf'
 pkgname=lf
-version=r34
+version=r42
 revision=1
 build_style=go
 go_import_path="github.com/gokcehan/${pkgname}"
@@ -9,8 +9,9 @@ short_desc="Terminal file manager"
 maintainer="Daniel Lewan <daniel@teddydd.me>"
 license="MIT"
 homepage="https://github.com/gokcehan/lf"
+changelog="https://raw.githubusercontent.com/gokcehan/lf/master/CHANGELOG.md"
 distfiles="https://github.com/gokcehan/lf/archive/${version}.tar.gz"
-checksum=9c78735fa88c0b77664d7de41e7edbbca99ace5410f522530307244a09839263
+checksum=7a8f7c2c86419270b713b6235dced7b9d0e68732e74a1e0f375f774fff4023ca
 
 post_install() {
 	vlicense LICENSE

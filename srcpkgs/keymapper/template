@@ -1,0 +1,19 @@
+# Template file for 'keymapper'
+pkgname=keymapper
+version=5.7.1
+revision=1
+build_style=cmake
+configure_args="-DVERSION=${version}"
+hostmakedepends="pkg-config wayland-devel"
+makedepends="eudev-libudev-devel libusb-devel libX11-devel dbus-devel wayland-devel libxkbcommon-devel libayatana-appindicator-devel"
+short_desc="Cross-platform context-aware key remapper"
+maintainer="deimonn <deimonn@outlook.com>"
+license="GPL-3.0-only"
+homepage="https://github.com/houmain/keymapper"
+changelog="https://raw.githubusercontent.com/houmain/keymapper/main/CHANGELOG.md"
+distfiles="https://github.com/houmain/keymapper/archive/refs/tags/${version}.tar.gz"
+checksum=912041946525431a5db188c0e8827028039185895580f348a0f904918b7cc469
+
+post_install() {
+	vsv keymapperd
+}

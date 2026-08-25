@@ -1,6 +1,6 @@
 # Template file for 'prosody'
 pkgname=prosody
-version=0.12.5
+version=13.0.6
 revision=1
 build_style=configure
 configure_args="
@@ -18,7 +18,8 @@ conf_files="
  /etc/prosody/certs/openssl.cnf
  /etc/prosody/certs/makefile
  /etc/prosody/certs/GNUmakefile"
-make_dirs="/var/lib/prosody 0755 prosody prosody"
+make_dirs="/var/lib/prosody 0750 prosody prosody
+ /var/log/prosody 0750 prosody prosody"
 makedepends="lua54-devel openssl-devel libidn-devel icu-devel"
 depends="lua54-luasocket lua54-luafilesystem lua54-luaexpat lua54-luasec lua54-unbound"
 short_desc="Lightweight and extensible Jabber/XMPP server written in Lua"
@@ -27,7 +28,7 @@ license="MIT"
 homepage="https://prosody.im/"
 changelog="https://prosody.im/doc/release/${version}"
 distfiles="https://prosody.im/downloads/source/${pkgname}-${version}.tar.gz"
-checksum=778fb7707a0f10399595ba7ab9c66dd2a2288c0ae3a7fe4ab78f97d462bd399f
+checksum=ec696f9cf562c3af4a04b07d3fb36a1cedcc4e69a392fddcfc524bc67d93050f
 
 system_accounts="prosody"
 prosody_homedir="/var/lib/prosody"
@@ -42,9 +43,7 @@ post_configure() {
 		-e 's|^LD=.*|LD=${CC}|' \
 		-i config.unix
 }
-pre_build() {
-	cp -f ${FILESDIR}/prosody.cfg.lua prosody.cfg.lua.dist
-}
+
 post_install() {
 	vsv prosody
 	vlicense COPYING

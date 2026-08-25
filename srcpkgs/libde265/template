@@ -1,20 +1,22 @@
 # Template file for 'libde265'
 pkgname=libde265
-version=1.0.12
+version=1.1.1
 revision=1
-build_style=gnu-configure
+build_style=cmake
 hostmakedepends="pkg-config"
 short_desc="Open h.265 video codec implementation"
-maintainer="Kyle Nusbaum <knusbaum+void@sdf.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-3.0-or-later"
 homepage="https://www.libde265.org"
 changelog="https://github.com/strukturag/libde265/releases"
 distfiles="https://github.com/strukturag/libde265/releases/download/v${version}/libde265-${version}.tar.gz"
-checksum=62185ea2182e68cf68bba20cc6eb4c287407b509cf0a827d7ddb75614db77b5c
+checksum=fd48a927e94ed74fc7ce8829d222b9d8599fcbfe8b6448ba66705babc56ab219
 
-post_install() {
-	# Why is this installed anyway?
-	rm -f ${DESTDIR}/bin/tests
+libde265-tools_package() {
+	short_desc+=" - tools"
+	pkg_install() {
+		vmove usr/bin
+	}
 }
 
 libde265-devel_package() {
@@ -22,8 +24,8 @@ libde265-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
 	pkg_install() {
 		vmove usr/include
-		vmove "usr/lib/*.a"
 		vmove "usr/lib/*.so"
+		vmove usr/lib/cmake
 		vmove usr/lib/pkgconfig
 	}
 }

@@ -1,28 +1,39 @@
 # Template file for 'kf6-kwidgetsaddons'
+# group=kde-frameworks
 pkgname=kf6-kwidgetsaddons
-version=6.10.0
+version=6.29.0
 revision=1
+_llvmver=21
 build_style=cmake
-configure_args="$(vopt_bool designerplugin BUILD_DESIGNERPLUGIN)"
-hostmakedepends="extra-cmake-modules qt6-tools qt6-base"
-makedepends="qt6-base-devel"
+configure_args="-DBUILD_DESIGNERPLUGIN=ON -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
+ $(vopt_bool python BUILD_PYTHON_BINDINGS)"
+hostmakedepends="extra-cmake-modules qt6-tools qt6-base
+ $(vopt_if python "python3-build python3-setuptools shiboken6 llvm${_llvmver}")"
+makedepends="qt6-base-devel qt6-tools-devel
+ $(vopt_if python 'libshiboken6-devel libpyside6-devel python3-devel')"
 short_desc="KWidgetsAddons"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kwidgetsaddons"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=e0fa4943d7874287fd2c2c254f1ef21edf7e573b6b19354df5fdef8cbbefe74e
+checksum=76285d03cdc06f0647afbbc89f31ab5aa766cbc3c6eb177e3f8a0441444e3068
 
-build_options="designerplugin"
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
-if [ -z "$CROSS_BUILD" ]; then
-	build_options_default="designerplugin"
+build_options="python"
+build_options_default="python"
+
+if [ "$CROSS_BUILD" ]; then
+	configure_args+=" -DECM_SHIBOKEN_ARCH=$XBPS_CROSS_RUST_TARGET"
+	configure_args+=" -DSYSROOT_INCLUDE_DIRS=$XBPS_CROSS_BASE/usr/include"
 fi
+export LLVM_INSTALL_DIR=/usr/lib/llvm/${_llvmver}
 
-if [ "$build_option_designerplugin" ]; then
-	makedepends+=" qt6-tools-devel"
-	nocross="yes"
-fi
+case "$XBPS_TARGET_MACHINE" in
+	arm*) configure_args+=" -DSHIBOKEN_GENERATOR_EXTRA_FLAGS=--clang-option=-mfloat-abi=hard" ;;
+esac
 
 do_check() {
 	cd build
@@ -37,8 +48,6 @@ kf6-kwidgetsaddons-devel_package() {
 		vmove usr/include
 		vmove usr/lib/cmake
 		vmove "usr/lib/*.so"
-		if [ "$build_option_designerplugin" ]; then
-			vmove usr/lib/qt6/plugins/designer
-		fi
+		vmove usr/lib/qt6/plugins/designer
 	}
 }

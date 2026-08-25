@@ -1,10 +1,11 @@
 # Template file for 'akonadi-search'
+# group=kde-gear
 pkgname=akonadi-search
-version=24.12.1
+version=26.08.0
 revision=1
 build_style=cmake
 build_helper="rust"
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -18,7 +19,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/akonadi-search-${version}.tar.xz"
-checksum=be94ed8c1bdc8c0588c4104929fe9aed04ed77f1fa7ee5315a54f83ff4a8720e
+checksum=22cad63d16449f2496374edf866a38bd62187006d0835e3cd1df0e6333e4d61a
 
 do_check() {
 	cd build

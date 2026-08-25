@@ -1,6 +1,6 @@
 # Template file for 'opentofu'
 pkgname=opentofu
-version=1.8.1
+version=1.12.2
 revision=1
 build_style=go
 go_import_path="github.com/opentofu/$pkgname"
@@ -12,4 +12,4 @@ license="MPL-2.0"
 homepage="https://opentofu.org/"
 changelog="https://github.com/opentofu/opentofu/releases"
 distfiles="https://github.com/opentofu/opentofu/archive/v$version.tar.gz"
-checksum=849f20c1f700910842c42fbf76730fabd4df82b0d0879d4bd9a88abe3d275b2a
+checksum=f1e13ed2c1552ea7828156a10588a544d8b6b0d2c25f801a07fdf666734604fd

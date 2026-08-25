@@ -1,9 +1,11 @@
 # Template file for 'gnutls'
 pkgname=gnutls
-version=3.8.6
+version=3.8.13
 revision=1
 build_style=gnu-configure
-configure_args="--disable-static --disable-valgrind-tests
+configure_args="
+ --disable-static
+ --disable-valgrind-tests
  --disable-rpath
  --with-default-trust-store-file=/etc/ssl/certs/ca-certificates.crt
  --with-trousers-lib=${XBPS_CROSS_BASE}/usr/lib"
@@ -21,7 +23,7 @@ license="GPL-3.0-only, LGPL-2.1-or-later"
 homepage="https://gnutls.org"
 changelog="https://gitlab.com/gnutls/gnutls/-/raw/master/NEWS"
 distfiles="https://www.gnupg.org/ftp/gcrypt/gnutls/v${version%.*}/gnutls-${version}.tar.xz"
-checksum=2e1588aae53cb32d43937f1f4eca28febd9c0c7aa1734fc5dd61a7e81e0ebcdd
+checksum=ffed8ec1bf09c2426d4f14aae377de4753b53e537d685e604e99a8b16ca9c97e
 # same as $PASS in tests/cert-tests/certtool.sh
 make_check_pre="env GNUTLS_PIN=1234"
 

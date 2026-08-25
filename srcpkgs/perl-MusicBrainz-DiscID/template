@@ -1,13 +1,13 @@
 # Template file for 'perl-MusicBrainz-DiscID'
 pkgname=perl-MusicBrainz-DiscID
 version=0.06
-revision=5
+revision=7
 build_style=perl-module
 hostmakedepends="perl which pkg-config"
 makedepends="libdiscid-devel perl"
 depends="perl"
 short_desc="Interface for the MusicBrainz libdiscid library"
-maintainer="Urs Schulz <voidpkgs@ursschulz.de>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://metacpan.org/release/MusicBrainz-DiscID"
 distfiles="${CPAN_SITE}/MusicBrainz/${pkgname//perl-/}-${version}.tar.gz"

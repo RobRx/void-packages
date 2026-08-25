@@ -1,20 +1,18 @@
 # Template file for 'lesspipe'
 pkgname=lesspipe
-version=2.08
+version=2.27
 revision=1
 depends="less"
 short_desc="Input filter for the pager less"
-maintainer="Olga Ustuzhanina <me@laserbat.pw>"
+maintainer="elbachir-one <bachiralfa@gmail.com>"
 license="GPL-2.0-only"
-homepage="http://www-zeuthen.desy.de/~friebel/unix/lesspipe.html"
-changelog="https://raw.githubusercontent.com/wofr06/lesspipe/lesspipe/ChangeLog"
-distfiles="https://github.com/wofr06/lesspipe/archive/v${version}.tar.gz"
-checksum=91b1363ba9b5594fa4285717592d712a6c724ae7ee35a9543127b3d64677c0d2
+homepage="https://lesspipe.org/"
+changelog="https://raw.githubusercontent.com/wofr06/lesspipe/refs/heads/lesspipe/ChangeLog"
+distfiles="https://github.com/wofr06/lesspipe/archive/refs/tags/v${version}.tar.gz"
+checksum=75ed4ee02d90080636c069a33861701af0af23753bd5ce422830b06f9102f548
 
 do_install() {
 	vbin archive_color
-	vbin code2color
-	vbin sxw2txt
 	vbin vimcolor
 	vbin lesspipe.sh
 	vman lesspipe.1

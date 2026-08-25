@@ -1,6 +1,7 @@
 # Template file for 'plasma-workspace-wallpapers'
+# group=kde-plasma
 pkgname=plasma-workspace-wallpapers
-version=6.2.5
+version=6.7.4
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=OFF"
@@ -10,4 +11,8 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/plasma/plasma-workspace-wallpapers"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=d8b07a2cc3d34d13434f3a20e9a496ed7502805262e3bb189eb846d574f1bc80
+checksum=d0bab9b0182480a41fe0c677a1f5d4d1c3088e0f3aa6883a0bc25423d94ecfd0
+
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"

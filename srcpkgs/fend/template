@@ -1,8 +1,9 @@
 # Template file for 'fend'
 pkgname=fend
-version=1.5.5
+version=1.5.8
 revision=1
 build_style=cargo
+configure_args="--no-default-features --features=native-tls"
 make_install_args="--path cli"
 hostmakedepends="pkg-config"
 makedepends="openssl-devel"
@@ -13,8 +14,8 @@ homepage="https://printfn.github.io/fend/"
 changelog="https://raw.githubusercontent.com/printfn/fend/main/CHANGELOG.md"
 distfiles="https://github.com/printfn/fend/archive/refs/tags/v${version}.tar.gz
  https://github.com/printfn/fend/releases/download/v${version}/fend.1>fend_man_${version}"
-checksum="330ca6ca5fcb4410fe75caeab0d77b0b112a355ec2a5d5848dffb0a7a7a2e7a7
- 65be3b5b9c49fd13bab854eb1ffa9e14ae533d2623bcccedba48e935ecbe0584"
+checksum="2c53922b83b693c852581942ddcf8e02e1bcd691f30c00e8066cdd6ab2070b86
+ a754f3908bfc3226646711cffcfa584337674655823815e03be9955c80bf8559"
 skip_extraction="fend_man_${version}"
 
 post_install() {

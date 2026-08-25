@@ -1,13 +1,15 @@
 # Template file for 'keychain'
 pkgname=keychain
-version=2.8.5
-revision=2
+version=2.9.8
+revision=1
+build_style=gnu-makefile
+hostmakedepends="perl"
 short_desc="Keychain manager for ssh-agent and gpg-agent"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="http://www.funtoo.org/Keychain"
 distfiles="https://github.com/funtoo/keychain/archive/${version}.tar.gz"
-checksum=dcce703e5001211c8ebc0528f45b523f84d2bceeb240600795b4d80cb8475a0b
+checksum=589cf55ae5c4b65af1d977d705beb319006efca5bcdda8352b8558d0dcff5a84
 
 do_install() {
 	vbin keychain

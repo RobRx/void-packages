@@ -1,19 +1,26 @@
 # Template file for 'kf6-krunner'
+# group=kde-frameworks
 pkgname=kf6-krunner
-version=6.10.0
+version=6.29.0
 revision=1
 build_style=cmake
+configure_args="-DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
+ -DKDE_INSTALL_QTMETATYPESDIR=lib/qt6/metatypes"
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
- gettext"
+ kf6-kconfig gettext"
 makedepends="kf6-kconfig-devel kf6-kcoreaddons-devel kf6-ki18n-devel
- kf6-kitemmodels-devel"
+ kf6-kitemmodels-devel kf6-kwindowsystem-devel"
 checkdepends="dbus"
 short_desc="Framework for providing different actions given a string query"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/krunner"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=459c97ad510c3565d4547b51c4dbaf19b3834c0afdf77bf6ee4dff346957d62b
+checksum=163129f8d3e768cd531d21277c7a643600634eb01a5ea275a9170cdef51ac125
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 do_check() {
 	cd build

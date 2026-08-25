@@ -1,16 +1,19 @@
 # Template file for 'plasma-pa'
+# group=kde-plasma
 pkgname=plasma-pa
-version=6.2.5
+version=6.7.4
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake -Wno-dev
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules pkg-config qt6-base gettext qt6-tools
  qt6-declarative-host-tools kf6-kconfig kf6-kcoreaddons kf6-kcmutils kf6-kpackage
- kf6-kdoctools"
+ kf6-kwindowsystem kf6-kdoctools"
 makedepends="libplasma-devel kf6-kdeclarative-devel kf6-kstatusnotifieritem-devel
  kf6-kdoctools-devel kf6-kcmutils-devel kf6-ksvg-devel kf6-kdbusaddons-devel
+ kf6-kconfig-devel kf6-kcoreaddons-devel kf6-kglobalaccel-devel kf6-ki18n-devel
+ libglib-devel qt6-base-private-devel
  qt6-declarative-devel pulseaudio-devel libcanberra-devel pulseaudio-qt-devel"
 depends="sound-theme-freedesktop kf6-kirigami kf6-kitemmodels"
 short_desc="PulseAudio Plasma applet"
@@ -18,4 +21,8 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/plasma/plasma-pa"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=5179337a7eac4145a953b46146d4899945d9c43373ad60f76692ffc42cf19d47
+checksum=419c3cfe15f2f3093c4255d84a24708dd7ad28da2ce80cfee3521f761ba6937e
+
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"

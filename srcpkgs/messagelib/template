@@ -1,9 +1,10 @@
 # Template file for 'messagelib'
+# group=kde-gear
 pkgname=messagelib
-version=24.12.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -19,7 +20,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/messagelib-${version}.tar.xz"
-checksum=e368e53ef1f9e05fb24edac23388f056caa4c9c583f4082daf458c220dcd1e6d
+checksum=a0f48b86e8995f49b04dc0458f6b7ba0ea35cd1c452eeb19f48aeff01ba8f537
 make_check_pre="dbus-run-session"
 
 if [ "$XBPS_WORDSIZE$XBPS_WORDSIZE" != "64$XBPS_TARGET_WORDSIZE" ]; then

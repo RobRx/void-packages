@@ -1,10 +1,12 @@
 # Template file for 'kf6-kcontacts'
+# group=kde-frameworks
 pkgname=kf6-kcontacts
-version=6.10.0
+version=6.29.0
 revision=1
 build_style=cmake
+configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml"
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
- gettext qt6-declarative-host-tools"
+ gettext qt6-declarative-host-tools kf6-kconfig"
 makedepends="qt6-base-devel kf6-kcoreaddons-devel kf6-ki18n-devel
  kf6-kconfig-devel kf6-kcodecs-devel"
 short_desc="Library for working with contact information"
@@ -12,19 +14,16 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kcontacts"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=b622ad011925584fb82cf0bfea713fddd4101c47ab6c23efb5fb878f1a69b46d
+checksum=08f8bfe83c5d4516b5c76877ac51aba8e7001242cd56d1e2a987bc8410af53fd
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 do_check() {
 	cd build
 	# disable failing test
 	ctest -E "kcontacts-addresstest"
-}
-
-post_install() {
-	if [[ "$XBPS_TARGET_MACHINE" == arm* ]]; then
-		mv ${DESTDIR}/usr/lib64/* ${DESTDIR}/usr/lib/
-		rm -rf ${DESTDIR}/usr/lib64
-	fi
 }
 
 kf6-kcontacts-devel_package() {

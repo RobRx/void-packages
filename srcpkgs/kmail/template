@@ -1,9 +1,10 @@
 # Template file for 'kmail'
+# group=kde-gear
 pkgname=kmail
-version=24.12.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -12,7 +13,7 @@ hostmakedepends="extra-cmake-modules python3 qt6-base qt6-tools
 makedepends="kcalutils-devel kf6-knotifyconfig-devel kontactinterface-devel
  kf6-kparts-devel ktnef-devel libkleo-devel libksieve-devel mailcommon-devel
  messagelib-devel qt6-location-devel qt6-webchannel-devel qt6-webengine-devel
- kf6-kstatusnotifieritem-devel"
+ kf6-kcrash-devel kf6-kuserfeedback-devel kf6-kstatusnotifieritem-devel"
 depends="kdepim-runtime kmail-account-wizard mariadb akonadi-import-wizard
  pim-data-exporter"
 short_desc="KDE Mail Client"
@@ -20,7 +21,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, LGPL-2.1-or-later, GFDL-1.2-or-later"
 homepage="https://kde.org/applications/en/internet/org.kde.kmail2"
 distfiles="${KDE_SITE}/release-service/${version}/src/kmail-${version}.tar.xz"
-checksum=76085af3dad3e2bca4f83e5a9f7b1f6de23c517b08cd7572f75c024e577c86b2
+checksum=4e1d93fb57c4b8e79bf998743985257979e3df2086108a2fc82c0237d16e2e4f
 
 if [ "$XBPS_WORDSIZE$XBPS_WORDSIZE" != "64$XBPS_TARGET_WORDSIZE" ]; then
 	broken="Qt6 WebEngine"
