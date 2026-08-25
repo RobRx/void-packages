@@ -1,9 +1,10 @@
 # Template file for 'dolphin'
+# group=kde-gear
 pkgname=dolphin
-version=26.04.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules python3 qt6-tools qt6-base
  gettext kf6-kcoreaddons kf6-kconfig kf6-kdoctools kf6-kcmutils"
@@ -22,7 +23,7 @@ license="GPL-2.0-or-later, GFDL-1.2-or-later"
 homepage="https://kde.org/applications/en/system/org.kde.dolphin"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#dolphin"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=ba4da5192f7e45f392feaa74dfb18fddddcf9dbcc8f9abeb3f670e83ed9e4f57
+checksum=a7e4ec09c25cb971d098875c8d3db1f0aded69d995fd5ec3769e18548eb2ad7e
 
 if [ "$CROSS_BUILD" ]; then
 	LDFLAGS=" -Wl,-rpath-link,../bin"

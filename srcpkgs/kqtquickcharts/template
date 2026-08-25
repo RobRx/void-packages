@@ -1,6 +1,7 @@
 # Template file for 'kqtquickcharts'
+# group=kde-gear
 pkgname=kqtquickcharts
-version=26.04.1
+version=26.08.0
 revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
@@ -12,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://edu.kde.org/"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=14cdd75b8d0b6b8d7d435b6c1a36f049030e8a74c823402ab20f661e083d9134
+checksum=28ef23f4a4819ef3906148a9258b9dc6e17db44b6705d19697011dcb64c3c283
 
 kqtquickcharts-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"

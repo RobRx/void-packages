@@ -1,6 +1,7 @@
 # Template file for 'umbrello'
+# group=kde-gear
 pkgname=umbrello
-version=26.04.1
+version=26.08.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_WITH_QT6=ON $(vopt_bool php BUILD_PHP_SUPPORT)"
@@ -28,7 +29,7 @@ license="GPL-2.0-or-later, LGPL-2.0-or-later, GFDL-1.2-or-later"
 homepage="https://apps.kde.org/umbrello/"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#umbrello"
 distfiles="${KDE_SITE}/release-service/${version}/src/umbrello-${version}.tar.xz"
-checksum=d5ccce924091558d76b6bf0245deb342cb7afcc8dbfae5205bb3668114ed2060
+checksum=fa9e4f235f39c6977a3e034d95be2d8b6af3665e6397474aebcd1b244d9f0bfa
 python_version=3
 
 build_options="php"

@@ -1,9 +1,10 @@
 # Template file for 'kcharselect'
+# group=kde-gear
 pkgname=kcharselect
-version=26.04.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules kf6-kcoreaddons gettext qt6-base qt6-tools
  kf6-kconfig kf6-kdoctools python3"
@@ -16,4 +17,4 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/utilities/org.kde.kcharselect"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kcharselect"
 distfiles="${KDE_SITE}/release-service/${version}/src/kcharselect-${version}.tar.xz"
-checksum=9a8af0148b9f1686f6a3c9746f553ecd8107e386acacaed34018b25269cdec1d
+checksum=8e7d9d3d1be07b4051214b44eb5aaa3ef92124515491add2bb41fcad402b0b88

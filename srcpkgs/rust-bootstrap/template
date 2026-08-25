@@ -1,6 +1,6 @@
 # Template file for 'rust-bootstrap'
 pkgname=rust-bootstrap
-version=1.96.0
+version=1.98.0
 revision=1
 short_desc="Rust programming language bootstrap toolchain"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -31,40 +31,40 @@ case "$XBPS_TARGET_MACHINE" in
 		 ${_bootstrap_url}/rustc-${version}-i686-unknown-linux-gnu.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-i686-unknown-linux-gnu.tar.xz"
 		checksum="
-		 8caea1b6a1e76c9452cd2041c78680a9948b01abdc06be90c2e5ab3121793398
-		 2d13b8c801c9ad1ff55dceacaf1d1777601e328bc56cd390c4209a2f61d76ce2"
+		 5244bd76687b64cd7305ef038d8f349774eee494174899474535c23dcbeaa009
+		 11c7a5cfa324e4324611793692a863490902bdff8b9ccd197404711cb8dc24d4"
 		;;
 	x86_64)
 		distfiles="
 		 ${_bootstrap_url}/rustc-${version}-x86_64-unknown-linux-gnu.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-x86_64-unknown-linux-gnu.tar.xz"
 		checksum="
-		 7d7fa1d0cfb0fab71a956bb78f41107202c17f30ab56c45288e869a37fd9633d
-		 c09c7c646248f14f473f5f7a029af15ee57c3a9f9bc93dfa72d9621938586b82"
+		 0e37cb339f447fc44d6d781073bacacebfdc5612f2600e4c7e84c266f5f3aced
+		 f5022e6c95a5ad23cca2513dc8281200f585fa188de6370aa37b128a43f876a3"
 		;;
 	x86_64-musl)
 		distfiles="
 		 ${_bootstrap_url}/rustc-${version}-x86_64-unknown-linux-musl.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-x86_64-unknown-linux-musl.tar.xz"
 		checksum="
-		 550670a3ed467fbcf989f6f3f3649bb590658fc9490206f56bcbdf943f3c8e34
-		 4db24564076c243b377585bec0b938388638301ea5003d6245c4cbf9d86b11d0"
+		 4783d0963e5566b03e5e5be6bcb900672c177389d148d138fe1d75bc52554c91
+		 1a76f782db2d540e1cd16ea47829b323f4a8f4dda64bca4b23be189109c510f8"
 		;;
 	aarch64)
 		distfiles="
 		 ${_bootstrap_url}/rustc-${version}-aarch64-unknown-linux-gnu.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-aarch64-unknown-linux-gnu.tar.xz"
 		checksum="
-		 76b1a6e8dd1636e364d4bbba685485ff44eee5ff6434add089bab4c703c7e19d
-		 538e85452709687797d990579a491ff9b02f8bffba4a5d54cfa945e28868053e"
+		 00590657f2356d7163ca5ef295283523974c340fa21bb94b420ce794f29b358c
+		 a36f7ac98af20ef0ba6368aace0345efabbebaef7962eba99f47190fd256162d"
 		;;
 	aarch64-musl)
 		distfiles="
 		 ${_bootstrap_url}/rustc-${version}-aarch64-unknown-linux-musl.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-aarch64-unknown-linux-musl.tar.xz"
 		checksum="
-		 3c4cab44cb4a531cf7a71a02ee64f33e4370adacdf839673615ddfa8ff0f9608
-		 e7d89a29abcc2cf2f31cfe3d898c1713fb12f395e788809d3b01b23fdd5813b4"
+		 97ecfb023dd7dd5ce1cfa0d2d3c32b725f48bc1301c1be5b1dde80f6d8c5d00c
+		 36f82e96e86ec8a02d0a0a66574f4b7be086771cec41bb8e9d40ba5cbd64c93a"
 		;;
 	# placeholders for user-supplied distfiles
 	ppc64le)

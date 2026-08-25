@@ -1,9 +1,10 @@
 # Template file for 'khelpcenter'
+# group=kde-gear
 pkgname=khelpcenter
-version=26.04.1
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake"
+configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="extra-cmake-modules kf6-kcoreaddons qt6-base qt6-tools
  kf6-kconfig kf6-kdoctools python3 pkg-config gettext"
 makedepends="libxml2-devel qt6-base-devel xapian-core-devel
@@ -17,7 +18,7 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/system/org.kde.Help"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=65cd38bdf03a37972b3b5820da125a301505200299770fc9dc5bc57143295b17
+checksum=11c8e13960e4ef655d4d9a1b909baf3e6aa85d9b96b6b657a220d092d5bbd2df
 
 if [ "$CROSS_BUILD" ]; then
 	configure_args+=" -DXAPIAN_LIBRARIES=${XBPS_CROSS_BASE}/usr/lib/libxapian.so
