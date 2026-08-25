@@ -1,0 +1,249 @@
+# Template file for 'udev'
+pkgname=udev
+version=261.2
+revision=1
+build_style=meson
+short_desc="Userspace device file manager"
+maintainer="RobRx <fzvoyxzlqhbi@posteo.de>"
+hostmakedepends="
+ acl
+ bash-completion
+ docbook-xsl
+ gperf
+ hwdata
+ intltool
+ kbd
+ meson
+ ninja
+ python3
+ python3-jinja
+ python3-pefile
+ python3-pyelftools
+ rsync
+ git
+"
+makedepends="
+ acl-devel
+ hwdata
+ kbd
+ kmod-devel
+ libblkid-devel
+ tpm2-tss-devel
+ util-linux-devel
+"
+
+depends="
+ acl
+ bash
+ hwdata
+ kbd
+ kmod
+ libudev>=${version}_${revision}
+ util-linux
+"
+license="GPL-2.0-or-later LGPL-2.1-or-later"
+homepage="https://github.com/systemd/systemd"
+distfiles="https://github.com/systemd/systemd/archive/refs/tags/v${version}.tar.gz"
+checksum=ed1059ff964f5df35b6056434cc17cc83f86dc913f10489948a0b19b6081c5ec
+
+configure_args="
+ -Dversion-tag=${version}-${revision}-void
+ -Dshared-lib-tag=${version}-${revision}
+ -Dmode=release
+
+ -Dstandalone-udev=true
+ -Dhwdb=true
+
+ -Dblkid=enabled
+ -Dkmod=enabled
+ -Dtpm2=enabled
+ -Dacl=enabled
+ -Dman=enabled
+
+ -Dlink-udev-shared=false
+ -Dlink-boot-shared=false
+
+ -Ddefault-keymap=us
+
+ -Dstandalone-binaries=false
+ -Dsysusers=false
+ -Dtmpfiles=false
+ -Dgshadow=false
+
+ -Dhtml=disabled
+ -Ddns-servers=
+ -Dntp-servers=
+ -Defi=false
+
+ -Dbootloader=disabled
+ -Dkernel-install=false
+ -Dukify=disabled
+
+ -Ddefault-dnssec=no
+ -Ddefault-llmnr=no
+ -Ddefault-mdns=no
+ -Dsshconfdir=no
+
+ -Dadm-group=false
+ -Danalyze=false
+ -Dapparmor=enabled
+ -Daudit=disabled
+ -Dbacklight=false
+ -Dbinfmt=false
+ -Dbzip2=disabled
+ -Dcoredump=false
+ -Ddbus=disabled
+ -Delfutils=disabled
+ -Denvironment-d=false
+ -Dfdisk=disabled
+ -Dgcrypt=disabled
+ -Dglib=disabled
+ -Dgnutls=disabled
+ -Dhibernate=false
+ -Dhostnamed=false
+ -Didn=false
+ -Dima=false
+ -Dinitrd=false
+ -Dfirstboot=false
+ -Dldconfig=false
+ -Dlibcryptsetup=disabled
+ -Dlibcurl=disabled
+ -Dlibfido2=disabled
+ -Dlibidn2=disabled
+ -Dlocaled=false
+ -Dlogind=false
+ -Dlz4=disabled
+ -Dmachined=false
+ -Dmicrohttpd=disabled
+ -Dnetworkd=false
+ -Dnss-myhostname=false
+ -Dnss-resolve=disabled
+ -Dnss-systemd=false
+ -Doomd=false
+ -Dopenssl=disabled
+ -Dp11kit=disabled
+ -Dpam=disabled
+ -Dpcre2=disabled
+ -Dpolkit=disabled
+ -Dportabled=false
+ -Dpstore=false
+ -Dpwquality=disabled
+ -Drandomseed=false
+ -Dresolve=false
+ -Drfkill=false
+ -Dseccomp=disabled
+ -Dsmack=enabled
+ -Dstoragetm=false
+ -Dsysext=false
+ -Dtimedated=false
+ -Dtimesyncd=false
+ -Dtpm=false
+ -Dqrencode=disabled
+ -Dquotacheck=false
+ -Duserdb=false
+ -Dutmp=false
+ -Dvconsole=false
+ -Dvmspawn=disabled
+ -Dwheel-group=false
+ -Dxdg-autostart=false
+ -Dxkbcommon=disabled
+ -Dxz=disabled
+ -Dzlib=disabled
+ -Dzstd=disabled
+ -Dbpf-framework=disabled
+ -Dpasswdqc=disabled
+ -Dselinux=disabled
+ -Dxenctrl=disabled
+ -Dlibcryptsetup-plugins=disabled
+ -Drepart=disabled
+ -Dsysupdate=disabled
+ -Dimportd=disabled
+ -Dhomed=disabled
+ -Dremote=disabled
+ -Dnss-mymachines=disabled
+ -Dshellprofiledir=no
+ -Dnsresourced=false
+ -Dmountfsd=false
+ -Dnspawn=disabled
+ -Dimds=false
+"
+
+conf_files="
+ /etc/udev/udev.conf
+ /etc/udev/iocost.conf
+"
+
+subpackages="libudev"
+
+post_patch() {
+	# The patches are automatically applied by xbps-src.
+	:
+}
+
+do_build() {
+	meson compile -C build \
+		udev:shared_library \
+		src/libudev/libudev.pc \
+		udevadm \
+		ata_id \
+		cdrom_id \
+		dmi_memory_id \
+		fido_id \
+		iocost \
+		mtd_probe \
+		scsi_id \
+		v4l_id \
+		rules.d/50-udev-default.rules \
+		rules.d/60-persistent-storage.rules \
+		rules.d/64-btrfs.rules \
+		udev-hwdb \
+		hwdb.d/60-autosuspend-chromiumos.hwdb \
+		src/udev/udev.pc \
+		systemd-detect-virt \
+		test-libudev \
+		test-libudev-sym \
+		test-udev-builtin \
+		test-udev-device-thread \
+		test-udev-format \
+		test-udev-manager \
+		test-udev-node \
+		test-udev-rules \
+		test-udev-spawn \
+		test-fido-id-desc
+}
+
+do_check() {
+	meson test -C build --print-errorlogs \
+		udev-rules-check \
+		hwdb-test \
+		test-libudev \
+		test-libudev-sym \
+		test-udev \
+		test-udev-builtin \
+		test-udev-device-thread \
+		test-udev-format \
+		test-udev-manager \
+		test-udev-node \
+		test-udev-rules \
+		test-udev-spawn \
+		test-fido-id-desc
+}
+
+do_install() {
+	meson install -C build \
+		--destdir ${DESTDIR} \
+		--no-rebuild \
+		--tags udev,udev-devel,hwdb
+}
+
+libudev_package() {
+	short_desc="udev library for enumerating and introspecting local devices"
+	provides="libudev.so"
+
+	pkg_install() {
+		vmove usr/lib/libudev.so*
+		vmove usr/lib/pkgconfig/libudev.pc
+		vmove usr/include/libudev.h
+	}
+}
+
