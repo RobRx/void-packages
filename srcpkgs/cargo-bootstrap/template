@@ -1,6 +1,6 @@
 # Template file for 'cargo-bootstrap'
 pkgname=cargo-bootstrap
-version=1.88.0
+version=1.98.0
 revision=1
 short_desc="Bootstrap binaries of Rust package manager"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -14,7 +14,7 @@ repository=bootstrap
 _bootstrap_url="https://static.rust-lang.org/dist"
 
 case "$XBPS_TARGET_MACHINE" in
-	x86_64*|i686) ;;
+	x86_64*|i686|aarch64*) ;;
 	# See srcpkgs/rust-bootstrap/files/generating-distfiles.md for details
 	*) _bootstrap_url="https://repo-default.voidlinux.org/distfiles" ;;
 esac
@@ -24,15 +24,23 @@ esac
 case "$XBPS_TARGET_MACHINE" in
 	i686)
 		distfiles="${_bootstrap_url}/cargo-${version}-i686-unknown-linux-gnu.tar.xz"
-		checksum="ebf94de491865963fc02a3cdbbf1fec8f3e9df49fe2af4d92c2a05cfddd5b3d8"
+		checksum="b768fe07ae4bd233e5c3f864f935620abb8b72139f7369c869e964a0c30ae419"
 		;;
 	x86_64)
 		distfiles="${_bootstrap_url}/cargo-${version}-x86_64-unknown-linux-gnu.tar.xz"
-		checksum="856962610ee821648cee32e3d6abac667af7bb7ea6ec6f3d184cc31e66044f6b"
+		checksum="2f512d170d3dd23e16ababcda32ee2e6d5172d861a7af1f504e0b1e270cafab9"
 		;;
 	x86_64-musl)
 		distfiles="${_bootstrap_url}/cargo-${version}-x86_64-unknown-linux-musl.tar.xz"
-		checksum="a00f8caf4f22b5e8f5492b70fc9e16fbf5c2f19ab655f79ede3d2d1ba11531c4"
+		checksum="8a4da98a9a099e2bf8c210a236cd0cc8d6a259254f4b8fdf6997177ea9e1e4bf"
+		;;
+	aarch64)
+		distfiles="${_bootstrap_url}/cargo-${version}-aarch64-unknown-linux-gnu.tar.xz"
+		checksum="5784379d73ac881d15a9e67eed2882cd58c747c276221c23cdf9aff37e015ff6"
+		;;
+	aarch64-musl)
+		distfiles="${_bootstrap_url}/cargo-${version}-aarch64-unknown-linux-musl.tar.xz"
+		checksum="0d4ad14495f631df4d680b1ee970b69ec10f7249d939e85aadc313e04450219f"
 		;;
 	# placeholders for user-supplied distfiles
 	ppc64le)

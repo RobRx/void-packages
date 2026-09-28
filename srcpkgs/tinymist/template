@@ -1,18 +1,18 @@
 # Template file for 'tinymist'
 pkgname=tinymist
-version=0.14.0
+version=0.15.2
 revision=1
 build_style=cargo
 build_helper="qemu"
 configure_args="--features=cli --bin tinymist --bin typlite"
 depends="typst"
 short_desc="Integrated language service for Typst"
-maintainer="classabbyamp <void@placeviolette.net>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="Apache-2.0"
 homepage="https://myriad-dreamin.github.io/tinymist/"
 changelog="https://github.com/Myriad-Dreamin/tinymist/releases"
 distfiles="https://github.com/Myriad-Dreamin/tinymist/archive/refs/tags/v${version}.tar.gz"
-checksum=0a5dbd53e9bc3334b153f996d9fdafb52bed76fa59b27e759e9f9721dd490c1f
+checksum=f7a3bbcf4f6020aea6071b86bc9d20bdde2208f6dcbef019593e257baad4cca6
 # takes forever
 make_check=no
 

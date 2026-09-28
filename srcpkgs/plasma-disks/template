@@ -1,9 +1,10 @@
 # Template file for 'plasma-disks'
+# group=kde-plasma
 pkgname=plasma-disks
-version=6.5.2
+version=6.7.5
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -Wno-dev
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules qt6-base qt6-tools gettext
@@ -18,4 +19,8 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/plasma/plasma-disks"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=9ac9853f39d9d4da72b7fb0fd858a64af992b96a6bc25e81b5511988ddf51d7b
+checksum=34125cd31e559d4d0fef49bb33a6ffc1803112a17495ae1bfbcf5e8beda464c4
+
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"

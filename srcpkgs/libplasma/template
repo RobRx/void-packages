@@ -1,14 +1,15 @@
 # Template file for 'libplasma'
+# group=kde-plasma
 pkgname=libplasma
-version=6.5.2
-revision=1
+version=6.7.5
+revision=2
 build_style=cmake
-configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules qt6-base qt6-tools
  qt6-declarative-host-tools wayland-devel gettext pkg-config
- kf6-kconfig kf6-kirigami-devel kf6-kcmutils
+ kf6-kconfig kf6-kirigami-devel kf6-kcmutils kf6-kwindowsystem
  kf6-kpackage"
 makedepends="qt6-base-private-devel qt6-declarative-devel qt6-svg-devel
  kf6-kcmutils-devel kf6-ksvg-devel kf6-ki18n-devel kf6-kwindowsystem-devel
@@ -23,7 +24,11 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-3.0-or-later"
 homepage="https://invent.kde.org/plasma/libplasma"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=194fcfd972b7c0882e88528603d8aef69aa0a5ef199730bf5b1e33022f21e6e1
+checksum=27b28823254aa489c094c40a314ce1575fd7906eeb521e636bb8fd2dc2981f2f
+
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"
 
 do_check() {
 	cd build

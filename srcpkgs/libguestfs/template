@@ -1,6 +1,6 @@
 # Template file for 'libguestfs'
 pkgname=libguestfs
-version=1.56.2
+version=1.60.1
 revision=1
 _version_short=${version%.*}
 build_style=gnu-configure
@@ -18,11 +18,11 @@ makedepends="ncurses-devel pcre2-devel augeas-devel libxml2-devel gettext-devel 
  yajl-devel perl libtirpc-devel $(vopt_if ruby ruby-devel) $(vopt_if python python3-devel)
  $(vopt_if php php-devel) $(vopt_if lua lua53-devel) $(vopt_if fuse fuse-devel)"
 short_desc="Access and modify virtual machine disk image"
-maintainer="Andrea Brancaleoni <abc@pompel.me>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license=" GPL-2.0-or-later"
 homepage="http://libguestfs.org"
 distfiles="http://libguestfs.org/download/${_version_short}-stable/${pkgname}-${version}.tar.gz"
-checksum=bb44891a795e0b79213cee2c491495a6dd64b21f727445591730d7f78901689a
+checksum=6311c686700c293c92a9e804074040f4ae536fcbcef0a69973f418c77d3441e9
 make_check=no # many tests need guest applicance
 
 conf_files="etc/libguestfs-tools.conf"

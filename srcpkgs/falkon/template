@@ -1,7 +1,8 @@
 # Template file for 'falkon'
+# group=kde-gear
 pkgname=falkon
-version=25.08.3
-revision=2
+version=26.08.1
+revision=1
 build_style=cmake
 _llvmver=21
 configure_args="
@@ -25,7 +26,7 @@ maintainer="Helmut Pozimski <helmut@pozimski.eu>"
 license="GPL-3.0-or-later"
 homepage="https://www.falkon.org"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=16252d8a42028bf54b88e1e4a5afb95875309de44f203156c99c4a643720e129
+checksum=74df8eebd3d198392a35e79cee5d554b9f48ed88a5f3e6906caded1b3698257e
 
 LDFLAGS="-Wl,--no-fatal-warnings"
 
@@ -45,6 +46,10 @@ if [ "$CROSS_BUILD" ]; then
 	configure_args+=" -DSYSROOT_INCLUDE_DIRS=$XBPS_CROSS_BASE/usr/include"
 fi
 export LLVM_INSTALL_DIR=/usr/lib/llvm/${_llvmver}
+
+case "$XBPS_TARGET_MACHINE" in
+	arm*) configure_args+=" -DSHIBOKEN_GENERATOR_EXTRA_FLAGS=--clang-option=-mfloat-abi=hard" ;;
+esac
 
 do_check() {
 	cd build

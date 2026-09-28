@@ -1,6 +1,7 @@
 # Template file for 'kf6-kglobalaccel'
+# group=kde-frameworks
 pkgname=kf6-kglobalaccel
-version=6.19.0
+version=6.30.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base "
@@ -10,7 +11,11 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kglobalaccel"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=1bbe7502658319767c048039e8dac2bd17bc120422d8e58ef6f22ba63840ae49
+checksum=e532ebd4cbfc8d6d79c6c38c556f1871315fedae8db2b69b574b9c496f171473
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 kf6-kglobalaccel-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} qt6-base-devel"

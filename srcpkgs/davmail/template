@@ -1,8 +1,8 @@
 # Template file for 'davmail'
 pkgname=davmail
-version=6.4.0
+version=6.8.1
 revision=1
-_commit=3755
+_commit=4210
 hostmakedepends="openjdk8 apache-ant"
 depends="virtual?java-runtime"
 short_desc="POP/IMAP/SMTP/Caldav/Carddav/LDAP exchange gateway"
@@ -11,7 +11,7 @@ license="GPL-2.0-only"
 homepage="https://davmail.sourceforge.net"
 changelog="https://raw.githubusercontent.com/mguessan/davmail/master/RELEASE-NOTES.md"
 distfiles="${SOURCEFORGE_SITE}/davmail/davmail-src-${version}-${_commit}.tgz"
-checksum=0934707ceaf54f19b96d489a0e2f51081d00d538e700a75738abc07c489c4259
+checksum=fd31e5467af60b24b1f96e693469d85d508ec4224047d60cf667f8dc44762902
 
 do_build() {
 	. /etc/profile.d/jdk.sh

@@ -1,6 +1,6 @@
 # Template file for 'SuiteSparse'
 pkgname=SuiteSparse
-version=7.11.0
+version=7.12.2
 revision=1
 build_style=cmake
 hostmakedepends="gcc-fortran"
@@ -12,7 +12,7 @@ license="custom:multiple"
 homepage="https://people.engr.tamu.edu/davis/suitesparse.html"
 changelog="https://raw.githubusercontent.com/DrTimothyAldenDavis/SuiteSparse/master/ChangeLog"
 distfiles="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${version}.tar.gz"
-checksum=93ed4c4e546a49fc75884c3a8b807d5af4a91e39d191fbbc60a07380b12a35d1
+checksum=679412daa5f69af96d6976595c1ac64f252287a56e98cc4a8155d09cc7fd69e8
 
 build_options="openblas"
 

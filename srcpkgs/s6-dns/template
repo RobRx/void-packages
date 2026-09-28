@@ -1,6 +1,6 @@
 # Template file for 's6-dns'
 pkgname=s6-dns
-version=2.3.5.5
+version=2.4.1.2
 revision=1
 build_style=configure
 configure_args="--prefix=/usr --libdir=/usr/lib
@@ -9,11 +9,11 @@ configure_args="--prefix=/usr --libdir=/usr/lib
  $(vopt_if static --enable-static-libc)"
 makedepends="execline-devel skalibs-devel"
 short_desc="Suite of DNS client programs and libraries for Unix systems"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Komeil Parseh <komeilparseh@disroot.org>"
 license="ISC"
 homepage="https://skarnet.org/software/s6-dns"
-distfiles="${homepage}/${pkgname}-${version}.tar.gz"
-checksum=56979b5d5125c38071a80b5e3df0d4a6b2a7c52bb863a2410b6e3d797ffe1ee8
+distfiles="https://skarnet.org/software/s6-dns/s6-dns-${version}.tar.gz"
+checksum=0618d8830fce63ee17b7f55e49428069c85c97a1710827a7b2349b660cd33a4e
 
 build_options="static"
 

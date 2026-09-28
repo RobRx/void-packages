@@ -1,6 +1,6 @@
 # Template file for 'fd'
 pkgname=fd
-version=10.3.0
+version=10.5.0
 revision=1
 build_style=cargo
 build_helper=qemu
@@ -10,7 +10,7 @@ license="Apache-2.0 OR MIT"
 homepage="https://github.com/sharkdp/fd"
 changelog="https://raw.githubusercontent.com/sharkdp/fd/master/CHANGELOG.md"
 distfiles="https://github.com/sharkdp/fd/archive/refs/tags/v${version}.tar.gz"
-checksum=2edbc917a533053855d5b635dff368d65756ce6f82ddefd57b6c202622d791e9
+checksum=e6d9e90730bf316101691e49d59cc02565278dc3779d33a77423801569484851
 
 post_install() {
 	vman doc/fd.1

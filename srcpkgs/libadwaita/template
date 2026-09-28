@@ -1,6 +1,6 @@
 # Template file for 'libadwaita'
 pkgname=libadwaita
-version=1.8.1
+version=1.9.1
 revision=1
 build_style=meson
 build_helper="gir"
@@ -14,9 +14,9 @@ short_desc="GTK4 building blocks for modern adaptive applications"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.0-or-later"
 homepage="https://gitlab.gnome.org/GNOME/libadwaita/"
-changelog="https://gitlab.gnome.org/GNOME/libadwaita/-/raw/libadwaita-1-8/NEWS"
+changelog="https://gitlab.gnome.org/GNOME/libadwaita/-/raw/libadwaita-1-9/NEWS"
 distfiles="${GNOME_SITE}/libadwaita/${version%.*}/libadwaita-${version}.tar.xz"
-checksum=8b1d4d5f89373a5b6eea8d93ecdaee34cd26ad27a4dd396c06f5d9929fb313bc
+checksum=2ae34dbb3ea56d270925707cefa36050482ec88a741f1810b7619a5377c41a66
 make_check_pre="dbus-run-session xvfb-run"
 
 build_options="gir gtk_doc"
@@ -51,5 +51,9 @@ libadwaita-demo_package() {
 	short_desc+=" - demonstration application"
 	pkg_install() {
 		vmove usr/bin/adwaita-1-demo
+		vmove usr/share/applications/org.gnome.Adwaita1.Demo.desktop
+		vmove usr/share/metainfo/org.gnome.Adwaita1.Demo.metainfo.xml
+		vmove usr/share/icons/hicolor/symbolic/apps/org.gnome.Adwaita1.Demo-symbolic.svg
+		vmove usr/share/icons/hicolor/scalable/apps/org.gnome.Adwaita1.Demo.svg
 	}
 }

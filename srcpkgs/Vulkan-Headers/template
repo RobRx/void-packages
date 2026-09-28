@@ -1,11 +1,15 @@
 # Template file for 'Vulkan-Headers'
 pkgname=Vulkan-Headers
-version=1.4.328.1
+version=1.4.357.0
 revision=1
 build_style=cmake
 short_desc="Vulkan header files"
 maintainer="Orphaned <orphan@voidlinux.org>"
-license="Apache-2.0"
+license="Apache-2.0 OR MIT"
 homepage="https://www.khronos.org/vulkan/"
 distfiles="https://github.com/KhronosGroup/Vulkan-Headers/archive/vulkan-sdk-${version}.tar.gz"
-checksum=c465aa56757e7746ac707f582b6e2d51546569a4a2488c1172fb543aa5fdfc2c
+checksum=e87dce08116151f6b6d7de6b6faf41498e87e6cf848ff16fa3bd5402190ad4a3
+
+post_install() {
+	vlicense LICENSE.md
+}

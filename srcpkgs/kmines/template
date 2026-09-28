@@ -1,9 +1,10 @@
 # Template file for 'kmines'
+# group=kde-gear
 pkgname=kmines
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -18,4 +19,4 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/games/org.kde.kmines"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kmines"
 distfiles="${KDE_SITE}/release-service/${version}/src/kmines-${version}.tar.xz"
-checksum=99f0da3cd8af9fa634a8f7d34e433bedbc4bfbda24886cd5e0bdde48e0ad4a3f
+checksum=725f80d4af1fafd55872e96bcb69fc7e2c5adfbe74a678ac4c7c43bf73c9db9c

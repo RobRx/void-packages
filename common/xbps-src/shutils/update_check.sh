@@ -151,19 +151,19 @@ update_check() {
                 url="https://pypi.org/simple/$pkgname";;
             *github.com*)
                 pkgurlname="$(printf %s "$url" | cut -d/ -f4,5)"
-                url="https://github.com/$pkgurlname/tags"
-                rx='/archive/refs/tags/(\Q'"$pkgname"'\E|[-_v])*\K[\d.]+(?=\.tar\.gz")';;
+                url="https://github.com/$pkgurlname/info/refs?service=git-upload-pack"
+                rx='refs/tags/(\Q'"$pkgname"'\E)?[-_v]?\K[\d.]+($|(?=^))';;
             *//gitlab.*|*code.videolan.org*)
                 case "$url" in
                     */-/*) pkgurlname="$(printf %s "$url" | sed -e 's%/-/.*%%g; s%/$%%')";;
                     *) pkgurlname="$(printf %s "$url" | cut -d / -f 1-5)";;
                 esac
-                url="$pkgurlname/-/tags"
-                rx='/archive/[^/]+/\Q'"$pkgname"'\E-v?\K[\d.]+(?=\.tar\.gz)';;
+                url="$pkgurlname.git/info/refs?service=git-upload-pack"
+                rx='refs/tags/(\Q'"$pkgname"'\E)?[-_v]?\K[\d.]+($|(?=^))';;
             *bitbucket.org*)
                 pkgurlname="$(printf %s "$url" | cut -d/ -f4,5)"
-                url="https://bitbucket.org/$pkgurlname/downloads"
-                rx='/(get|downloads)/(v?|\Q'"$pkgname"'\E-)?\K[\d.]+(?=\.tar)';;
+                url="https://bitbucket.org/$pkgurlname/info/refs?service=git-upload-pack"
+                rx='refs/tags/(\Q'"$pkgname"'\E)?[-_v]?\K[\d.]+($|(?=^))';;
             *ftp.gnome.org*|*download.gnome.org*)
                 rx='(?<=LATEST-IS-)([0-24-9]|3\.[0-9]*[02468]|[4-9][0-9]+)\.[0-9.]*[0-9](?=\")'
                 url="https://download.gnome.org/sources/$pkgname/cache.json";;
@@ -173,7 +173,9 @@ update_check() {
             *kernel.org/pub/linux/kernel/*)
                 rx=linux-'\K'${version%.*}'\.[\d.]+(?=\.tar\.xz)';;
             *cran.r-project.org/src/contrib*)
-                rx='\b\Q'"${pkgname#R-cran-}"'\E_\K\d+(\.\d+)*(-\d+)?(?=\.tar)';;
+                url="https://cran.r-project.org/package=${pkgname#R-cran-}"
+                # rx='\b\Q'"${pkgname#R-cran-}"'\E_\K\d+(\.\d+)*(-\d+)?(?=\.tar)';;
+                rx="(?<=${pkgname#R-cran-}_)[0-9.]+(-[0-9]*)?(?=\\.tar)" ;;
             *rubygems.org*)
                 url="https://rubygems.org/gems/${pkgname#ruby-}"
                 rx='href="/gems/'${pkgname#ruby-}'/versions/\K[\d.]*(?=")' ;;
@@ -182,16 +184,16 @@ update_check() {
                 rx='/crates/'${pkgname#rust-}'/\K[0-9.]*(?=/download)' ;;
             *codeberg.org*)
                 pkgurlname="$(printf %s "$url" | cut -d/ -f4,5)"
-                url="https://codeberg.org/$pkgurlname/tags"
-                rx='/archive/(v-?|\Q'"$pkgname"'\E-)?\K[\d.]+(?=\.tar\.gz)' ;;
+                url="https://codeberg.org/$pkgurlname/info/refs"
+                rx='refs/tags/(\Q'"$pkgname"'\E)?[-_v]?\K[\d.]+($|(?=^))';;
             *hg.sr.ht*)
                 pkgurlname="$(printf %s "$url" | cut -d/ -f4,5)"
                 url="https://hg.sr.ht/$pkgurlname/tags"
                 rx='/archive/(v?|\Q'"$pkgname"'\E-)?\K[\d.]+(?=\.tar\.gz")';;
             *git.sr.ht*)
                 pkgurlname="$(printf %s "$url" | cut -d/ -f4,5)"
-                url="https://git.sr.ht/$pkgurlname/refs/rss.xml"
-                rx='<guid>\Q'"${url%/*}"'\E/(v-?|\Q'"$pkgname"'\E-)?\K[\d.]+(?=</guid>)' ;;
+                url="https://git.sr.ht/$pkgurlname/info/refs"
+                rx='refs/tags/(\Q'"$pkgname"'\E)?[-_v]?\K[\d.]+($|(?=^))';;
             *pkgs.fedoraproject.org*)
                 url="https://pkgs.fedoraproject.org/repo/pkgs/$pkgname" ;;
             *software.sil.org/downloads/*)
@@ -220,14 +222,14 @@ update_check() {
         fi
 
         msg_verbose "fetching $url and scanning with $rx\n"
-        curl "${curlargs[@]}" -H 'Accept: text/html,application/xhtml+xml,application/xml,text/plain,application/rss+xml' "$url" |
-            grep -Po -i "$rx"
+        curl "${curlargs[@]}" -H 'Accept: text/html,application/xhtml+xml,application/xml,text/plain,application/rss+xml,application/json' "$url" |
+            grep -Pao -i "$rx"
         fetchedurls[$url]=yes
     done |
     tr _ . |
     sort -Vu |
     {
-        grep . || echo "NO VERSION found for $original_pkgname" 1>&2
+        grep -a . || echo "NO VERSION found for $original_pkgname" 1>&2
     } |
     while IFS= read -r found_version; do
         msg_verbose "found version $found_version\n"

@@ -1,9 +1,10 @@
 # Template file for 'colord-kde'
+# group=kde-gear
 pkgname=colord-kde
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="kf6-kcoreaddons-devel extra-cmake-modules gettext
  pkg-config qt6-declarative-host-tools qt6-base-devel kf6-kpackage
@@ -18,4 +19,4 @@ maintainer="Danila Kryukov <danila.kryukov.dev@yandex.ru>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/graphics/colord-kde"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=29a6b0a2775a00a3bd5b1b138c77372e53af8804580c1e412b879d48e5d0aedf
+checksum=a7890c671be84becf06043bd71288364e2718fe09d803cc49c7ad711037f96c7

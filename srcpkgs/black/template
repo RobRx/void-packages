@@ -1,6 +1,6 @@
 # Template file for 'black'
 pkgname=black
-version=25.9.0
+version=26.5.1
 revision=1
 build_style=python3-pep517
 hostmakedepends="hatchling hatch-vcs hatch-fancy-pypi-readme"
@@ -14,7 +14,7 @@ license="MIT"
 homepage="https://black.readthedocs.io/en/stable/"
 changelog="https://raw.githubusercontent.com/psf/black/main/CHANGES.md"
 distfiles="${PYPI_SITE}/b/black/black-${version}.tar.gz"
-checksum=0474bca9a0dd1b51791fcc507a4e02078a1c63f6d4e4ae5544b9848c7adfb619
+checksum=dd321f668053961824bcc1be1cc1df748b2d7e4fa28086b08331e577b0100a73
 
 post_check() {
 	PYTHONPATH=src python3 -m black --check src tests

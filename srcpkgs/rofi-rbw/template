@@ -1,6 +1,6 @@
 # Template file for 'rofi-rbw'
 pkgname=rofi-rbw
-version=1.5.1
+version=1.7.0
 revision=1
 build_style=python3-pep517
 hostmakedepends="hatchling"
@@ -11,7 +11,7 @@ license="MIT"
 homepage="https://github.com/fdw/rofi-rbw"
 changelog="https://raw.githubusercontent.com/fdw/rofi-rbw/HEAD/CHANGELOG.md"
 distfiles="https://github.com/fdw/rofi-rbw/archive/${version}.tar.gz"
-checksum=3f050b6d631b3efa23f324487b0d676281ebaf14dcda87dbad1b11e462011ab1
+checksum=3cdf3e94cf17cfb0073f29e560860a18a37d497aa8e24993850137439f4f640e
 
 post_install() {
 	vman docs/rofi-rbw.1

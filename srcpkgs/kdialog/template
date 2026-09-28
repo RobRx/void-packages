@@ -1,9 +1,10 @@
 # Template file for 'kdialog'
+# group=kde-gear
 pkgname=kdialog
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules kf6-kcoreaddons python3 kf6-kconfig
  qt6-base qt6-tools gettext"
@@ -22,4 +23,4 @@ license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/utilities/kdialog"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kdialog"
 distfiles="${KDE_SITE}/release-service/${version}/src/kdialog-${version}.tar.xz"
-checksum=d2c9fc33ecb48a2d135643b83e700b9212d1e80fd651971c035bfaf328dfbab4
+checksum=523dfdd55c9f465081ea20023e3c9a5522b948ebfc758e66454b808f63931f52

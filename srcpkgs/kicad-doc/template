@@ -1,7 +1,7 @@
 # Template file for 'kicad-doc'
 # XXX: keep in sync with kicad
 pkgname=kicad-doc
-version=9.0.6
+version=10.0.6
 revision=1
 build_wrksrc="${pkgname}-${version}"
 build_style=cmake
@@ -18,11 +18,11 @@ distfiles="https://gitlab.com/kicad/services/kicad-doc/-/archive/${version}/kica
  https://gitlab.com/kicad/libraries/kicad-symbols/-/archive/${version}/kicad-symbols-${version}.tar.gz
  https://gitlab.com/kicad/libraries/kicad-footprints/-/archive/${version}/kicad-footprints-${version}.tar.gz
  https://gitlab.com/kicad/libraries/kicad-packages3D/-/archive/${version}/kicad-packages3D-${version}.tar.gz"
-checksum="87a4e788703822a17791973b2ec7c4ef2bb42443e2bb70889fa6c64e20ced962
- 93eddbf10ced61364387a9bb37e589c7fcf2ed1635239244f8bc51428c0d40a5
- b1dc389dafe81029aa348a5731f22074945c50f22809f09e928ebfa6a1aeccbe
- 5b0584754954534d5da949239bab859631de75da8c5cdd5bd70f9decaecaf69e
- 202c2f600cbe12e62ff1c3bc49e9f4951861e564a10f45823650615835034675"
+checksum="4ff8e568a754c6618cae907b0efdaa6eb88a4b1878c09841b88f5bc8af2ac794
+ 18b4e3f2ed781383179c1b15a82c94e5176dc825e1c646f84e89ed50e835063b
+ 5587f5cb4a779d287e49c4ba069a6b42c27b55cbe4c5b6241e39d91878abe571
+ 17827af73192ae17b479d4c502b6f569d03ed855b9d3c0b9b133b8cf1b8d3e22
+ def2208ec7e4693642c172d525652d95d7b706f3631930b7c754c559c0ad190a"
 
 # none of these packages contain ELFs, but do contain a bunch of files,
 # so skip stripping and elf_in_usrshare lint to speed things up significantly

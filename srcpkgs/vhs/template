@@ -1,6 +1,6 @@
 # Template file for 'vhs'
 pkgname=vhs
-version=0.10.0
+version=0.12.1
 revision=1
 build_style=go
 build_helper=qemu
@@ -13,7 +13,7 @@ license="MIT"
 homepage="https://github.com/charmbracelet/vhs"
 changelog="https://github.com/charmbracelet/vhs/releases"
 distfiles="https://github.com/charmbracelet/vhs/archive/refs/tags/v${version}.tar.gz"
-checksum=ae37fe7e52ade753f850ab81c7d5344f8e540ab6886f877bf5b613620c909893
+checksum=ba9fbcb40133d1734c580ccb6b0fcae9673bf51d227f00877ac581c56ad15b77
 
 post_install() {
 	vdoc "${FILESDIR}/README.voidlinux"

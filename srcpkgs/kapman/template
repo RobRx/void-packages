@@ -1,9 +1,10 @@
 # Template file for 'kapman'
+# group=kde-gear
 pkgname=kapman
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -19,4 +20,4 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/games/org.kde.kapman"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kapman"
 distfiles="${KDE_SITE}/release-service/${version}/src/kapman-${version}.tar.xz"
-checksum=9b6449ea7a5b27d221e74714dda2f277645ccf4309155246843ea5bfff452973
+checksum=5d8802f538da2d6d3606696f839ee32b0f1abc7da3dd944355f917fd951f0a51

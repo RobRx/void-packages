@@ -1,6 +1,6 @@
 # Template file for 'libnvme'
 pkgname=libnvme
-version=1.15
+version=1.16.2
 revision=1
 build_style=meson
 configure_args="-Ddocs=man"
@@ -13,7 +13,7 @@ license="LGPL-2.1-or-later"
 homepage="https://github.com/linux-nvme/libnvme"
 changelog="https://github.com/linux-nvme/libnvme/releases"
 distfiles="https://github.com/linux-nvme/libnvme/archive/v${version}.tar.gz"
-checksum=c21cd9379390bdc52c9d9569a241274f8115fc247b76a5d922d639f48c8174a2
+checksum=1d850d5a871559abf641d6e6b63bb86047e4cb26f3ad144597c2c64b3cff7231
 
 libnvme-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} json-c-devel openssl-devel"

@@ -1,33 +1,35 @@
---- gitea-1.20.0/custom/conf/app.example.ini.orig	2023-07-16 21:24:12.000000000 +0200
-+++ gitea-1.20.0/custom/conf/app.example.ini	2023-07-19 18:51:01.186945949 +0200
-@@ -47,7 +47,7 @@
- APP_NAME = ; Gitea: Git with a cup of tea
+diff --git a/custom/conf/app.example.ini b/custom/conf/app.example.ini
+index ef276e4..5795308 100644
+--- a/custom/conf/app.example.ini
++++ b/custom/conf/app.example.ini
+@@ -44,7 +44,7 @@
+ ;APP_NAME = Gitea: Git with a cup of tea
  ;;
  ;; RUN_USER will automatically detect the current user - but you can set it here change it if you run locally
--RUN_USER = ; git
+-;RUN_USER =
 +RUN_USER = _gitea
  ;;
  ;; Application run mode, affects performance and debugging: "dev" or "prod", default is "prod"
  ;; Mode "dev" makes Gitea easier to develop and debug, values other than "dev" are treated as "prod" which is for production use.
-@@ -117,7 +117,7 @@
+@@ -129,7 +129,7 @@
  ;PER_WRITE_PER_KB_TIMEOUT = 30s
  ;;
  ;; Permission for unix socket
 -;UNIX_SOCKET_PERMISSION = 666
 +UNIX_SOCKET_PERMISSION = 660
  ;;
- ;; Local (DMZ) URL for Gitea workers (such as SSH update) accessing web service.
- ;; In most cases you do not need to change the default value.
-@@ -156,7 +156,7 @@
- ;SSH_LISTEN_PORT = %(SSH_PORT)s
+ ;; Local (DMZ) URL for Gitea workers (such as SSH update) accessing web service. In
+ ;; most cases you do not need to change the default value. Alter it only if
+@@ -177,7 +177,7 @@
  ;;
- ;; Root path of SSH directory, default is '~/.ssh', but you have to use '/home/git/.ssh'.
+ ;; Root path of SSH user directory for the system's standalone SSH server if Gitea is not using its builtin SSH server.
+ ;; Default is the '.ssh' directory in the run user's home directory.
 -;SSH_ROOT_PATH =
 +SSH_ROOT_PATH = /var/lib/gitea/.ssh
  ;;
- ;; Gitea will create a authorized_keys file by default when it is not using the internal ssh server
+ ;; Gitea will create an authorized_keys file by default when it is not using the builtin SSH server
  ;; If you intend to use the AuthorizedKeysCommand functionality then you should turn this off.
-@@ -275,7 +275,7 @@
+@@ -282,7 +282,7 @@
  ;;
  ;; Root directory containing templates and static files.
  ;; default is the path where Gitea is executed
@@ -36,7 +38,7 @@
  ;;
  ;; Default path for App data
  ;APP_DATA_PATH = data ; relative paths will be made absolute with _`AppWorkPath`_
-@@ -338,10 +338,10 @@
+@@ -357,10 +357,10 @@
  ;;
  ;; MySQL Configuration
  ;;
@@ -50,8 +52,8 @@
 +;USER = root
  ;PASSWD = ;Use PASSWD = `your password` for quoting if you use special characters in the password.
  ;SSL_MODE = false ; either "false" (default), "true", or "skip-verify"
- ;CHARSET = utf8mb4 ;either "utf8" or "utf8mb4", default is "utf8mb4".
-@@ -364,8 +364,8 @@
+ ;CHARSET_COLLATION = ; Empty as default, Gitea will try to find a case-sensitive collation. Don't change it unless you clearly know what you need.
+@@ -381,8 +381,8 @@ USER = root
  ;;
  ;; SQLite Configuration
  ;;
@@ -59,44 +61,33 @@
 -;PATH= ; defaults to data/gitea.db
 +DB_TYPE = sqlite3
 +PATH = /var/lib/gitea/data/gitea.db
- ;SQLITE_TIMEOUT = ; Query timeout defaults to: 500
+ ;SQLITE_TIMEOUT = ; Query timeout in milliseconds, defaults to: 20000
  ;SQLITE_JOURNAL_MODE = ; defaults to sqlite database default (often DELETE), can be used to enable WAL mode. https://www.sqlite.org/pragma.html#pragma_journal_mode
  ;;
-@@ -545,7 +545,7 @@
+@@ -599,7 +599,7 @@ ENABLED = true
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- ;; Root path for the log files - defaults to %(GITEA_WORK_DIR)/log
+ ;; Root path for the log files - defaults to "{AppWorkPath}/log"
 -;ROOT_PATH =
 +ROOT_PATH = /var/log/gitea
  ;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;; Main Logger
-@@ -873,11 +873,11 @@
+@@ -988,11 +988,11 @@ LEVEL = Info
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 -;[repository]
 +[repository]
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- ;; Root path for storing all repository data. By default, it is set to %(APP_DATA_PATH)s/gitea-repositories.
- ;; A relative path is interpreted as _`AppWorkPath`_/%(ROOT)s
+ ;; Root path for storing all repository data. By default, it is set to "{APP_DATA_PATH}/gitea-repositories".
+ ;; A relative path is interpreted as "{AppWorkPath}/{ROOT}" (use AppWorkPath as base path).
 -;ROOT =
 +ROOT = /var/lib/gitea/repositories
  ;;
  ;; The script type this server supports. Usually this is `bash`, but some users report that only `sh` is available.
  ;SCRIPT_TYPE = bash
-@@ -970,16 +970,16 @@
- 
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
--;[repository.local]
-+[repository.local]
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- ;;
- ;; Path for local repository copy. Defaults to `tmp/local-repo` (content gets deleted on gitea restart)
--;LOCAL_COPY_PATH = tmp/local-repo
-+LOCAL_COPY_PATH = /var/lib/gitea/tmp/local-repo
+@@ -1103,7 +1103,7 @@ LEVEL = Info
  
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -105,16 +96,7 @@
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;
-@@ -987,7 +987,7 @@
- ;ENABLED = true
- ;;
- ;; Path for uploads. Defaults to `data/tmp/uploads` (content gets deleted on gitea restart)
--;TEMP_PATH = data/tmp/uploads
-+TEMP_PATH = /var/lib/gitea/uploads
- ;;
- ;; Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
- ;ALLOWED_TYPES =
-@@ -1324,7 +1324,7 @@
+@@ -1504,7 +1504,7 @@ LEVEL = Info
  
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -123,16 +105,16 @@
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;
-@@ -1335,7 +1335,7 @@
+@@ -1515,7 +1515,7 @@ LEVEL = Info
  ;ISSUE_INDEXER_TYPE = bleve
  ;;
  ;; Issue indexer storage path, available when ISSUE_INDEXER_TYPE is bleve
 -;ISSUE_INDEXER_PATH = indexers/issues.bleve ; Relative paths will be made absolute against _`AppWorkPath`_.
 +ISSUE_INDEXER_PATH = /var/lib/gitea/indexers/issues.bleve
  ;;
- ;; Issue indexer connection string, available when ISSUE_INDEXER_TYPE is elasticsearch or meilisearch
- ;ISSUE_INDEXER_CONN_STR = http://elastic:changeme@localhost:9200
-@@ -1738,11 +1738,11 @@
+ ;; Issue indexer connection string, available when ISSUE_INDEXER_TYPE is elasticsearch (e.g. http://elastic:password@localhost:9200) or meilisearch (e.g. http://:apikey@localhost:7700)
+ ;ISSUE_INDEXER_CONN_STR =
+@@ -1954,11 +1954,11 @@ LEVEL = Info
  
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -146,7 +128,7 @@
  ;REPOSITORY_AVATAR_UPLOAD_PATH = data/repo-avatars
  ;;
  ;; How Gitea deals with missing repository avatars
-@@ -2483,11 +2483,11 @@
+@@ -2841,11 +2841,11 @@ LEVEL = Info
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;; lfs storage will override storage
  ;;
@@ -158,5 +140,5 @@
 -;PATH = data/lfs
 +PATH = /var/lib/gitea/lfs
  ;;
- ;; override the minio base path if storage type is minio
- ;MINIO_BASE_PATH = lfs/
+ ;; Allows the storage driver to redirect to authenticated URLs to serve files directly
+ ;; Currently, only `minio` and `azureblob` is supported.

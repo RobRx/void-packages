@@ -3,7 +3,7 @@
 # THIS PKG MUST BE SYNCHRONIZED WITH "srcpkgs/firefox-esr-i18n".
 #
 pkgname=firefox-esr
-version=140.2.0
+version=140.15.0
 revision=1
 build_helper="rust"
 short_desc="Mozilla Firefox web browser - Extended Support Release"
@@ -11,10 +11,10 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="MPL-2.0, GPL-2.0-or-later, LGPL-2.1-or-later"
 homepage="https://www.mozilla.org/firefox/"
 distfiles="${MOZILLA_SITE}/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz"
-checksum=956dce675c3b706d563caf07ed3ca9af632ab830be710dfd4351da78a0a2ef55
+checksum=358bb03c550f95172f1e31694e4287da3411560df91e931cb25210efdf90e524
 
 lib32disabled=yes
-_llvmver=19 # needs to match rust
+_llvmver=22 # needs to match rust
 hostmakedepends="autoconf213 unzip zip pkg-config perl python3 yasm rust
  cargo llvm${_llvmver} clang${_llvmver} lld${_llvmver} nodejs cbindgen nasm which
  tar xz $(vopt_if pgo 'xvfb-run dbus mesa-dri vulkan-loader pciutils')

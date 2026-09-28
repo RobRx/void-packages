@@ -1,6 +1,7 @@
 # Template file for 'kf6-kcompletion'
+# group=kde-frameworks
 pkgname=kf6-kcompletion
-version=6.19.0
+version=6.30.0
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base kf6-kconfig"
@@ -10,7 +11,11 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kcompletion"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=8b71d6e88b38e3aacd2591805bf2ad9c12b7bf02d7f9bde40d8af86a906edd40
+checksum=96ad9c429ca53b830359c45614ca4c32ed6b759f3023f1b3db1650ba1c19bd58
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 kf6-kcompletion-devel_package() {
 	depends="$makedepends ${sourcepkg}>=${version}_${revision}"

@@ -1,6 +1,6 @@
 # Template file for 'moor'
 pkgname=moor
-version=2.7.1
+version=2.12.1
 revision=1
 build_style=go
 go_import_path=github.com/walles/moor/v2
@@ -12,7 +12,7 @@ license="BSD-2-Clause"
 homepage="https://github.com/walles/moor"
 changelog="https://github.com/walles/moor/releases"
 distfiles="https://github.com/walles/moor/archive/refs/tags/v${version}.tar.gz"
-checksum=2b9a26b7000a92778802138b92bfe6134723e2c72ba1829ca7da04efd314620a
+checksum=807c36867ea07878143236ed1bd2053aba1064529401b730639be4d028dc7648
 
 post_install() {
 	vman moor.1

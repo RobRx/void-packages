@@ -1,6 +1,6 @@
 # Template file for 'fcft'
 pkgname=fcft
-version=3.3.2
+version=3.3.3
 revision=1
 build_style=meson
 configure_args="-Ddocs=enabled
@@ -15,7 +15,7 @@ license="MIT"
 homepage="https://codeberg.org/dnkl/fcft"
 changelog="https://codeberg.org/dnkl/fcft/raw/branch/master/CHANGELOG.md"
 distfiles="https://codeberg.org/dnkl/fcft/archive/${version}.tar.gz"
-checksum=79e52aaafc0b57fa2b68ed6127de13e98318050399a939691b8ca30d44d48591
+checksum=b0c0f4a599f43723736c8565b8b84337c4195077f07f1bb8bb3252bb13a2306a
 
 build_options="textshaping"
 build_options_default="textshaping"

@@ -1,6 +1,6 @@
 # Template file for 'vokoscreenNG'
 pkgname=vokoscreenNG
-version=4.6.0
+version=4.10.0
 revision=1
 build_style=qmake
 build_wrksrc="src"
@@ -15,7 +15,7 @@ license="GPL-2.0-only"
 homepage="http://linuxecke.volkoh.de/vokoscreen/vokoscreen.html"
 changelog="https://linuxecke.volkoh.de/vokoscreen/vokoscreen-changes.html"
 distfiles="https://github.com/vkohaupt/vokoscreenNG/archive/${version}.tar.gz"
-checksum=7800b77eef1e2a89a1b32fd09614acca4901bef7f802b71c5100c86095f8953f
+checksum=cd7dfb2dc9792d7d027a06edea0bec4b308cab588fddbc888cea0a2decd6156c
 
 post_install() {
 	vbin vokoscreenNG

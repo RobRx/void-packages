@@ -1,7 +1,7 @@
 # Template file for 'pychess'
 pkgname=pychess
 version=1.0.5
-revision=1
+revision=2
 build_style=python3-module
 _commondeps="python3-gobject python3-cairo python3-pexpect python3-SQLAlchemy2
  gst1-python3 gtksourceview"
@@ -10,7 +10,7 @@ depends="stockfish hicolor-icon-theme python3-websockets
  python3-psutil gst-plugins-base1 ${_commondeps}"
 checkdepends="${depends} xvfb-run"
 short_desc="GTK chess client written in Python"
-maintainer="cipr3s <cipr3s@gmx.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://pychess.github.io"
 distfiles="https://github.com/pychess/pychess/archive/refs/tags/${version}.tar.gz"

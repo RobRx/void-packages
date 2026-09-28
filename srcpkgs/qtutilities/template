@@ -1,6 +1,6 @@
 # Template file for 'qtutilities'
 pkgname=qtutilities
-version=6.18.3
+version=6.22.2
 revision=1
 build_style=cmake
 configure_args="-DBUILD_SHARED_LIBS=ON -DQT_PACKAGE_PREFIX=Qt6"
@@ -12,7 +12,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="GPL-2.0-only"
 homepage="https://github.com/Martchus/qtutilities"
 distfiles="https://github.com/Martchus/qtutilities/archive/v${version}.tar.gz"
-checksum=00e53839c83595ffd8f5b7e634cf71b4595fe7c5cbb185ee39e1573523176070
+checksum=c6ecf769a5544865e9e1e6c54d881caed8e0c0102a36025199d9cd18748b0afd
 
 pre_check() {
 	ninja -C build tests

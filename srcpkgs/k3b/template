@@ -1,9 +1,10 @@
 # Template file for 'k3b'
+# group=kde-gear
 pkgname=k3b
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins -DQT_MAJOR_VERSION=6
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -24,7 +25,7 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/multimedia/org.kde.k3b"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#k3b"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=571e1f59819e630bffda96c96c6326d5f128aa4556e282be519f4c8409105d25
+checksum=64670e038e848f0275fee300652d8f57019c84273bff076ba86ae8196c9bcc33
 
 if [ "$XBPS_WORDSIZE$XBPS_WORDSIZE" = "64$XBPS_TARGET_WORDSIZE" ]; then
 	makedepends+=" qt6-webengine-devel"

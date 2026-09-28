@@ -1,6 +1,6 @@
 # Template file for 'a4'
 pkgname=a4
-version=0.2.2
+version=2.0
 revision=1
 build_style=gnu-makefile
 makedepends="libvterm-devel libtickit-devel"
@@ -8,8 +8,8 @@ short_desc="Dynamic terminal manager and multiplexer"
 maintainer="Massimo Manzato <massimo.manzato@gmail.com>"
 license="MIT"
 homepage="https://a4term.com/"
-distfiles="https://github.com/rpmohn/a4/archive/v${version}.tar.gz"
-checksum=6cf79cfae36d171d0de9b2e79c55c2fbd10d30be25863842d23c95e8df628050
+distfiles="https://github.com/rpmohn/a4/archive/refs/tags/v${version}.tar.gz"
+checksum=25fc11b38fb248fab2028547d7f7b96b693695ac3e0064802aa46a806ae6fe58
 
 post_install() {
 	vlicense LICENSE

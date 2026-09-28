@@ -1,9 +1,10 @@
 # Template file for 'kmag'
+# group=kde-gear
 pkgname=kmag
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake"
+configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="extra-cmake-modules gettext kf6-kcoreaddons kf6-kdoctools
  qt6-base kf6-kconfig"
 makedepends="kf6-kparts-devel libqaccessibilityclient-devel qt6-base-devel
@@ -15,4 +16,4 @@ license="GPL-2.0-or-later"
 homepage="https://www.kde.org/applications/utilities/kmag/"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kmag"
 distfiles="${KDE_SITE}/release-service/${version}/src/kmag-${version}.tar.xz"
-checksum=c430790e593b834657172b94abda0ff0c125bf6ac44946b247c737db21aab468
+checksum=4565d8b2e83862b99772ae8aa4397a60e75a5ed2d8546350f3efa2904136d7a8

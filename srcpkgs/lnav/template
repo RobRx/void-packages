@@ -1,6 +1,6 @@
 # Template file for 'lnav'
 pkgname=lnav
-version=0.13.2
+version=0.14.1
 revision=1
 build_style=gnu-configure
 configure_args="--disable-static"
@@ -13,7 +13,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="BSD-2-Clause"
 homepage="http://lnav.org/"
 distfiles="https://github.com/tstack/lnav/archive/v${version}.tar.gz"
-checksum=3501b921c0acb435f85bd2ce589b4d8ba205a87ed855926e65a6ad165431b331
+checksum=9eddf42dbbbd59af423cd25f49e744969c95a3901f9aba07e48481d4c41c4c4e
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
 	makedepends+=" musl-legacy-compat"

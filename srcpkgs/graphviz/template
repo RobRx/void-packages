@@ -1,22 +1,22 @@
 # Template file for 'graphviz'
 pkgname=graphviz
-version=14.0.1
+version=15.1.0
 revision=1
 build_style=gnu-configure
-configure_args="--with-gts --with-ann=no"
+configure_args="--with-gts --with-ann=no PYTHON3=python3"
 make_build_args="HOSTCC=$BUILD_CC"
 hostmakedepends="automake flex libltdl-devel libtool perl pkg-config python3"
-makedepends="libpng-devel gd-devel gtk+3-devel librsvg-devel libltdl-devel
- libXaw-devel gts-devel"
+makedepends="gd-devel gtk+3-devel gts-devel libXaw-devel libltdl-devel
+ libpng-devel librsvg-devel"
 depends="liberation-fonts-ttf"
 checkdepends="${depends}"
 short_desc="Graph Visualization Software"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
-license="EPL-1.0"
+license="EPL-2.0"
 homepage="https://www.graphviz.org"
 changelog="https://gitlab.com/graphviz/graphviz/-/raw/main/CHANGELOG.md"
 distfiles="https://gitlab.com/graphviz/graphviz/-/archive/${version}/graphviz-${version}.tar.gz"
-checksum=a969b754ecd9e25cc93b2d299cc03f573ff65c5d3595350fa22678c028b8de52
+checksum=cc673e3eb9013f40761590b2b071c0fb89ad5c5d694e25d4e1238c74df86c697
 
 # `make check` is broken:
 # https://gitlab.com/graphviz/graphviz/-/issues/2112
@@ -32,7 +32,7 @@ pre_configure() {
 }
 
 post_install() {
-	vlicense epl-v10.txt LICENSE
+	vlicense EPL-2.0.txt LICENSE
 
 	rm -rf ${DESTDIR}/usr/share/graphviz/doc
 	# dot_builtins is just dot with preloaded plugins (for testing?)

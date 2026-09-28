@@ -1,9 +1,10 @@
 # Template file for 'systemsettings'
+# group=kde-plasma
 pkgname=systemsettings
-version=6.5.2
-revision=1
+version=6.7.5
+revision=2
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="python3 qt6-base qt6-tools kf6-kcmutils kf6-kauth-tools
  kf6-kconfig
@@ -23,4 +24,8 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later, GFDL-1.2-only"
 homepage="https://invent.kde.org/plasma/systemsettings"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=f6f3b2192160f08c829c00fe4c0315f9c06288d4c4daf287141e11e83d8a4bce
+checksum=317a21165709d61796fba19f5454397577ffd8aa96655b29dd286a1df252cddb
+
+# stage builds
+makedepends+=" kde-plasma-base"
+shlib_requires="KDE_Plasma.${version}"

@@ -1,19 +1,21 @@
 # Template file for 'R-cran-testthat'
 pkgname=R-cran-testthat
-version=2.3.2
-revision=2
+version=3.3.2
+revision=1
 build_style=R-cran
-hostmakedepends="R-cran-cli R-cran-crayon R-cran-digest R-cran-ellipsis
- R-cran-evaluate R-cran-magrittr R-cran-pkgload R-cran-praise R-cran-R6
- R-cran-rlang R-cran-withr"
-depends="R-cran-cli R-cran-crayon R-cran-digest R-cran-ellipsis
- R-cran-evaluate R-cran-magrittr R-cran-pkgload R-cran-praise R-cran-R6
- R-cran-rlang R-cran-withr"
+hostmakedepends="R-cran-cli R-cran-evaluate R-cran-magrittr R-cran-pkgload
+ R-cran-praise R-cran-R6 R-cran-rlang R-cran-withr R-cran-brio R-cran-jsonlite
+ R-cran-waldo R-cran-callr R-cran-desc R-cran-lifecycle R-cran-processx
+ R-cran-ps"
+depends="R-cran-cli R-cran-evaluate R-cran-magrittr R-cran-pkgload R-cran-praise
+ R-cran-R6 R-cran-rlang R-cran-withr>=3.0.2 R-cran-brio R-cran-jsonlite
+ R-cran-waldo R-cran-callr R-cran-desc R-cran-lifecycle R-cran-processx
+ R-cran-ps"
 short_desc="Unit Testing for R"
 maintainer="Luke Hannan <lukehannan@gmail.com>"
 license="MIT"
 homepage="http://testthat.r-lib.org"
-checksum=1a268d8df07f7cd8d282d03bb96ac2d96a24a95c9aa52f4cca5138a09dd8e06c
+checksum=5d2e2fa2c3dcb523afb6898c02be9544c24c1c7e0789149c436fef768a409808
 
 post_install() {
 	vlicense LICENSE

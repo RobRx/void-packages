@@ -1,9 +1,10 @@
 # Template file for 'kfind'
+# group=kde-gear
 pkgname=kfind
-version=25.08.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="extra-cmake-modules gettext kf6-kcoreaddons qt6-base
  kf6-kdoctools kf6-kconfig"
@@ -16,4 +17,4 @@ license="GPL-2.0-or-later"
 homepage="https://www.kde.org/applications/utilities/kfind/"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kfind"
 distfiles="${KDE_SITE}/release-service/${version}/src/kfind-${version}.tar.xz"
-checksum=756d4f989392086cd211553d58613d5feb41310733b8ea35c50c5869380c9518
+checksum=26ba9bb2b2fdc645dc9863fba9ba78aa4a5ef86a2c91f82afa5a8ca6afd3fa66

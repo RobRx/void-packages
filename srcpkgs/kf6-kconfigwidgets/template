@@ -1,9 +1,9 @@
 # Template file for 'kf6-kconfigwidgets'
+# group=kde-frameworks
 pkgname=kf6-kconfigwidgets
-version=6.19.0
+version=6.30.0
 revision=1
 build_style=cmake
-configure_args="-DKF6_HOST_TOOLING=/usr/lib/cmake"
 hostmakedepends="extra-cmake-modules qt6-tools qt6-base
  gettext kf6-kconfig-devel"
 makedepends="kf6-kcodecs-devel kf6-kcolorscheme-devel kf6-kconfig-devel
@@ -13,7 +13,11 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kconfigwidgets"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=1d785b68307c054a6133b8e4e462b569f02ec7adb8aafe1b95f49531b9a87f7c
+checksum=6efd9fc7786a7e979b32904aeadf1d2d8e69a5da110f8ebd45f95ec02de41f77
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 do_check() {
 	cd build

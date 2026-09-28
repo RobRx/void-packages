@@ -1,7 +1,7 @@
 # Template file for 'typst'
 pkgname=typst
 reverts="23.03.28_1"
-version=0.14.0
+version=0.15.1
 revision=1
 build_style=cargo
 make_install_args="--path crates/typst-cli"
@@ -13,7 +13,7 @@ license="Apache-2.0"
 homepage="https://typst.app"
 changelog="https://typst.app/docs/changelog/"
 distfiles="https://github.com/typst/typst/archive/refs/tags/v${version}.tar.gz"
-checksum=39df9db43c792b0ab71cde97bdc03d4763fff7d3525b67d549ffc8bfc99b6395
+checksum=c07909e01a2a6941e52c9b616e48c209c755eed416d62bcf5583c37a4aca01a3
 
 export TYPST_VERSION="$version"
 export GEN_ARTIFACTS="./generated"

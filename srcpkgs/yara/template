@@ -1,6 +1,6 @@
 # Template file for 'yara'
 pkgname=yara
-version=4.5.4
+version=4.5.8
 revision=1
 build_style=gnu-configure
 configure_args="--enable-magic --enable-cuckoo"
@@ -11,7 +11,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="BSD-3-Clause"
 homepage="https://virustotal.github.io/yara/"
 distfiles="https://github.com/VirusTotal/yara/archive/v${version}.tar.gz"
-checksum=586c9c21878f8b4d1b9423b89ac937f21f8057b03e3e9706f310549d453966fa
+checksum=c322414975ff6f701149856613afdcd92a7e6939c284c798ae3c85618197efaa
 
 pre_configure() {
 	autoreconf -fi

@@ -1,6 +1,7 @@
 # Template file for 'kf6-kimageformats'
+# group=kde-frameworks
 pkgname=kf6-kimageformats
-version=6.19.0
+version=6.30.0
 revision=1
 build_style=cmake
 configure_args="-DKIMAGEFORMATS_HEIF=ON -DKDE_INSTALL_QMLDIR=lib/qt6/qml
@@ -14,11 +15,15 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kimageformats"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=fc825326aa6b8c1321947ff523d3d006eef4c65fde40f379c6900d06967fae1c
+checksum=f74ea9ede7877afb66f4d7dea567f074bf63d806a824c87a9d9067d05848a316
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 do_check() {
 	cd build
-	exclude="kimageformats-read-xcf|kimageformats-read-psd|kimageformats-read-hej2"
+	exclude="kimageformats-read-xcf|kimageformats-read-psd|kimageformats-read-hej2|kimageformats-write-hej2"
 	case "$XBPS_TARGET_MACHINE" in
 		i686*) exclude+="|kimageformats-write-exr";;
 		*) ;;

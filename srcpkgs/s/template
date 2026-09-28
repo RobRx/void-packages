@@ -1,6 +1,6 @@
 # Template file for 's'
 pkgname=s
-version=0.7.4
+version=0.8.1
 revision=1
 build_helper=qemu
 build_style=go
@@ -10,7 +10,7 @@ maintainer="Daniel Lewan <daniel@teddydd.me>"
 license="MIT"
 homepage="https://github.com/zquestz/s"
 distfiles="https://github.com/zquestz/s/archive/v${version}.tar.gz"
-checksum=c491ddb6306382bba7ab2665b6fddbb60aef3de32704c04549a5e0b0174dfa6d
+checksum=9dd80e19b2287abf2689b8f9fd424fdfad9abdc51b69e3a550579db69d6c8f6f
 
 post_build() {
 	s_cli=$(find $GOPATH/bin -name s)

@@ -1,6 +1,6 @@
 # Template file for 'pahole'
 pkgname=pahole
-version=1.30
+version=1.32
 revision=1
 build_style=cmake
 configure_args="-D__LIB=lib"
@@ -10,7 +10,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="GPL-2.0-only"
 homepage="http://git.kernel.org/?p=devel/pahole/pahole.git;a=summary"
 distfiles="https://fedorapeople.org/~acme/dwarves/dwarves-${version}.tar.xz"
-checksum=1c89f47dc4f127c4b9d3fb46c8386a40be45c36ef82e8df472418de9423fc5bb
+checksum=319cbf319e9fc92065a5407ce47eb868d73566f3d4840a56832734e4579df947
 
 case $XBPS_TARGET_MACHINE in
 	*-musl) makedepends+=" musl-obstack-devel argp-standalone"

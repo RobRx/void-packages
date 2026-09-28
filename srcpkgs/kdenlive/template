@@ -1,10 +1,11 @@
 # Template file for 'kdenlive'
+# group=kde-gear
 pkgname=kdenlive
-version=25.08.3
-revision=1
+version=26.08.0
+revision=2
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
- -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins -DFETCH_OTIO=OFF
+configure_args="-DBUILD_TESTING=OFF
+ -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml"
 hostmakedepends="
  extra-cmake-modules kf6-kconfig kf6-kcoreaddons kf6-kdoctools pkg-config python3
@@ -18,7 +19,7 @@ makedepends="
  kf6-knewstuff-devel kf6-knotifications-devel kf6-knotifyconfig-devel
  kf6-ktextwidgets-devel kf6-kwidgetsaddons-devel kf6-kxmlgui-devel
  mlt7-devel qt6-multimedia-devel v4l-utils-devel qt6-networkauth-devel
- OpenTimelineIO-devel imath-devel"
+ OpenTimelineIO-devel imath-devel kddockwidgets-devel"
 depends="breeze-icons dvdauthor ffmpeg frei0r-plugins kf6-kirigami
  kf6-qqc2-desktop-style mediainfo-cli"
 checkdepends="$depends xvfb-run"
@@ -27,7 +28,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://kdenlive.org"
 distfiles="${KDE_SITE}/release-service/${version}/src/kdenlive-${version}.tar.xz"
-checksum=81ba4e911147d5dbd33bcf464b2f0ae9f57b8824dbfc7fab21f3c11bb6433783
+checksum=754e1b3e288f8529b2739cfe8ce702d3880f3f3239b0d73f2aef2c88aca49b12
 
 case "$XBPS_TARGET_MACHINE" in
 	ppc64*) depends+=" opencv";;

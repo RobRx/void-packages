@@ -1,10 +1,12 @@
 # Template file for 'kf6-kconfig'
+# group=kde-frameworks
 pkgname=kf6-kconfig
-version=6.19.0
-revision=2
+version=6.30.0
+revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml
- -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
+ -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
+ -DKDE_INSTALL_QTMETATYPESDIR=lib/qt6/metatypes"
 hostmakedepends="extra-cmake-modules qt6-base qt6-tools
  qt6-declarative-host-tools"
 makedepends="qt6-declarative-devel qt6-base-private-devel"
@@ -13,7 +15,11 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/kconfig"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=d4ffbecd0690807122374927f196eb6b65f3753f22a6a16109e04aa7e98b32eb
+checksum=0e98bac324cd716849202d4b246a948e363d6792a8eb09c78417cdde9559f56e
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 do_check() {
 	cd build

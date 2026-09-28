@@ -1,6 +1,6 @@
 # Template file for 'rust-bacon'
 pkgname=rust-bacon
-version=3.19.0
+version=3.22.0
 revision=1
 build_style=cargo
 short_desc="Background rust code checker"
@@ -9,7 +9,7 @@ license="AGPL-3.0-only"
 homepage="https://dystroy.org/bacon/"
 changelog="https://raw.githubusercontent.com/Canop/bacon/main/CHANGELOG.md"
 distfiles="https://github.com/Canop/bacon/archive/refs/tags/v${version}.tar.gz"
-checksum=2c49ca02687391d425f2cc9a19cae8227338def2d689d55ff5970cb70fd2b7f6
+checksum=ee6ea9784bc14e404a3dd11c2deddb4b75d597e29b645a57773011945a664f8d
 conflicts="bacon"
 
 post_install() {

@@ -1,29 +1,30 @@
 # Template file for 'snapcast'
 pkgname=snapcast
-version=0.31.0
-revision=2
-_snapweb_version=0.8.0
+version=0.35.0
+revision=1
+_snapweb_version=0.9.3
 build_style=cmake
 configure_args="-DCMAKE_INSTALL_SYSCONFDIR=/etc -DBUILD_WITH_TREMOR=OFF
  -DBUILD_WITH_AVAHI=$(vopt_if avahi ON OFF)
+ -DBUILD_WITH_PIPEWIRE=$(vopt_if pipewire ON OFF)
  -DBUILD_WITH_PULSE=$(vopt_if pulseaudio ON OFF)"
 hostmakedepends="pkg-config"
-makedepends="alsa-lib-devel boost-devel-minimal expat-devel libflac-devel libsoxr-devel
+makedepends="alsa-lib-devel boost-headers expat-devel libflac-devel libsoxr-devel
  libvorbis-devel openssl-devel opus-devel $(vopt_if avahi avahi-libs-devel)
- $(vopt_if pulseaudio pulseaudio-devel)"
+ $(vopt_if pipewire pipewire-devel) $(vopt_if pulseaudio pulseaudio-devel)"
 short_desc="Synchronous multi-room audio player"
 maintainer="amak <amak.git@outlook.com>"
 license="GPL-3.0-or-later"
-homepage="https://github.com/badaix/snapcast"
-changelog="https://raw.githubusercontent.com/badaix/snapcast/master/changelog.md"
-distfiles="https://github.com/badaix/snapcast/archive/v${version}.tar.gz
- https://github.com/badaix/snapweb/releases/download/v${_snapweb_version}/snapweb.zip>snapweb-${_snapweb_version}.zip"
-checksum="d38d576f85bfa936412413b6860875ba3b462a8e67405f3984a0485778f2fdac
- 71078f94d87e44881c7bf6491456d528420a69ae09f1ae115dd6c48c03c2a65c"
+homepage="https://github.com/snapcast/snapcast"
+changelog="https://raw.githubusercontent.com/snapcast/snapcast/master/changelog.md"
+distfiles="https://github.com/snapcast/snapcast/archive/v${version}.tar.gz
+ https://github.com/snapcast/snapweb/releases/download/v${_snapweb_version}/snapweb.zip>snapweb-${_snapweb_version}.zip"
+checksum="cb75a71479bf52910bf5f47ae8120ec41c89459b0d77d7cd560e674e437ef050
+ cc258df98b8c474ea19048bc84c0c2e2c5fbc3b0856aef03a838f3a4489fa4c7"
 skip_extraction="snapweb-${_snapweb_version}.zip"
 
-build_options="avahi pulseaudio"
-build_options_default="avahi pulseaudio"
+build_options="avahi pipewire pulseaudio"
+build_options_default="avahi pipewire pulseaudio"
 
 post_extract() {
 	vsrcextract -C server/etc/snapweb --strip-components=0 snapweb-${_snapweb_version}.zip
