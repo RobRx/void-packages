@@ -1,5 +1,8 @@
 # Contributing to void-packages
 
+> [!IMPORTANT]
+> Void's [global contributing policy](https://github.com/void-linux/.github/blob/master/CONTRIBUTING.md) applies to this repository
+
 void-packages is the backbone of the Void Linux distribution. It contains all the definitions to build packages from source.
 
 This document describes how you, as a contributor, can help with adding packages, correcting bugs and adding features to void-packages.
@@ -27,6 +30,9 @@ Such forks require heavy patching, maintenance and hours of build time.
 
 Software need to be used in version announced by authors as ready to use by the general public - usually called releases.
 Betas, arbitrary VCS revisions, templates using tip of development branch taken at build time and releases created by the package maintainer won't be accepted.
+Software should have an established and mature release history. New projects or those with an excessively frequent release cadence are not good candidates for system packages.
+
+Packages should be submitted by someone other than the developer of the software, though exceptions can be made for established contributors if the software meets other requirements.
 
 ## Creating, updating, and modifying packages in Void by yourself
 
@@ -72,6 +78,9 @@ You can use the helper tool `xnew`, from the [xtools](https://github.com/leahneu
 Templates must have the name `void-packages/srcpkgs/<pkgname>/template`, where `pkgname` is the same as the `pkgname` variable in the template.
 
 For deeper insights on the contents of template files, please read the [manual](./Manual.md), and be sure to browse the existing template files in the `srcpkgs` directory of this repository for concrete examples.
+
+To ensure packages stay maintained, we prefer that they are submitted by those with a history of contributions to existing packages.
+A good way to do this is to work on orphaned packages (those maintained by `orphan@voidlinux.org`) that you use.
 
 ### Updating a template
 
@@ -163,7 +172,7 @@ When you make changes to your pull request, please *do not close and reopen your
 #### Continuous Integration
 
 Pull requests are automatically submitted for Continuous Integration (CI) testing to ensure packages build and pass their tests (on native builds) on various combinations of C library and architecture.
-Packages that take longer than 120 minutes or need more than 14G of storage to complete their build (for example, Firefox or the Linux kernel) will fail CI and should include `[ci skip]` in the PR title or body (the comment field when the PR is being opened) to avoid wasting CI builder time.
+Packages expected to take longer than several hours or need more than 14G of storage to complete their build (for example, Firefox or the Linux kernel) will fail CI and should include `[ci skip]` in the PR title or body (the comment field when the PR is being opened) to avoid spurious failures and wasted CI builder time.
 Use your best judgment on build times based on your local building experience. If you skip CI when submitting a PR, please build and cross-build for a variety of architectures locally, with both glibc and musl, and note your local results in PR comments.
 Make sure to cover 64-bit and 32-bit architectures.
 
@@ -172,7 +181,7 @@ Use `./xbps-src -Q pkg <package>` to do so.
 Some tests won't work in the CI environment or at all, and their templates should encode this information using the `make_check` variable.
 
 Continuous Integration will also check if the templates you have changed
-comply with the our guidelines. At the moment not all packages comply with the rules, so if you update a package, it may report errors about places you haven't touched. Please feel free to fix those errors too.
+comply with our guidelines. At the moment not all packages comply with the rules, so if you update a package, it may report errors about places you haven't touched. Please feel free to fix those errors too.
 
 #### Review
 

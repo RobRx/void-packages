@@ -5,10 +5,10 @@ _glibc_version=2.41
 _linux_version=6.14
 pkgname=cross-riscv64-linux-gnu
 version=0.37
-revision=1
+revision=2
 build_style=void-cross
 configure_args="--with-arch=rv64gc --with-abi=lp64d --enable-autolink-libatomic --disable-multilib"
-hostmakedepends="texinfo tar gcc-objc gcc-go flex perl python3 pkg-config"
+hostmakedepends="texinfo tar gcc-objc gcc-go gcc-gdc flex perl python3 pkg-config"
 makedepends="isl-devel libmpc-devel gmp-devel mpfr-devel
  zlib-devel libzstd-devel"
 depends="${pkgname}-libc-${version}_${revision}"
@@ -18,7 +18,7 @@ license="GPL-2.0-or-later, GPL-3.0-or-later, LGPL-2.1-or-later"
 homepage="https://www.voidlinux.org/"
 case "${_gcc_version}" in
 	*+*) distfiles="https://gcc.gnu.org/pub/gcc/snapshots/${_gcc_version%%.*}-${_gcc_version#*+}/gcc-${_gcc_version%%.*}-${_gcc_version#*+}.tar.xz" ;;
-	*) distfiles="${GNU_SITE}/gcc/gcc-${_gcc_version}.tar.xz" ;;
+	*) distfiles="${GNU_SITE}/gcc/gcc-${_gcc_version}/gcc-${_gcc_version}.tar.xz" ;;
 esac
 distfiles+=" ${GNU_SITE}/binutils/binutils-${_binutils_version}.tar.xz"
 distfiles+=" ${GNU_SITE}/glibc/glibc-${_glibc_version}.tar.xz"

@@ -1,15 +1,16 @@
 # Template file for 'partitionmanager'
+# group=kde-gear
 pkgname=partitionmanager
-version=24.08.0
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 hostmakedepends="qt6-base-devel kf6-kdoctools kf6-kconfig qt6-base
  extra-cmake-modules pkg-config gettext kf6-kcoreaddons"
 makedepends="qt6-base-devel kf6-kconfig-devel kpmcore-devel kf6-kdoctools-devel
  kf6-kservice-devel kf6-kio-devel kf6-kxmlgui-devel kf6-kiconthemes-devel
- kf6-kconfigwidgets-devel"
+ kf6-kconfigwidgets-devel kf6-kdbusaddons-devel kf6-kcrash-devel"
 depends="hicolor-icon-theme"
 short_desc="KDE utility that allows you to manage disks"
 maintainer="jambonmcyeah <jambonmcyeah@gmail.com>"
@@ -17,4 +18,4 @@ license="GPL-3.0-or-later"
 homepage="https://apps.kde.org/partitionmanager"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#partitionmanager"
 distfiles="${KDE_SITE}/release-service/${version}/src/partitionmanager-${version}.tar.xz"
-checksum=f5f8dc4f1aaa164b97c41086ca3807ef93a68d9522f90dd167e6c7e7adec64ab
+checksum=ce72282efa8a8fdf5b97b358e408dbaa8f326a29d0c792ff7cf8e6da80553ed6

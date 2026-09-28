@@ -1,6 +1,6 @@
 # Template file for 'xtruss'
 pkgname=xtruss
-version=20241111.27fafff
+version=20260410.f723509
 revision=1
 build_style=cmake
 hostmakedepends="halibut"
@@ -9,7 +9,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://www.chiark.greenend.org.uk/~sgtatham/xtruss/"
 distfiles="https://www.chiark.greenend.org.uk/~sgtatham/${pkgname}/${pkgname}-${version}.tar.gz"
-checksum=76c56863d066b991f3c5a42b3a8dd65e76b18609214d7405a14572f40d7195ed
+checksum=c78c6b4b49d5d256f38ab5ab7c56d1b0829e1420bdcc456347d572b249c94a28
 
 CFLAGS="-UNDEBUG"
 

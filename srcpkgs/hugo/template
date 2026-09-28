@@ -1,17 +1,17 @@
 # Template file for 'hugo'
 pkgname=hugo
-version=0.145.0
+version=0.165.0
 revision=1
 build_style=go
 build_helper=qemu
 go_import_path="github.com/gohugoio/hugo"
 go_build_tags="extended"
 short_desc="Fast & Modern Static Website Engine"
-maintainer="Andrea Brancaleoni <abc@pompel.me>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="Apache-2.0"
 homepage="https://gohugo.io"
 distfiles="https://github.com/gohugoio/hugo/archive/v${version}.tar.gz"
-checksum=f6cfcfa4575ff25a08e68b638367df60b28e28a7917471c5deec6396eae26ae2
+checksum=e9c1e7d8e6e09356cc56317fd01b7493d712692390b89b3d33810cfe1305650e
 
 post_install() {
 	vdoc README.md

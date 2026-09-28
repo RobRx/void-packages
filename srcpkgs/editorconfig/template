@@ -1,6 +1,6 @@
 # Template file for 'editorconfig'
 pkgname=editorconfig
-version=0.12.6
+version=0.12.11
 revision=1
 build_style=cmake
 makedepends="pcre2-devel"
@@ -10,7 +10,7 @@ license="BSD-2-Clause"
 homepage="https://editorconfig.org/"
 changelog="https://github.com/editorconfig/editorconfig-core-c/releases"
 distfiles="https://github.com/editorconfig/editorconfig-core-c/archive/v${version}.tar.gz"
-checksum=36052a5371731d915b53d9c7a24a11c4032585ccacb392ec9d58656eef4c0edf
+checksum=9d8b420b56a969ea3cf784861c72d26fa0e158fa1494d732df2c8a1480d36a5c
 
 post_install() {
 	vlicense LICENSE

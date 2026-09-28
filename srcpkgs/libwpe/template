@@ -1,6 +1,6 @@
 # Template file for 'libwpe'
 pkgname=libwpe
-version=1.16.0
+version=1.16.3
 revision=1
 build_style=meson
 hostmakedepends="pkg-config"
@@ -10,7 +10,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="https://wpewebkit.org"
 distfiles="https://wpewebkit.org/releases/libwpe-${version}.tar.xz"
-checksum=c7f3a3c6b3d006790d486dc7cceda2b6d2e329de07f33bc47dfc53f00f334b2a
+checksum=c880fa8d607b2aa6eadde7d6d6302b1396ebc38368fe2332fa20e193c7ee1420
 
 post_install() {
 	vlicense COPYING

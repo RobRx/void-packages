@@ -1,6 +1,9 @@
 # This build helper writes a Meson cross-file, allowing other build styles
 # to properly drive cross-builds in Meson when appropriate
 
+# allows meson to automatically unpack wrapped dependencies specified in distfiles
+export MESON_PACKAGE_CACHE_DIR="${XBPS_SRCDISTDIR}/${pkgname}-${version}/"
+
 # Action is only taken for cross builds
 [ -z "$CROSS_BUILD" ] && return 0
 
@@ -59,6 +62,7 @@ cat > "${XBPS_WRAPPERDIR}/meson/xbps_meson.cross" <<-EOF
 	${_MESON_EXE_WRAPPER:-# exe_wrapper is not set}
 	c = '${CC}'
 	cpp = '${CXX}'
+	d = 'ldc2'
 	ar = '${XBPS_CROSS_TRIPLET}-gcc-ar'
 	nm = '${NM}'
 	strip = '${STRIP}'
@@ -71,10 +75,13 @@ cat > "${XBPS_WRAPPERDIR}/meson/xbps_meson.cross" <<-EOF
 	g-ir-generate = '${XBPS_CROSS_BASE}/usr/bin/g-ir-generate'
 	llvm-config = 'llvm-config-qemu'
 	cups-config = '${XBPS_CROSS_BASE}/usr/bin/cups-config'
+	qmake6 = 'qmake6'
+	qmake5 = 'qmake5'
+	cmake = 'cmake'
 
 	[properties]
 	needs_exe_wrapper = true
-	bindgen_clang_arguments = ['-target', '${XBPS_CROSS_TRIPLET}']
+	bindgen_clang_arguments = ['--target=${XBPS_CROSS_TRIPLET}']
 
 	[host_machine]
 	system = 'linux'

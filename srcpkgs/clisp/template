@@ -8,7 +8,7 @@ configure_args="--prefix=/usr --disable-mmap --disable-rpath
 hostmakedepends="ffcall"
 makedepends="libsigsegv-devel $(vopt_if readline readline-devel)"
 short_desc="ANSI Common Lisp Interpreter, Compiler and Debugger"
-maintainer="Martin Riese <grauehaare@gmx.de>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
 homepage="https://gitlab.com/gnu-clisp/clisp"
 distfiles="https://alpha.gnu.org/gnu/clisp/clisp-${version}.tar.bz2"
@@ -28,7 +28,7 @@ case "$XBPS_TARGET_MACHINE" in
 	i686-musl) broken="*** - MULTIPLE-VALUE-SETQ: variable EXTRA-FILE-TYPES has no value";;
 esac
 
-if [ "$XBPS_TARGET_WORDSIZE" == 32 ]; then
+if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
 	CFLAGS+=" -falign-functions=4"
 fi
 

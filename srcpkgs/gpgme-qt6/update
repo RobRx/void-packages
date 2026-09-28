@@ -1,1 +1,2 @@
-pkgname=gpgme
+site="https://www.gnupg.org/ftp/gcrypt/qgpgme/"
+pkgname=qgpgme

@@ -1,6 +1,6 @@
 # Template file for 'senpai'
 pkgname=senpai
-version=0.4.0
+version=0.5.0
 revision=1
 build_style=go
 go_import_path="git.sr.ht/~delthas/senpai"
@@ -12,7 +12,7 @@ license="ISC"
 homepage="https://git.sr.ht/~delthas/senpai/"
 changelog="https://git.sr.ht/~delthas/senpai/refs"
 distfiles="https://git.sr.ht/~delthas/senpai/archive/v${version}.tar.gz"
-checksum=ff5697bc09a133b73a93db17302309b81d6d11281ea85d80157f1977e8b1a1e2
+checksum=1793259dca5321f1365cae9d24316d5d4cd01df648d895eaa03eacb49f433db8
 
 post_install() {
 	scdoc <doc/senpai.1.scd >doc/senpai.1

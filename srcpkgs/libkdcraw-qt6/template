@@ -1,6 +1,7 @@
 # Template file for 'libkdcraw-qt6'
+# group=kde-gear
 pkgname=libkdcraw-qt6
-version=24.12.3
+version=26.08.0
 revision=1
 build_style=cmake
 configure_args="-DQT_MAJOR_VERSION=6"
@@ -8,11 +9,11 @@ hostmakedepends="extra-cmake-modules pkg-config qt6-tools
  qt6-base gettext"
 makedepends="qt6-base-devel libraw-devel"
 short_desc="C++ interface around LibRaw library used to decode RAW - Qt6"
-maintainer="Luciogi <githubvoidlinux.supremacy429@passinbox.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://www.kde.org/applications/graphics/"
 distfiles="${KDE_SITE}/release-service/${version}/src/libkdcraw-${version}.tar.xz"
-checksum=982e09405cde76911f036806aa12fd6b70f8ee26b1b37c73fe5c40ddc2340d5a
+checksum=cb4a21e94adb2adc4ac7f267d0e35c0449786514bd92c28bfdb75941d79c8e7e
 
 libkdcraw-qt6-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"

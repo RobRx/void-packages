@@ -1,6 +1,6 @@
 # Template file for 'xfce4-session'
 pkgname=xfce4-session
-version=4.20.0
+version=4.20.4
 revision=1
 build_style=gnu-configure
 configure_args="--disable-static --enable-polkit"
@@ -14,4 +14,4 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="GPL-2.0-or-later"
 homepage="https://xfce.org/"
 distfiles="https://archive.xfce.org/src/xfce/$pkgname/${version%.*}/$pkgname-$version.tar.bz2"
-checksum=5229233fe6ee692361cc28724886c5b08e0216d89f09c42d273191d38fd64f85
+checksum=805c373378d080754d69dd2f20db95cdc066c89a4f024a41435ca0d66571c402

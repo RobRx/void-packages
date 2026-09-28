@@ -1,6 +1,6 @@
 # Template file for 'MangoHud'
 pkgname=MangoHud
-version=0.8.0
+version=0.8.4
 revision=1
 build_style=meson
 configure_args="-Dwith_xnvctrl=disabled
@@ -12,9 +12,12 @@ short_desc="Vulkan and OpenGL overlay for monitoring FPS, temperatures and more"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://github.com/flightlessmango/MangoHud"
+changelog="https://github.com/flightlessmango/MangoHud/releases"
 distfiles="https://github.com/flightlessmango/MangoHud/releases/download/v${version}/MangoHud-v${version}-Source-DFSG.tar.xz"
-checksum=9627587e05e0a570935d2177bd5f704ef6b72d66f7f773a48d8d86ec0e8aa673
+checksum=5411681fff30082ae9fc09bf27794c3ef3cd3b5ab27783fea4e2f0e899d591a3
+
 python_version=3
+
 lib32files="/usr/share/vulkan/implicit_layer.d/MangoHud.x86.json"
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then

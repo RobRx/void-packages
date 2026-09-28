@@ -1,6 +1,6 @@
 # Template file for 'vifm'
 pkgname=vifm
-version=0.14
+version=0.14.4
 revision=1
 build_style=gnu-configure
 configure_args="--without-gtk"
@@ -12,7 +12,9 @@ maintainer="voidbert <humbertogilgomes@protonmail.com>"
 license="GPL-2.0-or-later"
 homepage="https://vifm.info/"
 distfiles="${SOURCEFORGE_SITE}/vifm/vifm-${version}.tar.bz2"
-checksum=2714dd4cef4e53e7a8980ae8445e88279104f815d47f417fa0b8adfe2f3d1bed
+checksum=40bc32ec10d829ada3d0297d33cd4f302c520bb431287d544fc0a05ae45fdb1b
+
+make_check=no # Some tests fail due to the limited numbers of users and groups
 
 CFLAGS="-fcommon"
 

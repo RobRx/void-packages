@@ -1,6 +1,6 @@
 # Template file for 'maddy'
 pkgname=maddy
-version=0.7.1
+version=0.9.5
 revision=1
 build_style=go
 go_import_path="github.com/foxcpp/maddy"
@@ -9,12 +9,13 @@ go_package="$go_import_path/cmd/maddy
  $go_import_path/cmd/maddy-shadow-helper"
 hostmakedepends="scdoc"
 makedepends="pam-devel"
+depends="libcap-progs"	# For setcap(8)
 short_desc="Composable all-in-one mail server"
 maintainer="Michael Aldridge <maldridge@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://maddy.email"
 distfiles="https://github.com/foxcpp/maddy/archive/refs/tags/v$version.tar.gz"
-checksum=541288477afb040a04a5cf17a1c3e3b7a81b287dc3a81c844b2d6ad66688c29e
+checksum=c5670ff64930a4d69053557cdf252527b54c32bff882c33d120bd208f34a6e19
 make_dirs="/var/lib/maddy 0750 _maddy _maddy
  /etc/maddy 0750 _maddy _maddy"
 system_accounts="_maddy"

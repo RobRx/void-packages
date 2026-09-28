@@ -1,6 +1,6 @@
 # Template file for 'openbsd-netcat'
 pkgname=openbsd-netcat
-version=1.228
+version=1.238
 revision=1
 create_wrksrc=yes
 hostmakedepends="pkg-config"
@@ -12,8 +12,8 @@ homepage="http://packages.debian.org/sid/netcat-openbsd"
 distfiles="
  ${DEBIAN_SITE}/main/n/netcat-openbsd/netcat-openbsd_${version%p*}.orig.tar.gz
  ${DEBIAN_SITE}/main/n/netcat-openbsd/netcat-openbsd_${version}-1.debian.tar.xz"
-checksum="e501b0239db0d8f981b964adee74effe80e6337e5d402a00515a6df8d933269e
- 7989cc18b3ffa4ef1da57149bd3fc03999546a91c35b82b49caf4d758015c573"
+checksum="9f72a37d85dec1366309fdb0172be4e67e09ec26e89f13156315149e17c02479
+ eefeb9ff863ebd4384274b132a3ff9b492aacb244e445c34dbfb36cfee596930"
 
 alternatives="
  nc:nc:/usr/bin/openbsd-nc
@@ -29,6 +29,7 @@ do_build() {
 		*-musl) # Add missing b64_ntop() and b64_pton() functions
 			cp ${FILESDIR}/base64.c .
 			sed -i Makefile -e "/SRCS=/s;\(.*\);& base64.c;"
+			CFLAGS="$CFLAGS -DIPTOS_DSCP_VA=0xb0"
 			;;
 	esac
 	make ${makejobs} \

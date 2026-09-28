@@ -1,22 +1,22 @@
 # Template file for 'rustup'
 pkgname=rustup
-version=1.28.1
+version=1.29.1
 revision=1
 # rustup doesn't recognize this target
 archs="~armv*-musl"
 build_style=cargo
 build_helper=qemu
 configure_args="--bin rustup-init --no-default-features
- --features curl-backend,reqwest-native-tls,no-self-update"
+ --features=curl-backend,reqwest-native-tls,no-self-update"
 hostmakedepends="pkg-config"
-makedepends="openssl-devel zlib-devel libcurl-devel liblzma-devel libzstd-devel"
+makedepends="openssl-devel libcurl-devel liblzma-devel libzstd-devel"
 short_desc="Rust toolchain installer"
 maintainer="tranzystorekk <tranzystorek.io@protonmail.com>"
 license="Apache-2.0 OR MIT"
 homepage="https://www.rustup.rs"
 changelog="https://raw.githubusercontent.com/rust-lang/rustup/master/CHANGELOG.md"
 distfiles="https://github.com/rust-lang/rustup/archive/refs/tags/${version}.tar.gz"
-checksum=2def2f9a0a4a21c80f862c0797c2d76e765e0e7237e1e41f28324722ab912bac
+checksum=00f79a02275fd0252be6928d7a44f96bfba706a0cc47a0c85557aa4a875d1181
 
 do_install() {
 	vbin target/${RUST_TARGET}/release/rustup-init

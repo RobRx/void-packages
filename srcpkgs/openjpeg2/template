@@ -1,6 +1,6 @@
 # Template file for 'openjpeg2'
 pkgname=openjpeg2
-version=2.5.2
+version=2.5.4
 revision=1
 build_style=cmake
 makedepends="libpng-devel lcms2-devel tiff-devel"
@@ -9,7 +9,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="http://www.openjpeg.org/"
 distfiles="https://github.com/uclouvain/openjpeg/archive/v${version}.tar.gz"
-checksum=90e3896fed910c376aaf79cdd98bdfdaf98c6472efd8e1debf0a854938cbda6a
+checksum=a695fbe19c0165f295a8531b1e4e855cd94d0875d2f88ec4b61080677e27188a
 
 libopenjpeg2-devel_package() {
 	short_desc+=" - development files"

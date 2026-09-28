@@ -1,11 +1,9 @@
 # Template file for 'starship'
 pkgname=starship
-version=1.22.1
+version=1.26.0
 revision=1
 build_style=cargo
 build_helper=qemu
-hostmakedepends="cmake pkg-config"
-depends="git"
 checkdepends="git fish-shell"
 short_desc="Minimal, fast and customizable cross-shell prompt"
 maintainer="cinerea0 <cinerea0@protonmail.com>"
@@ -13,7 +11,7 @@ license="ISC"
 homepage="https://starship.rs"
 changelog="https://raw.githubusercontent.com/starship/starship/master/CHANGELOG.md"
 distfiles="https://github.com/starship/starship/archive/refs/tags/v${version}.tar.gz"
-checksum=5434a3d1ca16987a1dd30146c36aaa4371dbe1c7f1a7995c0cf12ab3eb9326d7
+checksum=8c95e8a6c596b29ac192104eae00dd991e8c8fd66083fd2b34d6b223a5803a59
 make_check_pre="env HOME=${wrksrc}/fake-home"
 
 pre_check() {

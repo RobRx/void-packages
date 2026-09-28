@@ -1,6 +1,7 @@
 # Template file for 'kf6-bluez-qt'
+# group=kde-frameworks
 pkgname=kf6-bluez-qt
-version=6.12.0
+version=6.30.0
 revision=1
 build_style=cmake
 configure_args="-DKDE_INSTALL_QMLDIR=lib/qt6/qml"
@@ -12,9 +13,12 @@ short_desc="Qt wrapper for Bluez 5 DBus API"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/bluez-qt"
-#changelog=""
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#kf6-}-${version}.tar.xz"
-checksum=d8a84cd33a1345301487391c6dc625e277b5a2544d7360e5f6eda02a34cc7558
+checksum=f5045b14a6c689bbfded9437582f943dd4f8f74537085ab6115bcacdea2110d8
+
+# stage builds
+makedepends+=" kf6-base"
+shlib_requires="KDE_Frameworks.${version%.*}"
 
 do_check() {
 	cd build
@@ -27,6 +31,7 @@ kf6-bluez-qt-devel_package() {
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/cmake
+		vmove usr/lib/pkgconfig
 		vmove "usr/lib/*.so"
 	}
 }

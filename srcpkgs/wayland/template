@@ -1,9 +1,10 @@
 # Template file for 'wayland'
 pkgname=wayland
-version=1.23.0
+version=1.26.0
 revision=1
 build_style=meson
 # "Tests must not be built with NDEBUG defined, they rely on assert()."
+# documentation introduces build cycle. wayland -> graphviz -> gd -> libheif -> gdk-pixbuf -> tiff -> libwebp -> libfreeglut -> mesa -> wayland-protocols -> wayland
 configure_args="-Ddocumentation=false -Db_ndebug=false"
 hostmakedepends="flex pkg-config"
 makedepends="expat-devel libffi-devel libfl-devel libxml2-devel"
@@ -12,7 +13,7 @@ maintainer="Érico Nogueira <ericonr@disroot.org>"
 license="MIT"
 homepage="https://wayland.freedesktop.org/"
 distfiles="https://gitlab.freedesktop.org/wayland/wayland/-/releases/${version}/downloads/wayland-${version}.tar.xz"
-checksum=05b3e1574d3e67626b5974f862f36b5b427c7ceeb965cb36a4e6c2d342e45ab2
+checksum=64176eaa46e4969903e286f8e5ef8331affc17fdf03ac9b58381d2b23162b7a3
 
 if [ "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -Dtests=true"

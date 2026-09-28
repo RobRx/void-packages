@@ -1,6 +1,6 @@
 # Template file for 'tagparser'
 pkgname=tagparser
-version=12.5.0
+version=12.5.3
 revision=1
 build_style=cmake
 configure_args="-DBUILD_SHARED_LIBS:BOOL=ON"
@@ -11,7 +11,7 @@ maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="GPL-2.0-only"
 homepage="https://github.com/Martchus/tagparser"
 distfiles="https://github.com/Martchus/${pkgname}/archive/v${version}.tar.gz"
-checksum=275dabc4500a0be6e0d9e24348bf6cab03ea56b179acb33e9efddf59e880b907
+checksum=902ba1759ed54cff5e5009d6d4d1dded9ee0bd0d23fb1221aef59adf25b0e455
 
 tagparser-devel_package() {
 	short_desc+=" - development files"

@@ -1,10 +1,10 @@
 # Template file for 'cinnamon-settings-daemon'
 pkgname=cinnamon-settings-daemon
-version=6.4.2
-revision=2
+version=6.6.3
+revision=1
 build_style=meson
 build_helper="gir"
-hostmakedepends="dbus-glib-devel gettext-devel glib-devel intltool pkg-config"
+hostmakedepends="dbus-glib-devel gettext glib-devel pkg-config"
 makedepends="cinnamon-desktop-devel elogind-devel ibus-devel json-glib-devel
  libSM-devel libcanberra-devel libgnomekbd-devel libgudev-devel libnotify-devel
  nss-devel polkit-devel pulseaudio-devel upower-devel librsvg-devel"
@@ -14,13 +14,10 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later, LGPL-2.0-or-later"
 homepage="https://github.com/linuxmint/cinnamon-settings-daemon"
 distfiles="https://github.com/linuxmint/cinnamon-settings-daemon/archive/${version}.tar.gz"
-checksum=15e15d7e87d9c51271c0b042ed4177efa12622cf51bf1f2fa68e374757735512
+checksum=c55cd5037adeb05a25c21fd4a9c03bd147e2917727c189a58e79c9dbfcaf489c
 
 cinnamon-settings-daemon-devel_package() {
 	short_desc+=" - development files"
-	depends="libglib-devel ${sourcepkg}-${version}_${revision}"
-	pkg_install() {
-		vmove usr/include
-		vmove usr/lib/pkgconfig
-	}
+	depends="glib-devel ${sourcepkg}>=${version}_${revision}"
+	metapackage=yes
 }

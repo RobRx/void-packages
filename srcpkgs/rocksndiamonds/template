@@ -1,6 +1,6 @@
 # Template file for 'rocksndiamonds'
 pkgname=rocksndiamonds
-version=4.3.2.1
+version=4.4.2.2
 revision=1
 build_style=gnu-makefile
 hostmakedepends="pkg-config"
@@ -9,9 +9,11 @@ short_desc="Arcade style game"
 maintainer="Clyhtsuriva <void-packages@adjutor.xyz>"
 license="GPL-2.0-only"
 homepage="http://www.artsoft.org/rocksndiamonds"
-distfiles="http://www.artsoft.org/RELEASES/unix/${pkgname}/${pkgname}-${version}.tar.gz"
-checksum=dba4b5ff63561a258348cd3b330d2084ab7ba647d26b6c21f996d93d76ea8439
+changelog="https://guest:guest@git.artsoft.org/?p=rocksndiamonds.git;a=blob_plain;f=ChangeLog"
+distfiles="https://www.artsoft.org/RELEASES/linux/${pkgname}/${pkgname}-${version}-linux.tar.gz"
+checksum=4bab23cb290775e7c9b7abd7330d1322a2f43b404e4fc3a172a342825069b033
 replaces="rocksndiamonds-data>=0"
+disable_parallel_build=yes
 
 do_build() {
 	vsed -i Makefile -e "s;^\(MAKE_CMD = \$(MAKE)\);& ${makejobs};"

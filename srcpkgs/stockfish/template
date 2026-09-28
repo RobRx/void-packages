@@ -1,8 +1,8 @@
 # Template file for 'stockfish'
 pkgname=stockfish
-version=17
+version=18
 revision=1
-_net_file_big=nn-1111cefa1111.nnue
+_net_file_big=nn-c288c895ea92.nnue
 _net_file_small=nn-37f18f62d772.nnue
 build_wrksrc=src
 build_style=gnu-makefile
@@ -10,14 +10,14 @@ make_build_target=build
 make_use_env=yes
 hostmakedepends="tar"
 short_desc="Free UCI chess engine derived from Glaurung"
-maintainer="shtayerc <david.murko@mailbox.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="http://stockfishchess.org/"
 distfiles="https://github.com/official-stockfish/Stockfish/archive/sf_${version}.tar.gz
  https://tests.stockfishchess.org/api/nn/${_net_file_big}
  https://tests.stockfishchess.org/api/nn/${_net_file_small}"
-checksum="8f9b52285c3348c065b7cb58410626df16d7416a2e60a3b04f3ec7c038e67ad1
- 1111cefa11116b77161bd4b14dab4c50f26e5920c756f4861592be3dcd6de174
+checksum="22a195567e3493e7c9ca8bf8fa2339f4ffc876384849ac8a417ff4b919607e7b
+ c288c895ea924429ea9092e3f36b2b3c1f00f2a3a4c759ff7e57e79e3b43e4a7
  37f18f62d772f3107e1d6aaca3898c130c3c86f2ab63e6555fbbca20635a899d"
 skip_extraction="${_net_file_big} ${_net_file_small}"
 

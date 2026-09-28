@@ -1,9 +1,10 @@
 # Template file for 'ktnef'
+# group=kde-gear
 pkgname=ktnef
-version=24.12.3
+version=26.08.0
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF -DKF6_HOST_TOOLING=/usr/lib/cmake
+configure_args="-DBUILD_TESTING=OFF
  -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
  -DKDE_INSTALL_QMLDIR=lib/qt6/qml
  -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
@@ -15,7 +16,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/ktnef-${version}.tar.xz"
-checksum=c2d2f1b64e1667be32e7e5d051d98f4f41ef67c10777782bf9e4a41b5745702d
+checksum=b7f6be661f45695596f88e964b05ef4db5d8f878df1a9c852fb8dd65ecb4e25e
 
 ktnef-devel_package() {
 	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"

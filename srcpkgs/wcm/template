@@ -1,17 +1,16 @@
 # Template file for 'wcm'
 pkgname=wcm
-version=0.9.0
+version=0.11.0
 revision=1
 build_style=meson
-configure_args="-Denable_wdisplays=false"
-hostmakedepends="pkg-config wayland-devel"
-makedepends="wayfire-devel gtkmm-devel wf-shell"
+hostmakedepends="pkg-config wayland-devel gettext"
+makedepends="wayfire-devel gtkmm-devel wf-shell fmt-devel"
 short_desc="Wayfire Config Manager"
 maintainer="Érico Nogueira <ericonr@disroot.org>"
 license="MIT"
 homepage="https://wayfire.org/"
 distfiles="https://github.com/WayfireWM/wcm/archive/v${version}.tar.gz"
-checksum=35205c165b83ac387235b0415f58f0e80a8975421de23250c7cb70c471aeee87
+checksum=239aaa77d53b0105cf26cfcd669db46ffacd0df822ba0b6a5c79e624ac526f86
 
 post_install() {
 	vlicense LICENSE

@@ -1,20 +1,20 @@
 # Template file for 'moby'
 # should be kept in sync with docker-cli
 pkgname=moby
-version=28.0.4
+version=29.8.0
 revision=1
 build_style=go
 go_import_path="github.com/docker/docker"
-hostmakedepends="go pkg-config"
-makedepends="libbtrfs-devel device-mapper-devel libseccomp-devel"
+hostmakedepends="go pkg-config go-md2man"
+makedepends="libbtrfs-devel device-mapper-devel libnftables-devel libseccomp-devel"
 depends="containerd iptables xz"
 short_desc="Container engine for the Docker ecosystem"
-maintainer="Andrea Brancaleoni <abc@pompel.me>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="Apache-2.0"
 homepage="https://www.docker.com"
 changelog="https://github.com/moby/moby/releases"
-distfiles="https://github.com/moby/moby/archive/v${version}.tar.gz"
-checksum=4b347a2b83221952cab93197f6e9bc7ffe54dd4bd0a9644c176aecde551721ca
+distfiles="https://github.com/moby/moby/archive/docker-v${version}.tar.gz"
+checksum=e75ffb5d2ddc1fd98138fdb5e29f707b59f415ec8697e73b8bbdf8bbbb4be8eb
 system_groups="docker"
 make_check=no # no other tests are available
 
@@ -25,10 +25,12 @@ do_build() {
 	export DISABLE_WARN_OUTSIDE_CONTAINER=1
 
 	GOPATH="$PWD" VERSION="$version" hack/make.sh dynbinary
+	go-md2man -in man/dockerd.8.md -out man/dockerd.8
 }
 
 do_install() {
 	vbin bundles/dynbinary-daemon/dockerd
 	vbin bundles/dynbinary-daemon/docker-proxy
 	vsv docker
+	vman man/dockerd.8
 }

@@ -1,11 +1,11 @@
 # Template file for 'xfsprogs'
 pkgname=xfsprogs
-version=6.5.0
+version=6.19.0
 revision=1
 build_style=gnu-configure
 configure_args="--enable-editline=yes --enable-lib64=no --libdir=/usr/lib
  --enable-lto"
-hostmakedepends="gettext"
+hostmakedepends="gettext pkg-config"
 makedepends="libblkid-devel libedit-devel inih-devel liburcu-devel
  libuuid-devel"
 short_desc="Utilities for managing the XFS filesystem"
@@ -13,10 +13,18 @@ maintainer="Enno Boland <gottox@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="http://xfs.org/index.php/Main_Page"
 distfiles="${KERNEL_SITE}/utils/fs/xfs/xfsprogs/xfsprogs-${version}.tar.xz"
-checksum=8db81712b32756b97d89dd9a681ac5e325bbb75e585382cd4863fab7f9d021c6
+checksum=f3b0d758ed3802b20f838fefc42bbff431e0f0df2fe03cd50d0aa4ad86dcd0fc
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" liburcu-devel"
+fi
+
+if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+	# glibc includes linux/statx.h, musl doesn't musls
+	# definition is not new enough so work around the broken
+	# configure check and force use of the internal statx
+	# struct definition.
+	configure_args+=" ac_cv_type_struct_statx=no"
 fi
 
 do_install() {

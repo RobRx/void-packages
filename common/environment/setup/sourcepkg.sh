@@ -25,7 +25,7 @@ for var in $(awk 'BEGIN{for (i in ENVIRON) {print i}}' </dev/null); do
 		;;
 	DISTCC_HOSTS | DISTCC_DIR)
 		;;
-	CCACHE_DIR | CCACHE_COMPRESS)
+	CCACHE_DIR | CCACHE_COMPRESS | CCACHE_PREFIX)
 		;;
 	HTTP_PROXY | HTTPS_PROXY | SOCKS_PROXY | NO_PROXY | HTTP_PROXY_AUTH)
 		;;
@@ -50,6 +50,7 @@ unset -v make_cmd meson_cmd gem_cmd fetch_cmd make_check_pre
 unset -v python_version stackage
 unset -v cmake_builddir meson_builddir
 unset -v meson_crossfile
+unset -v qmake_default_version
 unset -v gemspec
 unset -v go_import_path go_package go_mod_mode
 unset -v patch_args disable_parallel_build disable_parallel_check

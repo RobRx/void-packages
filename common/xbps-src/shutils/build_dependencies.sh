@@ -79,7 +79,11 @@ install_pkg_from_repos() {
 
     cmd=$XBPS_INSTALL_CMD
     [[ $cross ]] && cmd=$XBPS_INSTALL_XCMD
-    $cmd -Ay "$@" >$tmplogf 2>&1
+    if [ -n "$XBPS_VERBOSE" ]; then
+        $cmd -Ay "$@" 2>&1 | tee "$tmplogf"
+    else
+        $cmd -Ay "$@" >"$tmplogf" 2>&1
+    fi
     rval=$?
 
     case "$rval" in
@@ -384,6 +388,8 @@ install_pkg_deps() {
         (
         curpkgdepname=$($XBPS_UHELPER_CMD getpkgname "$i" 2>/dev/null)
         setup_pkg $curpkgdepname
+        # do not check when building dependencies, except for "full" (-K)
+        [ "$XBPS_CHECK_PKGS" == full ] || unset XBPS_CHECK_PKGS
         exec env XBPS_DEPENDENCY=1 XBPS_BINPKG_EXISTS=1 XBPS_DEPENDS_CHAIN="$XBPS_DEPENDS_CHAIN, $sourcepkg(host)" \
             $XBPS_LIBEXECDIR/build.sh $sourcepkg $pkg $target $cross_prepare || exit $?
         ) || exit $?
@@ -397,6 +403,8 @@ install_pkg_deps() {
 
         curpkgdepname=$($XBPS_UHELPER_CMD getpkgname "$i" 2>/dev/null)
         setup_pkg $curpkgdepname $cross
+        # do not check when building dependencies, except for "full" (-K)
+        [ "$XBPS_CHECK_PKGS" == full ] || unset XBPS_CHECK_PKGS
         exec env XBPS_DEPENDENCY=1 XBPS_BINPKG_EXISTS=1 XBPS_DEPENDS_CHAIN="$XBPS_DEPENDS_CHAIN, $sourcepkg(${cross:-host})" \
             $XBPS_LIBEXECDIR/build.sh $sourcepkg $pkg $target $cross $cross_prepare || exit $?
         ) || exit $?
@@ -415,6 +423,8 @@ install_pkg_deps() {
             fi
         fi
         setup_pkg $curpkgdepname $cross
+        # do not check when building dependencies, except for "full" (-K)
+        [ "$XBPS_CHECK_PKGS" == full ] || unset XBPS_CHECK_PKGS
         exec env XBPS_DEPENDENCY=1 XBPS_BINPKG_EXISTS=1 XBPS_DEPENDS_CHAIN="$XBPS_DEPENDS_CHAIN, $sourcepkg(${cross:-host})" \
             $XBPS_LIBEXECDIR/build.sh $sourcepkg $pkg $target $cross $cross_prepare || exit $?
         ) || exit $?

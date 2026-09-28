@@ -1,6 +1,6 @@
 # Template file for 'diffstat'
 pkgname=diffstat
-version=1.67
+version=1.69
 revision=1
 build_style=gnu-configure
 makedepends="xz zstd"
@@ -10,7 +10,7 @@ license="MIT"
 homepage="http://invisible-island.net/diffstat/diffstat.html"
 changelog="https://invisible-island.net/diffstat/CHANGES"
 distfiles="https://invisible-mirror.net/archives/diffstat/diffstat-${version}.tgz"
-checksum=760ed0c99c6d643238d41b80e60278cf1683ffb94a283954ac7ef168c852766a
+checksum=bb02464072f769dd9832fd999526734c90eb4d66fb56d5351540a750c88a77f6
 
 post_install() {
 	vlicense COPYING
