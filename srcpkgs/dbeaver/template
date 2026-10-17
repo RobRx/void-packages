@@ -1,35 +1,38 @@
 # Template file for 'dbeaver'
 pkgname=dbeaver
-version=26.1.3
+version=26.2.2
 revision=1
 _version=${version//./_}
 # the build downloads binaries linked to glibc
 archs="x86_64 aarch64"
 build_wrksrc="dbeaver"
-hostmakedepends="apache-maven openjdk21"
-depends="openjdk21"
+hostmakedepends="apache-maven openjdk25"
+depends="openjdk25"
 short_desc="Free Universal Database Tool"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="Arjan Mossel <arjanmossel@gmail.com>"
 license="Apache-2.0"
 homepage="https://dbeaver.io"
 changelog="https://dbeaver.io/news/"
 distfiles="https://github.com/dbeaver/dbeaver/archive/${version}.tar.gz
  https://github.com/dbeaver/dbeaver-common/archive/refs/heads/release_${_version}.tar.gz>dbeaver-common-${version}.tar.gz
- https://github.com/dbeaver/dbeaver-jdbc-libsql/archive/refs/heads/release_${_version}.tar.gz>dbeaver-jdbc-libsql-${version}.tar.gz"
-checksum="df7be19894e575039d649cb680b24dab4e3f1c4e19739717cb61a5ee8a1fafca
- bdc191282dad9a45e88f598e70bf046fee04350a52470525e39bdbee25a22ad8
- ef7ac9d5285c1837970d54573aef42274547ef865d64b4a5fa29f16dc82d1a2e"
+ https://github.com/dbeaver/dbeaver-jdbc-libsql/archive/refs/heads/release_${_version}.tar.gz>dbeaver-jdbc-libsql-${version}.tar.gz
+ https://github.com/dbeaver/datadam-api/archive/refs/heads/release_${_version}.tar.gz>datadam-api-${version}.tar.gz"
+checksum="942448e9bcc541f69fc929088ebc2167e01f2541fcf441547ecdd0adbc7c223d
+ 7ed6491e052543e730669faca99a7ba93fb14faf09680d4bdf648505dec2498f
+ eca04f51261e16fd2a0ebd1e51d311f372c859ce072872a7900d0e737751128d
+ 97d29833c08bfa19819c9671fd2266c150e2b95082b3b2ef7be36aa94b5d9fff"
 nopie=true
 
 post_extract() {
 	mv ${wrksrc}/dbeaver-${version} ${wrksrc}/dbeaver
 	mv ${wrksrc}/dbeaver-common-release_${_version} ${wrksrc}/dbeaver-common
 	mv ${wrksrc}/dbeaver-jdbc-libsql-release_${_version} ${wrksrc}/dbeaver-jdbc-libsql
+	mv ${wrksrc}/datadam-api-release_${_version} ${wrksrc}/datadam-api
 }
 
 do_build() {
 	. /etc/profile.d/jdk.sh
-	mvn package -Pproduct-dbeaver-ce,product-dbeaver-eclipse-ce,appstore -T 1C -f "product/aggregate"
+	mvn package -Pproduct-dbeaver-ce,product-dbeaver-eclipse-ce -T 1C -f "product/aggregate"
 }
 
 do_install() {
@@ -37,7 +40,7 @@ do_install() {
 	vcopy "product/community/target/products/org.jkiss.dbeaver.core.product/linux/gtk/${XBPS_TARGET_MACHINE}/dbeaver" /usr/lib/
 
 	# Delete folders with Java Native Access .so's for different architectures
-	jna_dir="${DESTDIR}/usr/lib/dbeaver/plugins/com.sun.jna_5.18.1.v20251001-0800/com/sun/jna"
+	jna_dir="${DESTDIR}/usr/lib/dbeaver/plugins/com.sun.jna_5.19.1.v20260612-1000/com/sun/jna"
 	jna_arch="linux-${XBPS_TARGET_MACHINE//_/-}"
 	find "$jna_dir" -depth -mindepth 1 -type d -not -name $jna_arch -exec rm -rf {} \;
 

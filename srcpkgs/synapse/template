@@ -1,6 +1,6 @@
 # Template file for 'synapse'
 pkgname=synapse
-version=1.157.2
+version=1.161.0
 revision=1
 build_style=python3-pep517
 build_helper=rust
@@ -25,7 +25,7 @@ license="AGPL-3.0-or-later"
 homepage="https://element-hq.github.io/synapse"
 changelog="https://raw.githubusercontent.com/element-hq/synapse/develop/CHANGES.md"
 distfiles="https://github.com/element-hq/synapse/archive/refs/tags/v${version}.tar.gz"
-checksum=df94ea1e7563c7a330c38a628de9c01b233e51c871a3fd9d0099aad83abf2893
+checksum=389e57e143b19082c9ba8ede4849f3d5ead5c0f3908e4ee9e56849215995e724
 
 system_accounts="synapse"
 synapse_homedir="/var/lib/synapse"
