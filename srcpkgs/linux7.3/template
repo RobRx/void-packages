@@ -1,6 +1,6 @@
 # Template file for 'linux7.3'
 pkgname=linux7.3
-version=7.3.rc7
+version=7.3.0
 revision=1
 short_desc="Linux kernel and modules (${version%.*} series)"
 maintainer="Duncaen <duncaen@voidlinux.org>"
@@ -17,7 +17,7 @@ rc*) distfiles="https://git.kernel.org/torvalds/t/linux-${version%.*}-${version#
 	fi
 esac
 
-checksum=f789fc0d7b3713b6be23284f2a9c35bf41fb86785b24cfcc506c20d8ff712523
+checksum=87363c24f10e06321eb362765521094e94471f6bff8bce2d6b3e40f39f004953
 
 python_version=3
 
