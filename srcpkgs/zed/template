@@ -1,11 +1,11 @@
 # Template file for 'zed'
 pkgname=zed
-version=1.21.0
+version=1.25.2
 revision=1
 build_style=cargo
 configure_args="--jobs 4"
 make_build_args="--package zed --package cli"
-hostmakedepends="clang cmake pkg-config"
+hostmakedepends="clang cmake lld pkg-config"
 makedepends="gettext-devel jq elfutils-devel alsa-lib-devel fontconfig-devel
  glib-devel libva-devel libX11-devel libxcb-devel libxkbcommon-devel libzstd-devel openssl-devel
  wayland-devel vulkan-loader sqlite-devel"
@@ -15,7 +15,7 @@ maintainer="RobRx <fzvoyxzlqhbi@posteo.de>"
 license="GPL-3.0-or-later Apache-2.0"
 homepage="https://zed.dev"
 distfiles="https://github.com/zed-industries/zed/archive/v${version}/${pkgname}-${version}.tar.gz"
-checksum=37356f2cb6ca4714937be200edad278cb0f6137b4c3eec66a0743b5f523e1ee5
+checksum=130215b2213bd839cfba673292be84ec4ad0ca0dcc19f44232b9a94c22cc8449
 
 do_install() {
 	vbin "target/${RUST_TARGET}/release/cli" zed
