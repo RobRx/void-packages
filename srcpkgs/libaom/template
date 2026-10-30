@@ -1,10 +1,10 @@
 # Template file for 'libaom'
 pkgname=libaom
-version=3.13.3
-revision=2
+version=3.15.2
+revision=1
 create_wrksrc=yes
 build_style=cmake
-configure_args="-DENABLE_DOCS=OFF -DBUILD_SHARED_LIBS=ON"
+configure_args="-DENABLE_DOCS=OFF -DBUILD_SHARED_LIBS=ON -DENABLE_EXAMPLES=OFF -DBUILD_APPS=0N"
 hostmakedepends="perl"
 short_desc="AV1 Codec library implementation"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -13,7 +13,7 @@ homepage="https://aomedia.org/"
 changelog="https://aomedia.googlesource.com/aom/+/master/CHANGELOG"
 distfiles="https://aomedia.googlesource.com/aom/+archive/v${version}.tar.gz"
 # unstable checksum use content hash
-checksum=@07e4ab49795d1bcbd4100917b0c2d54dcc0189cb800af554c0196227b8de81da
+checksum=@3e419d4bdf1fb6bb7a9c7e69405d568d2ac55395143fccf7937e894e8ee80521
 make_check=no # downloads stuff
 
 # aom segfaults with default musl stack size
