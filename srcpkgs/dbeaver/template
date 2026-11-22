@@ -1,6 +1,6 @@
 # Template file for 'dbeaver'
 pkgname=dbeaver
-version=26.2.2
+version=26.2.4
 revision=1
 _version=${version//./_}
 # the build downloads binaries linked to glibc
@@ -17,10 +17,10 @@ distfiles="https://github.com/dbeaver/dbeaver/archive/${version}.tar.gz
  https://github.com/dbeaver/dbeaver-common/archive/refs/heads/release_${_version}.tar.gz>dbeaver-common-${version}.tar.gz
  https://github.com/dbeaver/dbeaver-jdbc-libsql/archive/refs/heads/release_${_version}.tar.gz>dbeaver-jdbc-libsql-${version}.tar.gz
  https://github.com/dbeaver/datadam-api/archive/refs/heads/release_${_version}.tar.gz>datadam-api-${version}.tar.gz"
-checksum="942448e9bcc541f69fc929088ebc2167e01f2541fcf441547ecdd0adbc7c223d
- 7ed6491e052543e730669faca99a7ba93fb14faf09680d4bdf648505dec2498f
- eca04f51261e16fd2a0ebd1e51d311f372c859ce072872a7900d0e737751128d
- 97d29833c08bfa19819c9671fd2266c150e2b95082b3b2ef7be36aa94b5d9fff"
+checksum="39b80d467707dd6f73aa30fa9c0424346c20f8defe64a94e17f5c637b2b89c9d
+ 13814c2434f429c46e4a6e1586ee2e6ad15b0f76bb96c9db9e68e1180c0188f0
+ fe5a3a3e8f1b863454810bd5c3a0cc258f501d638f64389f3a4ffc6bcf6edb81
+ 648013d083943b77e87f8a6537800875fad2187aa110bdb3d80630da3b52b3f2"
 nopie=true
 
 post_extract() {

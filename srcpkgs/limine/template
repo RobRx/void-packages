@@ -1,10 +1,10 @@
 # Template file for 'limine'
 pkgname=limine
-version=12.9.3
+version=12.10.0
 revision=1
 build_style=gnu-configure
 configure_args="--enable-all"
-_llvmver=22
+_llvmver=23
 hostmakedepends="mtools nasm llvm${_llvmver} clang${_llvmver} lld${_llvmver}"
 short_desc="Modern, secure, portable, multiprotocol bootloader and boot manager"
 maintainer="Mintsuki <mintsuki@protonmail.com>"
@@ -12,7 +12,8 @@ license="BSD-2-Clause"
 homepage="https://limine-bootloader.org/"
 changelog="https://raw.githubusercontent.com/Limine-Bootloader/Limine/refs/heads/trunk/ChangeLog"
 distfiles="https://github.com/Limine-Bootloader/Limine/releases/download/v${version}/limine-${version}.tar.gz"
-checksum=b28b9c9f614f4252cae79580d6cbbc09f4d764a541ec01d586b5c385e3776c99
+checksum=89d043166c34dcf764171f2563a3820e836206f9696bfb01fee540efba4f6c81
+make_check=no # Tests fail on github CI, likely due to resource exhaustion
 
 post_install() {
 	vlicense COPYING

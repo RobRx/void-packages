@@ -1,7 +1,7 @@
 # Template file for 'fmd-server'
 pkgname=fmd-server
-version=0.16.0
-revision=2
+version=0.17.1
+revision=1
 build_style=go
 go_import_path="fmd-server"
 hostmakedepends="unzip"
@@ -12,8 +12,8 @@ homepage="https://fmd-foss.org/"
 changelog="https://gitlab.com/fmd-foss/fmd-server/-/releases"
 distfiles="https://packages.fmd-foss.org/server/fmd-server-v${version}.zip
  https://gitlab.com/fmd-foss/fmd-server/-/archive/v${version}/fmd-server-v${version}.tar.gz"
-checksum="9919caeab1ab598e820807ecea950956f4a307a848da2d5c8af9a32e4b1f4703
- 4b4dbece5aba8be4826212cf2b9e8a855b7157eadeb8c7af062a890ee6de9442"
+checksum="d3383780aba026ce3ceb32db46578402e8594d6b3281563eb6c7033a28565c44
+ 3d7dd89137a020299d6e8da4261ac441398b087829050ede31a7a45e965e9ebb"
 skip_extraction="fmd-server-v${version}.zip"
 
 system_accounts="_fmd_server"
