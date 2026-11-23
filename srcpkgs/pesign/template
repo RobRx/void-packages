@@ -1,0 +1,19 @@
+# Template file for 'pesign'
+pkgname=pesign
+version=117
+revision=1
+build_style=gnu-makefile
+make_build_args="prefix=/usr/"
+make_install_args="prefix=/usr/"
+hostmakedepends="pkg-config mdocml"
+makedepends="nss-devel nspr-devel popt-devel libefivar-devel libuuid-devel"
+short_desc="Linux tools for signed PE-COFF binaries"
+maintainer="RobRx <fzvoyxzlqhbi@posteo.de>"
+license="GPL-2.0-only"
+homepage="https://github.com/rhboot/pesign"
+distfiles="https://github.com/rhboot/pesign/archive/refs/tags/${version}.tar.gz"
+checksum=bab458278f4bee2b5b59b7df5cff51a52ad71bb74b551151c9587f63d86d01b8
+
+post_install() {
+    rm -rf ${DESTDIR}/etc/rpm ${DESTDIR}/etc/pesign ${DESTDIR}/usr/libexec/pesign
+}
