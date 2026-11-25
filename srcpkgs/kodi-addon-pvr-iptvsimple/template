@@ -1,6 +1,6 @@
 # Template file for 'kodi-addon-pvr-iptvsimple'
 pkgname=kodi-addon-pvr-iptvsimple
-version=21.8.7
+version=21.11.0
 revision=1
 _kodi_release=Omega
 build_style=cmake
@@ -8,11 +8,11 @@ hostmakedepends="pkg-config"
 makedepends="kodi-devel kodi-platform-devel p8-platform-devel pugixml-devel
  zlib-devel liblzma-devel"
 short_desc="IPTV Simple client addon for Kodi"
-maintainer="Alexander Egorenkov <egorenar-dev@posteo.net>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/kodi-pvr/pvr.iptvsimple"
 distfiles="https://github.com/kodi-pvr/pvr.iptvsimple/archive/${version}-${_kodi_release}.tar.gz"
-checksum=fb526d408b5a707c169399aa41e6a111045c4c78d28b4971f4e51ccf02930b4a
+checksum=377fb3c69d39866c0b3b8a3a7d4c790241b15997b140f45443209c4e44e62418
 
 if [ -n "${CROSS_BUILD}" ]; then
 	configure_args+=" -DCMAKE_MODULE_PATH=${XBPS_CROSS_BASE}/usr/share/kodi/cmake"

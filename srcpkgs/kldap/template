@@ -1,11 +1,10 @@
 # Template file for 'kldap'
 # group=kde-gear
 pkgname=kldap
-version=26.08.0
+version=26.08.1
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF
- -DKDE_INSTALL_QMLDIR=lib/qt6/qml -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
+configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="extra-cmake-modules qt6-base python3 kf6-kconfig
  gettext kf6-kcoreaddons kf6-kdoctools"
 makedepends="kf6-kio-devel qtkeychain-qt6-devel kf6-kdoctools-devel"
@@ -14,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM"
 distfiles="${KDE_SITE}/release-service/${version}/src/kldap-${version}.tar.xz"
-checksum=d6fe84369db50a61371c5dcb268efe1705bc45decd4eff00bf7c8cecf04237bd
+checksum=e4be78254cfd19976544ad10981bae5aacdd96b778a9eaa4cec28be233722505
 
 kldap-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} ${makedepends}"

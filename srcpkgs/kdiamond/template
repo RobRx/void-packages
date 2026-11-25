@@ -1,13 +1,10 @@
 # Template file for 'kdiamond'
 # group=kde-gear
 pkgname=kdiamond
-version=26.08.0
+version=26.08.1
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF
- -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
- -DKDE_INSTALL_QMLDIR=lib/qt6/qml
- -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
+configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="extra-cmake-modules pkg-config qt6-base kf6-kdoctools kf6-kconfig
  kf6-kcoreaddons gettext"
 makedepends="kf6-kconfig-devel
@@ -29,4 +26,4 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/games/org.kde.kdiamond"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kdiamond"
 distfiles="${KDE_SITE}/release-service/${version}/src/kdiamond-${version}.tar.xz"
-checksum=b39eef0db5b27c181b90131bc9e9cfd26eca76f4b5f6b664dbd649bbbcb2eb59
+checksum=f33d98e23670527120ccc214efdc79dfc9963fea0712c8919c85d7f4b7ed97d0

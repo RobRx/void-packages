@@ -1,6 +1,6 @@
 # Template file for 'flit'
 pkgname=flit
-version=4.0.2
+version=4.2.0
 revision=1
 build_style=python3-pep517
 # these tests try to use system pip
@@ -15,7 +15,7 @@ license="BSD-3-Clause"
 homepage="https://flit.pypa.io"
 changelog="https://flit.pypa.io/en/stable/history.html"
 distfiles="${PYPI_SITE}/f/flit/flit-${version}.tar.gz"
-checksum=232bc4317279e8952eca9fb3f5e000d8395d693b39c105b99f619ce461e1da85
+checksum=4ab00f544721a241b15e634648f1bfac7268a0ec637f106ce3150939c2e2f4d9
 
 post_install() {
 	vlicense LICENSE

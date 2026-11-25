@@ -1,6 +1,6 @@
 # Template file for 'streamlink'
 pkgname=streamlink
-version=8.6.1
+version=8.6.3
 revision=1
 build_style=python3-pep517
 hostmakedepends="python3-setuptools"
@@ -14,7 +14,7 @@ license="BSD-2-Clause"
 homepage="https://streamlink.github.io/"
 changelog="https://raw.githubusercontent.com/streamlink/streamlink/master/CHANGELOG.md"
 distfiles="https://github.com/streamlink/streamlink/releases/download/$version/streamlink-$version.tar.gz"
-checksum=29ba76ed6d6913c9e69bc730fc584b581b2860022af18661a1d08c8daee03642
+checksum=d3602a2629b62d935a7ddc2f31dcea7797b3780654dcccbd5c3dd5b5f7e380c8
 make_check_pre="env PYTHONPATH=src"
 
 post_install() {

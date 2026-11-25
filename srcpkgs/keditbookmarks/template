@@ -1,13 +1,10 @@
 # Template file for 'keditbookmarks'
 # group=kde-gear
 pkgname=keditbookmarks
-version=26.08.0
+version=26.08.1
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF
- -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
- -DKDE_INSTALL_QMLDIR=lib/qt6/qml
- -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
+configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="extra-cmake-modules gettext kf6-kcoreaddons kf6-kconfig kf6-kdoctools
  pkg-config qt6-base qt6-tools"
 makedepends="kf6-kcodecs-devel kf6-kconfigwidgets-devel kf6-kcoreaddons-devel
@@ -21,4 +18,4 @@ license="GPL-2.0-or-later, GFDL-1.2-only"
 homepage="https://www.kde.org/"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#keditbookmarks"
 distfiles="${KDE_SITE}/release-service/${version}/src/keditbookmarks-${version}.tar.xz"
-checksum=3580e3370bc89b55c2bd88c71b3eb5ae98fb3aa5654933eb897c705d781a067b
+checksum=d1c4f6d837490e5bde6ddea0ca1de5726cc511b0f7a522a25425e5f0387a2365

@@ -1,13 +1,10 @@
 # Template file for 'kamera'
 # group=kde-gear
 pkgname=kamera
-version=26.08.0
+version=26.08.1
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF
- -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
- -DKDE_INSTALL_QMLDIR=lib/qt6/qml
- -DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt6/mkspecs/modules"
+configure_args="-DBUILD_TESTING=OFF"
 hostmakedepends="extra-cmake-modules pkg-config kf6-kdoctools gettext
  kf6-kcoreaddons kf6-kcmutils kf6-kconfig qt6-base qt6-tools"
 makedepends="qt6-base-devel kf6-kio-devel kf6-ki18n-devel libgphoto2-devel
@@ -18,4 +15,4 @@ maintainer="Kenneth Raplee <kenrap@kennethraplee.com>"
 license="GPL-2.0-or-later"
 homepage="https://apps.kde.org/kamera/"
 distfiles="${KDE_SITE}/release-service/${version}/src/kamera-${version}.tar.xz"
-checksum=f3cc7f7fc819d716bc2a53cf4fd9d71171cfa3f9bfa50e45d8e6a60388587994
+checksum=3a81883e06889a3aefd97da8a7b7a0d0ecfeb7501d068c25e59fa606922e5e11
