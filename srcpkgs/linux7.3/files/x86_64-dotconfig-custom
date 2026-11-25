@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 7.3.5 Kernel Configuration
+# Linux/x86 7.3.6 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 14.2.1 20250405"
 CONFIG_CC_IS_GCC=y
@@ -4160,6 +4160,7 @@ CONFIG_DRM_AMD_ACP=y
 #
 CONFIG_DRM_AMD_DC=y
 CONFIG_DRM_AMD_DC_FP=y
+# CONFIG_DRM_AMD_DC_DCE is not set
 # end of Display Engine Configuration
 
 CONFIG_HSA_AMD=y
